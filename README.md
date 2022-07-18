@@ -1,2 +1,16 @@
 # Domain-PenetrationTesting
-Ways and tips of Domain-PenetrationTesting
+### Check if there is domain
+* net time /domain
+* ipconfig /all
+* net config workstation
+
+### Check live hosts within Domain
+* nbtscan.exe 192.168.1.0/24
+* for /L %l in (1,1,254) DO @ping -w 1 -n 1 192.168.1.%l | findstr "TTL="
+* arp-scan
+
+### PortScan within Domain
+* telnet port 
+
+### Check members within Domain
+* net group "domain computers" /domain
