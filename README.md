@@ -14,3 +14,13 @@
 
 ### Check members within Domain
 * net group "domain computers" /domain
+
+### Check domain forests
+* nltest /domain_trusts
+
+### Locate DC
+* net time /domain
+
+### Locate Domain user and admins
+* net user /domain
+* dsquery user
