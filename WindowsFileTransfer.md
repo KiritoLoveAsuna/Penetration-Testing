@@ -2,8 +2,7 @@
 
 - to be continued
 
-# Bitsadmin
-
+# Bitsadmin (cmd needs admin permission)
 - Bitsadmin /transfer n http://url saved_path
 
 # FTP (pyftpdlib client on Kali)
