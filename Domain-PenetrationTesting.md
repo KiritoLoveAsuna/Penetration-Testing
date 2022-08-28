@@ -27,3 +27,6 @@
 
 ### Remote connect domain user
 * rdesktop -u username -p passwd -d domain ip:port
+
+### Retrieve domain user full info
+* Get-ADUser -Identity Susan -Properties "*"
