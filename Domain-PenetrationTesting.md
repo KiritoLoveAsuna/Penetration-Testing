@@ -23,4 +23,7 @@
 
 ### Locate Domain user and admins
 * net user /domain
-* dsquery user
+* dsquery user(verified)
+
+### Remote connect domain user
+* rdesktop -u username -p passwd -d domain ip:port
