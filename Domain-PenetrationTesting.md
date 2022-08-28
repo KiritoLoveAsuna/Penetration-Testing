@@ -30,3 +30,6 @@
 
 ### Retrieve domain user full info
 * Get-ADUser -Identity Susan -Properties "*"
+
+### Retrieve domain computer full info
+* Get-AdComputer -Identity APPSRV01 -Properties *
