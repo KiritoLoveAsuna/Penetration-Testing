@@ -1,2 +1,5 @@
 ### Check installed apps on windows
 cmd.exe->wmic->product get name
+
+### Find file with txt extension starts from C:\Users\Freddy recursively, output the path of the file to our terminal
+forfiles /P C:\Users\Freddy /S /M *.txt /c "cmd /c echo @PATH"
