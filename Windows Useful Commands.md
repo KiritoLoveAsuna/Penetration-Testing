@@ -11,3 +11,6 @@ net localgroup
 net localgroup Administrators Tristan /add
 net localgroup Administrators Tristan /del
 
+### Add local user
+net user /add Tristan greatpassword
+net user /del Tristan
