@@ -9,8 +9,8 @@ net localgroup
 
 ### Add "Tristan" to the Administrators group with net localgroup
 net localgroup Administrators Tristan /add
-net localgroup Administrators Tristan /del
+-------net localgroup Administrators Tristan /del
 
 ### Add local user
 net user /add Tristan greatpassword
-net user /del Tristan
+-------net user /del Tristan
