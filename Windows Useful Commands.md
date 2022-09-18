@@ -14,3 +14,6 @@ net localgroup Administrators Tristan /add
 ### Add local user
 net user /add Tristan greatpassword
 -------net user /del Tristan
+
+### runas to execute cmd in another user's permission
+runas /user:username "cmd"
