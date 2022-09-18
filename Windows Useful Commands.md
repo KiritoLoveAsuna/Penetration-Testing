@@ -16,4 +16,4 @@ net user /add Tristan greatpassword
 -------net user /del Tristan
 
 ### runas to execute cmd in another user's permission
-runas /user:username "cmd"
+runas /user:username "cmd" ("notepad "path to file"")
