@@ -20,3 +20,6 @@ net user /add Tristan greatpassword
 
 ### runas to execute cmd in another user's permission
 runas /user:username "cmd" ("notepad "path to file"")
+
+### runas to pipe output
+runas /user:username "cmd /K file"
