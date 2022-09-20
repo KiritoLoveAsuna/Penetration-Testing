@@ -26,3 +26,9 @@ runas /user:username "cmd /K file"
 
 ### check parent process id of windows process
 wmic process where (processid=PROCID_HERE) get parentprocessid
+
+### find files with txt extension recursively under drive 
+where /R S:\ *.txt
+
+### find how many drives/drivetype(CD-ROM or fixed drive) 
+futil fsinfo drives/drivetype
