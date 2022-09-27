@@ -15,3 +15,7 @@ query user /server:$server
 Get-WmiObject -Class win32_computersystem
 (Get-CimInstance -ClassName Win32_ComputerSystem).Username
 (Get-WMIObject -ClassName Win32_ComputerSystem).Username
+
+
+### Get file under path using hash value
+Get-FileHash -Path C:\Windows\System32\* -Algorithm MD5 | findstr /i "6CECC33A62E935F5E8665B9597479A36"
