@@ -32,3 +32,6 @@ where /R S:\ *.txt
 
 ### find how many drives/drivetype(CD-ROM or fixed drive) 
 futil fsinfo drives/drivetype
+ 
+### Check dir or file permission
+icacls file/directory
