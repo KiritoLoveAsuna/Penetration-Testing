@@ -11,12 +11,12 @@ net localgroup
 net localgroup groupname
 
 ### Add "Tristan" to the Administrators group with net localgroup
-net localgroup Administrators Tristan /add
--------net localgroup Administrators Tristan /del
+net localgroup Administrators Tristan /add  
+net localgroup Administrators Tristan /del
 
 ### Add local user
-net user /add Tristan greatpassword
--------net user /del Tristan
+net user /add Tristan greatpassword  
+net user /del Tristan
 
 ### runas to execute cmd in another user's permission
 runas /user:username "cmd" ("notepad "path to file"")
