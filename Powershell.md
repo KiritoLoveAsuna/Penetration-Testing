@@ -19,3 +19,6 @@ Get-WmiObject -Class win32_computersystem
 
 ### Get file under path using hash value
 Get-FileHash -Path C:\Windows\System32\* -Algorithm MD5 | findstr /i "6CECC33A62E935F5E8665B9597479A36"
+
+### Find string in txt files under path by "password" string
+Select-String -Path C:\Windows\System32\*.txt -Pattern 'password'
