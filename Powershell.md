@@ -12,5 +12,6 @@ Get-WmiObject -class Win32_Service -Property StartMode,PathName | Where {$_.Star
 
 ### Get current logged in user
 query user /server:$server
+Get-WmiObject -Class win32_computersystem
 (Get-CimInstance -ClassName Win32_ComputerSystem).Username
 (Get-WMIObject -ClassName Win32_ComputerSystem).Username
