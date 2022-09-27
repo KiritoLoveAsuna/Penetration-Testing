@@ -1,3 +1,3 @@
 ### show connections
-netstat -natup
+netstat -natup  
 ss -natup
