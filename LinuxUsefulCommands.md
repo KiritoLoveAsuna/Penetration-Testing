@@ -58,5 +58,7 @@ binary mode: bin
 ```
 sudo iptables -L (show iptables)
 Append a rule to the INPUT chain for a source network of 192.168.1.0/24 for all protocols: sudo iptables -s 192.168.1.0/24 -p all -A INPUT
+sudo iptables -s 127.0.0.1 -d 127.0.0.1 -A INPUT
+sudo iptables -s 192.168.1.37 -p tcp -A INPUT
 ```
 
