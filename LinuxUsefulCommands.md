@@ -53,3 +53,9 @@ anonymous login: ftp ip; username:anonymous;password:blank;
 ascii mode: ascii
 binary mode: bin
 ```
+
+### IPTables
+```
+sudo iptables -L
+```
+
