@@ -63,6 +63,7 @@ sudo iptables -s 192.168.1.37 -p tcp -A INPUT
 sudo iptables -D INPUT 5(linenumber)
 sudo iptables -nvL(show traffic)
 sudo iptables -P FOWARD DROP(change default policy of forward to drop)
+sudo iptables -R(replace) INPUT 1 -s 192.168.1.37 -d 127.0.0.1 -p tcp --dport 8080
 Final: sudo iptables-save
 ```
 
