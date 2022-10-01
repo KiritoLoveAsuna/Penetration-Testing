@@ -64,4 +64,15 @@ sudo iptables -D INPUT 5(linenumber)
 sudo iptables -nvL(show traffic)
 Final: sudo iptables-save
 ```
+```
+stateful firewall
+INVALID: The packet is associated with no known connection.
+NEW: The packet has started a new connection or otherwise associated with a connection that has not seen packets in both directions.
+ESTABLISHED: The packet is associated with a connection that has seen packets in both directions.
+RELATED: The packet is starting a new connection, but is associated with an existing connection, such as an FTP data transfer or an ICMP error.
+UNTRACKED: The packet is not tracked at all, which happens if you explicitly un-track it by using -j CT --notrack in the raw table.
 
+sudo iptables -I INPUT 1 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+sudo iptables -I INPUT 2 -m conntrack --ctstate INVALID -j DROP
+sudo iptables -L --line-numbers
+```
