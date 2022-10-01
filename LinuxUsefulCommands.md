@@ -62,6 +62,7 @@ sudo iptables -s 127.0.0.1 -d 127.0.0.1 -A INPUT
 sudo iptables -s 192.168.1.37 -p tcp -A INPUT
 sudo iptables -D INPUT 5(linenumber)
 sudo iptables -nvL(show traffic)
+sudo iptables -P FOWARD DROP(change default policy of forward to drop)
 Final: sudo iptables-save
 ```
 
