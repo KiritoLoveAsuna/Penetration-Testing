@@ -1,3 +1,8 @@
+### Show logger
+who
+last
+/var/log 检查日志
+
 ### Show network connections
 netstat -natup  
 ss -natup
