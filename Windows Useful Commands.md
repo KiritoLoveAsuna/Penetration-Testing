@@ -35,3 +35,6 @@ futil fsinfo drives/drivetype
  
 ### Check dir or file permission
 icacls file/directory
+
+### Domain information
+nslookup www.offensive-security.com 8.8.8.8(using google dns server to search)  
