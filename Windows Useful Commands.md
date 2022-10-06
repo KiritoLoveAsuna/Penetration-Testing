@@ -41,4 +41,7 @@ nslookup www.offensive-security.com 8.8.8.8(using google dns server to search)
 
 ### Network shares
 net share  
+net share mySharedData=C:\Windows\system32  
 net use \\192.168.1.1\public  
+runas /user:offensive "cmd /k net use f: \\finance.outofthisworld.com\finance /user:finance"  
+net use f: /delete
