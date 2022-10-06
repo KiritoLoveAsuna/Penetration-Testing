@@ -58,3 +58,4 @@ netsh advfirewall firewall show rule name="Deny Ping OffSec"
 netsh advfirewall firewall delete rule name="Deny Ping OffSec"  
 netsh advfirewall firewall add rule name="Block OffSec" remoteip=192.124.249.5 dir=out enable=yes action=block  
 netsh advfirewall firewall add rule name="Block OffSec" remoteip=192.124.249.5 dir=out enable=yes action=block remoteport=443 protocol=tcp  
+netsh advfirewall firewall add rule name="Allow SSH" dir=in enable=yes action=allow localport=22 protocol=tcp  
