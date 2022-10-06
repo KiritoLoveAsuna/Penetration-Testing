@@ -38,3 +38,7 @@ icacls file/directory
 
 ### Domain information
 nslookup www.offensive-security.com 8.8.8.8(using google dns server to search)  
+
+### Network shares
+net share  
+net use \\192.168.1.1\public  
