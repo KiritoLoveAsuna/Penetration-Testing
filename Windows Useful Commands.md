@@ -49,3 +49,12 @@ net use f: /delete
 ### Psexec
 psexec -i \\ip -u username -p password cmd(interactive shell)  
 psexec -i -s \\ip -u username -p password cmd(with system priviledges)  
+
+### Firewall
+netsh advfirewall reset  
+netsh advfirewall show allprofiles  
+netsh advfirewall firewall add rule name="Deny Ping OffSec" dir=in action=block protocol=icmpv4 remoteip=192.124.249.5  
+netsh advfirewall firewall show rule name="Deny Ping OffSec"  
+netsh advfirewall firewall delete rule name="Deny Ping OffSec"  
+netsh advfirewall firewall add rule name="Block OffSec" remoteip=192.124.249.5 dir=out enable=yes action=block  
+netsh advfirewall firewall add rule name="Block OffSec" remoteip=192.124.249.5 dir=out enable=yes action=block remoteport=443 protocol=tcp  
