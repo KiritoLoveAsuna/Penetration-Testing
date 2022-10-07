@@ -52,6 +52,7 @@ psexec -i -s \\ip -u username -p password cmd(with system priviledges)
 
 ### Firewall
 netsh advfirewall reset(state to on)  
+netsh advfirewall set allprofiles state off
 netsh advfirewall show allprofiles  
 netsh advfirewall firewall add rule name="Deny Ping OffSec" dir=in action=block protocol=icmpv4 remoteip=192.124.249.5  
 netsh advfirewall firewall show rule name="Deny Ping OffSec"  
