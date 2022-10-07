@@ -60,3 +60,7 @@ netsh advfirewall firewall add rule name="Block OffSec" remoteip=192.124.249.5 d
 netsh advfirewall firewall add rule name="Block OffSec" remoteip=192.124.249.5 dir=out enable=yes action=block remoteport=443 protocol=tcp  
 netsh advfirewall firewall add rule name="Allow SSH" dir=in enable=yes action=allow localport=22 protocol=tcp  
 netsh advfirewall export C:\firewallPolicy.wfw
+
+### Services
+sc start servicename  
+sc stop servicename  
