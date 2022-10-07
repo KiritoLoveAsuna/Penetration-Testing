@@ -69,3 +69,6 @@ sc query dhcp
 PsService.exe query WSearch  
 PsService.exe config WSearch  
 tasklist /svc /FI "services eq dhcp"
+
+### Zipping
+tar -xf zipfilename
