@@ -64,3 +64,7 @@ netsh advfirewall export C:\firewallPolicy.wfw
 ### Services
 sc start servicename  
 sc stop servicename  
+sc query dhcp  
+PsService.exe query WSearch  
+PsService.exe config WSearch  
+tasklist /svc /FI "services eq dhcp"
