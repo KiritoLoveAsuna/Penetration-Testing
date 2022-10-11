@@ -22,3 +22,6 @@ Get-FileHash -Path C:\Windows\System32\* -Algorithm MD5 | findstr /i "6CECC33A62
 
 ### Find string in txt files under path by "password" string
 Select-String -Path C:\Windows\System32\*.txt -Pattern 'password'
+
+### Powershell to get shell from 192.168.79.79 to 192.168.79.80(username:offensive)
+192.168.79.79:Enable-PSRemoting,Set-Item wsman:\localhost\client\trustedhosts 192.168.79.80,Enter-PSSession -ComputerName 192.168.79.80 -Credential offensive
