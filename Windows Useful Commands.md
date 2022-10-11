@@ -50,6 +50,9 @@ net use f: /delete
 psexec \\ip -u username -p password -i cmd(interactive shell)  
 psexec -s \\ip -u username -p password -i cmd(with system priviledges)  
 
+### evil-winrm with shell
+evil-winrm -i 192.168.50.80 -u offensive -p security
+
 ### Firewall
 netsh advfirewall reset(state to on)  
 netsh advfirewall set allprofiles state off
