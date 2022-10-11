@@ -46,9 +46,9 @@ net use \\192.168.1.1\public
 runas /user:offensive "cmd /k net use f: \\finance.outofthisworld.com\finance /user:finance"  
 net use f: /delete
 
-### Psexec
-psexec -i \\ip -u username -p password cmd(interactive shell)  
-psexec -i -s \\ip -u username -p password cmd(with system priviledges)  
+### Psexec with shell
+psexec \\ip -u username -p password -i cmd(interactive shell)  
+psexec -s \\ip -u username -p password -i cmd(with system priviledges)  
 
 ### Firewall
 netsh advfirewall reset(state to on)  
