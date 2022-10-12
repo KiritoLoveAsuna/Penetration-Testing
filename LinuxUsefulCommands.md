@@ -3,6 +3,10 @@ who
 last  
 /var/log 检查日志
 
+### Disk Partition
+lsblk  
+sudo fdisk -l
+
 ### Show network connections
 netstat -natup  
 ss -natup
