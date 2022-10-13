@@ -75,3 +75,7 @@ tasklist /svc /FI "services eq dhcp"
 
 ### Zipping
 tar -xf zipfilename
+
+### hidden stream
+dir /R
+more < offsecStream.txt:offsec
