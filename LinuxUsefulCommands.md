@@ -13,7 +13,8 @@ ss -natup
 
 ### Copy file from remote machine to local tmp
 scp john@localhost:/var/tmp/CopyMe.txt /tmp  
-scp [OPTION] [user@]SRC_HOST:]file1 [user@]DEST_HOST:]file2
+scp [OPTION] [user@]SRC_HOST:]file1 [user@]DEST_HOST:]file2  
+scp -P 2222 student@192.168.79.112:/usr/share/kali-defaults/web/img/password.png /home/kali/
 
 ### echo current shell
 echo $SHELL
