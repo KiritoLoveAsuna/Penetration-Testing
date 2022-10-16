@@ -110,5 +110,5 @@ find /usr -type f -exec md5sum {} + | grep "d61d579501ab8ff507120780191929d5"
 $2$: Blowfish-based crypt ('bcrypt')[^bcrypt]
 $sha1$: SHA-1-based crypt ('sha1crypt')
 $5$: SHA-256-based crypt ('sha256crypt')
-$6$: SHA-512-based crypt ('sha512crypt')
+$6$: SHA-512-based crypt ('sha512crypt')  
 md5sum, sha1sum, sha256sum, sha512sum
