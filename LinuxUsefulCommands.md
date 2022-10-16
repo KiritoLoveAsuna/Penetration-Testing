@@ -113,5 +113,7 @@ find /usr -type f -exec md5sum {} + | grep "d61d579501ab8ff507120780191929d5"
 > $6$: SHA-512-based crypt ('sha512crypt')  
 
 md5sum plain-text, sha1sum plain-text, sha256sum plain-text, sha512sum plain-text  
+john --wordlist=rockyou.txt hash  
+https://crackstation.net/ (unsalted hash crack)  
 ###### Generate salted hash
 mkpasswd -m sha512crypt foobar -S "M3vwJPAueK2a1vNM"
