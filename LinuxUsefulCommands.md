@@ -112,4 +112,6 @@ find /usr -type f -exec md5sum {} + | grep "d61d579501ab8ff507120780191929d5"
 > $5$: SHA-256-based crypt ('sha256crypt')  
 > $6$: SHA-512-based crypt ('sha512crypt')  
 
-md5sum plain-text, sha1sum plain-text, sha256sum plain-text, sha512sum plain-text
+md5sum plain-text, sha1sum plain-text, sha256sum plain-text, sha512sum plain-text  
+###### Generate salted hash
+mkpasswd -m sha512crypt foobar -S "M3vwJPAueK2a1vNM"
