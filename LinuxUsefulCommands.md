@@ -135,3 +135,7 @@ gpg --decrypt plain.txt.gpg
 gpg --import melanie-private.asc  
 gpg --decrypt decrypt-me.gpg(need to enter passphrase)  
 
+### SSH 免密登录(manual way: copied over the id_rsa.pub file to authorized_keys)
+ssh-keygen  
+ssh-copy-id -i /home/kali/.ssh/id_rsa.pub kali@localhost  
+ssh -i .ssh/id_rsa kali@localhost  
