@@ -146,7 +146,7 @@ gpg --decrypt decrypt-me.gpg(need to enter passphrase)
 > First way:
 > ssh-keygen  
 > ssh-copy-id -i /home/kali/.ssh/id_rsa.pub kali@localhost  
-> ssh -i .ssh/id_rsa kali@localhost
+> ssh -i .ssh/id_rsa kali@localhost  
 > Second way:
 > ssh-keygen
 > ssh-copy-id remote-username@remote_ip 
