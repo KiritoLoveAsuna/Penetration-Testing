@@ -125,3 +125,11 @@ gpg --decrypt blowfish.plain.gpg
 gpg -c --cipher-algo aes256 aes256.plain  
 gpg --decrypt aes256.plain.gpg
 
+###### Asymmetric 
+gpg --gen-key(enter realname--Offsec and email--test@example.com for identification)  
+gpg --output example-pub.asc --armor --export Offsec  
+gpg --recipient Offsec --encrypt plain.txt  
+gpg --decrypt plain.txt.gpg  
+gpg --import melanie-private.asc  
+gpg --decrypt decrypt-me.gpg(need to enter passphrase)  
+
