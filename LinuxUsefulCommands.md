@@ -115,7 +115,7 @@ find /usr -type f -exec md5sum {} + | grep "d61d579501ab8ff507120780191929d5"
 md5sum plain-text, sha1sum plain-text, sha256sum plain-text, sha512sum plain-text  
 john --wordlist=rockyou.txt hash  
 john -form=dynamic='sha1(md5(sha512($p.$s).$p).$s)' --wordlist=rockyou.txt hash  
-https://crackstation.net/ (unsalted hash crack)  
+> https://crackstation.net/ (unsalted hash crack)  
 ###### Generate salted hash
 mkpasswd -m sha512crypt foobar -S "M3vwJPAueK2a1vNM"
 
@@ -126,6 +126,7 @@ gpg -c --cipher-algo aes256 aes256.plain
 gpg --decrypt aes256.plain.gpg
 
 ###### Asymmetric 
+> https://www.cs.drexel.edu/~jpopyack/Courses/CSP/Fa17/notes/10.1_Cryptography/RSA_Express_EncryptDecrypt_v2.html  
 gpg --gen-key(enter realname--Offsec and email--test@example.com for identification)  
 gpg --output example-pub.asc --armor --export Offsec  
 gpg --recipient Offsec --encrypt plain.txt  
