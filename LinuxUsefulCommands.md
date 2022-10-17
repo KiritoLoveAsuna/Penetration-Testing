@@ -118,3 +118,10 @@ john -form=dynamic='sha1(md5(sha512($p.$s).$p).$s)' --wordlist=rockyou.txt hash
 https://crackstation.net/ (unsalted hash crack)  
 ###### Generate salted hash
 mkpasswd -m sha512crypt foobar -S "M3vwJPAueK2a1vNM"
+
+###### Symmetric
+gpg -c --cipher-algo blowfish blowfish.plain  
+gpg --decrypt blowfish.plain.gpg  
+gpg -c --cipher-algo aes256 aes256.plain  
+gpg --decrypt aes256.plain.gpg
+
