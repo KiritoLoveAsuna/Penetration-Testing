@@ -127,6 +127,7 @@ gpg --decrypt aes256.plain.gpg
 
 ###### Asymmetric 
 > https://www.cs.drexel.edu/~jpopyack/Courses/CSP/Fa17/notes/10.1_Cryptography/RSA_Express_EncryptDecrypt_v2.html  
+
 gpg --gen-key(enter realname--Offsec and email--test@example.com for identification)  
 gpg --output example-pub.asc --armor --export Offsec  
 gpg --recipient Offsec --encrypt plain.txt  
