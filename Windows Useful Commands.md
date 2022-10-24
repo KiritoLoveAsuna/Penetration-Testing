@@ -19,6 +19,9 @@ net localgroup Administrators Tristan /del
 Get-ADUser Jim  
 Get-ADComputer APPSRV01  
 
+###### Enumerate Domain group member
+Get-ADGroupMember ThirdGroup -recursive  
+
 ### Add local user
 net user /add Tristan greatpassword  
 net user /del Tristan
