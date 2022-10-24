@@ -15,6 +15,10 @@ net localgroup groupname
 net localgroup Administrators Tristan /add  
 net localgroup Administrators Tristan /del
 
+###### Domain Users
+Get-ADUser Jim  
+Get-ADComputer APPSRV01  
+
 ### Add local user
 net user /add Tristan greatpassword  
 net user /del Tristan
