@@ -5,10 +5,11 @@ cmd.exe->wmic->product get name
 forfiles /P C:\Users\Freddy /S /M *.txt /c "cmd /c echo @PATH"
 
 ### Domain
-###### Domain Users
+###### Domain Users and Groups
 Get-ADUser Jim  
 Get-ADUSer -filter *  
 Get-ADComputer APPSRV01  
+Get-ADGroup -filter 'GroupScope -eq Global/Domain Local/Universal'
 
 ###### Enumerate Domain group member
 Get-ADGroupMember ThirdGroup -recursive  
