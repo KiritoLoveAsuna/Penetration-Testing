@@ -86,5 +86,6 @@ tasklist /svc /FI "services eq dhcp"
 tar -xf zipfilename
 
 ### hidden stream
-dir /R
+echo fileTwo uses the 'offsec' stream > offsecStream.txt:offsec  
+dir /R  
 more < offsecStream.txt:offsec
