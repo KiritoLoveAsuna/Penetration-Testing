@@ -7,6 +7,7 @@ forfiles /P C:\Users\Freddy /S /M *.txt /c "cmd /c echo @PATH"
 ### Domain
 ###### Domain Users
 Get-ADUser Jim  
+Get-ADUSer -filter *  
 Get-ADComputer APPSRV01  
 
 ###### Enumerate Domain group member
