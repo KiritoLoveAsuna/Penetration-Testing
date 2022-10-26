@@ -5,22 +5,22 @@ cmd.exe->wmic->product get name
 forfiles /P C:\Users\Freddy /S /M *.txt /c "cmd /c echo @PATH"
 
 ### Domain
-###### Retrieve local group information on our system
-net localgroup
-
-###### Retrieve local group members info
-net localgroup groupname
-
-###### Add "Tristan" to the Administrators group with net localgroup
-net localgroup Administrators Tristan /add  
-net localgroup Administrators Tristan /del
-
 ###### Domain Users
 Get-ADUser Jim  
 Get-ADComputer APPSRV01  
 
 ###### Enumerate Domain group member
 Get-ADGroupMember ThirdGroup -recursive  
+
+### Retrieve local group information on our system
+net localgroup  
+
+### Add "Tristan" to the Administrators group with net localgroup
+net localgroup Administrators Tristan /add  
+net localgroup Administrators Tristan /del
+
+### Retrieve local group members info
+net localgroup groupname  
 
 ### Add local user
 net user /add Tristan greatpassword  
