@@ -8,6 +8,7 @@ forfiles /P C:\Users\Freddy /S /M *.txt /c "cmd /c echo @PATH"
 ###### Domain Users and Groups
 Get-ADUser Jim  
 Get-ADUSer -filter *  
+Get-ADUser Morgan -Properties *(get full info of aduser)  
 Get-ADComputer APPSRV01  
 Get-ADGroup -filter 'GroupScope -eq Global/Domain Local/Universal'
 
