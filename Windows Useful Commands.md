@@ -67,7 +67,7 @@ evil-winrm -i 192.168.50.80 -u offensive -p security
 
 ### Firewall
 netsh advfirewall reset(state to on)  
-netsh advfirewall set allprofiles state off
+netsh advfirewall set allprofiles state off  
 netsh advfirewall show allprofiles  
 netsh advfirewall firewall add rule name="Deny Ping OffSec" dir=in action=block protocol=icmpv4 remoteip=192.124.249.5  
 netsh advfirewall firewall show rule name="Deny Ping OffSec"  
