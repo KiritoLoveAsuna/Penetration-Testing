@@ -10,7 +10,8 @@ Get-ADUser Jim
 Get-ADUSer -filter *  
 Get-ADUser Morgan -Properties *(get full info of aduser)  
 Get-ADComputer APPSRV01  
-Get-ADGroup -filter 'GroupScope -eq Global/Domain Local/Universal'
+Get-ADGroup -filter 'GroupScope -eq Global/Domain Local/Universal'  
+Get-ADGroup -filter * -properties * |select SAMAccountName, Description|Export-Csv adGroupList.csv  
 
 ###### Enumerate Domain group member
 Get-ADGroupMember ThirdGroup -recursive  
