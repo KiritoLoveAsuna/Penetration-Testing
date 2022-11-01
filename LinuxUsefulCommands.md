@@ -161,3 +161,5 @@ john --wordlist=rockyou.txt user_shadow_hash($6$VvN1wBiLLmqWtRXY$oPzxsQbXqdzIISj
 unshadow passwd.txt shadow.txt > unshadowed.txt  
 john --wordlist=/usr/share/wordlists/rockyou.txt unshadowed.txt  
 
+### Systemd
+journalctl -u network.service(See network service messages)  
