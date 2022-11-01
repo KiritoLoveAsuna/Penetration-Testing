@@ -163,3 +163,6 @@ john --wordlist=/usr/share/wordlists/rockyou.txt unshadowed.txt
 
 ### Systemd
 journalctl -u network.service(See network service messages)  
+systemctl show service(Show properties of a service or other unit)  
+journalctl(Show all collected log messages)  
+journalctl -k(Show only kernel messages)
