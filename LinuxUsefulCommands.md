@@ -166,3 +166,6 @@ journalctl -u network.service(See network service messages)
 systemctl show service(Show properties of a service or other unit)  
 journalctl(Show all collected log messages)  
 journalctl -k(Show only kernel messages)
+
+### check dmarc records of domain
+dig txt _dmarc.stryker.com
