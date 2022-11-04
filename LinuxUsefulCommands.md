@@ -167,5 +167,6 @@ systemctl show service(Show properties of a service or other unit)
 journalctl(Show all collected log messages)  
 journalctl -k(Show only kernel messages)
 
-### check dmarc records of domain
-dig txt _dmarc.stryker.com
+### check dmarc and spf records of domain
+dig txt _dmarc.stryker.com  
+dig @8.8.8.8 stryker.com txt
