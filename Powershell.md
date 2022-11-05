@@ -25,3 +25,18 @@ Select-String -Path C:\Windows\System32\*.txt -Pattern 'password'
 
 ### Powershell to get shell from 192.168.79.79 to 192.168.79.80(username:offensive)
 192.168.79.79:Enable-PSRemoting,Set-Item wsman:\localhost\client\trustedhosts 192.168.79.80,Enter-PSSession -ComputerName 192.168.79.80 -Credential offensive
+
+### Domain
+###### Domain Users and Groups
+Get-ADUser Jim  
+Get-ADUSer -filter *  
+Get-ADUser Morgan -Properties *(get full info of aduser)  
+Get-ADComputer APPSRV01  
+Get-ADGroup -filter 'GroupScope -eq Global/Domain Local/Universal'  
+Get-ADGroup -filter * -properties * |select SAMAccountName, Description|Export-Csv adGroupList.csv  
+
+###### Enumerate Domain group member
+Get-ADGroupMember ThirdGroup -recursive 
+
+### Get windows firewall rules
+Get-NetFirewallRule
