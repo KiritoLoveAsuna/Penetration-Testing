@@ -46,3 +46,9 @@ Get-ADUser -Identity Susan -Properties "*"
 
 ### Retrieve domain computer full info
 Get-AdComputer -Identity APPSRV01 -Properties *
+
+### display all loaded functions
+dir function:
+
+### display one specific module location
+dir (Get-Module -ListAvailable FlagModule).ModuleBase
