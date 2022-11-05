@@ -2,19 +2,7 @@
 cmd.exe->wmic->product get name
 
 ### Find file with txt extension starts from C:\Users\Freddy recursively, output the path of the file to our terminal
-forfiles /P C:\Users\Freddy /S /M *.txt /c "cmd /c echo @PATH"
-
-### Domain
-###### Domain Users and Groups
-Get-ADUser Jim  
-Get-ADUSer -filter *  
-Get-ADUser Morgan -Properties *(get full info of aduser)  
-Get-ADComputer APPSRV01  
-Get-ADGroup -filter 'GroupScope -eq Global/Domain Local/Universal'  
-Get-ADGroup -filter * -properties * |select SAMAccountName, Description|Export-Csv adGroupList.csv  
-
-###### Enumerate Domain group member
-Get-ADGroupMember ThirdGroup -recursive  
+forfiles /P C:\Users\Freddy /S /M *.txt /c "cmd /c echo @PATH" 
 
 ### Retrieve local group information on our system
 net localgroup  
