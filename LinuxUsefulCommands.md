@@ -170,3 +170,6 @@ journalctl -k(Show only kernel messages)
 ### check dmarc and spf records of domain
 dig txt _dmarc.stryker.com  
 dig @8.8.8.8 stryker.com txt
+
+### list commands current users can/can't execute 
+sudo -l
