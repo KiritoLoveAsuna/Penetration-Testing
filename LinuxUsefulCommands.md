@@ -173,3 +173,7 @@ dig @8.8.8.8 stryker.com txt
 
 ### list commands current users can/can't execute 
 sudo -l
+
+### Use of .bashrc or .zshrc(check shell you are using first)
+make persistent alias by adding (alias ..='cd')  
+execute command when user logins in by adding command (echo "xingdi")
