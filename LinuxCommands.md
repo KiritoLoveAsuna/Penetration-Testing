@@ -180,6 +180,10 @@ dig @8.8.8.8 stryker.com txt
 dig @8.8.8.8 ip ptr  
 host -t ptr ip
 
+### DNS zone transfer to get a corporate network layout
+host -t ns megacorpone.com | cut -d " " -f 4(list all of domain's dns servers)  
+host -l megacorpone.com ns2.megacorpone.com
+
 ### list commands current users can/can't execute 
 sudo -l
 
