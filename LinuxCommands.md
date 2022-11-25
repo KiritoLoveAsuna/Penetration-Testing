@@ -176,6 +176,10 @@ journalctl -k(Show only kernel messages)
 dig txt _dmarc.stryker.com  
 dig @8.8.8.8 stryker.com txt
 
+### DNS reverse lookup
+dig @8.8.8.8 ip ptr
+host -t ptr ip
+
 ### list commands current users can/can't execute 
 sudo -l
 
