@@ -176,9 +176,15 @@ journalctl -k(Show only kernel messages)
 dig txt _dmarc.stryker.com  
 dig @8.8.8.8 stryker.com txt
 
-### DNS reverse lookup
-dig @8.8.8.8 ip ptr  
-host -t ptr ip
+### use of host
+To perform Reverse Lookup: host target-ip-address  
+To find Domain Name servers: host -t ns target-domain  
+To query certain domain nameserver: host target-domain [name-server]  
+To find domain MX records: host -t MX target-domain  
+To find domain TXT records: host -t txt target-domain  
+To find domain SOA record: host -t soa target-domain  
+To find domain CNAME records: host -t cname target-domain  
+To find domain TTL information: host -v -t a target-domain
 
 ### DNS zone transfer to get a corporate network layout
 host -t ns megacorpone.com | cut -d " " -f 4(list all of domain's dns servers)  
