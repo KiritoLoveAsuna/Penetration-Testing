@@ -176,8 +176,8 @@ journalctl -k(Show only kernel messages)
 dig txt _dmarc.stryker.com  
 dig @8.8.8.8 stryker.com txt
 
-### use of host
-To perform Reverse Lookup: host target-ip-address  
+### DNS query
+To perform Reverse Lookup: host target-ip-address, dig -x ip_address, nslookup ip_address  
 To find Domain Name servers: host -t ns target-domain  
 To query certain domain nameserver: host target-domain [name-server]  
 To find domain MX records: host -t MX target-domain  
