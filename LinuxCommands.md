@@ -165,24 +165,6 @@ systemctl show service(Show properties of a service or other unit)
 journalctl(Show all collected log messages)  
 journalctl -k(Show only kernel messages)
 
-### check dmarc and spf records of domain
-dig txt _dmarc.stryker.com  
-dig @8.8.8.8 stryker.com txt
-
-### DNS query
-To perform Reverse Lookup: host target-ip-address(host target-ip dns-server-address), dig @dns-server-address -x ip_address, nslookup ip_address dns-server-address  
-To find Domain Name servers: host -t ns target-domain  
-To query certain domain nameserver: host target-domain [name-server]  
-To find domain MX records: host -t MX target-domain  
-To find domain TXT records: host -t txt target-domain  
-To find domain SOA record: host -t soa target-domain  
-To find domain CNAME records: host -t cname target-domain  
-To find domain TTL information: host -v -t a target-domain
-
-### DNS zone transfer to get a corporate network layout
-host -t ns megacorpone.com | cut -d " " -f 4(list all of domain's dns servers),host -l megacorpone.com ns2.megacorpone.com  
-dig axfr @192.168.185.149 _msdcs.mailman.com
-
 ### list commands current users can/can't execute 
 sudo -l
 
