@@ -11,3 +11,7 @@
 \x90
 ```
 
+### shellcode Length
+```
+standard reverse shell requires 350-400 bytes
+```
