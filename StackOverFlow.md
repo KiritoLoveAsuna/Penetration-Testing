@@ -15,3 +15,9 @@
 ```
 standard reverse shell requires 350-400 bytes
 ```
+
+### The ways to make jmp esp work
+```
+1. the compiled libraries must not have ASLR support
+2. jmp esp address must not have bad chars
+```
