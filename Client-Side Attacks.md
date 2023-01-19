@@ -9,3 +9,6 @@
 2. open word document and edit macro, copy paste then save as doc,docm,docx
 3. open a listener
 ```
+
+### Evading Protected View
+>This Microsoft Word document is highly effective when served locally, but when served from the Internet, say through an email or a download link, we must bypass another layer of protection known as Protected View,1 which disables all editing and modifications in the document and blocks the execution of macros or embedded objects.
