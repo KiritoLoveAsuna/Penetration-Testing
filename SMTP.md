@@ -14,3 +14,6 @@ Testing
 .
 5.QUIT
 ```
+
+### swaks to send email
+>swaks --to "tharper@victim" --from "rmurray@victim" --ehlo victim --body "Following link is urgent patch link: http://192.168.119.130/patch.exe" --header "Subject:urgent patch" --server 192.168.130.55
