@@ -1,4 +1,4 @@
-### Using third-party file sharing links\
+### Using third-party file sharing links
 https://www.file.io/
 
 ### Powershell
