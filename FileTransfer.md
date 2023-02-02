@@ -30,3 +30,20 @@ anonymous login: ftp ip; username:anonymous;password:blank;
 ascii mode: ascii
 binary mode: bin
 ```
+### Pure-ftpd (Linux - Linux)
+#### install
+sudo apt update && sudo apt install pure-ftpd  
+sudo groupadd ftpgroup  
+sudo useradd -g ftpgroup -d /dev/null -s /etc ftpuser  
+sudo pure-pw useradd offsec -u kali -d /ftphome  
+sudo pure-pw mkdb  
+cd /etc/pure-ftpd/auth/  
+sudo ln -s ../conf/PureDB 60pdb  
+sudo mkdir -p /ftphome  
+sudo chown -R ftpuser:ftpgroup /ftphome/  
+sudo systemctl restart pure-ftpd  
+#### connect
+ftp 10.11.0.4  
+bye  
+#### Upgrading a Non-Interactive Shell
+python -c 'import pty; pty.spawn("/bin/bash")'  
