@@ -46,6 +46,7 @@ bin(binary mode)
 ascii(ascii mode)
 #### transfer files
 ```
+Authentication first
 1. attack machine put files under ftphome dir
 2. get filename/put filename
 ```
