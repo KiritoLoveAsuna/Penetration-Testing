@@ -9,3 +9,10 @@ msf-nasm_shell
 nasm > jmp esp  
 00000000  FFE4              jmp esp  
 ```
+
+### Metasploit backgroup commands:
+```
+bg
+show sessions
+sessions id
+```
