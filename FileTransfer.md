@@ -64,9 +64,11 @@ sudo ln -s ../conf/PureDB 60pdb
 sudo mkdir -p /ftphome  
 sudo chown -R ftpuser:ftpgroup /ftphome/  
 sudo systemctl restart pure-ftpd  
-#### connect
+#### Commands
 ftp 10.11.0.4  
 bye  
+anonymous login:
+user:anonymous,password:""
 #### Upgrading a Non-Interactive Shell
 python -c 'import pty; pty.spawn("/bin/bash")'  
 #### mode
