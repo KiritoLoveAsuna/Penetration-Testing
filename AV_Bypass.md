@@ -76,3 +76,13 @@ show sessions
 sessions id
 2. Use shelter to inject msfpayload into exe(tracing must be successfully)
 ```
+### Veil framwork
+#### evade AV
+```
+sudo apt -y install veil
+sudo /usr/share/veil/config/setup.sh --force --silent
+use AV Evasion
+set payload 
+set LHOST
+generate
+```
