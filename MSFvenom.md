@@ -1,4 +1,5 @@
 ### Msfvenom
+msfvenom --list encoders
 msfvenom --list payloads  
 msfvenom --list platforms  
 msfvenom --list formats  
