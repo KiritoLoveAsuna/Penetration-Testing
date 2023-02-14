@@ -165,5 +165,17 @@ sudo -l
 make persistent alias by adding (alias ..='cd')  
 execute command when user logins in by adding command (echo "xingdi")
 
-
+### Ndisasm
+```
+ndisasm [-a] [-i] [-h] [-r] [-u] [-b bits] [-o origin] [-s sync...]
+               [-e bytes] [-k start,bytes] [-p vendor] file
+   -a or -i activates auto (intelligent) sync
+   -u same as -b 32
+   -b 16, -b 32 or -b 64 sets the processor mode
+   -h displays this text
+   -r or -v displays the version number
+   -e skips <bytes> bytes of header
+   -k avoids disassembling <bytes> bytes from position <start>
+   -p selects the preferred vendor instruction set (intel, amd, cyrix, idt)
+```
 
