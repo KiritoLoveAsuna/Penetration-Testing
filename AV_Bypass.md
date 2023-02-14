@@ -134,7 +134,7 @@ Specifies the length of the file read buffer .  Defaults to 64KB.
 Forces the script to continue without confirmation.    
 
 .EXAMPLE
-
+Import-Module .\Find-AVSignature.ps1
 PS C:\> Find-AVSignature -Startbyte 0 -Endbyte max -Interval 10000 -Path c:\test\exempt\nc.exe 
 PS C:\> Find-AVSignature -StartByte 10000 -EndByte 20000 -Interval 1000 -Path C:\test\exempt\nc.exe -OutPath c:\test\output\run2 -Verbose
 PS C:\> Find-AVSignature -StartByte 16000 -EndByte 17000 -Interval 100 -Path C:\test\exempt\nc.exe -OutPath c:\test\output\run3 -Verbose
