@@ -277,3 +277,12 @@ http://heapoverflow.com/f0rums/project.php?issueid=34&filter=changes&page=2
 
 
 ```
+### C#
+#### kali install c# compiler
+sudo apt update
+sudo apt install mono-complete
+mcs hello.cs
+mono hello.exe
+#### Shellcode runner
+```
+```
