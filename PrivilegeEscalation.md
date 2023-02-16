@@ -2,8 +2,10 @@
 
 ### Linux
 #### Kernel exploits
-##### OS version
+```
+OS version:
 cat /etc/issue  
 cat /etc/*-release  
-##### kernel version and architecture 
+Kernel Version and Architecture: 
 uname -a
+```
