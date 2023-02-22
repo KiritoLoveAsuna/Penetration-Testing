@@ -31,6 +31,20 @@ reg query HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Installer
 4. Get-WmiObject -Class Win32_Service -Property StartMode -Filter "Name='Service Name'"
 5. whoami /priv #check out shutdown privileges of user
 ```
+##### Unquoted Service Paths
+```
+Service Path:
+C:\Program Files\My Program\My Service\service.exe
+The Service will run the executable in path like this:
+C:\Program.exe
+C:\Program Files\My.exe
+C:\Program Files\My Program\My.exe
+C:\Program Files\My Program\My service\service.exe
+
+For example, we could name our executable Program.exe and place it in C:\, or name it My.exe and place it in C:\Program Files. However, this would require some unlikely write permissions since standard users do not have write access to these directories by default.
+
+It is more likely that the software's main directory (C:\Program Files\My Program in our example) or subdirectory (C:\Program Files\My Program\My service) is misconfigured, allowing us to plant a malicious My.exe binary
+```
 
 ### Linux
 ##### Kernel exploits
