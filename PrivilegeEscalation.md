@@ -10,8 +10,8 @@ schtasks /query /fo LIST /v
 ##### Enumerating Unmounted Disks
 mountvol
 ##### Enumerating Device Drivers and Kernel Modules
-1. driverquery /v /FO CSV  
-2. Get-WmiObject Win32_PnPSignedDriver | Select-Object DeviceName, DriverVersion, Manufacturer | Where-Object {$_.DeviceName -like "*VMware*"}
+1. driverquery /v /FO Table  
+2. Get-WmiObject Win32_PnPSignedDriver | Select-Object DeviceName, DriverVersion, Manufacturer
 ##### Enumerating Binaries That AutoElevate
 reg query HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\Installer  
 reg query HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Installer
