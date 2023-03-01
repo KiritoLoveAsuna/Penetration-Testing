@@ -12,4 +12,6 @@ PLACEHOLDER	CHARACTER TRANSLATION
 ,	Upper case alpha characters
 %	Numeric characters
 ^	Special characters including space
+
+crunch 4 6 0123456789ABCDEF(char set) -o crunch.txt
 ```
