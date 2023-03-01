@@ -26,3 +26,7 @@ medusa -d(check out supported modules)
 ```
 crowbar -b rdp -s 10.11.0.22/32 -u admin -C ~/password-file.txt -n 1
 ```
+### Hydra
+```
+hydra -l kali -P /usr/share/wordlists/rockyou.txt ssh://127.0.0.1
+```
