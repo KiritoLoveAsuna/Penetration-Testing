@@ -81,3 +81,8 @@ john hash.txt --format=NT
 ###### John crack shadow file
 unshadow passwd.txt shadow.txt > unshadowed.txt  
 john --wordlist=/usr/share/wordlists/rockyou.txt unshadowed.txt  
+
+### Hashcat
+```
+hashcat -a 0(dictionary) -m 13000 hash wordlist
+```
