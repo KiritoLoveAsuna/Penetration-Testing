@@ -75,6 +75,7 @@ gpg --decrypt decrypt-me.gpg(need to enter passphrase)
 john --wordlist=rockyou.txt hash  
 john -form=dynamic='sha1(md5(sha512($p.$s).$p).$s)' --wordlist=rockyou.txt hash  
 john --wordlist=rockyou.txt user_shadow_hash($6$VvN1wBiLLmqWtRXY$oPzxsQbXqdzIISj5NzmKeiUcfXGvFJzqi9YFCzOtdOOI4yOqXm.UBiP7oLeDH8kZUgCtwBwY.YcbqVx7RWlj51)  
+john hash.txt --format=NT  
 
 ###### John crack shadow file
 unshadow passwd.txt shadow.txt > unshadowed.txt  
