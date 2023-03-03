@@ -86,3 +86,7 @@ john --wordlist=/usr/share/wordlists/rockyou.txt unshadowed.txt
 ```
 hashcat -a 0(dictionary) -m 13000 hash wordlist
 ```
+###### Combine each char set(114) with each number(1000) = 114000
+```
+/usr/lib/hashcat-utils/combinator.bin flag2.txt numbers.txt > hash.txt
+```
