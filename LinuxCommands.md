@@ -23,7 +23,7 @@ echo $SHELL
 env
 
 ### Sed
-### extract first 1-1000 lines
+###### extract first 1-1000 lines
 ```
 sed -n '1,1000p' file
 ```
