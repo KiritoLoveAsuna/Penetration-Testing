@@ -22,6 +22,12 @@ echo $SHELL
 ### echo environmental variable
 env
 
+### Sed
+### extract first 1-1000 lines
+```
+sed -n '1,1000p' file
+```
+
 ### NC transfering files
 ```
 nc -lvnp 6666 > incoming.txt
