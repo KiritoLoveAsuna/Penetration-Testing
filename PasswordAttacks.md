@@ -80,7 +80,7 @@ john hash.txt --format=NT
 >We have two machines, each with an 8-core CPU. On the first machine we would set the --fork=8 and --node=1-8/16 options, instructing John to create eight processes on this machine, split the supplied wordlist into sixteen equal parts, and process the first eight parts locally. On the second machine, we could use --fork=8 and --node=9-16 to assign eight processes to the second half of the wordlist.
 
 ###### John crack shadow file
-unshadow passwd.txt shadow.txt > unshadowed.txt  
+unshadow /etc/passwd /etc/shadow > unshadowed.txt  
 john --wordlist=/usr/share/wordlists/rockyou.txt unshadowed.txt  
 
 ### Hashcat
