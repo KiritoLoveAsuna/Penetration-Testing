@@ -1,4 +1,5 @@
-### RINETD
+### Port Forwarding
+###### RINETD
 ```
 cat /etc/rinetd.conf
 ...
