@@ -17,3 +17,14 @@ sudo ssh -N -L 0.0.0.0(src 127.0.0.1):445:192.168.1.110(dst):445 student@10.11.0
 ```
 ssh -N -R 192.168.163.52(src):5555(established listening state on this port):127.0.0.1(dst):12345 student@192.168.163.52(src credential) -p 2222
 ```
+###### SSH Dynamic Port Forwarding
+```
+sudo ssh -N -D 127.0.0.1:8080 student@10.11.0.128
+cat /etc/proxychains.conf
+[ProxyList]
+# add proxy here ...
+# meanwile
+# defaults set to "tor"
+socks4 	127.0.0.1 8080 
+sudo proxychains nmap --top-ports=20 -sT -Pn 192.168.1.110
+```
