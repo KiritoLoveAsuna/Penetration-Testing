@@ -29,6 +29,12 @@ cat /etc/proxychains.conf
 socks4 	127.0.0.1 8080 
 sudo proxychains nmap --top-ports=20 -sT -Pn 192.168.1.110(another internal network of 10.11.0.128)
 ```
+###### httptunnel
+```
+sudo apt install httptunnel
+hts --forward-port localhost:8888 1234(listening on)
+htc --forward-port 8080(listening on) 10.11.0.128:1234
+```
 ### Windows Port forwarding
 ###### PLINK.exe
 ```
