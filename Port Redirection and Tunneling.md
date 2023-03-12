@@ -29,3 +29,8 @@ cat /etc/proxychains.conf
 socks4 	127.0.0.1 8080 
 sudo proxychains nmap --top-ports=20 -sT -Pn 192.168.1.110(another internal network of 10.11.0.128)
 ```
+### Windows Port forwarding
+###### PLINK.exe
+```
+cmd.exe /c echo y | plink.exe -ssh -l kali -pw ilak -R 10.11.0.4:1234(dst):127.0.0.1:3306(source) 10.11.0.4
+```
