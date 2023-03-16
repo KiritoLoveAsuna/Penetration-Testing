@@ -55,3 +55,10 @@ Foreach($obj in $Result)
     Write-Host "------------------------"
 }
 ```
+###### Get all logon users and net sessions
+https://github.com/KiritoLoveAsuna/Penetration-Testing/blob/main/powerview.ps1
+```
+Import-Module .\PowerView.ps1
+Get-NetLoggedon -ComputerName client251
+Get-NetSession -ComputerName dc01
+```
