@@ -21,7 +21,7 @@ InfrastructureRoleOwner : DC01.corp.com
 Name(domain name)       : corp.com
 ```
 
-###### Collect all users along with their attributes
+###### Collect all users along with their attributes,SPNs
 ```
 $domainObj = [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()
 
@@ -41,7 +41,7 @@ $objDomain = New-Object System.DirectoryServices.DirectoryEntry
 
 $Searcher.SearchRoot = $objDomain
 
-$Searcher.filter="samAccountType=805306368/name=Jeff_Admin"
+$Searcher.filter="samAccountType=805306368/name=Jeff_Admin/serviceprincipalname=*http*"
 
 $Result = $Searcher.FindAll()
 
