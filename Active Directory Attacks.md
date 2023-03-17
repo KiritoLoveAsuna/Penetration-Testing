@@ -96,6 +96,7 @@ Foreach($obj in $Result)
 Load DemoEXE and run it locally.  
 $PEBytes = [IO.File]::ReadAllBytes('DemoEXE.exe')  
 Invoke-ReflectivePEInjection -PEBytes $PEBytes -ExeArgs "Arg1 Arg2 Arg3 Arg4"
+https://github.com/KiritoLoveAsuna/Penetration-Testing/blob/main/Invoke-ReflectivePEInjection.ps1
 ```
 password hash:
 1. privilege::debug
