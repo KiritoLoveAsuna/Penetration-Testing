@@ -143,7 +143,7 @@ kerberos::list
 Remote Code Execution: Invoke-WmiMethod win32_process -ComputerName $Computer -Credential $Creds -name create -argumentlist “$RunCommand”
 ```
 ###### Distributed Component Object Model
-Require remote machine has office installed
+Require remote machine has office installed  
 Require TCP 135 for DCOM and TCP 445 for SMB open
 ```
 1. Check If Run Method and Workbooks Property exists
