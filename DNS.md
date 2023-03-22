@@ -1,6 +1,6 @@
 ### domains resolving to the ip
-dig -x ip @<DNS_IP>
-host ip dns-server-address
+dig -x ip @<DNS_IP>  
+host ip dns-server-address  
 https://ip:443/, find domain from certifications
 
 ### host command
