@@ -117,7 +117,7 @@ find /usr -type f -exec md5sum {} + | grep "d61d579501ab8ff507120780191929d5"
 
 ###### Using root's private key to gain root access
 chmod 400 private_key  
-ssh -i private_key username@remote_ip  
+ssh -i private_key username@remote_ip(usually required for normal user already logged in,then can used as privilege escalation)   
 
 ### Systemd
 journalctl -u network.service(See network service messages)  
