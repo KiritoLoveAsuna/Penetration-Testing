@@ -44,3 +44,9 @@ run
 set EnableStageEncoding true
 set StageEncoder x86/shikata_ga_nai
 ```
+###### Migrating Processes
+Note that we are only able to migrate into a process executing at the same privilege and integrity level or lower than that of our current process.
+```
+ps
+migrate pid
+```
