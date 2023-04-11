@@ -9,7 +9,7 @@ msf-nasm_shell
 nasm > jmp esp  
 00000000  FFE4              jmp esp  
 ```
-###### Post-exploit
+###### Migrate shell into notepad.exe process
 ```
 set AutoRunScript post/windows/manage/migrate #stable the shell
 ```
