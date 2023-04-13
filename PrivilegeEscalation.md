@@ -49,6 +49,15 @@ C:\Program Files\My Program\My.exe
 C:\Program Files\My Program\My service\service.exe
 
 For example, we could name our executable Program.exe and place it in C:\, or name it My.exe and place it in C:\Program Files. However, this would require some unlikely write permissions since standard users do not have write access to these directories by default.
+C:\Users\alex>icacls "C:\Puppet"
+C:\Puppet BUILTIN\Users:(W)
+          BUILTIN\Administrators:(I)(F)
+          BUILTIN\Administrators:(I)(OI)(CI)(IO)(F)
+          NT AUTHORITY\SYSTEM:(I)(F)
+          NT AUTHORITY\SYSTEM:(I)(OI)(CI)(IO)(F)
+          BUILTIN\Users:(I)(OI)(CI)(RX)
+          NT AUTHORITY\Authenticated Users:(I)(M)
+          NT AUTHORITY\Authenticated Users:(I)(OI)(CI)(IO)(M)
 
 It is more likely that the software's main directory (C:\Program Files\My Program in our example) or subdirectory (C:\Program Files\My Program\My service) is misconfigured, allowing us to plant a malicious My.exe binary
 ```
