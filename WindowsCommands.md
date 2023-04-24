@@ -79,6 +79,8 @@ PsService.exe config WSearch
 tasklist /svc /FI "services eq dhcp"
 ### Find System Process
 tasklist /v /fi "username eq system"
+### Find Process owned by current user
+Get-WmiObject -Query "Select * from Win32_Process" | where {$_.Name -notlike "svchost*"} | Select Name, Handle, @{Label="Owner";Expression={$_.GetOwner().User}} | ft -AutoSize
 
 ### Zipping
 tar -xf zipfilename
