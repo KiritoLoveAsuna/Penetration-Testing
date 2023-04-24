@@ -77,6 +77,8 @@ sc query dhcp
 PsService.exe query WSearch  
 PsService.exe config WSearch  
 tasklist /svc /FI "services eq dhcp"
+### Find System Process
+tasklist /v /fi "username eq system"
 
 ### Zipping
 tar -xf zipfilename
