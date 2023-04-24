@@ -76,7 +76,9 @@ sc stop servicename
 sc query dhcp  
 PsService.exe query WSearch  
 PsService.exe config WSearch  
-tasklist /svc /FI "services eq dhcp"
+tasklist /svc /FI "services eq dhcp"  
+wmic service list brief  
+sc qc servicename
 ### Find System Process
 tasklist /v /fi "username eq system"
 ### Find Process owned by current user
