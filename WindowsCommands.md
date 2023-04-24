@@ -11,6 +11,9 @@ net localgroup
 net localgroup Administrators Tristan /add  
 net localgroup Administrators Tristan /del
 
+### enumerate local users
+net users
+
 ### Retrieve local group members info
 net localgroup groupname  
 
