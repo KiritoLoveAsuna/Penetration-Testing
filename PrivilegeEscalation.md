@@ -1,6 +1,10 @@
 ### Windows
 ##### Processes(Windows can't list processes run by privileged users)
 tasklist /svc
+###### Powershell history
+```
+(Get-PSReadlineOption).HistorySavePath
+```
 ##### Firewall
 netsh advfirewall show currentprofile  
 netsh advfirewall show allprofile  
