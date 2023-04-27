@@ -43,6 +43,10 @@ Note to set payload the same arch with session 1's payload，set lhost and lport
 5. whoami /priv #check out shutdown privileges of user
 ```
 ##### Unquoted Service Paths
+Print service and path not in C:\Windows Path
+```
+wmic service get name,pathname |  findstr /i /v "C:\Windows\\" | findstr /i /v """
+```
 ```
 Service Path:
 C:\Program Files\My Program\My Service\service.exe
