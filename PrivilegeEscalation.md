@@ -69,6 +69,12 @@ C:\Puppet BUILTIN\Users:(W)
 
 It is more likely that the software's main directory (C:\Program Files\My Program in our example) or subdirectory (C:\Program Files\My Program\My service) is misconfigured, allowing us to plant a malicious My.exe binary
 ```
+Automatic Script:
+```
+cp /usr/share/windows-resources/powersploit/Privesc/PowerUp.ps1 .
+.\PowerUp.ps1
+Get-UnquotedService
+```
 ###### Service Binary Hijacking
 ```
 Get-CimInstance -ClassName win32_service | Select Name,State,PathName | Where-Object {$_.State -like 'Running'}
