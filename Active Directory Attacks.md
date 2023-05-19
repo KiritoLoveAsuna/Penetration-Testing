@@ -192,7 +192,7 @@ $temp = [system.io.directory]::createDirectory($Path)
 $Workbook = $com.Workbooks.Open("C:\myexcel.xls")
 $com.Run("MyMacro")
 ```
-###### WMI
+###### WMI(Remote Procedure Calls (RPC)2 over port 135)
 ```
 Testing:
 1. wmic /node:192.168.50.73 /user:jen /password:Nexus123! process call create "calc"
