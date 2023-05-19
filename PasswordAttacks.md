@@ -91,3 +91,7 @@ hashcat -a 0(dictionary) -m 13000 hash wordlist
 ```
 /usr/lib/hashcat-utils/combinator.bin flag2.txt numbers.txt > hash.txt
 ```
+###### MS Cache v2 
+```
+Format: $DCC2$10240#user#hash
+```
