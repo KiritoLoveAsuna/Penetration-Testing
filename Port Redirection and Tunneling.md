@@ -18,6 +18,9 @@ sudo ssh -N -L 0.0.0.0(src 127.0.0.1):445:192.168.1.110(dst):445 student@192.168
 ssh -N -R 192.168.163.52(src):5555(established listening state on this port):127.0.0.1(dst):12345 student@192.168.163.52(src credential) -p 2222
 ```
 ###### SSH Dynamic Port Forwarding
+Dynamic Port Forwarding:
+initiating an SSH connection from a local machine(which is 127.0.0.1)
+
 After bind proxychains to local 8080 port, through proxychains all traffic can be forwarded to all ports of remote machine, accessing 127.0.0.1 is like accessing remote machine
 ```
 sudo ssh -N -D 127.0.0.1:8080 student@10.11.0.128
@@ -28,6 +31,12 @@ cat /etc/proxychains.conf
 # defaults set to "tor"
 socks4 	127.0.0.1 8080 
 sudo proxychains nmap --top-ports=20 -sT -Pn 192.168.1.110(another internal network of 10.11.0.128)
+```
+###### SSH Remote Dynamic Port Forwarding 
+Remote Dynamic Port Forwarding:
+initiating an SSH connection from a remote compromised host(which is 192.168.118.4)
+```
+ssh -N -R 9998(src from local loopback interface) kali@192.168.118.4(dst)
 ```
 ###### httptunnel
 ```
