@@ -61,6 +61,11 @@ kali@kali(attacker machine):~$ tail /etc/proxychains4.conf
 # defaults set to "tor"
 socks5 127.0.0.1 9998(attacker machine)
 ```
+###### sshuttle
+```
+1. confluence01: socat TCP-LISTEN:2222,fork TCP:10.4.50.215:22(PGDATABASE01)
+2. kali(attacker machine): sshuttle -r database_admin@192.168.50.63(PGDATABASE01):2222 10.4.50.0/24 172.16.50.0/24
+```
 ###### httptunnel
 ```
 sudo apt install httptunnel
