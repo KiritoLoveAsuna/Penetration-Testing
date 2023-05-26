@@ -9,9 +9,9 @@ cat /etc/rinetd.conf
 service rinetd start
 ```
 ###### SSH local port forwarding
-bind port 445 on our local machine (0.0.0.0:445) from ssh protocol to port 445 on the Windows Server (192.168.1.110:445) and do this through a session to our original Linux target, logging in as student (student@192.168.1.110)
+forward all packets which go to remote compromised machine:445 to 192.168.1.110:445
 ```
-sudo ssh -N -L 0.0.0.0(src 127.0.0.1):445:192.168.1.110(dst):445 student@192.168.1.110(relay)
+remote compromised machine: ssh -N -L 0.0.0.0(src 127.0.0.1):445:192.168.1.110(dst):445 student@192.168.1.110(relay)
 ```
 ###### ssh remote port forwarding
 ```
