@@ -9,6 +9,8 @@ cat /etc/rinetd.conf
 service rinetd start
 ```
 ###### SSH local port forwarding
+![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/d54b48e3-43ed-4fde-ad3f-2d28b538bde5)
+
 forward all packets which go to remote compromised machine:445 to 192.168.1.110:445
 ```
 remote compromised machine: ssh -N -L 0.0.0.0(src 127.0.0.1):445:192.168.1.110(dst):445 student@192.168.1.110(relay)
@@ -18,19 +20,20 @@ remote compromised machine: ssh -N -L 0.0.0.0(src 127.0.0.1):445:192.168.1.110(d
 remote compromised machine: ssh -N -R 192.168.163.52(src):5555(established listening state on this port):127.0.0.1(dst):12345 student@192.168.163.52(src credential) -p 2222
 ```
 ###### SSH Dynamic Port Forwarding
-Dynamic Port Forwarding:
-initiating an SSH connection from a local machine(which is 127.0.0.1)
+![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/f68cfac3-7e49-4f50-b104-ad7a672958e7)
 
-After bind proxychains to local 8080 port, through proxychains all traffic can be forwarded to all ports of remote machine, accessing 127.0.0.1 is like accessing remote machine
+Dynamic Port Forwarding:
+initiating an SSH connection from a remote compromised machine to a further internal network(PGDATABASE01)
+
+After bind proxychains to confluence01, through proxychains all traffic can be forwarded to all ports of PGDATABASE01, accessing 127.0.0.1 is like accessing remote machine(PGDATABASE01)
 ```
-sudo ssh -N -D 127.0.0.1:8080 student@10.11.0.128
+attacker machine: ssh -N -D 127.0.0.1:8080(remote compromised machine) student@10.11.0.128(further internal network)
 cat /etc/proxychains.conf
 [ProxyList]
 # add proxy here ...
 # meanwile
 # defaults set to "tor"
-socks4 	127.0.0.1 8080 
-sudo proxychains nmap --top-ports=20 -sT -Pn 192.168.1.110(another internal network of 10.11.0.128)
+socks4 	127.0.0.1 8080(remote compromised machine) 
 ```
 ###### SSH Remote Dynamic Port Forwarding 
 Remote Dynamic Port Forwarding:
