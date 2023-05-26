@@ -98,7 +98,7 @@ It is more likely that the software's main directory (C:\Program Files\My Progra
 Automatic Script:
 ```
 cp /usr/share/windows-resources/powersploit/Privesc/PowerUp.ps1 .
-.\PowerUp.ps1
+Import-Module .\PowerUp.ps1
 Get-UnquotedService
 ```
 
@@ -130,7 +130,7 @@ shutdown /r /t 0
 
 Automatic Script:
 cp /usr/share/windows-resources/powersploit/Privesc/PowerUp.ps1 .
-.\PowerUp.ps1
+Import-Module .\PowerUp.ps1
 Get-ModifiableServiceFile
 ```
 
