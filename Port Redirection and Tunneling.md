@@ -11,9 +11,9 @@ service rinetd start
 ###### SSH local port forwarding
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/d54b48e3-43ed-4fde-ad3f-2d28b538bde5)
 
-forward all packets which go to remote compromised machine:445 to 192.168.1.110:445
+forward all packets which go to remote compromised machine:445 to 192.168.1.110:445(PGDATABASE01)
 ```
-remote compromised machine: ssh -N -L 0.0.0.0(src 127.0.0.1):445:192.168.1.110(dst):445 student@192.168.1.110(relay)
+remote compromised machine: ssh -N -L 0.0.0.0(src CONFLUENCE01):445:192.168.1.110(dst PGDATABASE01):445 student@PGDATABASE01
 ```
 ###### ssh remote port forwarding
 ```
