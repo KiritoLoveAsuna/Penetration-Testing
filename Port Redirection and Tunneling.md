@@ -13,7 +13,7 @@ service rinetd start
 
 forward all packets which go to remote compromised machine:445 to 192.168.1.110:445(PGDATABASE01)
 ```
-remote compromised machine: ssh -N -L 0.0.0.0(src CONFLUENCE01):445:192.168.1.110(dst PGDATABASE01):445 student@PGDATABASE01
+remote compromised machine(confluence01): ssh -N -L 0.0.0.0(src CONFLUENCE01):445:192.168.1.110(dst PGDATABASE01):445 student@PGDATABASE01
 ```
 ###### ssh remote port forwarding
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/9355bdff-aa68-4989-aa53-0f3074a39739)
@@ -29,7 +29,7 @@ initiating an SSH connection from a remote compromised machine to a further inte
 
 After bind proxychains to confluence01, through proxychains all traffic can be forwarded to all ports of PGDATABASE01, accessing 127.0.0.1 is like accessing remote machine(PGDATABASE01)
 ```
-attacker machine: ssh -N -D 127.0.0.1:8080(remote compromised machine) student@10.11.0.128(further internal network)
+attacker machine: ssh -N -D 127.0.0.1:8080(remote compromised machine - confluence01) student@10.11.0.128(further internal network - PGDATABASE01)
 cat /etc/proxychains.conf
 [ProxyList]
 # add proxy here ...
