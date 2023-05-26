@@ -148,7 +148,7 @@ When safe DLL search mode is disabled, the current directory is searched at posi
 
 ```
 1. Get-CimInstance -ClassName win32_service | Select Name,State,PathName | Where-Object {$_.State -like 'Running'}
-2. Use Procmon64.exe(require admin privilege)(Bypass: copy the file to local, then use Procmon64.exe)
+2. Use Procmon64.exe(Process Monitor)(require admin privilege)(Bypass: copy the file to local, then use Procmon64.exe)
 3. PS: Restart-Service BetaService
 ```
 
