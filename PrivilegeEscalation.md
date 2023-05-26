@@ -1,4 +1,9 @@
 ### Windows
+###### Check which user runns this service
+```
+Get-Service -Name "RasMan" | Select-Object Name, Status, DisplayName, UserName
+sc queryex <service_name>
+```
 ###### Processes(Windows can't list processes run by privileged users)
 ```
 tasklist /svc
