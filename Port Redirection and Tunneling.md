@@ -29,13 +29,18 @@ initiating an SSH connection from a remote compromised machine to a further inte
 
 After bind proxychains to confluence01, through proxychains all traffic can be forwarded to all ports of PGDATABASE01, accessing 127.0.0.1 is like accessing remote machine(PGDATABASE01)
 ```
-attacker machine: ssh -N -D 127.0.0.1:8080(remote compromised machine - confluence01) student@10.11.0.128(further internal network - PGDATABASE01)
-cat /etc/proxychains.conf
+remote compromised machine: ssh -N -D 127.0.0.1:8080(remote compromised machine - confluence01) student@10.11.0.128(further internal network - PGDATABASE01)
+
+kali@kali(attacker machine):~$ tail /etc/proxychains4.conf
+#       proxy types: http, socks4, socks5, raw
+#         * raw: The traffic is simply forwarded to the proxy without modification.
+#        ( auth types supported: "basic"-http  "user/pass"-socks )
+#
 [ProxyList]
 # add proxy here ...
 # meanwile
 # defaults set to "tor"
-socks4 	127.0.0.1 8080(remote compromised machine) 
+socks5 192.168.50.63 9999(remote compromised machine - confluence01)
 ```
 ###### SSH Remote Dynamic Port Forwarding 
 Remote Dynamic Port Forwarding:
