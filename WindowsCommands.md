@@ -15,6 +15,11 @@ net localgroup Administrators Tristan /del
 net user
 ### enumerate domain users
 net user username /domain  
+### Domain Groups
+```
+net group /domain
+net group  groupname /domain
+```
 ### Retrieve local group members info
 net localgroup groupname  
 
