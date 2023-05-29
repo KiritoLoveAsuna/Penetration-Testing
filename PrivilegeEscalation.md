@@ -4,6 +4,11 @@
 Get-Service -Name "RasMan" | Select-Object Name, Status, DisplayName, UserName
 sc queryex <service_name>
 ```
+###### Check which service using specific dll
+```
+tasklist /m dllname
+```
+
 ###### Processes(Windows can't list processes run by privileged users)
 ```
 tasklist /svc
