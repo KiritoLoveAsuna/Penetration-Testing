@@ -30,6 +30,7 @@ netsh advfirewall firewall show rule name=all
 ###### Scheduled Tasks
 ```
 schtasks /query /fo LIST /v
+schtasks /query /v /fo list | findstr /i "C:\Path\to\Your\File.exe"
 ```
 
 ###### Enumerating Unmounted Disks
