@@ -13,6 +13,7 @@ tasklist /m (list all process using which dlls)
 ###### list relationship between Processes and Services (Windows can't list processes run by privileged users)
 ```
 tasklist /svc
+tasklist /svc /fi "imagename eq your_file.exe"
 ```
 
 ###### Powershell history
