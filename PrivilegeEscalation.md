@@ -1,4 +1,8 @@
 ### Windows
+###### find service with filename
+```
+wmic service get name,pathname |  findstr /i "backup.exe"
+```
 ###### Check which user runns this service
 ```
 Get-Service -Name "RasMan" | Select-Object Name, Status, DisplayName, UserName
