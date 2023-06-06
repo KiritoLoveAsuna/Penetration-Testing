@@ -35,8 +35,8 @@ netsh advfirewall firewall show rule name=all
 ###### Scheduled Tasks
 ```
 schtasks /query /fo LIST /v
-schtasks /query /v /fo list | findstr /i "C:\Path\to\Your\File.exe"
-schtasks /query /fo LIST /v /tn "backup runner(taskname)"
+schtasks /query /v /fo list | findstr /i "backup.exe"
+schtasks /query /fo LIST /v /tn "backup runner(taskname)" ----for retrieve full task info
 Get-ScheduledTask | Where-Object {$_.TaskName -like '*backup*'}
 ```
 
