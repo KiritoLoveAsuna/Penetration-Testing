@@ -36,6 +36,7 @@ netsh advfirewall firewall show rule name=all
 ```
 schtasks /query /fo LIST /v
 schtasks /query /v /fo list | findstr /i "C:\Path\to\Your\File.exe"
+schtasks /query /fo LIST /v /tn "backup runner(taskname)"
 ```
 
 ###### Enumerating Unmounted Disks
