@@ -7,4 +7,10 @@ look for public key(id_rsa.pub)
 
 connect: 
 ssh -i private_key username@ip
+
+authorized_keys:
+any host want to access you without password need to copy their public key into your authorized_keys
+
+known_hosts:
+all the public keys of hosts you have visited with
 ```
