@@ -287,11 +287,15 @@ lsblk
 ###### Enumerating Device Drivers and Kernel Modules
 1. lsmod  
 2. /sbin/modinfo libata
-###### Enumerating Binaries That AutoElevate
->Normally, when running an executable, it inherits the permissions of the user that runs it. However, if the SUID permissions are set, the binary will run with the permissions of the file owner. This means that if a binary has the SUID bit set and the file is owned by root, any local user will be able to execute that binary with elevated privileges
- ```
+###### SUID permissions
+```
  find / -perm -u=s -type f 2>/dev/null
- ```
+```
+```
+find with suid perm:
+touch raj
+find raj -exec "whoami" \;
+```
  ###### Cronjob to elevate privilege
  ```
  1. grep "CRON" /var/log/cron.log
