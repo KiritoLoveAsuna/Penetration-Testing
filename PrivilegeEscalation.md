@@ -269,6 +269,11 @@ Invoke-AllChecks                    -   runs all current escalation checks and r
 ```
 
 ### Linux
+###### Nday exploits
+```
+CVE-2021-3156 sudo Baron Samedit 2 sudo <=1.9.5p2 downloadlink:https://codeload.github.com/worawit/CVE-2021-3156/zip/main
+
+```
 ###### Kernel exploits
 ```
 OS version:
