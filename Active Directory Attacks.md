@@ -3,7 +3,9 @@
 net user
 net user /domain
 net user jeff_admin /domain
-net group /domain
+net group groupname /domain
+net localgroup
+net localgroup groupname 
 ```
 
 ```
