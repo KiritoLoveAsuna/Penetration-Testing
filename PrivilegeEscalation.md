@@ -1,4 +1,6 @@
 ### Windows
+###### AutoEnumeration
+winpeas.exe
 ###### find service with filename
 ```
 wmic service get name,pathname |  findstr /i "backup.exe"
