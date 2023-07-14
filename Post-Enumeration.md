@@ -1,6 +1,7 @@
 ### git folder
 ```
 directory name = .git
+python3 git_extract.py gitfilename
 ```
 ### Private key
 ```
@@ -8,8 +9,12 @@ directory name = .git
 ```
 ### credentials
 ```
-find logs, passwd, username, credential, shell_history, Powershell_History
+find *.log, passwd, username, credential, shell_history, Powershell_History
 Windows:
 C:\Users\username\Documents
 C:\Users\username\Downloads
+```
+### Sensitive files 
+```
+*.bak
 ```
