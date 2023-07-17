@@ -16,5 +16,5 @@ C:\Users\username\Downloads
 ```
 ### Sensitive files 
 ```
-*.bak
+*.bak, *.db
 ```
