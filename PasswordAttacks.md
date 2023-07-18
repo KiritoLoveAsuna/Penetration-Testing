@@ -95,3 +95,8 @@ hashcat -a 0(dictionary) -m 13000 hash wordlist
 ```
 Format: $DCC2$10240#user#hash
 ```
+###### kdbx
+```
+keepass2john Database.kdbx > Keepasshash.txt
+hashcat -a 0 -m 13400 hash dic 
+```
