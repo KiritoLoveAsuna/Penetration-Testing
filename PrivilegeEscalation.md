@@ -201,6 +201,7 @@ LPVOID lpReserved ) // Reserved
         break;
     }
     return TRUE;
+}
 ```
 
 Cross-compile
