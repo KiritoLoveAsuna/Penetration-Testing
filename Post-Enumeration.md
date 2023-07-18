@@ -18,3 +18,7 @@ C:\Users\username\Downloads
 ```
 *.bak, *.db
 ```
+### kdbx file
+```
+*.kdbx
+```
