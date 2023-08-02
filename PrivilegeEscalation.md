@@ -288,7 +288,7 @@ uname -a
 ```
 ###### Processes(Linux can list processes run by privileged users)
 ps aux
-###### pspy - unprivileged Linux process snooping
+###### Pspy - Unprivileged Linux Process Snooping
 ```
 https://github.com/DominicBreuker/pspy
 ```
