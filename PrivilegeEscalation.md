@@ -277,7 +277,6 @@ linpeas.sh
 ###### Nday exploits
 ```
 CVE-2021-3156 sudo Baron Samedit 2 sudo 1.8.2-1.8.32,1.9.0-1.9.5 downloadlink:https://codeload.github.com/worawit/CVE-2021-3156/zip/main
-
 ```
 ###### Kernel exploits
 ```
@@ -289,6 +288,10 @@ uname -a
 ```
 ###### Processes(Linux can list processes run by privileged users)
 ps aux
+###### pspy - unprivileged Linux process snooping
+```
+https://github.com/DominicBreuker/pspy
+```
 ###### Enumerating Readable/Writable Files and Directories
 find / -writable(-readable,-executable) -type d(f) 2>/dev/null  
 ###### Enumerating Unmounted Disks
