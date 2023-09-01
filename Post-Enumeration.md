@@ -10,7 +10,6 @@ python3 git_extract.py gitfilename
 ### Sensitive files
 ```
 find *.log, passwd, username, credential, shell_history, Powershell_History
-Windows:
 C:\Users\username\Documents
 C:\Users\username\Downloads
 *.gpg
@@ -42,6 +41,7 @@ access.log
 error.log
 server.xml
 ConsoleHost_history.txt
+.github folder
 setupinfo
 setupinfo.bak
 *.bak, *.db
