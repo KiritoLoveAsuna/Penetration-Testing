@@ -106,3 +106,8 @@ Format: $DCC2$10240#user#hash
 keepass2john Database.kdbx > Keepasshash.txt
 hashcat -a 0 -m 13400 hash dic 
 ```
+###### nsldap, SHA-1(Base64), Netscape LDAP SHA
+```
+Format: {SHA}uJ6qx+YUFzQbcQtyd2gpTQ5qJ3s=
+HashMode: 101
+```
