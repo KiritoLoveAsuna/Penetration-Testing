@@ -46,3 +46,7 @@ setupinfo
 setupinfo.bak
 *.bak, *.db
 ```
+### Linux Web Service
+```
+Check all the folders and files under var/www/html
+```
