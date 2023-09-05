@@ -85,7 +85,13 @@ john --wordlist=/usr/share/wordlists/rockyou.txt unshadowed.txt
 
 ### Hashcat
 ```
-hashcat -a 0(dictionary) -m 13000 hash wordlist
+-w 1 (Light): Low workload intensity, suitable for background tasks.
+-w 2 (Medium): A moderate workload intensity.
+-w 3 (Normal): The default workload intensity.
+-w 4 (Heavy): High workload intensity, which may heavily utilize system resources.
+```
+```
+hashcat -a 0(dictionary) -m 13000 hash wordlist -O -w 1
 ```
 ###### Combine each char set(114) with each number(1000) = 114000
 ```
