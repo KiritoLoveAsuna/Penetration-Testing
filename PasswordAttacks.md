@@ -92,6 +92,7 @@ john --wordlist=/usr/share/wordlists/rockyou.txt unshadowed.txt
 --hwmon-disable would prevent Hashcat from monitoring the GPU's temperature and fan speed
 
 nvidia-smi -i [device-id-integer] -pl [power-level] drop nvidia max power
+nvidia-smi -a | egrep '^GPU|  Power Limit|Default Power Limit|Power Draw' check current power limit
 ```
 ```
 hashcat -a 0(dictionary) -m 13000 hash wordlist -O -w 1
