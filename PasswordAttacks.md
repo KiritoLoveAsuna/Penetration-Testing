@@ -89,6 +89,7 @@ john --wordlist=/usr/share/wordlists/rockyou.txt unshadowed.txt
 -w 2 (Medium): A moderate workload intensity.
 -w 3 (Normal): The default workload intensity.
 -w 4 (Heavy): High workload intensity, which may heavily utilize system resources.
+--hwmon-disable would prevent Hashcat from monitoring the GPU's temperature and fan speed
 ```
 ```
 hashcat -a 0(dictionary) -m 13000 hash wordlist -O -w 1
