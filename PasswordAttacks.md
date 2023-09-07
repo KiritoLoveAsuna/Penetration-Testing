@@ -85,6 +85,15 @@ john --wordlist=/usr/share/wordlists/rockyou.txt unshadowed.txt
 
 ### Hashcat
 ```
+• ?l = abcdefghijklmnopqrstuvwxyz 
+• ?u = ABCDEFGHIJKLMNOPQRSTUVWXYZ
+• ?d = 0123456789
+• ?h = 0123456789abcdef
+• ?H = 0123456789ABCDEF
+• ?s = «space»!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+• ?a = ?l?u?d?s
+• ?b = 0x00 - 0xff 
+
 -w 1 (Light): Low workload intensity, suitable for background tasks.
 -w 2 (Medium): A moderate workload intensity.
 -w 3 (Normal): The default workload intensity.
