@@ -85,6 +85,7 @@ john --wordlist=/usr/share/wordlists/rockyou.txt unshadowed.txt
 
 ### Hashcat
 ```
+built-in charset
 • ?l = abcdefghijklmnopqrstuvwxyz 
 • ?u = ABCDEFGHIJKLMNOPQRSTUVWXYZ
 • ?d = 0123456789
