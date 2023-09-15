@@ -287,7 +287,9 @@ Kernel Version and Architecture:
 uname -a
 ```
 ###### GTFOBins
+```
 GTFOBins is a curated list of Unix binaries that can be used to bypass local security restrictions in misconfigured systems.
+```
 ###### Editor PE
 vim, less
 ```
