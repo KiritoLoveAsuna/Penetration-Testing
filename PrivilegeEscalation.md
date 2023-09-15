@@ -286,6 +286,14 @@ cat /etc/*-release
 Kernel Version and Architecture: 
 uname -a
 ```
+###### GTFOBins
+GTFOBins is a curated list of Unix binaries that can be used to bypass local security restrictions in misconfigured systems.
+###### Editor PE
+vim, less
+```
+inside vim or less, after colon(:), execute !/bin/sh
+```
+
 ###### Processes(Linux can list processes run by privileged users)
 ps aux
 ###### Pspy - Unprivileged Linux Process Snooping
