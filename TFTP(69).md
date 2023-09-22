@@ -1,4 +1,4 @@
-### download file
+### Download file
 ```
 kali:
 tftp ip_address
