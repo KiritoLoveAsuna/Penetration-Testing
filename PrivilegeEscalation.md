@@ -1,3 +1,8 @@
+### Users , Groups , Permissions
+"Everyone" vs. "BUILTIN\Users":
+>"Everyone" includes all users and groups, both authenticated and unauthenticated, on the system. This is an extremely permissive group, and it encompasses a wider range of potential users and entities.
+
+>"BUILTIN\Users," on the other hand, includes only the user accounts that have been created on the local system. This group typically doesn't include unauthenticated users and doesn't include accounts from trusted domains or external sources.
 ### Windows
 ###### AutoEnumeration
 winpeas.exe
