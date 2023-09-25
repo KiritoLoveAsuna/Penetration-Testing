@@ -26,6 +26,11 @@ tasklist /m (list all process using which dlls)
 tasklist /svc
 tasklist /svc /fi "imagename eq your_file.exe"
 ```
+###### Service Actions
+```
+Start-Service -Name ""
+Stop-Service -Name ""
+```
 
 ###### Powershell history
 ```
