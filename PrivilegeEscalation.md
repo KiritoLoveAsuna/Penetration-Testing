@@ -92,9 +92,9 @@ Note to set payload the same arch with session 1's payload，set lhost and lport
 ###### Insecure File Permissions
 ```
 1. Get-WmiObject win32_service | Select-Object Name, State, PathName | Where-Object {$_.State -like 'Running'} # look for services with path in Program Files
-2. icacls "service path"
+2. icacls "service path" # check if current user has permission to replace file with malicious one
 3. replace malicious exe with service executable
-4. Get-WmiObject -Class Win32_Service -Property StartMode -Filter "Name='Service Name'"
+4. Get-WmiObject -Class Win32_Service -Property StartMode -Filter "Name='Service Name'" 
 5. whoami /priv #check out shutdown privileges of user
 ```
 
