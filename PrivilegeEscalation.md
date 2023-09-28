@@ -99,9 +99,11 @@ Note to set payload the same arch with session 1's payload，set lhost and lport
 ```
 
 ###### Unquoted Service Paths
-Print service and path not in C:\Windows Path
+To list all unquoted service paths (minus built-in Windows services)
 ```
 wmic service get name,pathname |  findstr /i /v "C:\Windows\\" | findstr /i /v """
+wmic service get name,displayname,pathname,startmode |findstr /i "Auto" | findstr /i /v "C:\Windows\\" |findstr /i /v """
+wmic service get name,displayname,pathname,startmode | findstr /i /v "C:\\Windows\\system32\\" |findstr /i /v """ #Not only auto services
 ```
 
 ```
