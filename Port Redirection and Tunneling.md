@@ -77,6 +77,11 @@ add socks5 127.0.0.1 1080(chisel default port to listen)
 disable proxy dns
 sudo proxychains4 -f /etc/proxychains4.conf nmap -sS -Pn -p 80 172.16.243.10
 ```
+Replace <kaliIP> with the IP address of your Kali machine. This command will instruct Chisel to connect back to the Kali machine on port 9002 and forward any traffic sent to localhost port 40000 to port 40000 on the Windows machine.
+```
+./chisel server --reverse --port 90021. This will start Chisel in server mode and listen for connections on port 9002.
+chisel.exe client <kaliIP>:9002 R:40000:localhost:40000
+```
 ### Windows Port forwarding
 ###### PLINK.exe
 ```
