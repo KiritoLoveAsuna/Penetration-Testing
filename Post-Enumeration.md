@@ -45,6 +45,7 @@ ConsoleHost_history.txt
 setupinfo
 setupinfo.bak
 *.bak, *.db
+*.pdf
 ```
 ### Linux Web Service
 ```
