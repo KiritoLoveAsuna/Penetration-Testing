@@ -51,3 +51,7 @@ setupinfo.bak
 ```
 Check all the folders and files under var/www/html
 ```
+### tcpdump to capture packets 
+```
+tcpdump -i any udp -vvv
+```
