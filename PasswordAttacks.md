@@ -113,7 +113,8 @@ hashcat -a 0(dictionary) -m 13000 hash wordlist -O -w 1
 ```
 ###### MS Cache v2 
 ```
-Format: $DCC2$10240#user#hash
+From : k.smith:0A2503288EFD46133D4082305CF5D2EA:SKYLARK:SKYLARK.COM
+To : Format: $DCC2$10240#user#hash
 ```
 ###### kdbx
 ```
