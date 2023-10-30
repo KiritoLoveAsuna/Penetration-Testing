@@ -57,6 +57,7 @@ socat TCP4:10.11.0.4:443 file:received_secret_passwords.txt,create
 
 ### Pure-ftpd (Linux - Linux)
 #### install
+/ftphome(pure-ftpd home dir, get,put can transfer files to here or from here)
 ```
 sudo apt update && sudo apt install pure-ftpd  
 sudo groupadd ftpgroup  
