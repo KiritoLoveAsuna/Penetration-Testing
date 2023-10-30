@@ -57,16 +57,18 @@ socat TCP4:10.11.0.4:443 file:received_secret_passwords.txt,create
 
 ### Pure-ftpd (Linux - Linux)
 #### install
+```
 sudo apt update && sudo apt install pure-ftpd  
 sudo groupadd ftpgroup  
 sudo useradd -g ftpgroup -d /dev/null -s /etc ftpuser  
-sudo pure-pw useradd kali(ftp login username, anyname but ftpuser) -u ftpuser -d /ftphome(pure-ftpd home dir)
+sudo pure-pw useradd kali(ftp login username, anyname but ftpuser) -u ftpuser -d /ftphome(input below commands again if reinput this command)
 sudo pure-pw mkdb  
 cd /etc/pure-ftpd/auth/  
 sudo ln -s ../conf/PureDB 60pdb  
 sudo mkdir -p /ftphome  
 sudo chown -R ftpuser:ftpgroup /ftphome/  
-sudo systemctl restart pure-ftpd  
+sudo systemctl restart pure-ftpd
+```
 #### Commands
 ftp 10.11.0.4  
 bye  
