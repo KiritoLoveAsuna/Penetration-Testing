@@ -9,7 +9,7 @@ python3 git_extract.py gitfilename
 ```
 ### Sensitive files
 ```
-find *.log, passwd, username, credential, shell_history, Powershell_History
+find *.log, passwd, username, credential
 C:\Users\username\Documents
 C:\Users\username\Downloads
 *.gpg
@@ -54,4 +54,10 @@ Check all the folders and files under var/www/html
 ### tcpdump to capture packets 
 ```
 tcpdump -i any udp -vvv
+```
+### History
+```
+Linux:
+check all user's .bash_history
+/home/user/.bash_history
 ```
