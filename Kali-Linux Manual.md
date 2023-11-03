@@ -145,4 +145,21 @@ ndisasm [-a] [-i] [-h] [-r] [-u] [-b bits] [-o origin] [-s sync...]
    -k avoids disassembling <bytes> bytes from position <start>
    -p selects the preferred vendor instruction set (intel, amd, cyrix, idt)
 ```
+### grep
+```
+To search for a string in all files under the / directory and its subdirectories, use the following command:
 
+grep -r "string" /
+
+This will search for the string “string” in all files under the / directory and its subdirectories.
+
+To search for a string in all files under the / directory and its subdirectories, but only display the names of the files that contain the string, use the following command:
+
+grep -rl "string" /
+
+This will search for the string “string” in all files under the / directory and its subdirectories, but only display the names of the files that contain the string.
+
+To search for a string in a specific file under the / directory, use the following command:
+
+grep "string" /path/to/file
+```
