@@ -156,5 +156,5 @@ grep -rl "string" /
 To search for a string in a specific file under the / directory, use the following command:
 grep "string" /path/to/file
 
-grep commands to find string under / directory but excluding files with py extension
+grep -rl --exclude='*.py' --exclude='*.js' "string" /
 ```
