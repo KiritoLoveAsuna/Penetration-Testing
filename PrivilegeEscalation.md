@@ -285,6 +285,8 @@ Invoke-AllChecks                    -   runs all current escalation checks and r
 ```
 
 ### Linux
+###### Check what sudo permissions the user has available to them
+sudo -l
 ###### AutoEnumeration
 linpeas.sh
 ###### Nday exploits
