@@ -306,7 +306,7 @@ uname -a
 GTFOBins is a curated list of Unix binaries that can be used to bypass local security restrictions in misconfigured systems.
 ```
 ###### Editor PE
-vim, less
+vim, less (if the editor has sudo privileges or is runned by root)
 ```
 inside vim or less, after colon(:), execute !/bin/sh
 ```
