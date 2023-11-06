@@ -286,7 +286,7 @@ Invoke-AllChecks                    -   runs all current escalation checks and r
 
 ### Linux
 ###### Check what sudo permissions the user has available to them
-sudo -l
+sudo -l (if anything interesting, go look for in GTFOBins)
 ###### AutoEnumeration
 linpeas.sh
 ###### Nday exploits
@@ -324,7 +324,7 @@ lsblk
 ###### Enumerating Device Drivers and Kernel Modules
 1. lsmod  
 2. /sbin/modinfo libata
-###### SUID permissions
+###### SUID permissions (anything interesting, to look for in GTFOBins)
 find / -perm -u=s -type f 2>/dev/null
 ```
 find with suid perm:
