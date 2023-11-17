@@ -180,7 +180,7 @@ When safe DLL search mode is disabled, the current directory is searched at posi
 5. PS: Restart-Service BetaService
 ```
 
-Each DLL can have an optional entry point function named DllMain, which is executed when processes or threads attach the DLL  
+>Each DLL can have an optional entry point function named DllMain, which is executed when processes or threads attach the DLL  
 This function generally contains four cases named DLL_PROCESS_ATTACH, DLL_THREAD_ATTACH, DLL_THREAD_DETACH, DLL_PROCESS_DETACH
 ```
 #include <stdlib.h>
