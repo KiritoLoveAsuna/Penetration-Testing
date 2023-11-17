@@ -161,7 +161,7 @@ Get-ModifiableServiceFile
 ```
 
 ##### Service DLL Hijacking
-standard search order taken from the Microsoft Documentation
+>standard search order taken from the Microsoft Documentation
 When safe DLL search mode is disabled, the current directory is searched at position 2 after the application's directory
 ```
 1. The directory from which the application loaded.
