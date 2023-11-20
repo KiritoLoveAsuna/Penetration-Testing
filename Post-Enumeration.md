@@ -61,3 +61,9 @@ Linux:
 check all user's .bash_history
 /home/user/.bash_history
 ```
+### Password Hash
+Mimikatz - sekurlsa::logonpasswords
+>Extracting passwords in memory
+
+Pwdump
+>dump the password hashes of local user accounts on a Windows system
