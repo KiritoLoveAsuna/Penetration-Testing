@@ -280,6 +280,9 @@ Set-ServiceBinPath                  -   sets the binary path for a service to a 
 Test-ServiceDaclPermission          -   tests one or more passed services or service names against a given permission set
 Write-UserAddMSI                    -   write out a MSI installer that prompts for a user to be added
 Invoke-AllChecks                    -   runs all current escalation checks and returns a report
+
+Import-Module .\PowerUp.ps1
+Invoke-AllChecks
 ```
 ##### Windows.old
 >Essentially, the Windows.old folder just contains the old Windows system. From the Windows system files to your installed programs and each user account’s settings and files, it’s all here. The new version of Windows just keeps it around in case you’d like to go back to that older version of Windows or in case you need to dig in and find a file.
