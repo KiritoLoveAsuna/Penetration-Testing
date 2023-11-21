@@ -289,7 +289,7 @@ Invoke-AllChecks
 ```
 1. Find SAM and SYSTEM file under Windows.old\Windows\System32\
 2. download to kali
-3. samdump2 SYSTEM SAM > hashes.txt
+3. impacket-secretsdump -sam SAM -system SYSTEM local
 ```
 
 ### Linux
