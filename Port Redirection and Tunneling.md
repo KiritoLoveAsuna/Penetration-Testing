@@ -111,12 +111,22 @@ chisel.exe client 172.16.8.120:9002 R:8888:socks
 ```
 
 ```
+Chisel Reverse Multiple ports forwarding:
 In local machine
 ./chisel server -p 9999 --reverse
 
 In remote machine
 ./chisel client 10.0.0.1:9999 R:3000:127.0.0.1:3000 R:8000:127.0.0.1:8000
 After that, we can access to http://localhost:3000 and http://localhost:8000 in local machine.
+```
+
+```
+Chisel Local Port Forwarding:
+In remote
+chisel server -p 9999 --socks5
+
+In local
+chisel client 10.0.0.1:9999 8000:socks
 ```
 ### Windows Port forwarding
 ###### PLINK.exe
