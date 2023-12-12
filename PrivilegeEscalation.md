@@ -328,7 +328,7 @@ Pspy is a command line tool designed to snoop on processes without need for root
 ###### Enumerating all files writable by user stuart
 find / -writable(-readable,-executable) -type f -user stuart 2>/dev/null  
 ###### Enumerating all files writable by group stuart
-find . -type f -group stuart -perm /g+w  
+find / -type f -group stuart -perm /g+w 2>/dev/null  
 ###### Enumerating Unmounted Disks
 mount  
 lsblk
