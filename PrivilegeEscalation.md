@@ -325,10 +325,17 @@ ps aux
 ###### Pspy - Unprivileged Linux Process Snooping
 Pspy is a command line tool designed to snoop on processes without need for root permissions. It allows you to see commands run by other users, cron jobs, etc. as they execute. Great for enumeration of Linux systems in CTFs. Also great to demonstrate your colleagues why passing secrets as arguments on the command line is a bad idea.
 
-###### Enumerating all files writable by user stuart
-find / -type f -user stuart -perm u=w 2>/dev/null  
-###### Enumerating all files writable by group stuart
-find / -type f -group stuart -perm g=w 2>/dev/null  
+###### 
+```
+Enumerating all files writable by user stuart:
+find / -type f -user stuart -perm -u=w 2>/dev/null  
+Enumerating all files writable by group stuart
+find / -type f -group stuart -perm -g=w 2>/dev/null
+
+-perm mode permission bits are exactly set
+-perm -mode all of permission bits are set
+-perm /mode any of permission bits are set
+```  
 ###### Enumerating Unmounted Disks
 mount  
 lsblk
