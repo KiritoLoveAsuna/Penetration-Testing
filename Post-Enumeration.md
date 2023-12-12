@@ -46,6 +46,11 @@ setupinfo
 setupinfo.bak
 *.bak, *.db
 *.pdf
+*.zip
+*.7z
+*.gz
+*.sitx
+*.rar
 ```
 ### Linux Web Service
 ```
