@@ -161,15 +161,16 @@ Get-ModifiableServiceFile
 ```
 
 ##### Service DLL Hijacking
->standard search order taken from the Microsoft Documentation
-When safe DLL search mode is disabled, the current directory is searched at position 2 after the application's directory
+>The following is the default search order with SafeDllSearchMode enabled. When it's disabled the current directory escalates to second place. To disable this feature, create the HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\SafeDllSearchMode registry value and set it to 0 (default is enabled).
 ```
-1. The directory from which the application loaded.
-2. The system directory.
-3. The 16-bit system directory.
-4. The Windows directory. 
-5. The current directory.
-6. The directories that are listed in the PATH environment variable.
+1.The directory from which the application loaded.
+2.The system directory. Use the GetSystemDirectory function to get the path of this directory.(C:\Windows\System32)
+3.The 16-bit system directory. There is no function that obtains the path of this directory, but it is searched. (C:\Windows\System)
+The Windows directory. Use the GetWindowsDirectory function to get the path of this directory.
+(C:\Windows)
+4.The current directory.
+5.The directories that are listed in the PATH environment variable. Note that this does not include the per-application path
+specified by the App Paths registry key. The App Paths key is not used when computing the DLL search path.
 ```
 
 ```
