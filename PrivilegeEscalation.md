@@ -179,6 +179,9 @@ When safe DLL search mode is disabled, the current directory is searched at posi
 4. replace dll with malicious file
 5. PS: Restart-Service BetaService
 ```
+![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/d0995520-1ee4-4c84-88aa-b0b9e1360833)
+![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/b33e1fd2-993c-4c7b-ad5c-7c15b1bb232a)
+
 
 >Each DLL can have an optional entry point function named DllMain, which is executed when processes or threads attach the DLL  
 This function generally contains four cases named DLL_PROCESS_ATTACH, DLL_THREAD_ATTACH, DLL_THREAD_DETACH, DLL_PROCESS_DETACH
