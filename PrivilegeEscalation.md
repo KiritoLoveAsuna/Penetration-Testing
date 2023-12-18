@@ -4,6 +4,9 @@
 
 >"BUILTIN\Users," on the other hand, includes only the user accounts that have been created on the local system. This group typically doesn't include unauthenticated users and doesn't include accounts from trusted domains or external sources.
 ### Windows
+##### LOLBAS
+https://lolbas-project.github.io/#  
+(similar to gtfobins)
 ##### AutoEnumeration
 winpeas.exe
 ##### find service with filename
