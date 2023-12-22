@@ -6,3 +6,8 @@ proxychains4 -f /etc/proxychains4.conf crackmapexec mssql 10.10.124.142 -u web_s
 
 ### show all values of table spt_monitor from master database
 SELECT * FROM msdb.dbo.monitor;
+
+### Mssql Connection
+```
+impacket-mssqlclient user:pass@IP
+```
