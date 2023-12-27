@@ -26,76 +26,17 @@ RidRoleOwner            : DC01.corp.com
 InfrastructureRoleOwner : DC01.corp.com
 Name(domain name)       : corp.com
 ```
-
-###### Collect all users along with their attributes,SPNs
+###### Nested Groups
 ```
-$domainObj = [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()
-
-$PDC = ($domainObj.PdcRoleOwner).Name
-
-$SearchString = "LDAP://"
-
-$SearchString += $PDC + "/"
-
-$DistinguishedName = "DC=$($domainObj.Name.Replace('.', ',DC='))"
-
-$SearchString += $DistinguishedName
-
-$Searcher = New-Object System.DirectoryServices.DirectorySearcher([ADSI]$SearchString)
-
-$objDomain = New-Object System.DirectoryServices.DirectoryEntry
-
-$Searcher.SearchRoot = $objDomain
-
-$Searcher.filter="samAccountType=805306368/name=Jeff_Admin/serviceprincipalname=*http*"
-
-$Result = $Searcher.FindAll()
-
-Foreach($obj in $Result)
-{
-    Foreach($prop in $obj.Properties)
-    {
-        $prop
-    }
-    
-    Write-Host "------------------------"
-}
-```
-###### Get all logon users and net sessions
-https://github.com/KiritoLoveAsuna/Penetration-Testing/blob/main/powerview.ps1
-```
+powershell -ep bypass
 Import-Module .\PowerView.ps1
-Get-NetLoggedon -ComputerName client251
-Get-NetSession -ComputerName dc01
-```
-###### Resolving Nested Groups
-```
-$domainObj = [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()
+Get-DomainGroup 'Service Personnel' | select samaccountname,memberof,member
+Get-DomainGroup 'Service Personnel'
 
-$PDC = ($domainObj.PdcRoleOwner).Name
-
-$SearchString = "LDAP://"
-
-$SearchString += $PDC + "/"
-
-$DistinguishedName = "DC=$($domainObj.Name.Replace('.', ',DC='))"
-
-$SearchString += $DistinguishedName
-
-$Searcher = New-Object System.DirectoryServices.DirectorySearcher([ADSI]$SearchString)
-
-$objDomain = New-Object System.DirectoryServices.DirectoryEntry
-
-$Searcher.SearchRoot = $objDomain
-
-$Searcher.filter="(objectClass=Group)" / $Searcher.filter="(name=Secret_Group)"
-
-$Result = $Searcher.FindAll()
-
-Foreach($obj in $Result)
-{
-    $obj.Properties.name / $obj.Properties.member
-}
+Get all belonged groups of user(michelle):
+Get-DomainGroup -MemberIdentity 'michelle' | select samaccountname,memberof,member
+Get-DomainGroup -MemberIdentity 'michelle' | select samaccountname
+Get-DomainGroup -MemberIdentity 'michelle' 
 ```
 ### Authentication
 ###### Minikatz(require local admin)
