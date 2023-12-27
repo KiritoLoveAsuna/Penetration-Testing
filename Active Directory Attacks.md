@@ -52,6 +52,8 @@ Get-DomainGroup -MemberIdentity 'michelle'
 ```
 Get-NetComputer
 Get-NetComputer | select operatingsystem,dnshostname
+Get-NetComputer | select operatingsystem,operatingsystemversion,dnshostname,distinguishedname
+
 output:
 pwdlastset                    : 10/2/2022 10:19:40 PM
 logoncount                    : 319
