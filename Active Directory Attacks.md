@@ -10,7 +10,13 @@ net user /domain
 net user jeff_admin /domain
 net group groupname /domain
 net localgroup
-net localgroup groupname 
+net localgroup groupname
+
+PowerView.ps1:
+Get-NetUser
+Get-NetUser | select cn
+Get-NetUser | select cn,pwdlastset,lastlogon
+Get-DomainGroup | select cn
 ```
 
 ```
@@ -26,6 +32,9 @@ PdcRoleOwner(DC name)   : DC01.corp.com
 RidRoleOwner            : DC01.corp.com
 InfrastructureRoleOwner : DC01.corp.com
 Name(domain name)       : corp.com
+
+PowerView.ps1:
+Get-NetDomain
 ```
 ###### Nested Groups
 ```
