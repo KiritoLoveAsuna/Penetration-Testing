@@ -105,6 +105,18 @@ Enumerate active sessions:
 Enumerate IP address based on computername such as client74:
 Get-NetSession -ComputerName client74
 ```
+###### Object Permissions
+```
+powershell -ep bypass
+Import-module .\PowerView.ps1
+
+Find SIDs which has GenericAll Permission on "Management Department" Group:
+Get-ObjectAcl -Identity "Management Department" | ? {$_.ActiveDirectoryRights -eq "GenericAll"} | select SecurityIdentifier,ActiveDirectoryRights
+
+Conver SIDs to UserAccount names
+"S-1-5-21-1987370270-658905905-1781884369-512","S-1-5-21-1987370270-658905905-1781884369-1104","S-1-5-32-548","S-1-5-18","S-1-5-21-1987370270-658905905-1781884369-519" | Convert-SidToName
+Convert-SidToName S-1-5-21-1987370270-658905905-1781884369-553
+```
 ### Authentication
 ###### Minikatz(require local admin)
 Load DemoEXE and run it locally.  
