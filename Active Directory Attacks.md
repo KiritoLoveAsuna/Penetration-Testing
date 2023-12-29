@@ -101,6 +101,9 @@ PowerView.ps1 : Find-LocalAdminAccess
 
 Enumerate active sessions:
 .\PsLoggedon.exe \\client74
+
+Enumerate IP address based on computername such as client74:
+Get-NetSession | select CName,ComputerName
 ```
 ### Authentication
 ###### Minikatz(require local admin)
