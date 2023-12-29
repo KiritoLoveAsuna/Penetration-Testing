@@ -103,7 +103,7 @@ Enumerate active sessions:
 .\PsLoggedon.exe \\client74
 
 Enumerate IP address based on computername such as client74:
-Get-NetSession | select CName,ComputerName
+Get-NetSession -ComputerName client74
 ```
 ### Authentication
 ###### Minikatz(require local admin)
