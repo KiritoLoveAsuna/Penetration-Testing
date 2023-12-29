@@ -94,6 +94,14 @@ usnchanged                    : 178663
 ridsetreferences              : CN=RID Set,CN=DC1,OU=Domain Controllers,DC=corp,DC=com
 dnshostname                   : DC1.corp.com
 ```
+###### Logged On Users
+```
+Find possible local administrative access on computers under the current user context:
+PowerView.ps1 : Find-LocalAdminAccess
+
+Enumerate active sessions:
+.\PsLoggedon.exe \\client74
+```
 ### Authentication
 ###### Minikatz(require local admin)
 Load DemoEXE and run it locally.  
