@@ -125,6 +125,11 @@ Find-DomainShare
 ls \\dc1.corp.com\"Important Files"\
 type \\dc1.corp.com\"Important Files"\proof.txt
 ```
+###### Automate Enumeration
+```
+Import-Module .\Sharphound.ps1
+Invoke-BloodHound -CollectionMethod All -OutputDirectory C:\Users\stephanie\Desktop\
+```
 ### Authentication
 ###### Minikatz(require local admin)
 Load DemoEXE and run it locally.  
