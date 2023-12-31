@@ -127,8 +127,15 @@ type \\dc1.corp.com\"Important Files"\proof.txt
 ```
 ###### Automate Enumeration
 ```
-Import-Module .\Sharphound.ps1
-Invoke-BloodHound -CollectionMethod All -OutputDirectory C:\Users\stephanie\Desktop\
+Compromised machine: Import-Module .\Sharphound.ps1
+Compromised machine: Invoke-BloodHound -CollectionMethod All -OutputDirectory C:\Users\stephanie\Desktop\
+
+kali: sudo neo4j start
+kali: bloodhound
+kali: username:neo4j, pass:kali
+kali: uupload data
+kali: mark user as owned
+kali: Shortest Paths to Domain Admins from Owned Principals
 ```
 ### Authentication
 ###### Minikatz(require local admin)
