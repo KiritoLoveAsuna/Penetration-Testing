@@ -138,8 +138,6 @@ kali: sudo neo4j start
 kali: bloodhound
 kali: username:neo4j, pass:kali
 kali: uupload data
-kali: mark user as owned
-kali: Shortest Paths to Domain Admins from Owned Principals
 ```
 ### Authentication
 ###### Minikatz(require local admin)
