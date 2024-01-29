@@ -7,6 +7,11 @@ nmap -p- -sU --min-rate 5000 ip
 ### tftp enum
 sudo nmap -sU -p 69 --script=tftp-enum -T4 192.168.197.222
 
+### nmap script args
+```
+sudo nmap -sSV -p 20000 --script=http-brute --script-args http-brute.path="https://oscp:20000/session_login.cgi" 192.168.189.157
+```
+
 ### nmap scripts
 >NSE scripts define a list of categories they belong to. Currently defined categories are auth, broadcast, brute, default. discovery, dos, exploit, external, fuzzer, intrusive, malware, safe, version, and vuln. Category names are not case sensitive. The following list describes each category.
 
