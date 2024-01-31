@@ -478,3 +478,18 @@ check zip,gz,7z,stix,rar files
 # Allow members of group admin to execute any command
 %admin 	ALL=(ALL:ALL) ALL
 ```
+###### Cron using a script with a wildcard (Wildcard Injection)
+```
+[root@RedHat_test ~]# man tar
+ -c新建打包文件，同 -v一起使用 查看过程中打包文件名
+ -v压缩或解压过程中，显示过程
+ -f要操作的文件名
+ -r表示增加文件，把要增加的文件追加在压缩文件的末尾
+ -t表示查看文件，查看文件中的文件内容
+ -x解压文件
+ -z通过gzip方式压缩或解压，最后以.tar.gz 为后缀
+ -j通过bzip2方式压缩或解压，最后以.tar.br2 为后缀。压缩后大小小于.tar.gz
+ -u更新压缩文件中的内容
+ -p保留绝对路径，即允许备份数据中含有根目录
+ -P保留数据原来权限及属性
+```
