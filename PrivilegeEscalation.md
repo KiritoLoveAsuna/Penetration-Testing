@@ -23,6 +23,10 @@ wmic service get name,pathname |  findstr /i "backup.exe"
 Get-Service -Name "RasMan" | Select-Object Name, Status, DisplayName, UserName
 sc qc <service_name>
 Get-WmiObject Win32_Process | Where-Object {$_.Name -eq "GPGService.exe"}
+Get-WmiObject -Class Win32_Service -Filter "Name='GPGOrchestrator'" | Select-Object StartName,SystemName,StartMode,Name,DisplayName,CreationClassName,PathName,AcceptPause,AcceptStop,Caption,CheckPoint,Description,DesktopInteract
+Get-WmiObject -Class Win32_Service -Filter "Name='GPGOrchestrator'" | Get-Member
+(list all objects u can select for Get-WmiObject -Class Win32_Service -Filter "Name='GPGOrchestrator'" command)
+
 ```
 ##### Check which exe file using specific dll
 ```
