@@ -22,6 +22,7 @@ wmic service get name,pathname |  findstr /i "backup.exe"
 ```
 Get-Service -Name "RasMan" | Select-Object Name, Status, DisplayName, UserName
 sc qc <service_name>
+Get-WmiObject Win32_Process | Where-Object {$_.Name -eq "GPGService.exe"}
 ```
 ##### Check which exe file using specific dll
 ```
