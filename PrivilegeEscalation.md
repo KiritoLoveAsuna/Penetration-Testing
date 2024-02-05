@@ -40,6 +40,7 @@ tasklist /svc /fi "imagename eq your_file.exe"
 Start-Service -Name ""
 Stop-Service -Name ""
 sc stop servicename
+sc start servicename
 ```
 
 ##### Powershell history
