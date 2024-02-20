@@ -74,4 +74,3 @@ The scripts in this special category are an extension to the version detection f
 
 >vuln
 These scripts check for specific known vulnerabilities and generally only report results if they are found. Examples include realvnc-auth-bypass and afp-path-vuln.
-```
