@@ -131,7 +131,7 @@ type \\dc1.corp.com\"Important Files"\proof.txt
 ```
 ###### Automate Enumeration
 ```
-Compromised machine: Import-Module .\Sharphound.ps1
+Compromised machine: Import-Module .\SharpHound.ps1
 Compromised machine: Invoke-BloodHound -CollectionMethod All -OutputDirectory C:\Users\stephanie\Desktop\
 
 kali: sudo neo4j start
