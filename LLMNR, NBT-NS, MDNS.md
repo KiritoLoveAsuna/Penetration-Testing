@@ -2,7 +2,7 @@
 ##### Attack 1: LLMNR/NBT-NS Poisoning through SMB
 >Essentially when a system tries to access an SMB share, it sends a request to the DNS server which then resolves the share name to the respective IP address and the requesting system can access it. However, when the provided share name doesn’t exist, the system sends out an LLMNR query to the entire network. This way, if any user(IP address) has access to that share, it can reply and provide the communication to the requestor.
 
->Let’s see a share “wow” which doesn’t exist currently. If the share exists on the same network, wow can be accessed by typing “\\wow” in the address bar of file explorer. It doesn’t exist and so, Windows throws an error.
+>Let’s see a share “wow” which doesn’t exist currently. If the share exists on the same network, wow can be accessed by typing “\\\\wow” in the address bar of file explorer. It doesn’t exist and so, Windows throws an error.
 
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/9dbcb69f-3468-4a23-869f-57f49bcf4ec8)
 
