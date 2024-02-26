@@ -22,7 +22,7 @@
 
 ##### Responder
 ```
-sudo responder -I tun0 -fv
+sudo responder -I tun0 -v
 ```
 ##### LLMNR
 ```
