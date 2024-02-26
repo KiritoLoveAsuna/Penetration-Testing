@@ -24,7 +24,7 @@
 ```
 sudo responder -I tun0 -fv
 ```
-##### SMB 
+##### LLMNR
 ```
 \\IPv4 address\test || //ip/test
 ```
