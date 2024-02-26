@@ -19,3 +19,12 @@
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/e7d16cb4-e0ce-4032-8aa4-2b03ccd661b0)
 
 >We can now save these hashes in a file hash.txt and use hashcat to crack it. Please note that module number 5600 is the one suited to crack NTLMv2. If you obtained some other version of NTLM, please follow the hashcat modules here to specify the correct one.
+
+##### SMB 
+```
+\\IPv4 address\test || //ip/test
+```
+##### HTTP
+```
+http://ip/
+```
