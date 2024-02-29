@@ -11,105 +11,19 @@ sudo nmap -sU -p 69 --script=tftp-enum -T4 192.168.197.222
 >sudo nmap -sSV -p 20000 --script=http-brute --script-args http-brute.path="https://oscp:20000/session_login.cgi" 192.168.189.157
 
 ### nmap scripts
->NSE scripts define a list of categories they belong to. Currently defined categories are auth, broadcast, brute, default. discovery, dos, exploit, external, fuzzer, intrusive, malware, safe, version, and vuln. Category names are not case sensitive. The following list describes each category.
-
->auth
-
-These scripts deal with authentication credentials (or bypassing them) on the target system. Examples include x11-access, ftp-anon, and oracle-enum-users. Scripts which use brute force attacks to determine credentials are placed in the brute category instead.
-
-
->broadcast
-
-Scripts in this category typically do discovery of hosts not listed on the command line by broadcasting on the local network. Use the newtargets script argument to allow these scripts to automatically add the hosts they discover to the Nmap scanning queue.
-
->brute
-
-These scripts use brute force attacks to guess authentication credentials of a remote server. Nmap contains scripts for brute forcing dozens of protocols, including http-brute, oracle-brute, snmp-brute, etc.
-
-
->default
-
-These scripts are the default set and are run when using the -sC or -A options rather than listing scripts with --script. This category can also be specified explicitly like any other using --script=default. Many factors are considered in deciding whether a script should be run by default:
-
-
->Speed
-
-A default scan must finish quickly, which excludes brute force authentication crackers, web spiders, and any other scripts which can take minutes or hours to scan a single service.
-
-
->Usefulness
-
-Default scans need to produce valuable and actionable information. If even the script author has trouble explaining why an average networking or security professional would find the output valuable, the script should not run by default.
-
-
->Verbosity
-
-Nmap output is used for a wide variety of purposes and needs to be readable and concise. A script which frequently produces pages full of output should not be added to the default category. When there is no important information to report, NSE scripts (particularly default ones) should return nothing. Checking for an obscure vulnerability may be OK by default as long as it only produces output when that vulnerability is discovered.
-
-
->Reliability
-
-Many scripts use heuristics and fuzzy signature matching to reach conclusions about the target host or service. Examples include sniffer-detect and sql-injection. If the script is often wrong, it doesn't belong in the default category where it may confuse or mislead casual users. Users who specify a script or category directly are generally more advanced and likely know how the script works or at least where to find its documentation.
-
-
->Intrusiveness
-
-Some scripts are very intrusive because they use significant resources on the remote system, are likely to crash the system or service, or are likely to be perceived as an attack by the remote administrators. The more intrusive a script is, the less suitable it is for the default category. Default scripts are almost always in the safe category too, though we occasionally allow intrusive scripts by default when they are only mildly intrusive and score well in the other factors.
-
-
->Privacy
-
-Some scripts, particularly those in the external category described later, divulge information to third parties by their very nature. For example, the whois script must divulge the target IP address to regional whois registries. We have also considered (and decided against) adding scripts which check target SSH and SSL key fingerprints against Internet weak key databases. The more privacy-invasive a script is, the less suitable it is for default category inclusion.
-
-
->We don't have exact thresholds for each of these criteria, and many of them are subjective. All of these factors are considered together when making a decision whether to promote a script into the default category. A few default scripts are identd-owners (determines the username running remote services using identd), http-auth (obtains authentication scheme and realm of web sites requiring authentication), and ftp-anon (tests whether an FTP server allows anonymous access).
-
-
->discovery
-
-These scripts try to actively discover more about the network by querying public registries, SNMP-enabled devices, directory services, and the like. Examples include html-title (obtains the title of the root path of web sites), smb-enum-shares (enumerates Windows shares), and snmp-sysdescr (extracts system details via SNMP).
-
-
->dos
-
-Scripts in this category may cause a denial of service. Sometimes this is done to test vulnerability to a denial of service method, but more commonly it is an undesired by necessary side effect of testing for a traditional vulnerability. These tests sometimes crash vulnerable services.
-
-
->exploit
-
-These scripts aim to actively exploit some vulnerability. Examples include jdwp-exec and http-shellshock.
-
-
->external
-
-Scripts in this category may send data to a third-party database or other network resource. An example of this is whois-ip, which makes a connection to whois servers to learn about the address of the target. There is always the possibility that operators of the third-party database will record anything you send to them, which in many cases will include your IP address and the address of the target. Most scripts involve traffic strictly between the scanning computer and the client; any that do not are placed in this category.
-
-
->fuzzer
-
-This category contains scripts which are designed to send server software unexpected or randomized fields in each packet. While this technique can useful for finding undiscovered bugs and vulnerabilities in software, it is both a slow process and bandwidth intensive. An example of a script in this category is dns-fuzz, which bombards a DNS server with slightly flawed domain requests until either the server crashes or a user specified time limit elapses.
-
-
->intrusive
-
-These are scripts that cannot be classified in the safe category because the risks are too high that they will crash the target system, use up significant resources on the target host (such as bandwidth or CPU time), or otherwise be perceived as malicious by the target's system administrators. Examples are http-open-proxy (which attempts to use the target server as an HTTP proxy) and snmp-brute (which tries to guess a device's SNMP community string by sending common values such as public, private, and cisco). Unless a script is in the special version category, it should be categorized as either safe or intrusive.
-
-
->malware
-
-These scripts test whether the target platform is infected by malware or backdoors. Examples include smtp-strangeport, which watches for SMTP servers running on unusual port numbers, and auth-spoof, which detects identd spoofing daemons which provide a fake answer before even receiving a query. Both of these behaviors are commonly associated with malware infections.
-
-
->safe
-
-Scripts which weren't designed to crash services, use large amounts of network bandwidth or other resources, or exploit security holes are categorized as safe. These are less likely to offend remote administrators, though (as with all other Nmap features) we cannot guarantee that they won't ever cause adverse reactions. Most of these perform general network discovery. Examples are ssh-hostkey (retrieves an SSH host key) and html-title (grabs the title from a web page). Scripts in the version category are not categorized by safety, but any other scripts which aren't in safe should be placed in intrusive.
-
-
->version
-
-The scripts in this special category are an extension to the version detection feature and cannot be selected explicitly. They are selected to run only if version detection (-sV) was requested. Their output cannot be distinguished from version detection output and they do not produce service or host script results. Examples are skypev2-version, pptp-version, and iax2-version.
-
-
->vuln
-
-These scripts check for specific known vulnerabilities and generally only report results if they are found. Examples include realvnc-auth-bypass and afp-path-vuln.
+```
+auth: 负责处理鉴权证书（绕开鉴权）的脚本  
+broadcast: 在局域网内探查更多服务开启状况，如dhcp/dns/sqlserver等服务  
+brute: 提供暴力破解方式，针对常见的应用如http/snmp等  
+default: 使用-sC或-A选项扫描时候默认的脚本，提供基本脚本扫描能力  
+discovery: 对网络进行更多的信息，如SMB枚举、SNMP查询等  
+dos: 用于进行拒绝服务攻击  
+exploit: 利用已知的漏洞入侵系统  
+external: 利用第三方的数据库或资源，例如进行whois解析  
+fuzzer: 模糊测试的脚本，发送异常的包到目标机，探测出潜在漏洞 intrusive: 入侵性的脚本，此类脚本可能引发对方的IDS/IPS的记录或屏蔽  
+malware: 探测目标机是否感染了病毒、开启了后门等信息  
+safe: 此类与intrusive相反，属于安全性脚本  
+version: 负责增强服务与版本扫描（Version Detection）功能的脚本  
+vuln: 负责检查目标机是否有常见的漏洞（Vulnerability），如是否有MS08_067
+All: Use all the nse scipts to scan
+```
