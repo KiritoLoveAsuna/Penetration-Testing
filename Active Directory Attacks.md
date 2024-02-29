@@ -129,7 +129,8 @@ Find-DomainShare
 ls \\dc1.corp.com\"Important Files"\
 type \\dc1.corp.com\"Important Files"\proof.txt
 ```
-###### Automate Enumeration
+###### BloodHound
+Initiation
 ```
 Compromised machine: Import-Module .\SharpHound.ps1
 Compromised machine: Invoke-BloodHound -CollectionMethod All -OutputDirectory C:\Users\stephanie\Desktop\
@@ -141,6 +142,12 @@ kali: username:neo4j, pass:kali
 kali: clear database
 kali: upload data
 ```
+
+Functions
+```
+.\GMSAPasswordReader.exe --accountname=SVC_APACHE
+```
+
 ### Authentication
 ###### Minikatz(require local admin)
 Load DemoEXE and run it locally.  
