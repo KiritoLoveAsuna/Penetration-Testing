@@ -41,7 +41,7 @@ host -t ns megacorpone.com | cut -d " " -f 4(list all of domain's dns servers)
 host -l megacorpone.com ns2.megacorpone.com  
 host -l MAILMAN.com 192.168.182.149(internal ip address of dc.mailman.com)  
 
-dig axfr @192.168.185.149 _msdcs.mailman.com(host -l -a _msdcs.MAILMAN.com 192.168.182.149)
+dig axfr @192.168.185.149 _msdcs.mailman.com  ||  host -l -a _msdcs.MAILMAN.com 192.168.182.149
 ```   
 
 ### Interpret name servers from domain
