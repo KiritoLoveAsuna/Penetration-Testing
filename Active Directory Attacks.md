@@ -134,10 +134,12 @@ type \\dc1.corp.com\"Important Files"\proof.txt
 Compromised machine: Import-Module .\SharpHound.ps1
 Compromised machine: Invoke-BloodHound -CollectionMethod All -OutputDirectory C:\Users\stephanie\Desktop\
 
-kali: sudo neo4j start
+sudo neo4j stop
+sudo neo4j start
 kali: bloodhound
 kali: username:neo4j, pass:kali
-kali: uupload data
+kali: clear database
+kali: upload data
 ```
 ### Authentication
 ###### Minikatz(require local admin)
