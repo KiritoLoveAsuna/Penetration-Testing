@@ -36,12 +36,21 @@ To find domain TTL information: host -v -t a target-domain
 >Zone transfers are typically used to replicate DNS data across a number of DNS servers or to back up DNS files. A user or server will perform a specific zone transfer request from a name server. If the name server allows zone transfers to occur, all the DNS names and IP addresses hosted by the name server will be returned in human-readable ASCII text. Clearly, this mechanism suits our purposes at this point admirably. If the name server for a given domain allows zone transfers, we can simply request and collect all of the DNS entries for a given domain.
 
 ### DNS zone transfer
-```
-host -t ns megacorpone.com | cut -d " " -f 4(list all of domain's dns servers)  
-host -l megacorpone.com ns2.megacorpone.com  
-host -l MAILMAN.com 192.168.182.149(internal ip address of dc.mailman.com)  
+The DNS server specified in the zone transfer command does not necessarily have to be one of the authoritative name servers for the domain example.com. However, it does need to have the authority to perform zone transfers for the domain example.com.
 
-dig axfr @192.168.185.149 _msdcs.mailman.com  ||  host -l -a _msdcs.MAILMAN.com 192.168.182.149
+In typical scenarios:
+
+<strong>Primary authoritative server</strong>: This is the server where the DNS zone file for the domain is stored. It is responsible for managing updates to the zone. Zone transfers can be initiated from this server.
+
+<strong>Secondary authoritative server</strong>: This is another server that has a copy of the DNS zone file for the domain. It receives updates from the primary server through zone transfers. Zone transfers can also be initiated from this server.
+
+Both the primary and secondary servers (and any other servers designated for zone transfers) need to be configured to allow zone transfers to specific hosts or IP addresses. This is typically done for security reasons to ensure that only authorized hosts can request zone transfers.
+
+So, while the server specified in the zone transfer command doesn't have to be one of the authoritative name servers for example.com, it should be configured to allow zone transfers for that domain.
+```
+dig axfr @192.168.185.149 _msdcs.mailman.com
+host -l -a _msdcs.MAILMAN.com dns-server-ip
+host -t axfr example.com dns-server.example.com
 ```   
 
 ### Interpret name servers from domain
