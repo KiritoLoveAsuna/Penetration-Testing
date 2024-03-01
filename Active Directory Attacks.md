@@ -106,6 +106,13 @@ Enumerate IP address based on computername such as client74:
 Get-NetSession -ComputerName client74
 ```
 ###### Object Permissions
+GenericAll: Full permissions on object
+GenericWrite: Edit certain attributes on the object
+WriteOwner: Change ownership of the object
+WriteDACL: Edit ACE's applied to object
+AllExtendedRights: Change password, reset password, etc.
+ForceChangePassword: Password change for object
+Self (Self-Membership): Add ourselves to for example a group
 ```
 powershell -ep bypass
 Import-module .\PowerView.ps1
@@ -119,7 +126,6 @@ Find-InterestingDomainAcl | ? {$_.ActiveDirectoryRights -eq "GenericAll"}
 Conver SIDs to UserAccount names:
 "S-1-5-21-1987370270-658905905-1781884369-512","S-1-5-21-1987370270-658905905-1781884369-1104","S-1-5-32-548","S-1-5-18","S-1-5-21-1987370270-658905905-1781884369-519" | Convert-SidToName
 Convert-SidToName S-1-5-21-1987370270-658905905-1781884369-553
-
 ```
 ###### Enumerate Domain Shares
 ```
