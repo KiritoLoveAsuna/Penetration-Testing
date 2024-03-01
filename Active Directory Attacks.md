@@ -106,13 +106,13 @@ Enumerate IP address based on computername such as client74:
 Get-NetSession -ComputerName client74
 ```
 ###### Object Permissions
-GenericAll: Full permissions on object
-GenericWrite: Edit certain attributes on the object
-WriteOwner: Change ownership of the object
-WriteDACL: Edit ACE's applied to object
-AllExtendedRights: Change password, reset password, etc.
-ForceChangePassword: Password change for object
-Self (Self-Membership): Add ourselves to for example a group
+GenericAll: Full permissions on object  
+GenericWrite: Edit certain attributes on the object  
+WriteOwner: Change ownership of the object  
+WriteDACL: Edit ACE's applied to object  
+AllExtendedRights: Change password, reset password, etc.  
+ForceChangePassword: Password change for object  
+Self (Self-Membership): Add ourselves to for example a group  
 ```
 powershell -ep bypass
 Import-module .\PowerView.ps1
