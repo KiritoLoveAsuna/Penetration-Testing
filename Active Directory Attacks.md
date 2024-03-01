@@ -139,8 +139,13 @@ sudo neo4j stop
 sudo neo4j start
 kali: bloodhound
 kali: username:neo4j, pass:kali
-kali: clear database
-kali: upload data
+kali: drag zip file into bloodhound
+```
+Compatible Combination:
+```
+neo4j 4.4.26
+bloodhound 4.3.1
+SharpHound.ps1 1.1.1
 ```
 ###### Read GMSAP Password
 ```
