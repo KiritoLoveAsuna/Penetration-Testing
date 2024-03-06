@@ -157,6 +157,11 @@ neo4j 4.4.26
 bloodhound 4.3.1
 SharpHound.ps1 1.1.1
 ```
+##### Bloodhound-python
+This will extract all json files if you have credential but no shell
+```
+bloodhound-python --dns-tcp -ns $IP -d hutch.offsec -u 'fmcsorley' -p 'CrabSharkJellyfish192' -c all
+```
 ###### Read GMSAP Password
 ```
 Get-ADServiceAccount -Filter * | where-object {$_.ObjectClass -eq "msDS-GroupManagedServiceAccount"}
