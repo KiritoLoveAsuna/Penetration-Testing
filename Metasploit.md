@@ -64,3 +64,12 @@ load kiwi
 getsystem
 creds_msv
 ```
+##### Add own rb exploit
+exploit/multi/http/jenkins_nodejs_rce
+```
+under /home/kali/.msf4
+create ../exploits/multi/http folder
+put rb in it
+msfconsole
+search name
+```
