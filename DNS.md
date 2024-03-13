@@ -1,3 +1,8 @@
+### Brute-force subdomains
+```
+for ip in $(cat list.txt); do host $ip.megacorpone.com; done
+```
+
 ### domains resolving to the ip
 dig -x ip @<DNS_IP>  
 host ip dns-server-address  
