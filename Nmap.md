@@ -27,3 +27,8 @@ version: 负责增强服务与版本扫描（Version Detection）功能的脚本
 vuln: 负责检查目标机是否有常见的漏洞（Vulnerability），如是否有MS08_067
 All: Use all the nse scipts to scan
 ```
+### nmap use downloaded nse script
+```
+download nse script to /usr/share/nmap/scripts
+sudo nmap --script-updatedb
+```
