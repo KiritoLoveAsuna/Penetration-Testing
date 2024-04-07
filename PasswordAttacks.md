@@ -126,3 +126,8 @@ hashcat -a 0 -m 13400 hash dic
 Format: {SHA}uJ6qx+YUFzQbcQtyd2gpTQ5qJ3s=
 HashMode: 101
 ```
+### Hash Identification
+If contains special characters
+```
+hashid 'hash in here'
+```
