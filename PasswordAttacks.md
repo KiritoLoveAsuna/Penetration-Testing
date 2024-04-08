@@ -132,7 +132,21 @@ If contains special characters
 hashid 'hash in here'
 ```
 ### Cracking ssh private key passphrase
+Hashcat
 ```
 ssh2john id_rsa > ssh.hash
 ```
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/21cf06d5-cdcf-42cd-8f8b-b6ffcebff5ae)
+
+John
+```
+cat ssh.rule
+[List.Rules:sshRules]
+c $1 $3 $7 $!
+c $1 $3 $7 $@
+c $1 $3 $7 $#
+```
+```
+sudo sh -c 'cat /home/kali/passwordattacks/ssh.rule >> /etc/john/john.conf' (add a name for the rules and append them to the /etc/john/john.conf)
+john --wordlist=ssh.passwords --rules=sshRules ssh.hash
+```
