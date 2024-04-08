@@ -131,3 +131,8 @@ If contains special characters
 ```
 hashid 'hash in here'
 ```
+### Cracking ssh private key passphrase
+```
+ssh2john id_rsa > ssh.hash
+```
+![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/21cf06d5-cdcf-42cd-8f8b-b6ffcebff5ae)
