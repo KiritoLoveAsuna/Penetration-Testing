@@ -72,6 +72,7 @@ nc -nv 10.11.0.22 443
 ```
 ### load powercat, bindshell, reverse shell, encrypted payloads
 ```
+powercat.ps1
   -ge             Generate Encoded Payload. Does the same as -g, but returns a string which
                   can be executed in this way: powershell -E <encoded string>
 ```
