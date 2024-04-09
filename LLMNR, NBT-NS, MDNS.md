@@ -34,3 +34,7 @@ Access:
 ```
 http://ip/
 ```
+
+Upload form to capture hash
+![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/c4aff3fc-e55f-4487-8fbe-c9f03ff3c714)
+
