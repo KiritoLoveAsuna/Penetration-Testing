@@ -9,6 +9,11 @@ https://lolbas-project.github.io/#
 (similar to gtfobins)
 ##### AutoEnumeration
 winpeas.exe
+##### Runas as another user
+Require GUI access
+```
+runas /user:backupadmin cmd
+```
 ##### Find process info
 ```
 tasklist /fi "pid eq <PID>"
