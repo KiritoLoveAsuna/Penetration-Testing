@@ -9,10 +9,12 @@ https://lolbas-project.github.io/#
 (similar to gtfobins)
 ##### AutoEnumeration
 winpeas.exe
-##### Find process info based on pid
+##### Find process info
 ```
 tasklist /fi "pid eq <PID>"
 Get-Process -Id <PID>
+Get-Process ProcessName
+Get-Process ProcessName | Select-Object *
 ```
 ##### find service with filename
 ```
