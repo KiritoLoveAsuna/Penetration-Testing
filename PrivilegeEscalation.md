@@ -1,8 +1,8 @@
 ### Persmissions
 ```
-(M) < (W)
-Modify access cant create new files which W can.
+(M) > (W)
 ```
+>The permissions on the root of the C: drive are typically more restrictive for security reasons2. Even though the Authenticated Users group has Modify access, this doesn’t override the restrictions placed on the root of the C: drive
 ### Windows
 ##### LOLBAS
 https://lolbas-project.github.io/#  
