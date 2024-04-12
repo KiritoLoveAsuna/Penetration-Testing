@@ -9,10 +9,11 @@ https://lolbas-project.github.io/#
 (similar to gtfobins)
 ##### AutoEnumeration
 winpeas.exe
-##### Runas as another user
+##### Gain Interactive Shell after add user to local Administrator group
 Require GUI access
 ```
-runas /user:backupadmin cmd
+1. runas /user:backupadmin cmd
+2. open cmd as admin, input dave2 password
 ```
 ##### Powershell Script Block Logging
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/9c355e20-e841-4c1e-b384-9e53f05aaaa2)
