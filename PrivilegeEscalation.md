@@ -1,7 +1,5 @@
 ### Persmissions
-```
-(M) > (W)
-```
+![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/8093ece9-bbd0-4055-bb7e-f6c8b381b848)
 >The permissions on the root of the C: drive are typically more restrictive for security reasons2. Even though the Authenticated Users group has Modify access, this doesn’t override the restrictions placed on the root of the C: drive
 ### Windows
 ##### LOLBAS
