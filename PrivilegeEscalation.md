@@ -1,3 +1,8 @@
+### Persmissions
+```
+(M) < (W)
+Modify access cant create new files which W can.
+```
 ### Windows
 ##### LOLBAS
 https://lolbas-project.github.io/#  
