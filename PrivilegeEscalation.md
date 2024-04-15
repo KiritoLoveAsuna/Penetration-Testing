@@ -408,7 +408,8 @@ find / -type f -group stuart -perm -g=w 2>/dev/null
 ```  
 ###### Enumerating Unmounted Disks
 mount  
-lsblk
+lsblk  
+cat /etc/fstab (/etc/fstab22 file lists all drives that will be mounted at boot time)
 ###### Enumerating Device Drivers and Kernel Modules
 1. lsmod  
 2. /sbin/modinfo libata
