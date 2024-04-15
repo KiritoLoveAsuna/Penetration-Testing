@@ -561,7 +561,7 @@ do
                 | gdb -q -n -p "$pid" >/dev/null 2>&1
 done
 ```
-Requirements
+Requirements  
 Ptrace fully enabled (/proc/sys/kernel/yama/ptrace_scope == 0).  
 Current user must have living process that has a valid sudo token with the same uid.  
 >The default password timeout is 15 minutes. So if you use sudo twice in 15 minutes (900 seconds), you will not be asked to type the user’s password again.
