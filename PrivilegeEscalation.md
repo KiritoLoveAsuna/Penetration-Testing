@@ -472,7 +472,7 @@ screen(with suid) -ls # screen itself is setuid, so...
 kali@kali:sudo machinectl remove MACHINE_NAME
 ```
 ###### Cronjob to elevate privilege
-Check if you have access with write permission on these files.
+Check if you have access with write permission on these files.  
 Check inside the file, to find other paths with write permissions.
 ```
 /etc/init.d
