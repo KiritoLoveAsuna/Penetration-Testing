@@ -412,7 +412,9 @@ lsblk
 cat /etc/fstab (/etc/fstab file lists all drives that will be mounted at boot time)
 ###### Enumerating Device Drivers and Kernel Modules
 1. lsmod  
-2. /sbin/modinfo libata
+2. /sbin/modinfo libata  
+![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/20c73182-d439-43a4-a3b5-f1fee987821c)
+
 ###### SUID permissions (anything interesting, to look for in GTFOBins)
 find / -perm -u=s -type f 2>/dev/null
 ```
