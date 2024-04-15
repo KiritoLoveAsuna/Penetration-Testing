@@ -362,6 +362,8 @@ check zip,gz,7z,stix,rar files
 ```
 
 ### Linux
+###### Directory Permissions
+>A directory is handled differently from a file. Read access gives the right to consult the list of its contents (files and directories). Write access allows creating or deleting files. Finally, execute access allows crossing through the directory to access its contents (using the cd command, for example).
 ###### Check what sudo permissions the user has available to them
 sudo -l (if anything interesting, go look for in GTFOBins)
 ###### AutoEnumeration
