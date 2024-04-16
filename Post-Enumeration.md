@@ -51,6 +51,17 @@ setupinfo.bak
 *.gz
 *.sitx
 *.rar
+%LOCALAPPDATA%\Google\Chrome\User Data\Default\Login Data
+%LOCALAPPDATA%\Google\Chrome\User Data\Default\Network
+%LOCALAPPDATA%\Google\Chrome\User Data\Default\Network\Cookies
+%LOCALAPPDATA%\Google\Chrome\User Data\Local State
+%LOCALAPPDATA%\Microsoft\Edge\User Data\Default\Login Data
+%LOCALAPPDATA%\Microsoft\Edge\User Data\Default\Network
+%LOCALAPPDATA%\Microsoft\Edge\User Data\Default\Network\Cookies
+%LOCALAPPDATA%\Microsoft\Edge\User Data\Local State
+%APPDATA%\Roaming\Microsoft\Protect\<SID> -> DPAPI Keys
+%SystemRoot%\NTDS\ntds.dit(Active Directory database)
+%SystemRoot%\System32\winevt\Logs\Microsoft-Windows-TerminalServices-LocalSessionManager%4Operational.evtx(Windows event logs)
 ```
 ### Linux Web Service
 ```
