@@ -362,17 +362,17 @@ check zip,gz,7z,stix,rar files
 ```
 
 ### Linux
-###### Directory Permissions
+##### Directory Permissions
 >A directory is handled differently from a file. Read access gives the right to consult the list of its contents (files and directories). Write access allows creating or deleting files. Finally, execute access allows crossing through the directory to access its contents (using the cd command, for example).
-###### Check what sudo permissions the user has available to them
+##### Check what sudo permissions the user has available to them
 sudo -l (if anything interesting, go look for in GTFOBins)
-###### AutoEnumeration
+##### AutoEnumeration
 linpeas.sh
-###### Nday exploits
+##### Nday exploits
 ```
 CVE-2021-3156 sudo Baron Samedit 2 sudo 1.8.2-1.8.32,1.9.0-1.9.5 downloadlink:https://codeload.github.com/worawit/CVE-2021-3156/zip/main
 ```
-###### Kernel exploits
+##### Kernel exploits
 ```
 OS version:
 cat /etc/issue  
@@ -380,42 +380,42 @@ cat /etc/*-release
 Kernel Version and Architecture: 
 uname -a
 ```
-###### GTFOBins
+##### GTFOBins
 ```
 GTFOBins is a curated list of Unix binaries that can be used to bypass local security restrictions in misconfigured systems.
 ```
-###### Editor PE
+##### Editor PE
 vim, less (if the editor has sudo privileges or is runned by root)
 ```
 inside vim or less, after colon(:), execute !/bin/sh
 ```
 
-###### Processes(Linux can list processes run by privileged users)
-ps aux
-###### Pspy - Unprivileged Linux Process Snooping
+##### Pspy - Unprivileged Linux Process Snooping
 Pspy is a command line tool designed to snoop on processes without need for root permissions. It allows you to see commands run by other users, cron jobs, etc. as they execute. Great for enumeration of Linux systems in CTFs. Also great to demonstrate your colleagues why passing secrets as arguments on the command line is a bad idea.
 
-###### 
+###### Find Usage
 ```
 Enumerating all files writable by user stuart:
 find / -type f -user stuart -perm -u=w 2>/dev/null  
 Enumerating all files writable by group stuart
 find / -type f -group stuart -perm -g=w 2>/dev/null
+Enumerating all files writable by the current user
+find / - type f -writable 2>/dev/null
 
 -perm mode permission bits are exactly set
 -perm -mode all of permission bits are set
 -perm /mode any of permission bits are set
 ```  
-###### Enumerating Unmounted Disks
+##### Enumerating Unmounted Disks
 mount  
 lsblk  
 cat /etc/fstab (/etc/fstab file lists all drives that will be mounted at boot time)
-###### Enumerating Device Drivers and Kernel Modules
+##### Enumerating Device Drivers and Kernel Modules
 1. lsmod  
 2. /sbin/modinfo libata  
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/20c73182-d439-43a4-a3b5-f1fee987821c)
 
-###### SUID permissions (anything interesting, to look for in GTFOBins)
+##### SUID permissions (anything interesting, to look for in GTFOBins)
 >SUID and SGID allow the current user to execute the file with the rights of the owner (setuid) or the owner's group (setgid)
 
 find / -perm -u=s -type f 2>/dev/null
@@ -471,7 +471,15 @@ screen(with suid) -ls # screen itself is setuid, so...
 #To completely remove the container from your system, you can use machinectl as follows
 kali@kali:sudo machinectl remove MACHINE_NAME
 ```
-###### Cronjob to elevate privilege
+##### CAP_SETUID capability
+The two perl binaries stand out as they have setuid capabilities enabled, along with the +ep flag specifying that these capabilities are effective and permitted
+```
+/usr/sbin/getcap -r / 2>/dev/null
+```
+![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/d14b5115-a1a3-45fd-a23a-c4823198184f)
+![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/e7e8b730-4760-4848-849e-394aaca5c74e)
+
+##### Cronjob to elevate privilege
 Check if you have access with write permission on these files.  
 Check inside the file, to find other paths with write permissions.
 ```
