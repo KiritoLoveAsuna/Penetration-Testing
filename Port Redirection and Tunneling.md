@@ -1,3 +1,5 @@
+### Socks
+SOCKS5 supports authentication, IPv6, and User Datagram Protocol (UDP), including DNS. Some SOCKS proxies will only support the SOCKS4 protocol. 
 ### Port Forwarding
 ###### RINETD
 ```
