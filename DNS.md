@@ -1,3 +1,9 @@
+### How DNS Works
+Once it retrieves the request from us, the recursive resolver starts making queries. It holds a list of root name servers3 (as of 2022, there are 13 of them scattered around the world4). Its first task is to send a DNS query to one of these root name servers. Because example.com has the ".com" suffix, the root name server will respond with the address of a DNS name server that's responsible for the .com top-level domain (TLD).5 This is known as the TLD name server.
+
+The recursive resolver then queries the .com TLD name server, asking which DNS server is responsible for example.com. The TLD name server will respond with the authoritative name server6 for the example.com domain.
+
+The recursive resolver then asks the example.com authoritative name server for the IPv4 address of www.example.com. The example.com authoritative name server replies with the A record for that.
 ### Brute-force subdomains
 ```
 for ip in $(cat list.txt); do host $ip.megacorpone.com; done
