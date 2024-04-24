@@ -13,7 +13,7 @@ nasm > jmp esp
 ```
 set AutoRunScript post/windows/manage/migrate #stable the shell
 ```
-###### Metasploit Pose-exploit commands:
+###### Metasploit Post-exploit commands:
 ```
 bg
 show sessions
