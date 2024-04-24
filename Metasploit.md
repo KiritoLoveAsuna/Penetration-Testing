@@ -73,3 +73,9 @@ put rb in it
 msfconsole
 search name
 ```
+##### Pivioting 
+![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/f9f085e8-a7bc-4ab5-acd2-de3c9c5a51fa)
+```
+route add 172.16.5.0/24 12
+route print
+```
