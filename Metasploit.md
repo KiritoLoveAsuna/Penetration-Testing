@@ -83,5 +83,5 @@ Clear Routes:
 ```
 route flush
 ```
-AutoRoutes Post-exploit
+AutoRoutes Post-exploit  
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/afe94d70-5d3a-402e-8054-f373089d311d)
