@@ -259,7 +259,7 @@ Cached Credentials:
 TGT and TGS:
 1. sekurlsa::tickets
 ```
-#### As-Req Roasting(Require Do not require Kerberos preauthentication enabled)
+#### AS-REP Roasting(Require Do not require Kerberos preauthentication enabled)
 Enum users with Do not require Kerberos preauthentication enabled
 ```
 PowerView's Get-DomainUser function with the option -PreauthNotRequired
