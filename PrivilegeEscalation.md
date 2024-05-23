@@ -526,31 +526,18 @@ The two perl binaries stand out as they have setuid capabilities enabled, along 
 Check if you have access with write permission on these files.  
 Check inside the file, to find other paths with write permissions.
 ```
-/etc/init.d
-/etc/cron*
-/etc/crontab
-/etc/cron.allow
-/etc/cron.d 
-/etc/cron.deny
-/etc/cron.daily
-/etc/cron.hourly
-/etc/cron.monthly
-/etc/cron.weekly
-/etc/sudoers
-/etc/exports
-/etc/anacrontab
-/var/spool/cron
-/var/spool/cron/crontabs/root
-
 crontab -l
-ls -alh /var/spool/cron;
+ls -alh /var/spool/cron
 ls -al /etc/ | grep cron
 ls -al /etc/cron*
 cat /etc/cron*
 cat /etc/at.allow
 cat /etc/at.deny
 cat /etc/cron.allow
-cat /etc/cron.deny*
+cat /etc/cron.deny
+cat /etc/crontab
+cat /etc/anacrontab
+cat /var/spool/cron/crontabs/root
 ```
 ##### Insecure file permission /etc/passwd
  ```
