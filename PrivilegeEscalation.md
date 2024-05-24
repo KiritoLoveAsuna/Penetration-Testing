@@ -26,6 +26,8 @@ tasklist /fi "pid eq <PID>"
 Get-Process -Id <PID>
 Get-Process ProcessName
 Get-Process ProcessName | Select-Object *
+tasklist /v /fi "PID eq 664"(shows runner of pid 664)
+tasklist /FO TABLE /NH(show all process' pid)
 ```
 ##### find service with filename
 ```
