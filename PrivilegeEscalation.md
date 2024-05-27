@@ -458,6 +458,11 @@ int main(int argc, char *argv[])
 }
 ```
 Basic.exe pid of process run by root(tasklist /FO TABLE /NH)
+##### Advanced Process Injection
+```
+compile AdvancedProcessInjection.cpp
+AdvancedProcessInjection.exe pid
+```
 ### Linux
 ##### Directory Permissions
 >A directory is handled differently from a file. Read access gives the right to consult the list of its contents (files and directories). Write access allows creating or deleting files. Finally, execute access allows crossing through the directory to access its contents (using the cd command, for example).
