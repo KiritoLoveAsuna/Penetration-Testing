@@ -4,3 +4,5 @@ The ftp command-line utility is a standard tool available on many Unix-like oper
 ```
 wget -m --user=ftp_jp --password="~be<3@6fe1Z:2e8" ftp://192.168.197.226:24621/umbraco
 ```
+### ftp possible username
+![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/0b7f8ae2-2f84-4149-8ecb-a985ae23bbfc)
