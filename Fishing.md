@@ -114,8 +114,12 @@ Sub MyMacro()
     CreateObject("Wscript.Shell").Run Str
 End Sub
 ```
-### Change exe file into picture
+### Change exe file ico
 ResourceHacker
+![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/3560e67b-fdc4-44c5-995a-86e000b73f8b)
+![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/851d0cee-37ef-404d-8639-a2c9410fac59)
+
+
 ### Use RLO change file extension from exe into jpg
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/01bc9bde-67d9-46ec-8776-6a29bec48bed)
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/3a1260b7-3772-45f6-9f7f-1ea501814662)
