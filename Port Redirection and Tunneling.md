@@ -90,8 +90,8 @@ R:<local-interface>:<local-port>:<remote-host>:<remote-port>/<protocol>
   from the client to the server's <local-interface>:<local-port>.
 
 Chisel Reverse Port Forwarding
-./chisel server --reverse --port 9002 --socks5.
-chisel.exe client <kaliIP>:9002 R:8090:172.16.22.2:8000
+./chisel server --reverse --port 8080 --socks5.
+chisel.exe client <kaliIP>:8080 R:8090:172.16.22.2:8000
 Now we can access to http://172.16.22.2:8000/ via localhost:8090
 ```
 
