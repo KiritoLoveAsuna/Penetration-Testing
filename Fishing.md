@@ -134,6 +134,9 @@ Sub Main
 
 End Sub
 ```
-Tools -> Options -> Security -> Macrosecurity -> Low
+```
+Tools -> Options -> Security -> Macrosecurity -> Low  
 Tools -> Customize -> OpenDocument -> Assign Macro
 Tools -> Macro -> Organize Macro -> Basic -> choose the file -> New -> NewModuleName
+Save as odt file
+```
