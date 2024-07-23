@@ -1,6 +1,10 @@
 ### Persmissions
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/8093ece9-bbd0-4055-bb7e-f6c8b381b848)
 >The permissions on the root of the C: drive are typically more restrictive for security reasons2. Even though the Authenticated Users group has Modify access, this doesn’t override the restrictions placed on the root of the C: drive
+
+(IO) - Inherit Only (applies to subdirectories and files within the directory)  
+(OI) - Object Inherit (applies to files)  
+(CI) - Container Inherit (applies to subdirectories)  
 ##### check the created owner of folder
 ```
 Get-ACL <FolderPath> | Select-Object Owner
