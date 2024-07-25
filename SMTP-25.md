@@ -24,3 +24,8 @@ swaks --to jim@relia.com --from maildmz@relia.com --server 192.168.193.189 --att
 ```
 sudo systemctl restart postfix
 ```
+
+### smtp user enumeration
+```
+smtp-user-enum -M VRFY -U /usr/share/wordlists/metasploit/unix_users.txt -t host
+```
