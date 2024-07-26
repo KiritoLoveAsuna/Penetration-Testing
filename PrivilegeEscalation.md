@@ -288,7 +288,7 @@ nc.exe -nlvp 2012
 Affected version:
 Windows Server 2012 - Windows Server 2022 Windows8 - Windows 11
 ```
-### Check .Net Version
+Check .Net Version
 ```
 Get-ChildItem 'HKLM:\SOFTWARE\Microsoft\NET Framework Setup\NDP' -Recurse
 ```
