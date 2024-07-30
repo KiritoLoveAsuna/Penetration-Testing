@@ -324,7 +324,7 @@ password spray:
 cme protocol ip.txt -u user1 user2 user3 -p pass1 pass2 pass3
 
 winrm:
-cme winrm ip -u celia.almeda -H ntlm_hash
+cme winrm ip -u celia.almeda -H 19a3a7550ce8c505c2d46b5e39d6f808
 cme winrm ip -u celia.almeda -p password
 ```
 
