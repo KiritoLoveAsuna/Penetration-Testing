@@ -403,6 +403,10 @@ Invoke-AllChecks
 2. download to kali
 3. impacket-secretsdump -sam SAM -system SYSTEM local
 ```
+### ntds.dit
+```
+impacket-secretsdump -ntds /home/kali/Desktop/Active\ Directory/ntds.dit -system /home/kali/Desktop/registry/SYSTEM local
+```
 ##### Check Compressed files
 ```
 check zip,gz,7z,stix,rar files
