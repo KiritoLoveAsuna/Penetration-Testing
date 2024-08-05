@@ -247,6 +247,29 @@ kali: openssl pkcs12 -in cert.pem -keyex -CSP "Microsoft Enhanced Cryptographic 
 The result include administrator's hash
 ```
 #### Resource Based Constrained Delegation Attack
+```
+Detection:
+Get-DomainComputer | Get-ObjectAcl -ResolveGUIDs | Foreach-Object {$_ | Add-Member -NotePropertyName Identity -NotePropertyValue (ConvertFrom-SID $_.SecurityIdentifier.value) -Force; $_} | Where-Object { $_.ActiveDirectoryRights -like '*GenericWrite*' }
+Get-DomainComputer | Get-ObjectAcl -ResolveGUIDs | Foreach-Object {$_ | Add-Member -NotePropertyName Identity -NotePropertyValue (ConvertFrom-SID $_.SecurityIdentifier.value) -Force; $_} | Where-Object { $_.ActiveDirectoryRights -like '*GenericAll*' }
+
+Output:
+AceType               : AccessAllowed
+ObjectDN(to)          : CN=RESOURCEDC,OU=Domain Controllers,DC=resourced,DC=local
+ActiveDirectoryRights : GenericAll
+OpaqueLength          : 0
+ObjectSID             : S-1-5-21-537427935-490066102-1511301751-1000
+InheritanceFlags      : ContainerInherit
+BinaryLength          : 36
+IsInherited           : False
+IsCallback            : False
+PropagationFlags      : None
+SecurityIdentifier    : S-1-5-21-537427935-490066102-1511301751-1105
+AccessMask            : 983551
+AuditFlags            : None
+AceFlags              : ContainerInherit
+AceQualifier          : AccessAllowed
+Identity(from)        : resourced\L.Livingstone
+```
 Bloodhound showing GenericAll privileges on the Domain Controller  
 ![image](https://github.com/user-attachments/assets/8a75dfbe-58a3-44a6-a962-dd34daf4b465)
 ```
