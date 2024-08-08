@@ -7,6 +7,10 @@ python3 git_extract.py gitfilename
 ```
 .ssh/id_rsa||id_dsa||id_ecdsa||id_ed25519||id_ecdsa-sk||id_ed25519-sk
 ```
+bitvise ssh private key path on windows
+```
+C:\Users\username\.ssh\id_rsa||id_dsa||id_ecdsa||id_ed25519||id_ecdsa-sk||id_ed25519-sk
+```
 ### Sensitive files
 ```
 find *.log, passwd, username, credential
