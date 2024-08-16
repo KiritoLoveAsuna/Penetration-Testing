@@ -28,4 +28,5 @@ sudo systemctl restart postfix
 ### smtp user enumeration
 ```
 smtp-user-enum -M VRFY -U /usr/share/wordlists/metasploit/unix_users.txt -t host
+smtp-user-enum -M VRFY -U /usr/share/wordlists/seclists/Usernames/xato-net-10-million-usernames.txt -t 192.168.180.140 -v -p 25
 ```
