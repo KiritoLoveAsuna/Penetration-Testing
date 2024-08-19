@@ -64,6 +64,7 @@ Start-Service -Name ""
 Stop-Service -Name ""
 sc stop servicename
 sc start servicename
+shutdown /r /t 0
 ```
 
 ##### Powershell history
