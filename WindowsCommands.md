@@ -48,21 +48,9 @@ icacls file/directory
 ### Domain information
 nslookup www.offensive-security.com 8.8.8.8(using google dns server to search)  
 
-### Network shares
-net share  
-net share mySharedData=C:\Windows\system32  
-net use \\\192.168.1.1\public  
-net use * "\\\192.168.58.112\flag" givemetheflag /user:smbusr  
-response: Drive Z: is now connected to \\192.168.58.112\flag  
-runas /user:offensive "cmd /k net use f: \\finance.outofthisworld.com\finance /user:finance"  
-net use f: /delete
-
 ### Psexec with shell
 psexec \\ip -u username -p password -i cmd(interactive shell)  
 psexec -s \\ip -u username -p password -i cmd(with system priviledges)  
-
-### evil-winrm with shell
-evil-winrm -i 192.168.50.80 -u offensive -p security
 
 ### Firewall
 netsh advfirewall reset(state to on)  
