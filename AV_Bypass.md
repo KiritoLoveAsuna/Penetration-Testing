@@ -10,6 +10,8 @@ Brute-force cert password:
 pfx2john example.pfx > hash
 hashcat
 
+Sign the file:
+osslsigncode sign -pkcs12 ./kligo-cert-win.pfx -pass <pfx-password> -in ./your-executable.exe -out ./signed-executable.exe
 ```
 
 ### Darkarmour
