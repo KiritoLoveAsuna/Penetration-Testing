@@ -3,7 +3,7 @@
 Looking for cert:
 https://grayhatwarfare.com/
 
-Extract cert information:
+View cert information:
 openssl pkcs12 -info -in kligo-cert-win.pfx
 
 Brute-force cert password:
