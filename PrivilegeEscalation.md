@@ -1,3 +1,14 @@
+### Domain Groups and Local Group
+```
+Display info about local group from command-running computer:
+net localgroup "GSOC China"
+
+Display info about local group from DC:
+net localgroup "GSOC China" /Domain
+
+Display info about domain group:
+net group "group name" /domain
+```
 ### Persmissions
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/8093ece9-bbd0-4055-bb7e-f6c8b381b848)
 >The permissions on the root of the C: drive are typically more restrictive for security reasons2. Even though the Authenticated Users group has Modify access, this doesn’t override the restrictions placed on the root of the C: drive
