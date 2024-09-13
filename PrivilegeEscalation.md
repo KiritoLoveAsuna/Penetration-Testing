@@ -6,6 +6,8 @@ net localgroup "GSOC China"
 Display info about local group from DC:
 net localgroup "GSOC China" /Domain
 
+Running net localgroup "GSOC China" on DC = Running net localgroup "GSOC China" /domain on domain computer
+
 Display info about domain group:
 net group "group name" /domain
 ```
