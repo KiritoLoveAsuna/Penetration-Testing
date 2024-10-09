@@ -391,7 +391,7 @@ net use \\dc01(logon server)
 klist
 .\PsExec.exe \\dc01 or \\DC01/Allison cmd.exe
 ```
-#### Silver Tickets
+#### Silver Tickets(Require SPN's hash, Domain's SID, SPN)
 >Once we have access to the password hash of the SPN, a machine account, or user, we can forge the related service tickets for any users and permissions. This is a great way of accessing SPNs in later phases of a penetration test, as we need privileged access in most situations to retrieve the password hash of the SPN.
 
 >Since silver and golden tickets represent powerful attack techniques, Microsoft created a security patch to update the PAC structure.5 With this patch in place, the extended PAC structure field PAC_REQUESTOR needs to be validated by a domain controller. This mitigates the capability to forge tickets for non-existent domain users if the client and the KDC are in the same domain. Without this patch, we could create silver tickets for domain users that do not exist. The updates from this patch are enforced from October 11, 2022.
