@@ -422,25 +422,6 @@ export KRB5CCNAME=$PWD/Administrator.ccache
 
 Klist to view kerberos tickets
 
-Create /etc/krb5user.conf:
-[libdefaults]
-        default_realm = NAGOYA-INDUSTRIES.COM
-        kdc_timesync = 1
-        ccache_type = 4
-        forwardable = true
-        proxiable = true
-    rdns = false
-    dns_canonicalize_hostname = false
-        fcc-mit-ticketflags = true
-
-[realms]        
-        NAGOYA-INDUSTRIES.COM = {
-                kdc = nagoya.nagoya-industries.com
-        }
-
-[domain_realm]
-        .nagoya-industries.com = NAGOYA-INDUSTRIES.COM
-
 /etc/hosts:
 192.168.227.21  nagoya.nagoya-industries.com
 
