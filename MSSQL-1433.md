@@ -36,6 +36,9 @@ SELECT distinct b.name FROM sys.server_permissions a INNER JOIN sys.server_princ
 name             
 --------------   
 hrappdb-reader
+
+SQL (HAERO\discovery  guest@master)> EXECUTE AS LOGIN = 'hrappdb-reader'
+SQL (hrappdb-reader  guest@master)> use hrappdb
 ```
 ### Enable command execution
 ```
