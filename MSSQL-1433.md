@@ -28,6 +28,7 @@ SELECT * FROM information_schema.tables
 ### If current user does not have permission o view database
 Backgroup  
 >SQL (HAERO\discovery  guest@master)> use hrappdb
+
 >ERROR: Line 1: The server principal "HAERO\discovery" is not able to access the database "hrappdb" under the current security context.
 
 Solution
