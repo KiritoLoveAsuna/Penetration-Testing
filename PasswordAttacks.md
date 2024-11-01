@@ -1,3 +1,9 @@
+### Tips
+```
+1. Always try username as password.
+2. Season + Year
+3. Year + Season
+```
 ### Cewl
 ```
 cewl https://www.tesla.cn -v -a -m(min) 1 -w tesla.txt
