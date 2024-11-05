@@ -29,9 +29,10 @@ impacket-smbserver xingdi Desktop -smb2support
 
 Access:
 \\IPv4 address\test || //ip/test
-
-NTLM_THEFT(https://github.com/Greenwolf/ntlm_theft/tree/master):
-
+```
+###### NTLM_THEFT (https://github.com/Greenwolf/ntlm_theft/tree/master):
+ntlm_theft is an Open Source Python3 Tool that generates 21 different types of hash theft documents. These can be used for phishing when either the target allows smb traffic outside their network, or if you are already inside the internal network.
+```
 Browse to Folder Containing
 .url – via URL field
 .url – via ICONFILE field
@@ -54,7 +55,6 @@ Open Document
 .jnlp – via Java external jar
 .application – via any Browser (Must be served via a browser downloaded or won’t run)
 ```
-
 #### HTTP
 ```
 http://ip/
