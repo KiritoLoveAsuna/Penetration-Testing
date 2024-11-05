@@ -30,7 +30,8 @@ impacket-smbserver xingdi Desktop -smb2support
 Access:
 \\IPv4 address\test || //ip/test
 
-ntlm_theft(https://github.com/Greenwolf/ntlm_theft/tree/master):
+NTLM_THEFT(https://github.com/Greenwolf/ntlm_theft/tree/master):
+
 Browse to Folder Containing
 .url – via URL field
 .url – via ICONFILE field
@@ -38,6 +39,7 @@ Browse to Folder Containing
 .scf – via ICONFILE field (Not Working on Latest Windows)
 autorun.inf via OPEN field (Not Working on Latest Windows)
 desktop.ini - via IconResource field (Not Working on Latest Windows)
+
 Open Document
 .xml – via Microsoft Word external stylesheet
 .xml – via Microsoft Word includepicture field
