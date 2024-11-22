@@ -45,8 +45,8 @@ To find domain TTL information: host -v -t a target-domain
 
 ### DNS zone transfer
 ```
-dig axfr @dns_server domain name
-dig axfr @name_servers_of_dns_server domain_name
+dig axfr @dns_server lvl_1_domain name
+dig axfr @name_servers_of_dns_server lvl_1_domain_name
 
 ```
 >SOA，是起始授权机构记录，说明了在众多 NS 记录里哪一台才是主要的服务器。在任何DNS记录文件中，都是以SOA ( Startof Authority )记录开始。SOA资源记录表明此DNS名称服务器是该DNS域中数据信息的最佳来源。
