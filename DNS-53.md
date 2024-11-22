@@ -24,7 +24,8 @@ dig A @<DNS_IP> <DOMAIN>       #Regular DNS request
 dig AAAA @<DNS_IP> <DOMAIN>    #IPv6 DNS request
 dig TXT @<DNS_IP> <DOMAIN>     #Information
 dig MX @<DNS_IP> <DOMAIN>      #Emails related
-dig NS @<DNS_IP> <DOMAIN>      #DNS that resolves that name
+dig NS @<DNS_IP> <DOMAIN>      #DNS that resolves that domain_name(NS记录 域名服务器记录 ,记录该域名由哪台域名服务器解析)
+dig SOA @dns_ip lvl_1_domain   #best source of name server for that dns zone(SOA 资源记录表明此 DNS 名称服务器是为该 DNS 域中的数据的信息的最佳来源)
 dig -x 192.168.0.2 @<DNS_IP>   #Reverse lookup
 dig -x 2a00:1450:400c:c06::93 @<DNS_IP> #reverse IPv6 lookup
 ```
