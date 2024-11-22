@@ -46,6 +46,7 @@ To find domain TTL information: host -v -t a target-domain
 ### DNS zone transfer
 ```
 dig axfr @dns_server domain name
+dig axfr @name_servers_of_dns_server domain_name
 
 ```
 
