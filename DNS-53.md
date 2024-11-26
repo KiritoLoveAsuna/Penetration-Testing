@@ -53,7 +53,26 @@ dig axfr @name_servers_of_dns_server lvl_1_domain_name
 >SOA，是起始授权机构记录，说明了在众多 NS 记录里哪一台才是主要的服务器。在任何DNS记录文件中，都是以SOA ( Startof Authority )记录开始。SOA资源记录表明此DNS名称服务器是该DNS域中数据信息的最佳来源。
 >
 >SOA记录与NS记录的区别：NS记录表示域名服务器记录，用来指定该域名由哪个DNS服务器来进行解析；SOA记录设置一些数据版本和更新以及过期时间等信息。
+```
+$ dig axfr friendzone.red @10.129.35.124
 
+; <<>> DiG 9.18.21 <<>> axfr friendzone.red @10.129.35.124
+;; global options: +cmd
+friendzone.red.         604800  IN      SOA     localhost. root.localhost. 2 604800 86400 2419200 604800
+friendzone.red.         604800  IN      AAAA    ::1
+friendzone.red.         604800  IN      NS      localhost.
+friendzone.red.         604800  IN      A       127.0.0.1
+administrator1.friendzone.red. 604800 IN A      127.0.0.1
+hr.friendzone.red.      604800  IN      A       127.0.0.1
+uploads.friendzone.red. 604800  IN      A       127.0.0.1
+friendzone.red.         604800  IN      SOA     localhost. root.localhost. 2 604800 86400 2419200 604800
+;; Query time: 483 msec
+;; SERVER: 10.129.35.124#53(10.129.35.124) (TCP)
+;; WHEN: Thu Jan 18 17:07:52 UTC 2024
+;; XFR size: 8 records (messages 1, bytes 289)
+
+echo "10.129.35.124 friendzone.red administrator1.friendzone.red hr.friendzone.red uploads.friendzone.red >> /etc/hosts
+```
 
 ### DNS Recursion DDoS
 >If DNS recursion is enabled, an attacker could spoof the origin on the UDP packet in order to make the DNS send the response to the victim server. An attacker could abuse ANY or DNSSEC record types as they use to have the bigger responses. The way to check if a DNS supports recursion is to query a domain name and check if the flag "ra" (recursion available) is in the response.
