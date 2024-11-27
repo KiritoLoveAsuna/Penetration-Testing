@@ -181,3 +181,7 @@ Decrypting GPP Password
 ```
 gpp-decrypt "gpp"
 ```
+### PFX file
+```
+john pfx_file --wordlist=dic
+```
