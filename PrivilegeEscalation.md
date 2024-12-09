@@ -311,6 +311,7 @@ Windows Server 2012 - Windows Server 2022 Windows8 - Windows 11
 Check .Net Version
 ```
 Get-ChildItem 'HKLM:\SOFTWARE\Microsoft\NET Framework Setup\NDP' -Recurse
+reg query "HKLM\SOFTWARE\Microsoft\Net Framework Setup\NDP" /s
 ```
 ![image](https://github.com/user-attachments/assets/cae43a79-e6ba-4c1a-9294-0947fc636b3c)
 
