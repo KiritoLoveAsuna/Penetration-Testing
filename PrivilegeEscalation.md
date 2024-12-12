@@ -284,7 +284,8 @@ evil.msi
 ```
 ##### Abusing Server Operators Group
 ```
-Check:
+Check Writtable Services Under Registry To Current User:
+
 winpeas.exe or accesschk.exe /accepteula -uvwqk  HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services
 ```
 ```
