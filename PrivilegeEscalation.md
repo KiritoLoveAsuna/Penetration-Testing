@@ -1,3 +1,7 @@
+### Powershell to search file recursively and silently
+```
+Get-ChildItem -Path "C:\" -Include user.txt -Recurse -File -ErrorAction SilentlyContinue -Force
+```
 ### Domain Groups and Local Group
 ```
 Display info about local group from command-running computer:
