@@ -24,6 +24,9 @@ SELECT * FROM information_schema.tables
 
 # Get table content
 > SELECT * FROM <database_name>.dbo.<table_name>
+
+# Read file content
+SELECT * FROM OPENROWSET(BULK N'C:\users\administrator\desktop\root.txt', SINGLE_CLOB) AS Contents
 ```
 ### If current user does not have permission o view database
 Backgroup  
