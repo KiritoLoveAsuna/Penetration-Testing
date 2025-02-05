@@ -517,3 +517,11 @@ Open a new terminal
 
 sudo ntpdate -s doamin
 ```
+>Fix "module 'OpenSSL.crypto' has no attribute 'PKCS12'" error
+```
+wget http://launchpadlibrarian.net/732112002/python3-cryptography_41.0.7-4ubuntu0.1_amd64.deb
+sudo dpkg -i python3-cryptography_41.0.7-4ubuntu0.1_amd64.deb 
+
+wget http://launchpadlibrarian.net/715850281/python3-openssl_24.0.0-1_all.deb
+sudo dpkg -i python3-openssl_24.0.0-1_all.deb
+```
