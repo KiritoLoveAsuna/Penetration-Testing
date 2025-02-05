@@ -154,7 +154,7 @@ Compromised machine: Invoke-BloodHound -CollectionMethod All -OutputDirectory C:
 sudo neo4j stop
 sudo neo4j start
 kali: bloodhound
-kali: username:neo4j, pass:kali
+kali: username:neo4j, pass:zxdxxxxxxxxx
 kali: drag zip file into bloodhound
 ```
 Compatible Combination:
