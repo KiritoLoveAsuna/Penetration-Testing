@@ -93,6 +93,9 @@ Chisel Reverse Port Forwarding
 ./chisel server --reverse --port 8080 --socks5.
 chisel.exe client <kaliIP>:8080 R:8090:172.16.22.2:8000
 Now we can access to http://172.16.22.2:8000/ via localhost:8090
+
+Tip:
+Using chisel to do one reverse port forwarding, doesn't have to use proxychains4 
 ```
 
 Double Pivoting  
