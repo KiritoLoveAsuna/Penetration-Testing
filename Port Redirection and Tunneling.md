@@ -28,8 +28,6 @@ remote compromised machine(confluence01): ssh -N -R 127.0.0.1(confluence01):2345
 
 Dynamic Port Forwarding:
 initiating an SSH connection from a remote compromised machine to a further internal network(PGDATABASE01)
-
-After bind proxychains to confluence01, through proxychains all traffic can be forwarded to all ports of PGDATABASE01, accessing 127.0.0.1 is like accessing remote machine(PGDATABASE01)
 ```
 remote compromised machine: ssh -N -D 0.0.0.0:9999(remote compromised machine - confluence01) database_admin@10.4.50.215(PGDATABASE01)
 
