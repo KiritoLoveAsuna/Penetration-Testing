@@ -23,7 +23,7 @@ ssh -L local_port:target_ip:target_port user@jump_machine
 
 ```
 remote compromised machine(confluence01): ssh -N -R 127.0.0.1(confluence01):2345:10.4.50.215(PGDATABASE01):5432 kali@192.168.118.4(attacker machine)
-ssh -R local_port:target_ip:target_port user@jump_machine
+ssh -R remote_port:target_ip:target_port user@jump_machine
 ```
 ###### SSH Dynamic Port Forwarding
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/f68cfac3-7e49-4f50-b104-ad7a672958e7)
