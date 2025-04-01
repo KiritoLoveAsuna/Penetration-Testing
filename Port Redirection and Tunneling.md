@@ -97,41 +97,29 @@ Now we can access to http://172.16.22.2:8000/ via localhost:8090
 Tip:
 Using chisel to do one reverse port forwarding, doesn't have to use proxychains4 
 ```
-
-Double Pivoting  
-Kali (10.10.14.227) <<10.10.14.0/24>> DMZ01 (10.129.58.6 | 172.16.8.120) <<192.16.8.0/24>> DC01 (172.16.8.3 | 172.16.9.3) <<172.16.9.0/24>> MGMT01 (172.16.9.25)
+###### ligolo-ng
+Proxy:attacker machine
 ```
-kali: ./chisel_linux server --socks5 -p 9001 --reverse
+Settingup:
+sudo ip tuntap add user kali mode tun ligolo
+sudo ip link set ligolo up
+./proxy -selfcert
 
-/etc/proxychains:
-socks5 127.0.0.1 9999
-socks5 127.0.0.1 8888
-
-DMZ01:
-./chisel_linux client 10.10.14.227:9001 R:9999:socks
-./chisel_linux server  -p 9002 --reverse --socks5
-
-DC01:
-chisel.exe client 172.16.8.120:9002 R:8888:socks
+Setting up tunnel:
+session
+sudo ip route add 172.16.5.0/24 dev ligolo
 ```
-
+Agent:linux
 ```
-Chisel Reverse Multiple ports forwarding:
-In local machine
-./chisel server -p 9999 --reverse
-
-In remote machine
-./chisel client 10.0.0.1:9999 R:3000:127.0.0.1:3000 R:8000:127.0.0.1:8000
-After that, we can access to http://localhost:3000 and http://localhost:8000 in local machine.
+./agent -connect attacker-ip:11601 -ignore-cert
+start
+listener_add --addr 0.0.0.0:1234 --to 0.0.0.0:4444
+# Creates a listener on the machine where we're running the agent at port 1234
+# and redirects the traffic to port 4444 on our machine.
+# You can use other ports, of course.
 ```
-
+Agent:windows
 ```
-Chisel Local Port Forwarding:
-In remote
-chisel server -p 9999 --socks5
-
-In local
-chisel client 10.0.0.1:9999 8000:socks
 ```
 ### Windows Port forwarding
 ###### PLINK.exe
