@@ -115,7 +115,7 @@ Agent:linux
 start
 listener_add --addr 0.0.0.0:1234 --to 0.0.0.0:4444
 # Creates a listener on the machine where we're running the agent at port 1234
-# and redirects the traffic to port 4444 on our machine.
+# and redirects the traffic to port 4444 on attacker machine.
 # You can use other ports, of course.
 ```
 Agent:windows
