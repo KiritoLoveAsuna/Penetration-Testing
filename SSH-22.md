@@ -9,6 +9,10 @@ ssh username@ip -K
 impacket-getTGT frizz.htb/'f.frizzle':'xxxxxxxxxxxxx' -dc-ip frizzdc.frizz.htb
 export KRB5CCNAME=f.frizzle.ccache
 
+/etc/hosts(顺序必须一摸一样):
+10.10.11.60     frizzdc.frizz.htb frizz.htb
+
+
 /etc/krb5.conf:
 [domain_realm]
     .frizz.htb = FRIZZ.HTB
