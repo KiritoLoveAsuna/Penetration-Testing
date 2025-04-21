@@ -4,11 +4,7 @@ python sshUsernameEnumExploit.py <IP> -w <wordlist>
 ```
 
 ### Login via kerberos
-ssh username@ip -K 
 ```
-impacket-getTGT frizz.htb/'f.frizzle':'xxxxxxxxxxxxx' -dc-ip frizzdc.frizz.htb
-export KRB5CCNAME=f.frizzle.ccache
-
 /etc/hosts(顺序必须一摸一样):
 10.10.11.60     frizzdc.frizz.htb frizz.htb
 
@@ -33,4 +29,8 @@ export KRB5CCNAME=f.frizzle.ccache
     }
 
 kinit f.frizzle@FRIZZ.HTB
+export KRB5CCNAME=f.frizzle.ccache
+klist
+
+ssh f.frizzle@frizz.htb -K 
 ```
