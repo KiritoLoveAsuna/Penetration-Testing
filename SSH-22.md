@@ -29,8 +29,7 @@ python sshUsernameEnumExploit.py <IP> -w <wordlist>
     }
 
 kinit f.frizzle@FRIZZ.HTB
-export KRB5CCNAME=f.frizzle.ccache
-klist
+klist or impacket-getTGT export KRB5CCNAME=f.frizzle.ccache
 
 ssh f.frizzle@frizz.htb -K 
 ```
