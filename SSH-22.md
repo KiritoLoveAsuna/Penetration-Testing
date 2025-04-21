@@ -27,4 +27,6 @@ export KRB5CCNAME=f.frizzle.ccache
         admin_server = FRIZZDC.FRIZZ.HTB
         default_domain = FRIZZ.HTB
     }
+
+kinit f.frizzle@FRIZZ.HTB
 ```
