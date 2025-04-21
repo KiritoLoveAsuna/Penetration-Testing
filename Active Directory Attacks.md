@@ -156,6 +156,8 @@ sudo neo4j start
 kali: bloodhound
 kali: username:neo4j, pass:zxdxxxxxxxxx
 kali: drag zip file into bloodhound
+
+or sharphound.exe -c All --outputdirectory C:\Users\f.frizzle\
 ```
 Compatible Combination:
 ```
