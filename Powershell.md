@@ -88,3 +88,8 @@ powershell.exe -E en_payload
 ```
 powershell -ExecutionPolicy Bypass -File admin_login.ps1
 ```
+# ps1 cannot be loaded because running scripts is disabled on this system
+```
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -scope currentuser
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -scope LocalMachine 
+```
