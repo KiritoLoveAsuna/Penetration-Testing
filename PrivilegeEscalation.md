@@ -607,6 +607,8 @@ cat /etc/issue
 cat /etc/*-release  
 Kernel Version and Architecture: 
 uname -a
+
+./linux-exploit-suggester-2.pl -k 2.6.32
 ```
 ###### GTFOBins
 ```
