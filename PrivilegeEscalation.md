@@ -654,7 +654,7 @@ cat /etc/fstab (/etc/fstab file lists all drives that will be mounted at boot ti
 >SUID and SGID allow the current user to execute the file with the rights of the owner (setuid) or the owner's group (setgid)
 
 find / -perm -u=s -type f 2>/dev/null
-find / -type f -a ( -perm -u+s -o -perm -g+s ) -exec ls -l {} ; 2> /dev/null
+find / -type f -perm -g=s 2>/dev/null
 ```
 cp with suid perm:
 
