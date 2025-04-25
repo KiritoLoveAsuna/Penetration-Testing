@@ -38,3 +38,9 @@ sudo timedatectl set-ntp off
 sudo rdate -n 10.10.10.100
 Open a new terminal
 ```
+### Change ssh port from 22 to 80
+```
+sudo vim /etc/ssh/sshd_config
+Change the port from 22 to 80:
+sudo service ssh restart
+```
