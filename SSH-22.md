@@ -32,3 +32,9 @@ kinit f.frizzle@FRIZZ.HTB; klist or impacket-getTGT export KRB5CCNAME=f.frizzle.
 
 ssh f.frizzle@frizz.htb -K 
 ```
+Solving Permission denied (gssapi-with-mic,keyboard-interactive).
+```
+sudo timedatectl set-ntp off
+sudo rdate -n 10.10.10.100
+Open a new terminal
+```
