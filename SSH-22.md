@@ -28,7 +28,7 @@ python sshUsernameEnumExploit.py <IP> -w <wordlist>
         default_domain = FRIZZ.HTB
     }
 
-kinit f.frizzle@FRIZZ.HTB; klist or impacket-getTGT export KRB5CCNAME=f.frizzle.ccache klist
+kinit f.frizzle@FRIZZ.HTB; klist or impacket-getTGT -dc-ip 10.10.11.60 frizz.htb/M.SchoolBus:'!suBcig@MehTed!R' export KRB5CCNAME=f.frizzle.ccache klist
 
 ssh f.frizzle@frizz.htb -K 
 ```
