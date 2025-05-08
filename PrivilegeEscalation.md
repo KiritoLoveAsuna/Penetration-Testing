@@ -713,22 +713,11 @@ The two perl binaries stand out as they have setuid capabilities enabled, along 
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/d14b5115-a1a3-45fd-a23a-c4823198184f)
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/e7e8b730-4760-4848-849e-394aaca5c74e)
 
-###### Cronjob to elevate privilege
+### Cronjob to elevate privilege
 Check if you have access with write permission on these files.  
-Check inside the file, to find other paths with write permissions.
 ```
 crontab -l
-ls -alh /var/spool/cron
-ls -al /etc/ | grep cron
 ls -al /etc/cron*
-cat /etc/cron*
-cat /etc/at.allow
-cat /etc/at.deny
-cat /etc/cron.allow
-cat /etc/cron.deny
-cat /etc/crontab
-cat /etc/anacrontab
-cat /var/spool/cron/crontabs/root
 ```
 ###### Insecure file permission /etc/passwd
  ```
