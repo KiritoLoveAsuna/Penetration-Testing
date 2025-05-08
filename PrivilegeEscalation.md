@@ -660,11 +660,11 @@ cat /etc/fstab (/etc/fstab file lists all drives that will be mounted at boot ti
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/be5f2545-b176-4def-8e9b-7a422814dc70)
 
 
-###### SUID permissions (anything interesting, to look for in GTFOBins)
+### SUID permissions (anything interesting, to look for in GTFOBins)
 >SUID and SGID allow the current user to execute the file with the rights of the owner (setuid) or the owner's group (setgid)
-
-find / -perm -u=s -type f 2>/dev/null
-find / -type f -perm -g=s 2>/dev/null
+```
+find / -perm -4000 -type f 2>/dev/null
+```
 ```
 cp with suid perm:
 
