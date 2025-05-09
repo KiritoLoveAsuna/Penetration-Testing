@@ -606,11 +606,14 @@ chmod +s /bin/bash
 ###### AutoEnumeration
 linpeas.sh  
 ./lse.sh -l 1 -i
-###### Nday exploits
+### Nday exploits
 ```
 CVE-2021-3156 sudo Baron Samedit 2 sudo 1.8.2-1.8.32,1.9.0-1.9.5 downloadlink:https://codeload.github.com/worawit/CVE-2021-3156/zip/main
+screen-4.5.0-pe_CVE-2017-5618
+cve-2023-22809-Sudoedit-bypass-in-Sudo <= 1.9.12p1.sh
+snapd-local-pe-prior_to_2.371_CVE-2019-7304.py
 ```
-###### Kernel exploits
+### Kernel exploits
 ```
 OS version:
 cat /etc/issue  
@@ -619,6 +622,12 @@ Kernel Version and Architecture:
 uname -a
 
 ./linux-exploit-suggester-2.pl -k 2.6.32
+
+CVE-2025-21756-linuxkernel5.5-6.13.4
+CVE-2018-18955_Linux_kernel_4.15.x_through_4.19.x_before_4.19.2
+CVE-2022-32250-Linux-Kernel-requires4.1-5.18.2-LPE
+dirtycow-linux_kernel_requires2.6.22-4.8.3_CVE-2016-5195
+Dirty-Pipe-requireLinux5.8+_CVE-2022-0847.sh
 ```
 ###### GTFOBins
 ```
