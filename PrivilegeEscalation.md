@@ -634,7 +634,14 @@ CVE-2022-32250-Linux-Kernel-requires4.1-5.18.2-LPE
 dirtycow-linux_kernel_requires2.6.22-4.8.3_CVE-2016-5195
 Dirty-Pipe-requireLinux5.8+_CVE-2022-0847.sh
 ```
-###### GTFOBins
+### Abusing $PATH
+```
+Add /tmp into path
+export PATH=/tmp:$PATH ; ehco $PATH
+
+check If any writable path under $PATH
+```
+### GTFOBins
 ```
 GTFOBins is a curated list of Unix binaries that can be used to bypass local security restrictions in misconfigured systems.
 ```
@@ -644,7 +651,7 @@ vim, less (if the editor has sudo privileges or is runned by root)
 inside vim or less, after colon(:), execute !/bin/sh
 ```
 
-###### Pspy - Unprivileged Linux Process Snooping
+### Pspy - Unprivileged Linux Process Snooping
 Pspy is a command line tool designed to snoop on processes without need for root permissions. It allows you to see commands run by other users, cron jobs, etc. as they execute. Great for enumeration of Linux systems in CTFs. Also great to demonstrate your colleagues why passing secrets as arguments on the command line is a bad idea.
 
 ###### Find Usage
@@ -660,16 +667,16 @@ find / - type f -writable 2>/dev/null
 -perm -mode all of permission bits are set
 -perm /mode any of permission bits are set
 ```  
-###### Enumerating Unmounted Disks
+### Enumerating Unmounted Disks
 mount  
 lsblk  
 cat /etc/fstab (/etc/fstab file lists all drives that will be mounted at boot time)
-###### Enumerating Device Drivers and Kernel Modules
+### Enumerating Device Drivers and Kernel Modules
 1. lsmod  
 2. /sbin/modinfo libata  
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/20c73182-d439-43a4-a3b5-f1fee987821c)
 
-###### Abusing Sudo
+### Abusing Sudo
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/ac8768a1-fc9f-4828-a1cc-791d4cd20972)
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/be5f2545-b176-4def-8e9b-7a422814dc70)
 
