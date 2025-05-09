@@ -616,6 +616,7 @@ CVE-2021-3156 sudo Baron Samedit 2 sudo 1.8.2-1.8.32,1.9.0-1.9.5 downloadlink:ht
 screen-4.5.0-pe_CVE-2017-5618
 cve-2023-22809-Sudoedit-bypass-in-Sudo <= 1.9.12p1.sh
 snapd-local-pe-prior_to_2.371_CVE-2019-7304.py
+cve-2021-4034-polkit-pkexec
 ```
 ### Kernel exploits
 ```
