@@ -746,7 +746,8 @@ The two perl binaries stand out as they have setuid capabilities enabled, along 
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/e7e8b730-4760-4848-849e-394aaca5c74e)
 
 ### Cronjob to elevate privilege
-Check if you have access with write permission on these files.  
+1. Always remember to check if the file has executable perm when cron job runs it, otherwise even root runs it, doesn't execute the file
+2. If the full path of the script is not defined, cron will refer to the paths listed under the PATH variable in the /etc/crontab file
 ```
 crontab -l
 ls -al /etc/cron*
