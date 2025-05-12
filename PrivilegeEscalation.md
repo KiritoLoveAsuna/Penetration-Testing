@@ -637,7 +637,8 @@ Dirty-Pipe-requireLinux5.8+_CVE-2022-0847.sh
 ### Abusing $PATH
 ```
 Add /tmp into path
-export PATH=/tmp:$PATH ; ehco $PATH
+export PATH=/tmp:$PATH
+ehco $PATH
 
 check If any writable path under $PATH
 
