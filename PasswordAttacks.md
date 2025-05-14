@@ -90,7 +90,7 @@ john hash.txt --format=NT
 unshadow /etc/passwd /etc/shadow > unshadowed.txt  
 john --wordlist=/usr/share/wordlists/rockyou.txt unshadowed.txt  
 
-### Hashcat
+# Hashcat
 ```
 built-in charset
 • ?l = abcdefghijklmnopqrstuvwxyz 
@@ -114,24 +114,28 @@ nvidia-smi -a | egrep '^GPU|  Power Limit|Default Power Limit|Power Draw' check 
 ```
 hashcat -a 0(dictionary) -m 13000 hash wordlist -O -w 1
 ```
-###### Combine each char set(114) with each number(1000) = 114000
+### Combine each char set(114) with each number(1000) = 114000
 ```
 /usr/lib/hashcat-utils/combinator.bin flag2.txt numbers.txt > hash.txt
 ```
-###### MS Cache v2 
+### MS Cache v2 
 ```
 From : k.smith:0A2503288EFD46133D4082305CF5D2EA:SKYLARK:SKYLARK.COM
 To : Format: $DCC2$10240#user#hash
 ```
-###### kdbx
+### kdbx
 ```
 keepass2john Database.kdbx > Keepasshash.txt
 hashcat -a 0 -m 13400 hash dic 
 ```
-###### nsldap, SHA-1(Base64), Netscape LDAP SHA
+### nsldap, SHA-1(Base64), Netscape LDAP SHA
 ```
 Format: {SHA}uJ6qx+YUFzQbcQtyd2gpTQ5qJ3s=
 HashMode: 101
+```
+### office file 
+```
+office2john file > hash
 ```
 ### Hash Identification
 If contains special characters
