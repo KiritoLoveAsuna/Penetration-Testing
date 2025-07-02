@@ -617,6 +617,7 @@ python3 beroot.py --password user_pwd
 ### Nday exploits
 ```
 CVE-2021-3156 sudo Baron Samedit 2 sudo 1.8.2-1.8.32,1.9.0-1.9.5 downloadlink:https://codeload.github.com/worawit/CVE-2021-3156/zip/main
+CVE-2025-32463 sudo 1.9.14 up to 1.9.17 (all p‑revisions) on most Linux distributions 
 screen-4.5.0-pe_CVE-2017-5618
 cve-2023-22809-Sudoedit-bypass-in-Sudo <= 1.9.12p1.sh
 snapd-local-pe-prior_to_2.371_CVE-2019-7304.py
