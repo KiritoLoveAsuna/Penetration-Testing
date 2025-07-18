@@ -35,7 +35,7 @@ winpeas.exe
 PrivescCheck.ps1  
 Snaffler.exe  
 SharpUp.exe  
-Seatbelt.exe
+Seatbelt.exe -group=all -full
 ### Gain Interactive Shell after add user to local Administrator group
 Require GUI access
 ```
