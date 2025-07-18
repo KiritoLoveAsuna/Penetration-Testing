@@ -31,7 +31,11 @@ Get-ACL <FolderPath> | Select-Object Owner
 https://lolbas-project.github.io/#  
 (similar to gtfobins)
 ### AutoEnumeration
-winpeas.exe
+winpeas.exe  
+PrivescCheck.ps1  
+Snaffler.exe  
+SharpUp.exe  
+Seatbelt.exe
 ### Gain Interactive Shell after add user to local Administrator group
 Require GUI access
 ```
