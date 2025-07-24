@@ -2,6 +2,11 @@
 >Members of Domain Admins3 are among the most privileged objects in the domain. If an attacker compromises a member of this group (often referred to as domain administrators), they essentially gain complete control over the domain.
 
 >This attack vector could extend beyond a single domain since an AD instance can host more than one domain in a domain tree or multiple domain trees in a domain forest. While there is a Domain Admins group for each domain in the forest, members of the Enterprise Admins group are granted full control over all the domains in the forest and have Administrator privilege on all DCs. This is obviously a high-value target for an attacker.
+### Auto Enumeration 
+```
+Set-ExecutionPolicy -Scope Process Bypass
+Import-Module .\PowerHuntShares.psm1
+```
 ### Enumeration
 >net.exe cant enumerate group members within groups,only user members
 ```
