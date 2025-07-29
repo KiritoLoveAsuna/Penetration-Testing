@@ -13,4 +13,5 @@ wget -m --user=ftp_jp --password="~be<3@6fe1Z:2e8" ftp://192.168.197.226:24621/u
 ftp-ssl -z secure -z verify=0 192.168.221.61
 ftp-ssl -z secure -z verify=0 -z cipher="$(openssl ciphers -tls1)" 192.168.221.61
 ```
-
+### Solving timeout listing directory 
+use ftp active mode
