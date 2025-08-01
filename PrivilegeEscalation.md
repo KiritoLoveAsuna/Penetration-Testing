@@ -696,16 +696,10 @@ int main() {
 ```
 GTFOBins is a curated list of Unix binaries that can be used to bypass local security restrictions in misconfigured systems.
 ```
-###### Editor PE
-vim, less (if the editor has sudo privileges or is runned by root)
-```
-inside vim or less, after colon(:), execute !/bin/sh
-```
-
 ### Pspy - Unprivileged Linux Process Snooping
 Pspy is a command line tool designed to snoop on processes without need for root permissions. It allows you to see commands run by other users, cron jobs, etc. as they execute. Great for enumeration of Linux systems in CTFs. Also great to demonstrate your colleagues why passing secrets as arguments on the command line is a bad idea.
 
-###### Find Usage
+### Find Usage
 ```
 Enumerating all files writable by user stuart:
 find / -type f -user stuart -perm -u=w 2>/dev/null  
