@@ -654,9 +654,8 @@ Dirty-Pipe-requireLinux5.8+_CVE-2022-0847.sh
 ```
 ### Abusing $PATH
 ```
-1.find a suid program that runs system command without absolute path
+1.find a suid program that runs command without absolute path
 2. check If current user can write to path under $PATH or use "export PATH=/tmp:$PATH" to add custom path to $PATH
-
 ```
 ### Abusing NFS
 ```
