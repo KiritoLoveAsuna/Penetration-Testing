@@ -53,3 +53,11 @@ Check
 ```
 openssl rsa -in pkcs11.txt -check
 ```
+### SSH hostkey 
+```
+ssh-hostkey: 
+|   3072 b1:e2:9d:f1:f8:10:db:a5:aa:5a:22:94:e8:92:61:65 (RSA)
+|   256 74:dd:fa:f2:51:dd:74:38:2b:b2:ec:82:e5:91:82:28 (ECDSA)
+|_  256 48:bc:9d:eb:bd:4d:ac:b3:0b:5d:67:da:56:54:2b:a0 (ED25519)
+```
+ssh hostkey indicates the type of private key it accepts
