@@ -633,7 +633,7 @@ CVE-2025-32463 sudo 1.9.14 up to 1.9.17 (all p‑revisions) on most Linux distri
 screen-4.5.0-pe_CVE-2017-5618
 cve-2023-22809-Sudoedit-bypass-in-Sudo 1.8.0 - 1.9.12p1.sh
 snapd-local-pe-prior_to_2.371_CVE-2019-7304.py
-cve-2021-4034-polkit-pkexec
+cve-2021-4034-polkit-pkexec < 121
 udisks LPE on all linux distributions and versions CVE-2025-6018 & CVE-2025-6019
 ```
 ### Kernel exploits
