@@ -64,5 +64,7 @@ ssh hostkey indicates the type of private key it accepts
 
 ### Generate pub/pri key pair
 ```
-ssh-keygen -t dsa | ecdsa | ecdsa-sk | ed25519 | ed25519-sk | rsa -f james_rsa
+ssh-keygen -t dsa | ecdsa | ecdsa-sk | ed25519 | ed25519-sk | rsa -f /tmp/james_rsa
+
+It will generate /tmp/james_rsa and /tmp/james_rsa.pub
 ```
