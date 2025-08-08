@@ -61,3 +61,8 @@ ssh-hostkey:
 |_  256 48:bc:9d:eb:bd:4d:ac:b3:0b:5d:67:da:56:54:2b:a0 (ED25519)
 ```
 ssh hostkey indicates the type of private key it accepts
+
+### Generate pub/pri key pair
+```
+ssh-keygen -t dsa | ecdsa | ecdsa-sk | ed25519 | ed25519-sk | rsa -f james_rsa
+```
