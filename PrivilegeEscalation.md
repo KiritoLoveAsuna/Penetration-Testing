@@ -708,11 +708,6 @@ cat /etc/fstab (/etc/fstab file lists all drives that will be mounted at boot ti
 2. /sbin/modinfo libata  
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/20c73182-d439-43a4-a3b5-f1fee987821c)
 
-### Abusing Sudo
-![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/ac8768a1-fc9f-4828-a1cc-791d4cd20972)
-![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/be5f2545-b176-4def-8e9b-7a422814dc70)
-
-
 ### SUID permissions (anything interesting, to look for in GTFOBins)
 >SUID and SGID allow the current user to execute the file with the rights of the owner (setuid) or the owner's group (setgid)
 ```
