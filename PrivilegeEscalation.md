@@ -35,6 +35,7 @@ https://lolbas-project.github.io/#
 winpeas.exe
 
 PrivescCheck.ps1
+powershell -ep bypass -c ". .\PrivescCheck.ps1; Invoke-PrivescCheck"
 
 Snaffler.exe:
 Stealthy: Snaffler.exe -s -i C:\
