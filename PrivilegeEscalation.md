@@ -628,6 +628,7 @@ linpeas.sh
 ./lse.sh -l 1 -i
 python3 beroot.py
 python3 beroot.py --password user_pwd
+python2 linuxprivchecker.py
 ```
 ### Nday exploits
 ```
