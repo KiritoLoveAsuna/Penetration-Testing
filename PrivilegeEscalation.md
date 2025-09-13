@@ -44,6 +44,8 @@ Normal: snaffler.exe -s
 SharpUp.exe audit
 
 Seatbelt.exe -group=all -full
+
+powershell.exe -ExecutionPolicy Bypass -File .\jaws-enum.ps1
 ```
 ### Gain Interactive Shell after add user to local Administrator group
 Require GUI access
