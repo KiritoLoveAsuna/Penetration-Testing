@@ -613,6 +613,8 @@ compile AdvancedProcessInjection.cpp
 AdvancedProcessInjection.exe pid
 ```
 # Linux
+### SSH Private Key
+> Always remember to check if there is ssh private key under any user's .ssh folder
 ### Check for installed software
 dpkg -l 
 ### Directory Permissions
