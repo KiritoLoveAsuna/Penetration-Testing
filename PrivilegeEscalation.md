@@ -615,6 +615,9 @@ AdvancedProcessInjection.exe pid
 # Linux
 ### .shellrc (.bashrc or .zshrc)
 >Custom initialization commands when user logs in by appending commands into .shellrc file such as .bashrc or .zshrc
+
+<img width="1060" height="788" alt="image" src="https://github.com/user-attachments/assets/fd51216e-2b20-4c8b-9fba-5e823c98e391" />
+
 ### SSH Private Key
 > Always remember to check if there is ssh private key under any user's .ssh folder
 ### Check for installed software
