@@ -613,6 +613,8 @@ compile AdvancedProcessInjection.cpp
 AdvancedProcessInjection.exe pid
 ```
 # Linux
+### .shellrc (.bashrc or .zshrc)
+>Custom initialization commands when user logs in by appending commands into .shellrc file such as .bashrc or .zshrc
 ### SSH Private Key
 > Always remember to check if there is ssh private key under any user's .ssh folder
 ### Check for installed software
