@@ -1,4 +1,8 @@
 # Windows
+### Check for installed software
+```
+C:\Program Files 
+```
 ### Powershell to search file recursively and silently
 ```
 Get-ChildItem -Path "C:\" -Include user.txt -Recurse -File -ErrorAction SilentlyContinue -Force
@@ -609,6 +613,8 @@ compile AdvancedProcessInjection.cpp
 AdvancedProcessInjection.exe pid
 ```
 # Linux
+### Check for installed software
+dpkg -l 
 ### Directory Permissions
 >A directory is handled differently from a file. Read access gives the right to consult the list of its contents (files and directories). Write access allows creating or deleting files. Finally, execute access allows crossing through the directory to access its contents (using the cd command, for example).
 ###### Check what sudo permissions the user has available to them
