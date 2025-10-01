@@ -658,6 +658,7 @@ screen-4.5.0-pe_CVE-2017-5618
 cve-2023-22809-Sudoedit-bypass-in-Sudo 1.8.0 - 1.9.12p1.sh
 snapd-local-pe-prior_to_2.371_CVE-2019-7304.py
 cve-2021-4034-polkit, requires pkexec < 121
+CVE-2021-3560 polkit < 0.119 (pkcheck --version)
 udisks LPE on all linux distributions and versions CVE-2025-6018 & CVE-2025-6019, requires udisksctl command
 ```
 ### Kernel exploits
