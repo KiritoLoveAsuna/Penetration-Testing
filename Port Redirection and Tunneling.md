@@ -11,14 +11,26 @@ cat /etc/rinetd.conf
 service rinetd start
 ```
 ###### SSH local port forwarding
-将target_ip:target_port转发到kali的local_port上, 连接是从kali -> target_ip:target_port
+语义：把 本地 Kali (local_kali) 的 8080 端口 → 通过 SSH 隧道 → 转发到 远程主机 (10.129.231.188) 上的 127.0.0.1:8080  
+
+作用：你在本地访问 localhost:8080，实际请求会通过 SSH 隧道跑到远程的 127.0.0.1:8080.  
+
+👉 常见用途:  
+
+访问远程主机或其内网服务（数据库、Web服务）而不需要在远程服务器上暴露端口  
 ```
-kali: ssh -L local_port:target_ip:target_port user@jump_machine
+kali: ssh -L 8080:127.0.0.1:8080 albert@10.129.231.188
 ```
 ###### ssh remote port forwarding
-将target_ip:target_port转发到jump_machine:remote_port上
+语义：把 远程主机 (10.129.231.188) 的 8080 端口 → 通过 SSH 隧道 → 转发到 本地 Kali (local_kali) 的 127.0.0.1:8080  
+
+作用：你在远程主机上访问 localhost:8080，实际请求会通过 SSH 隧道跑到你本地 Kali 的 127.0.0.1:8080.  
+
+👉 常见用途:  
+
+让远程机器可以访问你本地运行的服务（例如你本地调试的 Web 服务，远程也能访问到)  
 ```
-kali: ssh -R remote_port:target_ip:target_port user@jump_machine
+kali: ssh -R 8080:127.0.0.1:8080 albert@10.129.231.188
 ```
 ###### SSH Dynamic Port Forwarding
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/f68cfac3-7e49-4f50-b104-ad7a672958e7)
