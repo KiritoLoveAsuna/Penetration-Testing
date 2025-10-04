@@ -11,19 +11,14 @@ cat /etc/rinetd.conf
 service rinetd start
 ```
 ###### SSH local port forwarding
-![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/d54b48e3-43ed-4fde-ad3f-2d28b538bde5)
-
-forward all packets which go to remote compromised machine:445 to 192.168.1.110:445(PGDATABASE01)
+将target_ip:target_port转发到kali的localport上
 ```
-remote compromised machine(confluence01): ssh -N -L 0.0.0.0(src CONFLUENCE01):445:192.168.1.110(dst PGDATABASE01):445 student@PGDATABASE01
-ssh -L local_port:target_ip:target_port user@jump_machine
+kali: ssh -L local_port:target_ip:target_port user@jump_machine
 ```
 ###### ssh remote port forwarding
-![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/9355bdff-aa68-4989-aa53-0f3074a39739)
-
+将target_ip:target_port转发到jump_machine的remote_port上
 ```
-remote compromised machine(confluence01): ssh -N -R 127.0.0.1(confluence01):2345:10.4.50.215(PGDATABASE01):5432 kali@192.168.118.4(attacker machine)
-ssh -R remote_port:target_ip:target_port user@jump_machine
+kali: ssh -R remote_port:target_ip:target_port user@jump_machine
 ```
 ###### SSH Dynamic Port Forwarding
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/f68cfac3-7e49-4f50-b104-ad7a672958e7)
