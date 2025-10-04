@@ -11,12 +11,12 @@ cat /etc/rinetd.conf
 service rinetd start
 ```
 ###### SSH local port forwarding
-将target_ip:target_port转发到kali的localport上
+将target_ip:target_port转发到kali的local_port上, 连接是从kali -> target_ip:target_port
 ```
 kali: ssh -L local_port:target_ip:target_port user@jump_machine
 ```
 ###### ssh remote port forwarding
-将target_ip:target_port转发到jump_machine的remote_port上
+将target_ip:target_port转发到jump_machine:remote_port上
 ```
 kali: ssh -R remote_port:target_ip:target_port user@jump_machine
 ```
