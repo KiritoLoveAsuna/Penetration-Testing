@@ -56,6 +56,7 @@ enumdomusers
 ```
 ```
 ldapsearch -h 172.16.5.5 -x -b "DC=INLANEFREIGHT,DC=LOCAL" -s sub "(&(objectclass=user))"  | grep sAMAccountName: | cut -f2 -d" "
+ldapsearch -x -H ldap://192.168.151.122 -D '' -w '' -b "DC=hutch,DC=offsec" | grep sAMAccountName
 ```
 #### Nested Groups
 ```
