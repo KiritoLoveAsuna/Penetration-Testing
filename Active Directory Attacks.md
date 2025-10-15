@@ -43,6 +43,7 @@ Active Directory User Enumeration
 ```
 Nmap -p 88 --script=krb5-enum-users --script-args krb5-enum-users.realm='<domain>',userdb=/usr/share/seclists/Usernames/xato-net-10-million-usernames.txt <IP>
 ```
+kerbrute = nxc ldap ip -u '' -p '' -k
 ```
 ./kerbrute_linux_amd64 userenum -d lab.ropnop.com --dc 10.10.10.10 /usr/share/seclists/Usernames/xato-net-10-million-usernames.txt
 ```
