@@ -14,30 +14,6 @@ net user jeff_admin /domain
 net group groupname /domain
 net localgroup
 net localgroup groupname
-
-PowerView.ps1:
-Get-NetUser
-Get-NetUser | select cn
-Get-NetUser | select cn,pwdlastset,lastlogon
-Get-DomainGroup | select cn
-```
-
-```
-[System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()
-output:
-Forest                  : corp.com
-DomainControllers       : {DC01.corp.com}
-Children                : {}
-DomainMode              : Unknown
-DomainModeLevel         : 7
-Parent                  : 
-PdcRoleOwner(DC name)   : DC01.corp.com
-RidRoleOwner            : DC01.corp.com
-InfrastructureRoleOwner : DC01.corp.com
-Name(domain name)       : corp.com
-
-PowerView.ps1:
-Get-NetDomain
 ```
 Active Directory User Enumeration
 ```
@@ -60,18 +36,6 @@ enumdomusers
 ```
 ldapsearch -h 172.16.5.5 -x -b "DC=INLANEFREIGHT,DC=LOCAL" -s sub "(&(objectclass=user))"  | grep sAMAccountName: | cut -f2 -d" "
 ldapsearch -x -H ldap://192.168.151.122 -D '' -w '' -b "DC=hutch,DC=offsec" | grep sAMAccountName
-```
-#### Nested Groups
-```
-powershell -ep bypass
-Import-Module .\PowerView.ps1
-Get-DomainGroup 'Service Personnel' | select samaccountname,memberof,member
-Get-DomainGroup 'Service Personnel'
-
-Get all belonged groups of user(michelle):
-Get-DomainGroup -MemberIdentity 'michelle' | select samaccountname,memberof,member
-Get-DomainGroup -MemberIdentity 'michelle' | select samaccountname
-Get-DomainGroup -MemberIdentity 'michelle' 
 ```
 #### Computer Info
 ```
@@ -118,17 +82,6 @@ msds-supportedencryptiontypes : 28
 usnchanged                    : 178663
 ridsetreferences              : CN=RID Set,CN=DC1,OU=Domain Controllers,DC=corp,DC=com
 dnshostname                   : DC1.corp.com
-```
-#### Logged On Users
-```
-Find possible local administrative access on computers under the current user context:
-PowerView.ps1 : Find-LocalAdminAccess
-
-Enumerate active sessions:
-.\PsLoggedon.exe \\client74
-
-Enumerate IP address based on computername such as client74:
-Get-NetSession -ComputerName client74
 ```
 #### Object Permissions
 GenericAll: Full permissions on object  
