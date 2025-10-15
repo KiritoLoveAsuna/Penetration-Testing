@@ -41,9 +41,21 @@ Get-NetDomain
 ```
 Active Directory User Enumeration
 ```
-./kerbrute_linux_amd64 userenum -d lab.ropnop.com --dc 10.10.10.10 /usr/share/seclists/Usernames/xato-net-10-million-usernames.txt #From https://github.com/ropnop/kerbrute/releases
-
 Nmap -p 88 --script=krb5-enum-users --script-args krb5-enum-users.realm='<domain>',userdb=/usr/share/seclists/Usernames/xato-net-10-million-usernames.txt <IP>
+```
+```
+./kerbrute_linux_amd64 userenum -d lab.ropnop.com --dc 10.10.10.10 /usr/share/seclists/Usernames/xato-net-10-million-usernames.txt
+```
+This method doesn't generate Windows event ID 4625: An account failed to log on, but does generate event ID 4768: A Kerberos authentication ticket (TGT) was requested
+```
+enum4linux -U 172.16.5.5  | grep "user:" | cut -f2 -d"[" | cut -f1 -d"]"
+```
+```
+rpcclient -U "" -N 172.16.5.5
+enumdomusers
+```
+```
+ldapsearch -h 172.16.5.5 -x -b "DC=INLANEFREIGHT,DC=LOCAL" -s sub "(&(objectclass=user))"  | grep sAMAccountName: | cut -f2 -d" "
 ```
 #### Nested Groups
 ```
