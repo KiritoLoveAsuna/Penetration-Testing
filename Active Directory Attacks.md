@@ -140,7 +140,8 @@ SharpHound.ps1 1.1.1
 #### Bloodhound-python
 This will extract all json files if you have credential but no shell
 ```
-bloodhound-python --dns-tcp -ns $IP -d hutch.offsec -u 'fmcsorley' -p 'CrabSharkJellyfish192' -c all
+bloodhound-python -ns 192.168.219.21 -d nagoya-industries.com -u 'Fiona.Clark' -p 'Summer2023' -c all
+sudo proxychains4 -f /etc/proxychains4.conf bloodhound-python -ns 10.10.179.140 -d oscp.exam -u 'web_svc' -p 'Diamond1' -c all --dns-tcp
 ```
 #### Abusing Read GMSAP Password
 ```
