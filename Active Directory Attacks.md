@@ -84,6 +84,13 @@ usnchanged                    : 178663
 ridsetreferences              : CN=RID Set,CN=DC1,OU=Domain Controllers,DC=corp,DC=com
 dnshostname                   : DC1.corp.com
 ```
+### AD Nested Group Memberships
+```
+python3 windapsearch.py --dc-ip 172.16.5.5 -u forend@inlanefreight.local -p Klmcargo2 -PU
+-PU, --privileged-users
+                        Enumerate All privileged AD Users. Performs recursive
+                        lookups for nested members.
+```
 ### Domain PasswordSpray
 Linux
 ```
