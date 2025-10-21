@@ -91,6 +91,10 @@ python3 windapsearch.py --dc-ip 172.16.5.5 -u forend@inlanefreight.local -p Klmc
                         Enumerate All privileged AD Users. Performs recursive
                         lookups for nested members.
 ```
+```
+Powerview.ps1
+Get-DomainGroupMember -Identity "Domain Admins" -Recurse
+```
 ### Domain PasswordSpray
 Linux
 ```
