@@ -98,3 +98,8 @@ powershell -ExecutionPolicy Bypass -File admin_login.ps1
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -scope currentuser
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -scope LocalMachine 
 ```
+### Downgrade
+>Powershell event logging was introduced as a feature with Powershell 3.0 and forward. With that in mind, we can attempt to call Powershell version 2.0 or older. If successful, our actions from the shell will not be logged in Event Viewer
+```
+powershell.exe -version 2
+```
