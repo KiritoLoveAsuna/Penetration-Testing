@@ -6,7 +6,7 @@ Powerview
 ```powershell
 Import-Module .\PowerView.ps1
 $sid = Convert-NameToSid wley
-Get-DomainObjectACL -ResolveGUIDs -Identity * | ? {$_.SecurityIdentifier -eq $sid} 
+Get-DomainObjectACL -ResolveGUIDs -Identity * | ? {$_.SecurityIdentifier -eq $sid} -Verbose
 ```
 ### ACE 
 **ForceChangePassword** - gives us the right to reset a user's password without first knowing their password (should be used cautiously and typically best to consult our client before resetting passwords).    
