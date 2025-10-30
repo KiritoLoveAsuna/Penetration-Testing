@@ -8,6 +8,10 @@ Import-Module .\PowerView.ps1
 $sid = Convert-NameToSid wley
 Get-DomainObjectACL -ResolveGUIDs -Identity * | ? {$_.SecurityIdentifier -eq $sid} -Verbose
 ```
+ACL permissions wley has over group "GPO Management"
+```powershell
+Get-DomainObjectAcl -ResolveGUIDs -Identity "GPO Management" | ? {$_.SecurityIdentifier -eq $sid}
+```
 ### ACE 
 **ForceChangePassword** - gives us the right to reset a user's password without first knowing their password (should be used cautiously and typically best to consult our client before resetting passwords).    
 
