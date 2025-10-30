@@ -1,6 +1,13 @@
 ### References 
 https://bloodhound.specterops.io/resources/edges/overview  
 It's worth familiarizing yourself with all of the BloodHound edges and as many Active Directory Extended Rights as possible as you never know when you may encounter a less common one during an assessment.  
+### Enumeration ACL
+Powerview
+```powershell
+Import-Module .\PowerView.ps1
+$sid = Convert-NameToSid wley
+Get-DomainObjectACL -ResolveGUIDs -Identity * | ? {$_.SecurityIdentifier -eq $sid} 
+```
 ### ACE 
 **ForceChangePassword** - gives us the right to reset a user's password without first knowing their password (should be used cautiously and typically best to consult our client before resetting passwords).    
 
