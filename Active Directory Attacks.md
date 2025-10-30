@@ -97,6 +97,7 @@ python3 windapsearch.py --dc-ip 172.16.5.5 -u forend@inlanefreight.local -p Klmc
 ```
 Powerview.ps1
 Get-DomainGroupMember -Identity "Domain Admins" -Recurse
+Get-DomainGroup -Identity "Help Desk Level 1" | select memberof
 ```
 ### Domain PasswordSpray
 Linux
