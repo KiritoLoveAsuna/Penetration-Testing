@@ -5,7 +5,7 @@ It's worth familiarizing yourself with all of the BloodHound edges and as many A
 Powerview
 ```powershell
 Import-Module .\PowerView.ps1
-$sid = Convert-NameToSid wley
+$sid = Convert-NameToSid wley or Get-DomainUser -Identity adunn  |select samaccountname,objectsid,memberof,useraccountcontrol |fl
 Get-DomainObjectACL -ResolveGUIDs -Identity * | ? {$_.SecurityIdentifier -eq $sid} -Verbose
 ```
 ACL permissions wley has over group "GPO Management"
