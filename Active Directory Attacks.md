@@ -129,6 +129,15 @@ Get-DomainUser * | Select-Object samaccountname,description |Where-Object {$_.De
 Get-DomainUser -UACFilter PASSWD_NOTREQD | Select-Object samaccountname,useraccountcontrol
 ```
 ### Abusing Group Policy Preferences (GPP) Passwords
+>When a new GPP is created, an .xml file is created in the SYSVOL share, which is also cached locally on endpoints that the Group Policy applies to. These files can include those used to:
+* Map drives (drives.xml)
+* Create local users
+* Create printer config files (printers.xml)
+* Creating and updating services (services.xml)
+* Creating scheduled tasks (scheduledtasks.xml)
+* Changing local admin passwords.
+>they are stored on the SYSVOL share, and all authenticated users in a domain, by default, have read access to this domain controller share
+
 Groups.xml  
 <img width="2802" height="414" alt="image" src="https://github.com/user-attachments/assets/fc4e7943-9881-494c-a29c-61e4f3ddbf64" />
 If you retrieve the cpassword value more manually, the gpp-decrypt utility can be used to decrypt the password as follows:
