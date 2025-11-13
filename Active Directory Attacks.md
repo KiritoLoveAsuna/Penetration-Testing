@@ -150,6 +150,10 @@ nxc smb ip -u username -p pwd -M gpp_password
 ```
 
 ### Abusing GPO (Group Policy Object)
+Automatic GPO Abuse Check
+```
+.\ADRecon.ps1
+```
 Check:
 ```
 Import-Module .\PowerView.ps1
