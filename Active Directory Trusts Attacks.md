@@ -5,7 +5,8 @@
 * Tree-root: A two-way transitive trust between a forest root domain and a new tree root domain. They are created by design when you set up a new tree root domain within a forest.
 * Forest: A transitive trust between two forest root domains.
 * ESAE: A bastion forest used to manage Active Directory.
-
+### Child Domain 
+IntraForest = True
 ### ExtraSID Attack
 Requires
 * The KRBTGT hash for the child domain (mimikatz # lsadump::dcsync /user:LOGISTICS\krbtgt)
