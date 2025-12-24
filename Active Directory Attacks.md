@@ -187,7 +187,10 @@ Extract hashes from windows.old's sam and system file:
 
 impacket-secretsdump -sam SAM(local SAM file) -system SYSTEM(local SYSTEM file) local
 ```
-
+### Dump the NTDS.dit Database
+```
+impacket-secretdump -ntds NTDS.dit(C:\windows\ntds\) -system SYSTEM local0
+```
 
 ### Abuse an NTLM user hash to gain a full Kerberos Ticket Granting Ticket(TGT) and gain rce
 https://learn.microsoft.com/en-us/sysinternals/downloads/psexec
