@@ -759,8 +759,8 @@ find / - type f -writable 2>/dev/null
 ```  
 ### Enumerating Unmounted Disks
 mount  
-lsblk  
-cat /etc/fstab (/etc/fstab file lists all drives that will be mounted at boot time)
+lsblk #Listing all available drives  
+cat /etc/fstab #Listing mounted drives  
 ### Enumerating Device Drivers and Kernel Modules
 1. lsmod  
 2. /sbin/modinfo libata  
