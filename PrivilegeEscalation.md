@@ -566,6 +566,12 @@ Powershell to list windows registry service runner:
 cd C:\$RECYCLE.BIN
 dir /AH (display hidden files)
 ```
+### Abusing Start Up Apps
+```
+C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp #Startup applications can be found here
+#Check writable permissions and transfer
+#The only catch here is the system needs to be restarted
+```
 ### Basic Process Injection
 basic.cpp
 ```
