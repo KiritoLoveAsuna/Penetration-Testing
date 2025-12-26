@@ -646,6 +646,24 @@ compile AdvancedProcessInjection.cpp
 AdvancedProcessInjection.exe pid
 ```
 # Linux
+### Basic Enumeration
+```
+find / -type f -writable 2>/dev/null
+find / -writable -type d 2>/dev/null
+
+-perm mode permission bits are exactly set
+-perm -mode all of permission bits are set
+-perm /mode any of permission bits are set
+
+watch -n 1 "ps -aux | grep pass" #Checking processes for credentials
+sudo tcpdump -i lo -A | grep "pass" #Password sniffing using tcpdump
+
+mount  
+lsblk #Listing all available drives  
+cat /etc/fstab #Listing mounted drives
+
+dpkg -l #Installed applications on Debian system
+```  
 ### .shellrc (.bashrc or .zshrc)
 >Custom initialization commands when user logs in by appending commands into .shellrc file such as .bashrc or .zshrc
 
@@ -653,8 +671,7 @@ AdvancedProcessInjection.exe pid
 
 ### SSH Private Key
 > Always remember to check if there is ssh private key under any user's .ssh folder
-### Check for installed software
-dpkg -l 
+
 ### Directory Permissions
 >A directory is handled differently from a file. Read access gives the right to consult the list of its contents (files and directories). Write access allows creating or deleting files. Finally, execute access allows crossing through the directory to access its contents (using the cd command, for example).
 ### Sudo Permission
@@ -744,19 +761,6 @@ GTFOBins is a curated list of Unix binaries that can be used to bypass local sec
 ### Pspy - Unprivileged Linux Process Snooping
 Pspy is a command line tool designed to snoop on processes without need for root permissions. It allows you to see commands run by other users, cron jobs, etc. as they execute. Great for enumeration of Linux systems in CTFs. Also great to demonstrate your colleagues why passing secrets as arguments on the command line is a bad idea.
 
-### Find Usage
-```
-find / -type f -writable 2>/dev/null
-find / -writable -type d 2>/dev/null
-
--perm mode permission bits are exactly set
--perm -mode all of permission bits are set
--perm /mode any of permission bits are set
-```  
-### Enumerating Unmounted Disks
-mount  
-lsblk #Listing all available drives  
-cat /etc/fstab #Listing mounted drives  
 ### Enumerating Device Drivers and Kernel Modules
 1. lsmod  
 2. /sbin/modinfo libata  
