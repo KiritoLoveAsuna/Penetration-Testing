@@ -37,6 +37,7 @@ https://lolbas-project.github.io/#
 ### AutoEnumeration
 ```
 winpeas.exe
+wget https://raw.githubusercontent.com/peass-ng/PEASS-ng/refs/heads/master/winPEAS/winPEASps1/winPEAS.ps1 -o winpeas.ps1
 
 PrivescCheck.ps1
 powershell -ep bypass -c ". .\PrivescCheck.ps1; Invoke-PrivescCheck"
