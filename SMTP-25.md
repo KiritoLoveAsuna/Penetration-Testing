@@ -21,6 +21,11 @@ swaks --to "tharper@victim" --from "rmurray@victim" --ehlo victim --body "Follow
 swaks --to jim@relia.com --from maildmz@relia.com --server 192.168.193.189 --attach @/home/kali/Desktop/config.Library-ms --body "Please take a look at the config library file" --header "Subject: Staging Script"  
 
 swaks --to mailadmin@localhost --from jonas@localhost --server 192.168.180.140 --attach @/home/kali/Desktop/spreadsheet.ods --body "Please take a look at the spreadsheet" --header "Please check the spreadsheet"  
+
+swaks send rendered html file as email body
+```
+swaks --to 1278239731@qq.com --from xingdi@zhangyishan.store --server mail.smtp2go.com:2525 --attach-type text/html --attach-body @/home/kali/Desktop/sample.html --header "Subject: Attention" --auth LOGIN --auth-user xingdi --auth-pass xingdi
+```
 ### mail server
 ```
 sudo systemctl restart postfix
