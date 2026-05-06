@@ -21,6 +21,7 @@ service rinetd start
 ```
 kali: ssh -L 8080:127.0.0.1:8080 albert@10.129.231.188
 kali: ssh -L 1234:localhost:3306 -L 8080:localhost:80 ubuntu@10.129.202.64
+ssh -L local port:server:port user@compromised_host
 ```
 ###### ssh remote port forwarding
 语义：把 远程主机 (10.129.231.188) 的 8080 端口 → 通过 SSH 隧道 → 转发到 本地 Kali (local_kali) 的 127.0.0.1:8080  
