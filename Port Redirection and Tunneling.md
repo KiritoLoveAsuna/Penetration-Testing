@@ -20,6 +20,7 @@ service rinetd start
 访问远程主机或其内网服务（数据库、Web服务）而不需要在远程服务器上暴露端口  
 ```
 kali: ssh -L 8080:127.0.0.1:8080 albert@10.129.231.188
+kali: ssh -L 1234:localhost:3306 -L 8080:localhost:80 ubuntu@10.129.202.64
 ```
 ###### ssh remote port forwarding
 语义：把 远程主机 (10.129.231.188) 的 8080 端口 → 通过 SSH 隧道 → 转发到 本地 Kali (local_kali) 的 127.0.0.1:8080  
@@ -47,7 +48,7 @@ kali@kali(attacker machine):~$ tail /etc/proxychains4.conf
 # add proxy here ...
 # meanwile
 # defaults set to "tor"
-socks5 192.168.50.63 9999(remote compromised machine - confluence01)
+socks5 	127.0.0.1 9050
 ```
 ###### SSH Remote Dynamic Port Forwarding 
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/118dc119-bbce-4559-8ec6-5b1c1b7e50f5)
