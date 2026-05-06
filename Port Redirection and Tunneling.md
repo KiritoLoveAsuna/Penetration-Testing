@@ -33,12 +33,10 @@ kali: ssh -L 8080:127.0.0.1:8080 albert@10.129.231.188
 kali: ssh -R 8080:127.0.0.1:8080 albert@10.129.231.188
 ```
 ###### SSH Dynamic Port Forwarding
-![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/f68cfac3-7e49-4f50-b104-ad7a672958e7)
-
 Dynamic Port Forwarding:
-initiating an SSH connection from a remote compromised machine to a further internal network(PGDATABASE01)
+>The -D argument requests the SSH server to enable dynamic port forwarding. Once we have this enabled, we will require a tool that can route any tool's packets over the port 9050. We can do this using the tool proxychains, which is capable of redirecting TCP connections through TOR, SOCKS, and HTTP/HTTPS proxy servers and also allows us to chain multiple proxy servers together. Using proxychains, we can hide the IP address of the requesting host as well since the receiving host will only see the IP of the pivot host. Proxychains is often used to force an application's TCP traffic to go through hosted proxies like SOCKS4/SOCKS5, TOR, or HTTP/HTTPS proxies.
 ```
-remote compromised machine: ssh -N -D 0.0.0.0:9999(remote compromised machine - confluence01) database_admin@10.4.50.215(PGDATABASE01)
+ssh -D 9050 ubuntu@10.129.202.64
 
 kali@kali(attacker machine):~$ tail /etc/proxychains4.conf
 #       proxy types: http, socks4, socks5, raw
