@@ -71,9 +71,9 @@ kali@kali(attacker machine):~$ tail /etc/proxychains4.conf
 socks5 127.0.0.1 9998(attacker machine)
 ```
 ###### sshuttle
+>Sshuttle is another tool written in Python which removes the need to configure proxychains. However, this tool only works for pivoting over SSH and does not provide other options for pivoting over TOR or HTTPS proxy servers.
 ```
-1. confluence01: socat TCP-LISTEN:2222,fork TCP:10.4.50.215:22(PGDATABASE01)
-2. kali(attacker machine): sshuttle -r database_admin@192.168.50.63(PGDATABASE01):2222 10.4.50.0/24 172.16.50.0/24
+sudo sshuttle -r ubuntu@10.129.202.64 172.16.5.0/23 -v 
 ```
 ###### HTTP Tunnel (Chisel)
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/0c4201e9-44ae-4d2f-ad93-a5ddb4317f52)
@@ -134,22 +134,4 @@ netsh advfirewall firewall add rule name="forward_port_rule" protocol=TCP dir=in
 netsh interface portproxy add v4tov4 listenport=4455 listenaddress=10.11.0.22 connectport=445 connectaddress=192.168.1.110
 netsh advfirewall firewall delete rule name="port_forward_ssh_2222"
 netsh interface portproxy del v4tov4 listenport=4455 listenaddress=10.11.0.22
-```
-###### ssh.exe
-```
-linux: 
-1. sudo systemctl start ssh
-windows: 
-1. where ssh
-2. ssh.exe -V (the version of OpenSSH bundled with Windows needs to be higher than 7.6, then we can use it for remote dynamic port forwarding)
-3. ssh -N -R 9998 kali@192.168.118.4
-linux: 
-1. ss -ntplu(check socks5 9998 port state)
-2. tail /etc/proxychains4.conf
-[ProxyList]
-# add proxy here ...
-# meanwile
-# defaults set to "tor"
-socks5 127.0.0.1 9998
-3. proxychains command
 ```
