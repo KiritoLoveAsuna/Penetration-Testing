@@ -162,3 +162,6 @@ grep -rl --exclude='*.py' --exclude='*.js' "string" /
 ```
 for i in 172.16.5.{1..255}; do ping -c1 -W1 "$i" >/dev/null && echo "$i is up"; done
 ```
+```
+1..254 | % {"172.16.6.$($_): $(Test-Connection -count 1 -comp 172.16.6.$($_) -quiet)"}
+```
