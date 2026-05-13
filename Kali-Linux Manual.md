@@ -158,3 +158,7 @@ grep "string" /path/to/file
 
 grep -rl --exclude='*.py' --exclude='*.js' "string" /
 ```
+### One Liner Scan Alive Host
+```
+for i in 172.16.5.{1..255}; do ping -c1 -W1 "$i" >/dev/null && echo "$i is up"; done
+```
