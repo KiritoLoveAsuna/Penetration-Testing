@@ -156,6 +156,10 @@ mountvol
 1. driverquery /v /FO Table  
 2. Get-WmiObject Win32_PnPSignedDriver | Select-Object DeviceName, DriverVersion, Manufacturer
 ```
+### Exploiting Windows Kernel exploits
+```
+.\Watson.exe
+```
 ### Bypass UAC
 ```
 1. check C:\Windows\System32\fodhelper.exe
