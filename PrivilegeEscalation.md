@@ -724,6 +724,7 @@ chmod +s /bin/bash
 ```
 ### AutoEnumeration
 ```
+LinEnum.sh
 linpeas.sh  
 ./lse.sh -l 1 -i
 python3 beroot.py
