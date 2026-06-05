@@ -678,9 +678,6 @@ AdvancedProcessInjection.exe pid
 # Linux
 ### Basic Enumeration
 ```
-find / -type f -writable 2>/dev/null
-find / -writable -type d 2>/dev/null
-
 -perm mode permission bits are exactly set
 -perm -mode all of permission bits are set
 -perm /mode any of permission bits are set
@@ -797,6 +794,14 @@ Pspy is a command line tool designed to snoop on processes without need for root
 2. /sbin/modinfo libata  
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/20c73182-d439-43a4-a3b5-f1fee987821c)
 
+### Writable Directories
+```
+find / -path /proc -prune -o -type d -perm -o+w 2>/dev/null
+```
+### Writable Files
+```
+find / -path /proc -prune -o -type f -perm -o+w 2>/dev/null
+```
 ### SUID permissions (anything interesting, to look for in GTFOBins)
 >SUID and SGID allow the current user to execute the file with the rights of the owner (setuid) or the owner's group (setgid)
 ```
