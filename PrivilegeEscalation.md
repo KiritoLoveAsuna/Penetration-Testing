@@ -688,6 +688,11 @@ sudo tcpdump -i lo -A | grep "pass" #Password sniffing using tcpdump
 mount  
 lsblk #Listing all available drives  
 cat /etc/fstab #Listing mounted drives
+cat /etc/fstab | grep -v "#" | column -t  #Unmounted File Systems
+df -h  #Mounted File Systems
+
+printers
+lpstat
 
 dpkg -l #Installed applications on Debian system
 ```  
