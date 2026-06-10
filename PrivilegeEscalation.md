@@ -771,6 +771,7 @@ Dirty-Pipe-requireLinux5.8+_CVE-2022-0847.sh
 CVE-2019-13272 linux3.16.52-5.1.17, requires pkexec command
 ```
 ### Abusing $PATH
+>Creating a script or program in a directory specified in the PATH will make it executable from any directory on the system
 ```
 1.find a suid program that runs command without absolute path
 2. check If current user can write to path under $PATH or use "export PATH=/tmp:$PATH" to add custom path to $PATH
