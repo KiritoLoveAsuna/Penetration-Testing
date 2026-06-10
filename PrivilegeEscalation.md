@@ -696,9 +696,13 @@ lpstat
 
 dpkg -l #Installed applications on Debian system
 ```
-### test whether your current user can mount anything without sudo
+### Test Whether your current user can mount anything without sudo
 ```
 grep -vE '^\s*#|^\s*$' /etc/fstab
+```
+### Dump the command-line arguments of running processes from /proc
+```
+find /proc -name cmdline -exec cat {} \; 2>/dev/null | tr " " "\n"
 ```
 ### .shellrc (.bashrc or .zshrc)
 >Custom initialization commands when user logs in by appending commands into .shellrc file such as .bashrc or .zshrc
