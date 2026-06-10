@@ -1029,3 +1029,9 @@ Command Chaining
 ls -l ; pwd
 ls -l | pwd
 ```
+Environment Variables
+```
+export PATH=/tmp:$PATH
+echo "/bin/bash" > /tmp/ls
+ls
+```
