@@ -695,6 +695,7 @@ printers
 lpstat
 
 dpkg -l #Installed applications on Debian system
+apt list --installed | tr "/" " " | cut -d" " -f1,3 | sed 's/[0-9]://g' | tee -a installed_pkgs.list  #Installed Packages
 ```
 ### Test Whether your current user can mount anything without sudo
 ```
