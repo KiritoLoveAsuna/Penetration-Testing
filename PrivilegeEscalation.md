@@ -1020,4 +1020,5 @@ check zip,gz,7z,stix,rar,conf,config,sh
 ```
 ### Escaping Restricted Shells
 https://vk9-sec.com/linux-restricted-shell-bypass/  
+> if the path environ is limited, try "export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
