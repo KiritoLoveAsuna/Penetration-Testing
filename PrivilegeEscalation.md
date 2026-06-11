@@ -820,13 +820,13 @@ find / -path /proc -prune -o -type f -perm -o+w 2>/dev/null
 ### SUID permissions (anything interesting, to look for in GTFOBins)
 >SUID and SGID allow the current user to execute the file with the rights of the owner (setuid) or the owner's group (setgid)
 
-SUID
+SUID files
 ```
 find / -perm -4000 -type f 2>/dev/null
 ```
-SGID
+SGID files
 ```
-find / -perm /g+s 2>/dev/null
+find / -type f -perm /g+s 2>/dev/null
 ```
 ```
 cp with suid perm:
