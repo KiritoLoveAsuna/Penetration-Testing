@@ -826,7 +826,7 @@ find / -perm -4000 -type f 2>/dev/null
 ```
 SGID files
 ```
-find / -type f -perm /g+s 2>/dev/null
+find / -type f -perm -g+s -exec ls -al {} \; 2>/dev/null
 ```
 ```
 cp with suid perm:
