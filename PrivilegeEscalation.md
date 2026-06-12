@@ -868,6 +868,8 @@ screen(with suid) -ls # screen itself is setuid, so...
 #To completely remove the container from your system, you can use machinectl as follows
 kali@kali:sudo machinectl remove MACHINE_NAME
 ```
+### Priviledged Groups
+https://www.drakeaxelrod.com/notes/linux/privileged-groups
 ###### CAP_SETUID capability
 The two perl binaries stand out as they have setuid capabilities enabled, along with the +ep flag specifying that these capabilities are effective and permitted
 ```
