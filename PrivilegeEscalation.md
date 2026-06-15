@@ -871,6 +871,12 @@ kali@kali:sudo machinectl remove MACHINE_NAME
 ### Priviledged Groups
 https://www.drakeaxelrod.com/notes/linux/privileged-groups
 ### Abusing Capability  
+| Capability | Description |
+|---|---|
+| `cap_setuid` | Allows a process to set its effective user ID, which can be used to gain the privileges of another user, including the root user. |
+| `cap_setgid` | Allows a process to set its effective group ID, which can be used to gain the privileges of another group, including the root group. |
+| `cap_sys_admin` | Provides a broad range of administrative privileges, including the ability to perform many actions reserved for the root user, such as modifying system settings and mounting and unmounting file systems. |
+| `cap_dac_override` | Allows bypassing of file read, write, and execute permission checks. |
 ```
 /usr/sbin/getcap -r / 2>/dev/null
 ```
