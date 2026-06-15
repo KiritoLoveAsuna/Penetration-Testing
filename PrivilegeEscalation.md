@@ -895,6 +895,7 @@ $ cat /etc/passwd | head -n1 (Now we can use the command su to log in as root wi
 crontab -l
 ls -al /etc/cron*
 ```
+3. use 'find / -path /proc -prune -o -type f -perm -o+w 2>/dev/null' to check world writable file, then use pspy to check for cronjobs
 ###### Cron using a script with a wildcard (Wildcard Injection)
 ```
 [root@RedHat_test ~]# man tar
