@@ -794,8 +794,9 @@ int main() {
     return 0;
 }
 7. put nfs in kali's /tmp/nfs
-8. kali: chmod +sx nfs
-9. execute nfs in target machine
+8. sudo chown root:root /tmp/nfs/nfs
+9. kali: chmod +sx nfs
+10. execute nfs in target machine
 ```
 ### GTFOBins
 ```
