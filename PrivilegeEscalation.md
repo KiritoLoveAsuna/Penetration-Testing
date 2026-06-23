@@ -758,7 +758,7 @@ udisks LPE on all linux distributions and versions CVE-2025-6018 & CVE-2025-6019
 ```
 OS version:
 cat /etc/issue  
-cat /etc/*-release  
+cat /etc/os-release  
 Kernel Version and Architecture: 
 uname -a
 
