@@ -773,6 +773,7 @@ CVE-2019-13272 linux3.16.52-5.1.17, requires pkexec command
 CVE-2021-3493 Linux Kernel 4.14-5.8, <ubuntu 20.10
 CVE-2021-22555 Linux Kernel 2.6 - 5.11
 CVE-2022-25636 Linux Kernel 5.4 through 5.6.10
+CVE-2022-1015 Linux Kernel <5.16.18
 CVE-2023-32233 Linux Kernel up to version 6.3.1
 ```
 ### Abusing $PATH
