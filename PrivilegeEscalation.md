@@ -770,7 +770,10 @@ CVE-2022-32250-Linux-Kernel-requires4.1-5.18.2-LPE
 dirtycow-linux_kernel_requires2.6.22-4.8.3_CVE-2016-5195
 Dirty-Pipe-requireLinux5.8+_CVE-2022-0847.sh
 CVE-2019-13272 linux3.16.52-5.1.17, requires pkexec command
-CVE-2021-3493 Linux Kernel 4.14-5.8, <ubuntu 20.10 
+CVE-2021-3493 Linux Kernel 4.14-5.8, <ubuntu 20.10
+CVE-2021-22555 Linux Kernel 2.6 - 5.11
+CVE-2022-25636 Linux Kernel 5.4 through 5.6.10
+CVE-2023-32233 Linux Kernel up to version 6.3.1
 ```
 ### Abusing $PATH
 >Creating a script or program in a directory specified in the PATH will make it executable from any directory on the system
