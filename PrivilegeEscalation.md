@@ -181,6 +181,15 @@ mountvol
 ```
 .\Watson.exe
 ```
+### Named Pipes
+Listing Named Pipes with Pipelist
+```
+pipelist.exe /accepteula |  gci \\.\pipe\
+```
+Reviewing Named Pipe Permissions
+```
+accesschk /accepteula \\.\Pipe\ -v
+```
 ### Bypass UAC
 ```
 1. check C:\Windows\System32\fodhelper.exe
