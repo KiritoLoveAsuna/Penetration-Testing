@@ -23,6 +23,9 @@ net group "group name" /domain
 
 Display All Environment Variables:
 set
+
+Display patches：
+wmic qfe
 ```
 ### Persmissions
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/8093ece9-bbd0-4055-bb7e-f6c8b381b848)
