@@ -51,6 +51,12 @@ SharpUp.exe audit
 Seatbelt.exe -group=all -full
 
 powershell.exe -ExecutionPolicy Bypass -File .\jaws-enum.ps1
+
+Windows Exploit Suggester - Next Generation wes.py --update wes.py systeminfo.txt
+
+. .\SessionGopher.ps1(About
+SessionGopher is a PowerShell tool that uses WMI to extract saved session information for remote access tools such as WinSCP, PuTTY, SuperPuTTY, FileZilla, and Microsoft Remote Desktop. It can be run remotely or locally.)
+Invoke-SessionGopher -Thorough
 ```
 ### RunAs
 Require GUI access
