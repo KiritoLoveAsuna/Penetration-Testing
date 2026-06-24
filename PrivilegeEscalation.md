@@ -1,4 +1,6 @@
 # Windows
+### Tip 
+1. Always check if current user can run command prompt as administrator
 ### Basic Enum
 ```
 List AppLocker Rules:
