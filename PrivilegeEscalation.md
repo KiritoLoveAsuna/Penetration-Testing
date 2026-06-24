@@ -1,14 +1,15 @@
 # Windows
-### Check for installed software
+### Basic Enum
 ```
-C:\Program Files 
-```
-### Powershell to search file recursively and silently
-```
+List AppLocker Rules:
+Get-AppLockerPolicy -Effective | select -ExpandProperty RuleCollections
+
+Check for installed software:
+C:\Program Files
+
+Powershell to search file recursively and silently:
 Get-ChildItem -Path "C:\" -Include user.txt -Recurse -File -ErrorAction SilentlyContinue -Force
-```
-### Domain Groups and Local Group
-```
+
 Display info about local group from command-running computer:
 net localgroup "GSOC China"
 
