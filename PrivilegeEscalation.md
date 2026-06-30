@@ -389,6 +389,8 @@ sc start AppReadiness
 import-module .\SeBackupPrivilegeUtils.dll
 import-module .\SeBackupPrivilegeCmdLets.dll
 
+If SeBackupPrivilege is disabled, Set-SeBackupPrivilege
+
 Create disk_command.txt:
 set context persistent nowriters#
 add volume c: alias new1#
