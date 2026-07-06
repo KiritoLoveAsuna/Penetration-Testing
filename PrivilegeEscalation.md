@@ -218,7 +218,7 @@ Exploit
 ```
 https://github.com/hfiref0x/UACME
 ```
-### Insecure Service Executables
+### Modifiable Service Executables
 ```
 1. Get-WmiObject win32_service | Select-Object Name, State, PathName | Where-Object {$_.State -like 'Running'} # look for services with path in Program Files
 2. icacls "service path" # check if current user has permission to replace file with malicious one
