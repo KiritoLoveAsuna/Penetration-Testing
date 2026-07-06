@@ -387,7 +387,7 @@ evil.msi
 ```
 Check Writtable Services Under Registry To Current User:
 
-winpeas.exe or accesschk.exe /accepteula -uvwqk  HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services
+winpeas.exe or accesschk.exe /accepteula -uvwqks  HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services
 ```
 ```
 sc qc AppReadiness | PsService.exe security AppReadiness
