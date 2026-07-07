@@ -26,9 +26,6 @@ net group "group name" /domain
 Display All Environment Variables:
 set
 
-Display patches：
-wmic qfe
-
 Get Password Policy & Other Account Information:
 net accounts
 
