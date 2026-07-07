@@ -304,6 +304,11 @@ C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp (Files (typically s
 ```
 autorunsc.exe -m -nobanner -a * -ct /accepteula
 ```
+### Vulnerable Service 
+```
+wmic product get name
+Look for the Nday exploits for each service
+```
 ### Service DLL Hijacking
 >The following is the default search order with SafeDllSearchMode enabled. When it's disabled the current directory escalates to second place. To disable this feature, create the HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\SafeDllSearchMode registry value and set it to 0 (default is enabled).
 ```
