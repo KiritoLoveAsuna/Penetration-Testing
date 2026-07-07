@@ -67,8 +67,6 @@ Seatbelt.exe -group=all -full
 
 powershell.exe -ExecutionPolicy Bypass -File .\jaws-enum.ps1
 
-Windows Exploit Suggester - Next Generation wes.py --update wes.py systeminfo.txt
-
 . .\SessionGopher.ps1(About
 SessionGopher is a PowerShell tool that uses WMI to extract saved session information for remote access tools such as WinSCP, PuTTY, SuperPuTTY, FileZilla, and Microsoft Remote Desktop. It can be run remotely or locally.)
 Invoke-SessionGopher -Thorough
@@ -179,7 +177,16 @@ mountvol
 ```
 ### Exploiting Windows Kernel exploits
 ```
-.\Watson.exe
+Windows Exploit Suggester - Next Generation wes.py --update wes.py systeminfo.txt
+
+wmic qfe list brief (check the latest patch date)
+
+MS08-067 affected Windows Server 2000, 2003, and 2008 and Windows XP and Vista
+MS17-010
+ALPC Task Scheduler 0-Day
+CVE-2021-36934 HiveNightmare https://github.com/GossiTheDog/HiveNightmare/tree/master/Release
+CVE-2021-1675/CVE-2021-34527 PrintNightmare
+CVE-2020-0668
 ```
 ### Named Pipes
 Listing Named Pipes with Pipelist
