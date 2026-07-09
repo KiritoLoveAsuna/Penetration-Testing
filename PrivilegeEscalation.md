@@ -145,6 +145,8 @@ SessionGopher is a PowerShell tool that uses WMI to extract saved session inform
 Invoke-SessionGopher -Thorough
 
 .\lazagne.exe all
+
+.\SharpChrome.exe logins|cookies|statekeys /unprotect
 ```
 ###### Windows Autologon
 ```
