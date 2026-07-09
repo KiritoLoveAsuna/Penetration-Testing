@@ -805,6 +805,9 @@ Basic.exe pid of process run by root(tasklist /FO TABLE /NH)
 compile AdvancedProcessInjection.cpp
 AdvancedProcessInjection.exe pid
 ```
+### Breakout
+https://www.pentestpartners.com/security-blog/breaking-out-of-citrix-and-other-restricted-desktop-environments/  
+https://node-security.com/posts/breaking-out-of-windows-environments/
 # Linux
 ### Basic Enumeration
 ```
