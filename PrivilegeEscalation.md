@@ -813,6 +813,7 @@ https://node-security.com/posts/breaking-out-of-windows-environments/
 ```
 sudo python net-creds.py -i eth0
 python net-creds.py -p pcapfile
+sudo tcpdump -i lo -A | grep "pass" #Password sniffing using tcpdump
 ```
 ###### Process Command Lines
 ```
