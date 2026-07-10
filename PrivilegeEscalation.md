@@ -808,6 +808,26 @@ AdvancedProcessInjection.exe pid
 ### Breakout
 https://www.pentestpartners.com/security-blog/breaking-out-of-citrix-and-other-restricted-desktop-environments/  
 https://node-security.com/posts/breaking-out-of-windows-environments/
+### Interacting with users
+###### Traffic Capture
+```
+sudo python net-creds.py -i eth0
+python net-creds.py -p pcapfile
+```
+###### Process Command Lines
+```
+while($true)
+{
+
+  $process = Get-WmiObject Win32_Process | Select-Object CommandLine
+  Start-Sleep 1
+  $process2 = Get-WmiObject Win32_Process | Select-Object CommandLine
+  Compare-Object -ReferenceObject $process -DifferenceObject $process2
+
+}
+```
+###### Malicious SCF and Lnk file
+NTLM_theft
 # Linux
 ### Basic Enumeration
 ```
