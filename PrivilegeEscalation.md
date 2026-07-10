@@ -817,14 +817,16 @@ sudo tcpdump -i lo -A | grep "pass" #Password sniffing using tcpdump
 ```
 ###### Process Command Lines
 ```
-while($true)
+while ($true)
 {
+    $process1 = Get-WmiObject Win32_Process | Select-Object -ExpandProperty CommandLine
+    Start-Sleep 1
+    $process2 = Get-WmiObject Win32_Process | Select-Object -ExpandProperty CommandLine
 
-  $process = Get-WmiObject Win32_Process | Select-Object CommandLine
-  Start-Sleep 1
-  $process2 = Get-WmiObject Win32_Process | Select-Object CommandLine
-  Compare-Object -ReferenceObject $process -DifferenceObject $process2
+    Compare-Object -ReferenceObject $process1 -DifferenceObject $process2 |
+        Format-List *
 
+    Write-Host "----------------------------------------"
 }
 ```
 ###### Malicious SCF and Lnk file
