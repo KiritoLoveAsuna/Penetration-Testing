@@ -371,10 +371,11 @@ autorunsc.exe -m -nobanner -a * -ct /accepteula
 ```
 ### Vulnerable Service 
 ```
-wmic product get name
+wmic service get Name,DisplayName,State,StartMode
 Look for the Nday exploits for each service
 ```
 ### Vulnerable Applications
+wmic product get Name,Version,Vendor
 ###### mRemoteNG
 ```
 dir %USERPROFILE%\APPDATA\Roaming\mRemoteNG or where /R C:\ confCons.xml
