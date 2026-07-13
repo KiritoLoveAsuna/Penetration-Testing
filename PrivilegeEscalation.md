@@ -841,7 +841,9 @@ AdvancedProcessInjection.exe pid
 * on the explorer window address path, enter the cmd.exe full path:
 C:\WINDOWS\system32\cmd.exe
 
-* now you'll have an escalated privileges command prompt. 
+* now you'll have an escalated privileges command prompt.
+### Listing Writable Directories
+accesschk64.exe /accepteula -uwdqs "%USERNAME%" C:\
 ### Breakout
 https://www.pentestpartners.com/security-blog/breaking-out-of-citrix-and-other-restricted-desktop-environments/  
 https://node-security.com/posts/breaking-out-of-windows-environments/
