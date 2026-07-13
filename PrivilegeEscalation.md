@@ -832,6 +832,16 @@ Basic.exe pid of process run by root(tasklist /FO TABLE /NH)
 compile AdvancedProcessInjection.cpp
 AdvancedProcessInjection.exe pid
 ```
+### CVE-2019-1388
+* find a program that can trigger the UAC prompt screen
+* select "Show more details"
+* select "Show information about the publisher's certificate"
+* click on the "Issued by" URL link it will prompt a browser interface.
+* wait for the site to be fully loaded & select "save as" to prompt a explorer window for "save as".
+* on the explorer window address path, enter the cmd.exe full path:
+C:\WINDOWS\system32\cmd.exe
+
+* now you'll have an escalated privileges command prompt. 
 ### Breakout
 https://www.pentestpartners.com/security-blog/breaking-out-of-citrix-and-other-restricted-desktop-environments/  
 https://node-security.com/posts/breaking-out-of-windows-environments/
