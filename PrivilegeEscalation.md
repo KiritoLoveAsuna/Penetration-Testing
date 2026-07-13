@@ -847,6 +847,10 @@ accesschk64.exe /accepteula -uwdqs "%USERNAME%" C:\
 ### User/Computer Description Field
 Get-LocalUser  
 Get-WmiObject -Class Win32_OperatingSystem | select Description
+### Mount VHDX/VMDK
+```
+where /R C:\ *.vhd *.vhdx *.vmdk
+```
 ### Breakout
 https://www.pentestpartners.com/security-blog/breaking-out-of-citrix-and-other-restricted-desktop-environments/  
 https://node-security.com/posts/breaking-out-of-windows-environments/
