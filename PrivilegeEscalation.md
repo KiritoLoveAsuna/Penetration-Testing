@@ -832,7 +832,7 @@ Basic.exe pid of process run by root(tasklist /FO TABLE /NH)
 compile AdvancedProcessInjection.cpp
 AdvancedProcessInjection.exe pid
 ```
-### CVE-2019-1388
+### CVE-2019-1388(GUI Access Required)
 * find a program that can trigger the UAC prompt screen
 * select "Show more details"
 * select "Show information about the publisher's certificate"
