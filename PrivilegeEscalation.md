@@ -851,6 +851,14 @@ Get-WmiObject -Class Win32_OperatingSystem | select Description
 ```
 where /R C:\ *.vhd *.vhdx *.vmdk
 ```
+###### Mount VMDK on Linux
+```
+guestmount -a SQL01-disk1.vmdk -i --ro /mnt/vmdk
+```
+###### Mount VHD/VHDX on Linux
+```
+guestmount --add WEBSRV10.vhdx  --ro /mnt/vhdx/ -m /dev/sda1
+```
 ### Breakout
 https://www.pentestpartners.com/security-blog/breaking-out-of-citrix-and-other-restricted-desktop-environments/  
 https://node-security.com/posts/breaking-out-of-windows-environments/
