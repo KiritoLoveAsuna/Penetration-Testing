@@ -844,6 +844,9 @@ C:\WINDOWS\system32\cmd.exe
 * now you'll have an escalated privileges command prompt.
 ### Listing Writable Directories
 accesschk64.exe /accepteula -uwdqs "%USERNAME%" C:\
+### User/Computer Description Field
+Get-LocalUser  
+Get-WmiObject -Class Win32_OperatingSystem | select Description
 ### Breakout
 https://www.pentestpartners.com/security-blog/breaking-out-of-citrix-and-other-restricted-desktop-environments/  
 https://node-security.com/posts/breaking-out-of-windows-environments/
