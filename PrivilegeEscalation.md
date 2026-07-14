@@ -249,6 +249,12 @@ ALPC Task Scheduler 0-Day
 CVE-2021-36934 HiveNightmare https://github.com/GossiTheDog/HiveNightmare/tree/master/Release
 CVE-2021-1675/CVE-2021-34527 PrintNightmare
 CVE-2020-0668
+
+watson.exe
+
+Set-ExecutionPolicy bypass -Scope process
+Import-Module .\Sherlock.ps1
+Find-AllVulns
 ```
 ### Named Pipes
 Listing Named Pipes with Pipelist
