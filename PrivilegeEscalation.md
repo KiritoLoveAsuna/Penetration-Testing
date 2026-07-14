@@ -240,8 +240,8 @@ mountvol
 ### Exploiting Windows Kernel exploits
 ```
 Windows Exploit Suggester - Next Generation
-python2 wes.py --update
-python2 wes.py --database 2021-05-13-mssb.xls --systeminfo systeminfo.txt
+python2 windows-exploit-suggester.py --update
+python2 windows-exploit-suggester.py --database 2021-05-13-mssb.xls --systeminfo systeminfo.txt
 
 wmic qfe list brief (check the latest patch date)
 
