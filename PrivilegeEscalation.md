@@ -135,6 +135,8 @@ shutdown /r /t 0
 ### Credential Hunt
 ```
 findstr /SIM /C:"password" *.txt *.ini *.cfg *.config *.xml
+findstr /si password *.xml *.ini *.txt *.config
+select-string -Path C:\Users\htb-student\Documents\*.txt -Pattern password
 gc 'C:\Users\htb-student\AppData\Local\Google\Chrome\User Data\Default\Custom Dictionary.txt' | Select-String password
 unattend.xml
 (Get-PSReadlineOption).HistorySavePath
