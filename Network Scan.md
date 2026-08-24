@@ -1,4 +1,8 @@
 # Nmap
+### Subnet scan
+```
+nmap -sn -T4 10.10.110.0/24
+```
 ### Overview
 -sS cant detect udp ports status  
 -sU cant detect tcp ports status
