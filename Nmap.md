@@ -32,3 +32,43 @@ All: Use all the nse scipts to scan
 download nse script to /usr/share/nmap/scripts
 sudo nmap --script-updatedb
 ```
+### Evade Defense Mechanism
+1. 改用 TCP Connect 扫描 (-sT)  
+SYN 扫描 (-sS) 发送 SYN 包，若被防火墙丢弃则返回 filtered。TCP Connect 扫描完成完整的三次握手，某些防火墙策略可能允许此行为（尤其是出站连接）。尝试：  
+```
+sudo nmap -sT -sV -Pn -p 389,3268,445,139 10.10.110.0/24
+```
+2. 使用常见源端口伪装 (--source-port)  
+许多防火墙允许 DNS（53）、HTTP（80）、HTTPS（443）等常用端口的入站流量。将源端口伪装成这些端口可能绕过过滤：  
+```
+sudo nmap -sS -sV -Pn -p 389,3268,445,139 --source-port 53 10.10.110.0/24
+也可尝试 --source-port 80 或 --source-port 443。
+```
+3. 启用分片 (-f) 或修改 MTU  
+将探测包分片可绕过某些简单的包过滤设备：  
+```
+sudo nmap -sS -sV -Pn -p 389,3268,445,139 -f 10.10.110.0/24
+或指定更小的 MTU（如 16）：
+
+sudo nmap -sS -sV -Pn -p 389,3268,445,139 --mtu 16 10.10.110.0/24
+```
+4. 增加重试次数与延长超时  
+防火墙可能对某些包丢弃，但偶尔响应，增加重试和等待时间可提高命中率：  
+```
+sudo nmap -sS -sV -Pn -p 389,3268,445,139 --max-retries 5 --host-timeout 10m 10.10.110.0/24
+```
+5. 降低扫描速率（避免触发阈值）  
+快速扫描可能触发 IDS/IPS 阻断，使用 --scan-delay 放缓扫描：  
+```
+sudo nmap -sS -sV -Pn -p 389,3268,445,139 --scan-delay 2s 10.10.110.0/24
+```
+6. 组合参数（综合推荐）  
+将最可能有效的组合起来，例如 TCP Connect + 源端口伪装 + 分片：  
+```
+sudo nmap -sT -sV -Pn -p 389,3268,445,139 --source-port 53 -f --max-retries 3 10.10.110.0/24
+```
+7. 若以上均无效，考虑全端口扫描  
+有时域服务可能运行在非标准端口上，可先扫描所有 TCP 端口（耗时较长）：  
+```
+sudo nmap -sS -sV -Pn -p- --min-rate 1000 10.10.110.0/24
+```
