@@ -1,3 +1,4 @@
+# Nmap
 ### Overview
 -sS cant detect udp ports status  
 -sU cant detect tcp ports status
@@ -76,3 +77,5 @@ sudo nmap -sS -sV -Pn -p- --min-rate 1000 10.10.110.0/24
 >ACK扫描的结果只有两种状态：
 >unfiltered (未被过滤)：表示端口可访问。Nmap收到了目标主机返回的 RST 数据包。这说明ACK数据包可以到达目标主机，但无法确定该端口是开放还是关闭。
 >filtered (被过滤)：表示端口被防火墙保护。Nmap没有收到任何响应（数据包被丢弃），或者收到了 ICMP不可达错误 等消息。这说明有防火墙或过滤设备阻止了数据包到达目标端口。
+
+# Fscan
