@@ -1058,6 +1058,7 @@ SUID files
 find / -perm -4000 -type f 2>/dev/null
 ```
 SGID files
+>If u have egid set, means having permissions of the root group (for example, being able to access certain files owned by the root group)
 ```
 find / -type f -perm -g+s -exec ls -al {} \; 2>/dev/null
 ```
