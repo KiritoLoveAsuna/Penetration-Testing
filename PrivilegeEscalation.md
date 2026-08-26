@@ -908,6 +908,7 @@ while ($true)
 ###### Malicious SCF and Lnk file
 NTLM_theft
 # Linux
+>In Linux, when checking permissions, the directory's permissions take priority over the file's permissions.
 ### Basic Enumeration
 ```
 -perm mode permission bits are exactly set
