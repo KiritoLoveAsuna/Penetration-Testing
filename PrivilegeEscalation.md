@@ -1049,8 +1049,10 @@ Pspy is a command line tool designed to snoop on processes without need for root
 ![image](https://github.com/KiritoLoveAsuna/Penetration-Testing/assets/38044499/20c73182-d439-43a4-a3b5-f1fee987821c)
 
 ### SUID permissions (anything interesting, to look for in GTFOBins)
->SUID and SGID allow the current user to execute the file with the rights of the owner (setuid) or the owner's group (setgid)
+>SUID and SGID allow the current user to execute the file with the rights of the owner (setuid) or the owner's group (setgid)  
 
+-rwsr-xr-x 1 root(owner) root(owner of group) 320160 Feb 17  2020 /usr/bin/find  
+  
 SUID files
 ```
 find / -perm -4000 -type f 2>/dev/null
