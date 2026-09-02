@@ -18,3 +18,8 @@ after receiving shell
   linuxexploitsuggester  │ Run the latest version of linux-exploit-suggester in the background
 ```
 run peass_ng | lse | linuxexploitsuggester
+# Python
+```
+python -c 'import pty; pty.spawn("/bin/bash")'
+C:\python27\python.exe -c "import os; os.system('cmd.exe')"
+```
