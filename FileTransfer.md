@@ -81,6 +81,7 @@ anonymous login:
 user:anonymous,password:""
 #### Upgrading a Non-Interactive Shell
 python -c 'import pty; pty.spawn("/bin/bash")'  
+C:\python27\python.exe -c "import os; os.system('cmd.exe')"
 #### mode
 bin(binary mode)
 ascii(ascii mode)
