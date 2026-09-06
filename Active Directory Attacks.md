@@ -253,8 +253,10 @@ Open a new terminal
 sudo ntpdate -s domain
 ```
 ### Silver Tickets(Require SPN's hash, Domain's SID, SPN)
->Service hash required  
->Purpose:forge TGS ticket of certain service  
+>Service hash required
+
+>Purpose:forge TGS ticket of certain service
+ 
 >Since silver and golden tickets represent powerful attack techniques, Microsoft created a security patch to update the PAC structure.5 With this patch in place, the extended PAC structure field PAC_REQUESTOR needs to be validated by a domain controller. This mitigates the capability to forge tickets for non-existent domain users if the client and the KDC are in the same domain. Without this patch, we could create silver tickets for domain users that do not exist. The updates from this patch are enforced from October 11, 2022.
 ```
 whoami /user
