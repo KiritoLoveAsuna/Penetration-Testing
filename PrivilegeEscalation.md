@@ -357,7 +357,7 @@ Import-Module .\PowerUp.ps1
 Get-UnquotedService
 ```
 
-### Modifiable Services
+### Writable Services Permission
 ```
 Get-CimInstance -ClassName win32_service | Select Name,State,PathName | Where-Object {$_.State -like 'Running'}
 Get-CimInstance -ClassName win32_service | Select Name,State,PathName 
