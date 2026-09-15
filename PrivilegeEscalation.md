@@ -1384,7 +1384,8 @@ MAN_DISABLE_SECCOMP=1 man -P '/bin/sh -c "PATH=/usr/local/sbin:/usr/local/bin:/u
 ```
 vim
 :set shell=/bin/sh|:shell
-:set shell=/bin/bash|:shell 
+:set shell=/bin/bash|:shell
+:!/bin/bash
 ```
 ### Abusing Services
 ###### Kubernetes
