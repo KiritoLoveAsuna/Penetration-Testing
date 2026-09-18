@@ -1291,8 +1291,8 @@ void dbquery() {
 gcc src.c -fPIC -shared -o /development/libshared.so
 ./payroll
 ```
-### Python Library Hijacking
->Prerequsite: suid python file or user can run python file with sudo  
+### Python Library Hijacking | Python Module Hijacking | Python Path Hijacking
+>Prerequsite: suid python file | user can run python file with sudo | root sneakly run the python file in routine
 
 Priviledged Python Script
 ```
@@ -1310,6 +1310,7 @@ grep -r "def virtual_memory" /usr
 Library Path(We must have write permissions to one of the paths having a higher priority on the list)
 >In Python, each version has a specified order in which libraries (modules) are searched and imported from. The order in which Python imports modules from are based on a priority system, meaning that paths higher on the list take priority over ones lower on the list.
 ```
+current path
 python3 -c 'import sys; print("\n".join(sys.path))'
 ```
 Show default package import location
