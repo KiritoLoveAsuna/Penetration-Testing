@@ -1301,10 +1301,10 @@ Prerequisites:
 Library Path(We must have write permissions to one of the paths having a higher priority on the list)
 >In Python, each version has a specified order in which libraries (modules) are searched and imported from. The order in which Python imports modules from are based on a priority system, meaning that paths higher on the list take priority over ones lower on the list.
 ```
-python3 -c 'import sys; print(sys.path)'：
-['', '/usr/lib/python38.zip', '/usr/lib/python3.8', '/usr/lib/python3.8/lib-dynload', '/usr/local/lib/python3.8/dist-packages', '/usr/lib/python3/dist-packages']
+Python Library Path in Order by Priority = python3 -c 'import sys; print(sys.path)'
+code executed result = ['', '/usr/lib/python38.zip', '/usr/lib/python3.8', '/usr/lib/python3.8/lib-dynload', '/usr/local/lib/python3.8/dist-packages', '/usr/lib/python3/dist-packages']
 
-if pythonpath is set, syspath[1] = pythonpath
+tip: if pythonpath is set, syspath[1] = pythonpath
 ```
 Abuse writable pythonpath variable
 ```
