@@ -160,8 +160,8 @@ grep -rl --exclude='*.py' --exclude='*.js' "string" /
 ```
 ### One Liner Scan Alive Host
 ```
-for i in 172.16.5.{1..255}; do ping -c1 -W1 "$i" >/dev/null && echo "$i is up"; done
+for i in 172.16.5.{1..255}; do ping -c1 -W5 "$i" >/dev/null && echo "$i is up"; done
 ```
 ```
-1..254 | % {"172.16.6.$($_): $(Test-Connection -count 1 -comp 172.16.6.$($_) -quiet)"}
+(for /L %a IN (1,1,254) DO ping /n 1 /w 1 172.16.2.%a) | find "Reply"
 ```
