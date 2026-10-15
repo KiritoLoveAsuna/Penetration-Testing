@@ -96,7 +96,9 @@ john --wordlist=/usr/share/wordlists/rockyou.txt unshadowed.txt
 >hashcat -a 0 -m 500 hash.txt rockyou.txt -O (Minimum password length supported by kernel: 0
 Maximum password length supported by kernel: 15)  
 
->hashcat -a 0 -m 500 hash.txt rockyou.txt(Maximum password length supported by kernel: 256)
+>hashcat -a 0 -m 500 hash.txt rockyou.txt(Maximum password length supported by kernel: 256)  
+
+>password:manchesterunited has 16 characters,so
 ```
 built-in charset
 • ?l = abcdefghijklmnopqrstuvwxyz 
