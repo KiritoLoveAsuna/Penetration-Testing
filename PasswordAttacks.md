@@ -91,6 +91,12 @@ unshadow /etc/passwd /etc/shadow > unshadowed.txt
 john --wordlist=/usr/share/wordlists/rockyou.txt unshadowed.txt  
 
 # Hashcat
+>Dont use -O argument because  
+
+>hashcat -a 0 -m 500 hash.txt rockyou.txt -O (Minimum password length supported by kernel: 0
+Maximum password length supported by kernel: 15)  
+
+>hashcat -a 0 -m 500 hash.txt rockyou.txt(Maximum password length supported by kernel: 256)
 ```
 built-in charset
 • ?l = abcdefghijklmnopqrstuvwxyz 
