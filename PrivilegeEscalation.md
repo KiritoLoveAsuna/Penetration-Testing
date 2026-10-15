@@ -1009,6 +1009,7 @@ CVE-2021-22555 Linux Kernel 2.6 - 5.11
 CVE-2022-25636 Linux Kernel 5.4 through 5.6.10
 CVE-2022-1015 Linux Kernel <5.16.18
 CVE-2023-32233 Linux Kernel up to version 6.3.1
+CVE-2026-43284 Linux Kernel 4.11 <7.0.5
 ```
 ### Abusing $PATH
 >Creating a script or program in a directory specified in the PATH will make it executable from any directory on the system
