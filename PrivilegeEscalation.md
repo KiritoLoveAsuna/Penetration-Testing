@@ -241,6 +241,10 @@ mountvol
 1. driverquery /v /FO Table  
 2. Get-WmiObject Win32_PnPSignedDriver | Select-Object DeviceName, DriverVersion, Manufacturer
 ```
+### N day exploits
+```
+CVE-2026-109618 / CVE-2026-109619 php2shell, impacts php5.4<php8.5.12
+```
 ### Exploiting Windows Kernel exploits
 ```
 Windows Exploit Suggester - Next Generation
