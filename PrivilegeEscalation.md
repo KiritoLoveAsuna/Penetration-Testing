@@ -987,6 +987,7 @@ snapd-local-pe-prior_to_2.371_CVE-2019-7304.py
 cve-2021-4034-polkit, requires pkexec < 121
 CVE-2021-3560 polkit < 0.119 (pkcheck --version)
 udisks LPE on all linux distributions and versions CVE-2025-6018 & CVE-2025-6019, requires udisksctl command
+CVE-2026-109618 / CVE-2026-109619 php2shell, impacts php5.4<php8.5.12
 ```
 ### Kernel exploits
 ```
