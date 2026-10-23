@@ -258,6 +258,8 @@ sudo ntpdate -s domain
 >Purpose:forge TGS ticket of certain service
  
 >Since silver and golden tickets represent powerful attack techniques, Microsoft created a security patch to update the PAC structure.5 With this patch in place, the extended PAC structure field PAC_REQUESTOR needs to be validated by a domain controller. This mitigates the capability to forge tickets for non-existent domain users if the client and the KDC are in the same domain. Without this patch, we could create silver tickets for domain users that do not exist. The updates from this patch are enforced from October 11, 2022.
+
+>Scenario: If ever gain the hash of computer account (DC01$), forge winrm, wmi, smb TGS
 ```
 whoami /user
 kerberos::purge
@@ -291,6 +293,12 @@ Klist to view kerberos tickets
 
 #Always remember to sync the kdc time
 impacket-mssqlclient -k dc.sequel.htb
+```
+SPN Mapping to Service
+```
+WinRM:  http/<DC-FQDN> and wsman/<DC-FQDN>
+WMI (HOST/RPCSS)： host/<DC-FQDN> and rpcss/<DC-FQDN>
+SMB (CIFS)： cifs/<DC-FQDN>
 ```
 ### Pass-the-ticket
 >In this attack, an attacker intercepts and steals a valid ticket-granting ticket (TGT) or service ticket (TGS) from a compromised user or service account.
