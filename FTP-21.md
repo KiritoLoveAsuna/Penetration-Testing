@@ -17,3 +17,6 @@ ftp-ssl -z secure -z verify=0 -z cipher="$(openssl ciphers -tls1)" 192.168.221.6
 use ftp active mode
 ### Active vs Passive
 >A distinction is made between active and passive FTP. In the active variant, the client establishes the connection as described via TCP port 21 and thus informs the server via which client-side port the server can transmit its responses. However, if a firewall protects the client, the server cannot reply because all external connections are blocked. For this purpose, the passive mode has been developed. Here, the server announces a port through which the client can establish the data channel. Since the client initiates the connection in this method, the firewall does not block the transfer.
+# FTP server
+### vsFTPd
+/etc/vsftpd.conf
