@@ -9,6 +9,7 @@ The recursive resolver then asks the example.com authoritative name server for t
 ### Brute-force subdomains
 ```
 for ip in $(cat list.txt); do host $ip.megacorpone.com; done
+for sub in $(cat /opt/useful/seclists/Discovery/DNS/subdomains-top1million-110000.txt);do dig $sub.inlanefreight.htb @10.129.14.128 | grep -v ';\|SOA' | sed -r '/^\s*$/d' | grep $sub | tee -a subdomains.txt;done
 ```
 
 ### domains resolving to the ip
