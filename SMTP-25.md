@@ -30,6 +30,9 @@ swaks --to 1278239731@qq.com --from xingdi@zhangyishan.store --server mail.smtp2
 ```
 sudo systemctl restart postfix
 ```
+# Command 
+### VRFY
+>The command VRFY can be used to enumerate existing users on the system. However, this does not always work. Depending on how the SMTP server is configured, the SMTP server may issue code 252 and confirm the existence of a user that does not exist on the system. A list of all SMTP response codes can be found here(https://serversmtp.com/smtp-error/).
 
 ### smtp user enumeration
 ```
