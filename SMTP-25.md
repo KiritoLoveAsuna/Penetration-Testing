@@ -40,5 +40,7 @@ smtp-user-enum -M VRFY -U /usr/share/wordlists/metasploit/unix_users.txt -t host
 smtp-user-enum -M VRFY -U /usr/share/wordlists/seclists/Usernames/xato-net-10-million-usernames.txt -t 192.168.180.140 -v -p 25
 ```
 # Dangerous Settings
+>To prevent the sent emails from being filtered by spam filters and not reaching the recipient, the sender can use a relay server that the recipient trusts. It is an SMTP server that is known and verified by all others. As a rule, the sender must authenticate himself to the relay server before using it.  
+
 mynetworks = 0.0.0.0/0  
 
