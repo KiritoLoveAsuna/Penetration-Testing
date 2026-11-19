@@ -292,6 +292,7 @@ SPN Mapping to Service
 WinRM:  http/<DC-FQDN> and wsman/<DC-FQDN>
 WMI (HOST/RPCSS)： host/<DC-FQDN> and rpcss/<DC-FQDN>
 SMB (CIFS)： cifs/<DC-FQDN>
+RDP : TERMSRV/<DC-FQDN>
 ```
 ### Pass-the-ticket
 >In this attack, an attacker intercepts and steals a valid ticket-granting ticket (TGT) or service ticket (TGS) from a compromised user or service account.
