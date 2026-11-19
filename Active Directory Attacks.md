@@ -253,6 +253,7 @@ Open a new terminal
 sudo ntpdate -s domain
 ```
 ### Silver Tickets(Require SPN's hash, Domain's SID, SPN)
+Using the already obtained service account keys to forge Kerberos service tickets, trying to access specific services with higher privileges.  
 >Service acccount's hash required
 
 >Purpose:forge TGS ticket of certain service
