@@ -21,7 +21,9 @@ openssl s_client -connect 10.129.14.128:imaps
 | `1 CLOSE` | Closes the selected mailbox and permanently removes messages marked as `\Deleted`. |
 | `1 LOGOUT` | Closes the connection with the IMAP server. |
 
-To retrieve the complete email, including headers and body, use:
+* 1 EXISTS  
+* 0 RECENT  
+To retrieve the complete email, including headers and body, use:  
 1 fetch 1 body[]
 #### POP3 Commands
 
