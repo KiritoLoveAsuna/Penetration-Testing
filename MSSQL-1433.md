@@ -4,6 +4,7 @@ Master
 Model
 Msdb
 Tempdb
+resource
 ```
 ### Queries to run 
 ```
