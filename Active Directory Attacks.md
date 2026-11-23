@@ -502,6 +502,7 @@ sudo dpkg -i python3-openssl_24.0.0-1_all.deb
 ```
 KRB5CCNAME vs KRB5_CONFIG
 >KRB5CCNAME selects credentials; KRB5_CONFIG selects configuration describing where the KDC is and how hostnames map to realms
+
 Generate krb5_config
 ```
 nxc smb 10.129.232.168 -u f.frizzle -p 'Jenni_Luvs_Magic23' -k --generate-krb5-file=/home/kali/Desktop/frizz_krb5_config
