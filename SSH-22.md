@@ -1,42 +1,31 @@
+# tip
+Use -vvv to debug 
+# KRB5CCNAME vs KRB5_CONFIG
+KRB5CCNAME selects credentials; KRB5_CONFIG selects configuration describing where the KDC is and how hostnames map to realms
 ### Version < 7.7
 ```
 python sshUsernameEnumExploit.py <IP> -w <wordlist>
 ```
 
-### Login via kerberos
+### SSH Login via kerberos
 ```
 /etc/hosts(顺序必须一摸一样):
 10.10.11.60     frizzdc.frizz.htb frizz.htb
 
+impacket-getTGT frizzdc.frizz.htb/M.SchoolBus:'!suBcig@MehTed!R'
+export KRB5CCNAME=ccache_file_dest
+klist
 
-/etc/krb5.conf:
-[domain_realm]
-    .frizz.htb = FRIZZ.HTB
-    frizz.htb = FRIZZ.HTB
- 
-[libdefaults]
-    default_realm = FRIZZ.HTB
-    dns_lookup_realm = false
-    dns_lookup_kdc = true
-    ticket_lifetime = 24h
-    forwardable = true
- 
-[realms]
-    FRIZZ.HTB = {
-        kdc = FRIZZDC.FRIZZ.HTB
-        admin_server = FRIZZDC.FRIZZ.HTB
-        default_domain = FRIZZ.HTB
-    }
+If Cannot find KDC for realm "FRIZZ.HTB:
+nxc smb 10.129.232.168 -u f.frizzle -p 'Jenni_Luvs_Magic23' -k --generate-krb5-file=/home/kali/Desktop/frizz_krb5_config
+export KRB5_CONFIG=/home/kali/Desktop/frizz_krb5.config
 
-kinit f.frizzle@FRIZZ.HTB; klist or impacket-getTGT -dc-ip 10.10.11.60 frizz.htb/M.SchoolBus:'!suBcig@MehTed!R' export KRB5CCNAME=f.frizzle.ccache klist
-
-ssh f.frizzle@frizz.htb -K 
+ssh f.frizzle@frizzdc.frizz.htb -k
 ```
-Solving Permission denied (gssapi-with-mic,keyboard-interactive).
+Solving Cannot find KDC for realm "FRIZZ.HTB"
 ```
-sudo timedatectl set-ntp off
-sudo rdate -n 10.10.10.100
-Open a new terminal
+Generating krb5_config
+nxc smb 10.129.232.168 -u f.frizzle -p 'Jenni_Luvs_Magic23' -k --generate-krb5-file=/home/kali/Desktop/frizz_krb5_config
 ```
 ### SSH Config file in Linux
 ```
