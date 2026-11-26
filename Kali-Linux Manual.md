@@ -165,3 +165,7 @@ for i in 172.16.5.{1..255}; do ping -c1 -W5 "$i" >/dev/null && echo "$i is up"; 
 ```
 (for /L %a IN (1,1,254) DO ping /n 1 /w 1 172.16.2.%a) | find "Reply"
 ```
+### Linux - Mount
+```sh
+sudo mount -t cifs -o username=plaintext,password=Password123,domain=. //192.168.220.129/Finance local_folder
+```
