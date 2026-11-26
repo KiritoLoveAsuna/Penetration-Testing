@@ -125,8 +125,6 @@ systemctl show service(Show properties of a service or other unit)
 journalctl(Show all collected log messages)  
 journalctl -k(Show only kernel messages)
 
-### list commands current users can/can't execute 
-sudo -l
 
 ### Use of .bashrc or .zshrc(check shell you are using first)
 make persistent alias by adding (alias ..='cd')  
