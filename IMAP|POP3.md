@@ -40,3 +40,6 @@ To retrieve the complete email, including headers and body, use:
 | `CAPA` | Displays the server capabilities. |
 | `RSET` | Resets deletion marks made during the current session. |
 | `QUIT` | Closes the connection with the POP3 server. |
+
+# Mail Client 
+Evolution
