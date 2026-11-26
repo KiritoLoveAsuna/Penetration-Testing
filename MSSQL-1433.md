@@ -2,6 +2,8 @@
 ```
 sqlcmd -S 10.129.20.13 -U username -P Password123
 ```
+# GUI Application with mssql on windows 
+SQL Server Management Studio or SSMS
 ### MSSQL Default Database
 ```
 Master
