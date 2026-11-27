@@ -1,3 +1,6 @@
+# Default databases;
+mysql,sys,information_schema,performance_schema 
+
 # Interal login and execute commands
 under phpmyadmin
 ```
