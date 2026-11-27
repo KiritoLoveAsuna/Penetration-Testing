@@ -4,6 +4,8 @@
 
 #### SMB
 >OSCP exam only allow Analyze mode by -Av
+
+>Suppose a user mistyped a shared folder's name \\mysharefoder\ instead of \\mysharedfolder\. In that case, all name resolutions will fail because the name does not exist, and the machine will send a multicast query to all devices on the network, including us running our fake SMB server. This is a problem because no measures are taken to verify the integrity of the responses. Attackers can take advantage of this mechanism by listening in on such queries and spoofing responses, leading the victim to believe malicious servers are trustworthy. This trust is usually used to steal credentials.
 ```
 Listener:
 sudo responder -I tun0 -v
